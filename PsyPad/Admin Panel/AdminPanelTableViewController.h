@@ -1,6 +1,6 @@
 //
 //  AdminPanelTableViewController.h
-//  eTASM2
+//  2
 //
 //  Created by David Lawson on 01/28/13.
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.

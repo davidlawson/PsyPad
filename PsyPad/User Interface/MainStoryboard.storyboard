@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
     <dependencies>
-        <deployment version="1296" defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <deployment version="1296" defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Main Menu View Controller-->
@@ -1776,36 +1776,12 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ILV-S4-w0D">
-                                        <rect key="frame" x="0.0" y="2426" width="540" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ILV-S4-w0D" id="qxs-TA-PQo">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Attempt facial recognition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jFq-0b-nMo">
-                                                    <rect key="frame" x="10" y="0.0" width="363" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Klu-wr-BD1">
-                                                    <rect key="frame" x="480" y="8" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                                    <connections>
-                                                        <action selector="saveChanges:" destination="bZ2-1M-DtL" eventType="valueChanged" id="C9x-e4-Idc"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Time Between Each Question" id="lR2-2s-u27">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3Vu-ys-ffL">
-                                        <rect key="frame" x="0.0" y="2518" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2474" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Vu-ys-ffL" id="6da-Fk-2XV">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1836,7 +1812,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VX0-yd-jqh">
-                                        <rect key="frame" x="0.0" y="2562" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2518" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VX0-yd-jqh" id="uHm-nz-CmY">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1871,7 +1847,7 @@
                             <tableViewSection headerTitle="Presentation Time" id="r4K-zk-8Iq">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mkK-1q-6nS">
-                                        <rect key="frame" x="0.0" y="2654" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2610" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mkK-1q-6nS" id="BIc-8A-nFx">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1895,7 +1871,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Qn7-tN-gKo">
-                                        <rect key="frame" x="0.0" y="2698" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2654" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qn7-tN-gKo" id="IK0-cy-DgO">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1923,7 +1899,7 @@
                             <tableViewSection headerTitle="Randomisation Settings" id="ZUo-dM-hUF">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="EaK-tk-Kmd">
-                                        <rect key="frame" x="0.0" y="2790" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2746" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EaK-tk-Kmd" id="yp4-AO-jS0">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1947,7 +1923,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zGs-lm-QOS">
-                                        <rect key="frame" x="0.0" y="2834" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2790" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zGs-lm-QOS" id="zhl-pN-50U">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1979,7 +1955,6 @@
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="animationFrameRate" destination="vfV-qe-JaY" id="rgq-y0-dzN"/>
-                        <outlet property="attemptFacialRecognition" destination="Klu-wr-BD1" id="a6V-Cm-4pA"/>
                         <outlet property="backgroundColour" destination="upT-oz-TjM" id="wSs-MQ-wVw"/>
                         <outlet property="button1BG" destination="fxn-IN-5bv" id="x3G-BW-Qqh"/>
                         <outlet property="button1FG" destination="geQ-pi-oov" id="Co6-Zq-1GX"/>
@@ -2751,64 +2726,6 @@
             </objects>
             <point key="canvasLocation" x="-236" y="-722"/>
         </scene>
-        <!--Distance Detector View Controller-->
-        <scene sceneID="c2Y-Lz-QZk">
-            <objects>
-                <viewController id="iTp-rH-GqM" customClass="DistanceDetectorViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eRv-kn-skd">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" id="j43-cc-qL9">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Distance Detector" id="KaS-8W-58k">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" style="done" id="jUV-f9-d8P">
-                                            <connections>
-                                                <action selector="dismissController:" destination="iTp-rH-GqM" id="kDB-rL-ik8"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Dw-j4-cI2" customClass="BorderButton">
-                                <rect key="frame" x="20" y="64" width="500" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Perform Distance Detection">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="performDistanceDetection:" destination="iTp-rH-GqM" eventType="touchUpInside" id="b6u-Zc-W5N"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Detected distance from camera:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BE8-GT-Bvf">
-                                <rect key="frame" x="20" y="580" width="500" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="Xmu-dj-nEO">
-                                <rect key="frame" x="20" y="125" width="500" height="441"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.8862745098" green="0.8862745098" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="faceImageView" destination="Xmu-dj-nEO" id="pdq-wI-NEw"/>
-                        <outlet property="resultsLabel" destination="BE8-GT-Bvf" id="kZS-gM-OcV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Efw-mr-Q1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1497" y="-722"/>
-        </scene>
         <!--Test Log Table View Controller - Current Log-->
         <scene sceneID="1mb-JR-YL1">
             <objects>
@@ -3050,9 +2967,6 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="iTp-rH-GqM" kind="modal" modalPresentationStyle="formSheet" id="rnK-M0-fID"/>
-                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Question 1/50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OOE-aC-TjU">
                                 <rect key="frame" x="20" y="20" width="239" height="20"/>

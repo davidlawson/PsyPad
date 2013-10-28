@@ -1,6 +1,6 @@
 //
 //  main.m
-//  eTASM2
+//  PsyPad
 //
 //  Created by David Lawson on 28/12/12.
 //

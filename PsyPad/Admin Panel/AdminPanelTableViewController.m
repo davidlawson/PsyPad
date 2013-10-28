@@ -1,6 +1,6 @@
 //
 //  AdminPanelTableViewController.m
-//  eTASM2
+//  PsyPad
 //
 //  Created by David Lawson on 01/28/13.
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
@@ -369,7 +369,7 @@
                         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
                         [newConfiguration installSequenceWithURL:image_sequence_url data:image_sequence_data HUD:self.hud sema:sema];
                         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                        dispatch_release(sema);
+                        //dispatch_release(sema);
                     }
 
                     /*if ([configurationData objectForKey:@"NQPF"])
@@ -576,7 +576,7 @@
                             dispatch_semaphore_t sema = dispatch_semaphore_create(0);
                             [newConfiguration installSequenceWithURL:image_sequence_url data:image_sequence_data HUD:self.hud sema:sema];
                             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                            dispatch_release(sema);
+                            //dispatch_release(sema);
                         }
 
                         /*if ([configurationData objectForKey:@"NQPF"])
@@ -950,7 +950,7 @@
 
 - (IBAction)dismissModal:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

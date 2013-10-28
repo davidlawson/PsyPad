@@ -1,6 +1,6 @@
 //
 //  Random.m
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 2/12/12.
 //

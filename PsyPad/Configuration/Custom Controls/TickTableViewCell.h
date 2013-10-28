@@ -1,6 +1,6 @@
 //
 //  TickTableViewCell.h
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 6/12/12.
 //

@@ -1,6 +1,6 @@
 //
 //  TestConfigSubTableViewController.h
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 12/02/12.
 //

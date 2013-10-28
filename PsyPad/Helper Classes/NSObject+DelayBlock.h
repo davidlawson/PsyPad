@@ -1,6 +1,6 @@
 //
 //  NSObject+DelayBlock.h
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 12/17/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.

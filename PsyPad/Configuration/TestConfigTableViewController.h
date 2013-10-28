@@ -1,6 +1,6 @@
 //
 //  TestConfigTableViewController.h
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 2/12/12.
 //
@@ -89,7 +89,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *button4FG;
 
 @property (weak, nonatomic) IBOutlet UISwitch *requireNextSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *attemptFacialRecognition;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *timeBetweenEachQuestionMeanLabel;

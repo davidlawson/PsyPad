@@ -1,6 +1,6 @@
 //
 //  TestLogTableViewController.m
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 13/12/12.
 //
@@ -206,12 +206,7 @@
 
 - (IBAction)close:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

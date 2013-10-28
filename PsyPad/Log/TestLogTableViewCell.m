@@ -1,6 +1,6 @@
 //
 //  TestLogTableViewCell.m
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 13/12/12.
 //

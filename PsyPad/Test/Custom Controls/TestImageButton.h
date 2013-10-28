@@ -1,6 +1,6 @@
 //
 //  TestImageButton.h
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 12/07/12.
 //

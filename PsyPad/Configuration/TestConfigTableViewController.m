@@ -1,6 +1,6 @@
 //
 //  TestConfigTableViewController.m
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 2/12/12.
 //
@@ -118,7 +118,6 @@
     conf.button4_fg = self.button4FG.text;
 
     conf.require_next = @(self.requireNextSwitch.on);
-    conf.attempt_facial_recognition = @(self.attemptFacialRecognition.on);
 
     conf.time_between_question_mean = @(self.timeBetweenEachQuestionMean.value);
     conf.time_between_question_plusminus = @(self.timeBetweenEachQuestionPlusMinus.value);
@@ -221,7 +220,6 @@
     self.button4FG.text = conf.button4_fg;
 
     self.requireNextSwitch.on = conf.require_next.boolValue;
-    self.attemptFacialRecognition.on = conf.attempt_facial_recognition.boolValue;
 
     self.timeBetweenEachQuestionMean.value = conf.time_between_question_mean.floatValue;
     self.timeBetweenEachQuestionMeanLabel.text = [NSString stringWithFormat:@"%.2fs", conf.time_between_question_mean.floatValue];
@@ -440,7 +438,6 @@
     [self setButton3FG:nil];
     [self setButton4BG:nil];
     [self setButton4FG:nil];
-    [self setAttemptFacialRecognition:nil];
     [self setTimeBetweenEachQuestionMean:nil];
     [self setTimeBetweenEachQuestionPlusMinus:nil];
     [self setTimeBetweenEachQuestionMeanLabel:nil];

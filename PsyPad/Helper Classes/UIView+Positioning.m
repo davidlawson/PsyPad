@@ -1,6 +1,6 @@
 //
 //  UIView+Positioning.m
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 7/12/12.
 //

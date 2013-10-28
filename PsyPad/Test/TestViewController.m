@@ -1,6 +1,6 @@
 //
 //  TestViewController.m
-//  eTASM
+//  PsyPad
 //
 //  Created by David Lawson on 5/12/12.
 //
@@ -20,9 +20,7 @@
 #import "TestLogItem.h"
 #import "TestLogTableViewController.h"
 #import "NSObject+DelayBlock.h"
-#import "AFHTTPClient.h"
-#import "AFHTTPRequestOperation.h"
-#import "DistanceDetector.h"
+#import <AFNetworking/AFNetworking.h>
 #import "UIImage+Picker.h"
 #import "Staircase.h"
 #import "NSString+getNumberFromString.h"
@@ -86,8 +84,6 @@
     {
         self.exitButton.hidden = YES;
     }
-
-    self.distanceDetector = [[DistanceDetector alloc] init];
 
     [[UIScreen mainScreen] setBrightness:1.0];
 }
@@ -306,7 +302,7 @@
         [UIView cancelPreviousPerformRequestsWithTarget:self];
 
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -468,9 +464,6 @@
     [self log:@"reaction_time" info:@"%.2fms", reaction_time];
 
     [self log:@"button_press" info:@"%d (%@)", pressedButton.number, [pressedButton titleForState:UIControlStateNormal]];
-
-    if (self.currentConfiguration.attempt_facial_recognition.boolValue)
-        [self.distanceDetector takePhoto:self question:self.questionNumber];
 
     if (self.currentConfiguration.use_staircase_method.boolValue)
     {
@@ -912,8 +905,6 @@
 - (void)viewDidUnload
 {
     free(self.seedState);
-
-    [self.distanceDetector done];
 
     [self setBeginTestButton:nil];
     [self setQuestionLabel:nil];

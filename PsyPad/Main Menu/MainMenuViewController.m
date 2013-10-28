@@ -1,6 +1,6 @@
 //
 //  MainMenuViewController.m
-//  eTASM2
+//  PsyPad
 //
 //  Created by David Lawson on 28/12/12.
 //  Copyright (c) 2012 David Lawson. All rights reserved.
@@ -18,8 +18,7 @@
 #import "TestLogTableViewController.h"
 #import "TestLog.h"
 #import "TestViewController.h"
-#import "AFHTTPClient.h"
-#import "AFHTTPRequestOperation.h"
+#import <AFNetworking/AFNetworking.h>
 #import "AdminPanelTableViewController.h"
 #import "SSZipArchive.h"
 #import "MBProgressHUD.h"
@@ -367,7 +366,7 @@
                         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
                         [newConfiguration installSequenceWithURL:image_sequence_url data:image_sequence_data HUD:self.hud sema:sema];
                         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                        dispatch_release(sema);
+                        //dispatch_release(sema);
                     }
 
                     /*if ([configurationData objectForKey:@"NQPF"])

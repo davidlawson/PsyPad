@@ -1,6 +1,6 @@
 //
 //  ManageUserTableViewController.m
-//  eTASM2
+//  PsyPad
 //
 //  Created by David Lawson on 01/28/13.
 //

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AppConfiguration" representedClassName="AppConfiguration" syncable="YES">
         <attribute name="admin_password" attributeType="String" defaultValueString="banana" syncable="YES"/>
         <attribute name="server_password" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,7 +8,6 @@
     </entity>
     <entity name="TestConfiguration" representedClassName="TestConfiguration" syncable="YES">
         <attribute name="animation_frame_rate" attributeType="Integer 16" defaultValueString="50" syncable="YES"/>
-        <attribute name="attempt_facial_recognition" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="background_colour" attributeType="String" defaultValueString="#000000" syncable="YES"/>
         <attribute name="button_text_four" attributeType="String" defaultValueString="Four" syncable="YES"/>
         <attribute name="button_text_one" attributeType="String" defaultValueString="One" syncable="YES"/>
