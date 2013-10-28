@@ -1,0 +1,31 @@
+//
+// Prefix header for all source files of the 'eTASM2' target in the 'eTASM2' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+#endif
+
+#define COLOR(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define TEXT_SELECTED_COLOR COLOR(47, 86, 136)
+
+#define BUTTON_BG_COLOR COLOR(48, 48, 48)
+#define BUTTON_TEXT_COLOR COLOR(138, 138, 138)
+#define BUTTON_HIGHLIGHTED_COLOR COLOR(70, 70, 70)
+#define BUTTON_TEXT_FONT [UIFont boldSystemFontOfSize:19]
+
+#define BUTTON_PADDING_LR 110
+#define BUTTON_PADDING_TB 70
+#define BUTTON_SPACING 20
+
+#define APP_DELEGATE ((AppDelegate *)[[UIApplication sharedApplication] delegate])

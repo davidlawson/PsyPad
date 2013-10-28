@@ -1,0 +1,25 @@
+//
+//  AdminPanelTableViewController.h
+//  eTASM2
+//
+//  Created by David Lawson on 01/28/13.
+//  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
+//
+
+@class MBProgressHUD, AppConfiguration;
+
+@interface AdminPanelTableViewController : UITableViewController <UITextFieldDelegate>
+
+@property (strong, nonatomic) NSMutableArray *users;
+@property (strong, nonatomic) NSMutableArray *serverUsers;
+@property (strong, nonatomic) AppConfiguration *appConfiguration;
+
+@property (strong, nonatomic) UIAlertView *addUserAlertView;
+
+@property (strong, nonatomic) MBProgressHUD *hud;
+
+- (IBAction)saveChanges:(id)sender;
+
+- (IBAction)dismissModal:(id)sender;
+
+@end
