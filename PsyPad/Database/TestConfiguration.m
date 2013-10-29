@@ -6,12 +6,13 @@
 //
 
 #import "TestConfiguration.h"
+#import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+
 #import "TestSequence.h"
 #import "TestSequenceFolder.h"
 #import "AppDelegate.h"
 #import "TestSequenceImage.h"
-#import "MBProgressHUD.h"
-#import "AFHTTPRequestOperation.h"
 
 @implementation TestConfiguration
 

@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Pods-FXBlurView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Pods-MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>Pods-RaptureXML.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,6 +37,21 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>054E45C4624046D4BAD5AA14</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>092D6AC859944DA396520938</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>117DD23B642B4DBDBC648851</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>118E21C431C140D6AD84BB19</key>
 		<dict>
 			<key>primary</key>
@@ -53,6 +78,26 @@
 			<true/>
 		</dict>
 		<key>2F745754AE0B4AD59725E4FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C61978A186249E6B4258CD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3D9E57D06BB04203A330AEA1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>43603C867832496A894F913D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>45291FD0CB2A4AACBD82A1CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,6 +152,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9B0547F7D12F4AA482D4874B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A640933D518E4181AD02EED0</key>
 		<dict>
 			<key>primary</key>
@@ -122,6 +172,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B961826461E4467995C6BF08</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBD949B8E4C141789EAB559A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C8378221480B49788F671C57</key>
 		<dict>
 			<key>primary</key>
@@ -133,6 +193,11 @@
 			<true/>
 		</dict>
 		<key>DAD21173DEEA4767A8EC34A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E95910ECD9B7401A8CF9BCC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -7,21 +7,16 @@
 //
 
 #import "MainMenuViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <AFNetworking/AFNetworking.h>
+
 #import "UIView+Positioning.h"
 #import "UIAlertView+Blocks.h"
 #import "AppDelegate.h"
 #import "User.h"
-#import "SelectConfigurationTableViewController.h"
-#import "AdminPanelNavigationController.h"
 #import "TestConfiguration.h"
-#import "TestLogTableViewController.h"
-#import "TestLog.h"
 #import "TestViewController.h"
-#import <AFNetworking/AFNetworking.h>
 #import "AdminPanelTableViewController.h"
-#import "SSZipArchive.h"
-#import "MBProgressHUD.h"
 #import "AppConfiguration.h"
 
 @interface MainMenuViewController ()
@@ -54,60 +49,6 @@
         [self loadAppConfiguration];
         [self loadUsers];
     }
-
-    [self unzipFiles];
-}
-
-- (void)unzipFiles
-{
-    NSURL *sequenceFolder = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Sequences"];
-    NSURL *destFolder = [[APP_DELEGATE applicationDocumentsDirectory] URLByAppendingPathComponent:@"Sequences"];
-    NSArray *folderContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sequenceFolder.path error:nil];
-
-    NSMutableArray *filesToUnzip = [NSMutableArray array];
-
-    for (NSString *folderPath in folderContents)
-    {
-        NSURL *folderURL = [sequenceFolder URLByAppendingPathComponent:folderPath];
-        if ([folderURL.pathExtension isEqualToString:@"zip"])
-        {
-            NSString *destinationPath = [destFolder URLByAppendingPathComponent:folderPath.stringByDeletingPathExtension].path;
-            if (! [[NSFileManager defaultManager] fileExistsAtPath:destinationPath])
-            {
-                [filesToUnzip addObject:folderURL.path];
-            }
-        }
-    }
-
-    if (filesToUnzip.count > 0)
-    {
-        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        self.hud.mode = MBProgressHUDModeDeterminate;
-        self.hud.labelText = @"Unzipping Images";
-
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
-        {
-            for (int i = 0; i < filesToUnzip.count; i++)
-            {
-                NSString *path = [filesToUnzip objectAtIndex:i];
-                self.hud.labelText = [NSString stringWithFormat:@"Unzipping %d/%d", i+1, filesToUnzip.count];
-
-                NSString *destinationPath = [destFolder URLByAppendingPathComponent:path.lastPathComponent.stringByDeletingPathExtension].path;
-                [[NSFileManager defaultManager] removeItemAtPath:[destinationPath stringByAppendingString:@"-unzipping"] error:nil];
-                [SSZipArchive unzipFileAtPath:path toDestination:[destinationPath stringByAppendingString:@"-unzipping"] delegate:self];
-                [[NSFileManager defaultManager] moveItemAtPath:[destinationPath stringByAppendingString:@"-unzipping"] toPath:destinationPath error:nil];
-            }
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            });
-        });
-    }
-}
-
-- (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath fileInfo:(unz_file_info)fileInfo
-{
-    self.hud.progress = (float)(fileIndex+1)/(float)totalFiles;
 }
 
 - (void)loadUsers
@@ -609,6 +550,7 @@
     [UIView animateWithDuration:animationDuration
         animations:^
         {
+            self.overlay.alpha = 0.0;
             [self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
         }
     ];
@@ -626,6 +568,7 @@
     [UIView animateWithDuration:animationDuration
         animations:^
         {
+            self.overlay.alpha = 1.0;
             [self.centreBox moveToY:(self.view.height-keyboardFrame.size.height)/2-self.centreBox.height/2];
         }
     ];

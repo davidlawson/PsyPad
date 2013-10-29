@@ -14,7 +14,7 @@
 
 - (void)insertDefaultData
 {
-    self.server_url = @"http://www.psypad.net.au/";
+    self.server_url = @"http://www.psypad.net.au/server/";
     self.server_username = @"";
     self.server_password = @""; // TODO handle this!
     self.admin_password = @"admin"; // more error handling lease

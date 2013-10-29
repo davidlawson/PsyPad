@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "SSZipArchive.h"
+#import <SSZipArchive.h>
 
 @class TestSequence;
 @class TestLog;

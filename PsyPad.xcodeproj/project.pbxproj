@@ -13,7 +13,6 @@
 		5AF0E16D74928A2480ABE261 /* NSString+getNumberFromString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E1E5D69FD88434DD9985 /* NSString+getNumberFromString.m */; };
 		5AF0E1E31E95B770EA668A38 /* TestLogItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EFE0824C1518B886B1BF /* TestLogItem.m */; };
 		5AF0E200E675571F3B6E5FFC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0E61F0BEAD03448FE32BD /* libxml2.dylib */; };
-		5AF0E20E0297DAD6DCDFE63C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E2321D0BDE4D9E2E3F66 /* MBProgressHUD.m */; };
 		5AF0E26DEA506465B67AA052 /* NSArray+GetRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EE35DE91145EFEA1123B /* NSArray+GetRandom.m */; };
 		5AF0E29E91C2624D3AB5454B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0E6849873D0FE1707D115 /* AVFoundation.framework */; };
 		5AF0E2B31987AE178A5BB5B8 /* NSString+containsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E7C430C57B7CDE1EB06B /* NSString+containsCategory.m */; };
@@ -91,7 +90,6 @@
 		5AF0E0B43ACD00DDB91FFA42 /* Mean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mean.h; sourceTree = "<group>"; };
 		5AF0E1B54E3C7EF85636E291 /* TestLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLog.h; sourceTree = "<group>"; };
 		5AF0E1E5D69FD88434DD9985 /* NSString+getNumberFromString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+getNumberFromString.m"; sourceTree = "<group>"; };
-		5AF0E2321D0BDE4D9E2E3F66 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5AF0E312DFA8457A95F447AE /* Staircase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staircase.h; sourceTree = "<group>"; };
 		5AF0E34C62954EA36D3FA704 /* TestSequenceImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSequenceImage.m; sourceTree = "<group>"; };
 		5AF0E39E0296913BEDA4190D /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -126,7 +124,6 @@
 		5AF0EE35DE91145EFEA1123B /* NSArray+GetRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GetRandom.m"; sourceTree = "<group>"; };
 		5AF0EF032B1DFEBD1AF57FC4 /* NSString+getNumberFromString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+getNumberFromString.h"; sourceTree = "<group>"; };
 		5AF0EF1ED8D4FE52CA721082 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		5AF0EF66B6180BD6AA153A88 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		5AF0EFA782F686E6BD424514 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		5AF0EFA8B7B6B5B809106B50 /* UIImage+Picker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Picker.h"; sourceTree = "<group>"; };
 		5AF0EFA92E79365204688816 /* NSArray+GetRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GetRandom.h"; sourceTree = "<group>"; };
@@ -343,8 +340,6 @@
 				63F9F1B9168ED165006532D9 /* UIButtonBlock.m */,
 				636035B8168D897000AE93D0 /* UIView+Positioning.m */,
 				63F9F1B6168ED165006532D9 /* UIButton+Block.h */,
-				5AF0E2321D0BDE4D9E2E3F66 /* MBProgressHUD.m */,
-				5AF0EF66B6180BD6AA153A88 /* MBProgressHUD.h */,
 				5AF0EDBA381C246DDDE98616 /* NSString+containsCategory.h */,
 				5AF0E7C430C57B7CDE1EB06B /* NSString+containsCategory.m */,
 				5AF0EFA8B7B6B5B809106B50 /* UIImage+Picker.h */,
@@ -689,7 +684,6 @@
 				5AF0E348E1EB72492DB80135 /* Mean.m in Sources */,
 				5AF0EB2DD285A8F2E6DF60B8 /* AdminPanelTableViewController.m in Sources */,
 				5AF0E6552E4BAE482FA33C0F /* ManageUserTableViewController.m in Sources */,
-				5AF0E20E0297DAD6DCDFE63C /* MBProgressHUD.m in Sources */,
 				5AF0E2B31987AE178A5BB5B8 /* NSString+containsCategory.m in Sources */,
 				5AF0EC3121BF8F52B737D033 /* UIImage+Picker.m in Sources */,
 				631BD07F170AA2390086DC8B /* AppConfiguration.m in Sources */,

@@ -15,6 +15,8 @@
 
 @interface MainMenuViewController : UIViewController <UITextFieldDelegate, SSZipArchiveDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *overlay;
+
 @property (weak, nonatomic) IBOutlet UIView *centreBox;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;

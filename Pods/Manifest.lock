@@ -19,16 +19,19 @@ PODS:
   - AFNetworking/Serialization (2.0.1)
   - AFNetworking/UIKit (2.0.1):
     - AFNetworking/NSURLConnection
+  - MBProgressHUD (0.8)
   - RaptureXML (1.0.1)
   - SSZipArchive (0.3.1)
 
 DEPENDENCIES:
   - AFNetworking
+  - MBProgressHUD
   - RaptureXML
   - SSZipArchive
 
 SPEC CHECKSUMS:
   AFNetworking: a6f11ac4ac087303e6ff87adc1ba57b0dac20ef8
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
   SSZipArchive: 47d0589a15452311749a4eeecb97e12800d127de
 

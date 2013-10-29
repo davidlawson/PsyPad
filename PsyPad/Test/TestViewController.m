@@ -6,6 +6,9 @@
 //
 
 #import "TestViewController.h"
+#import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+
 #import "AppDelegate.h"
 #import "TestConfiguration.h"
 #import "TestSequence.h"
@@ -18,17 +21,13 @@
 #import "UIView+Positioning.h"
 #import "TestButton.h"
 #import "TestLogItem.h"
-#import "TestLogTableViewController.h"
 #import "NSObject+DelayBlock.h"
-#import <AFNetworking/AFNetworking.h>
-#import "UIImage+Picker.h"
 #import "Staircase.h"
 #import "NSString+getNumberFromString.h"
 #import "NSArray+GetRandom.h"
 #import "AppConfiguration.h"
-#import "MBProgressHUD.h"
+
 #import "UIColor+Hex.h"
-#import "NSObject+DelayBlock.h"
 
 // Shortcuts for the view size
 #define VIEW_HEIGHT self.view.bounds.size.height
