@@ -96,7 +96,7 @@
 
 - (int)countQuestions;
 
-- (void)installSequenceWithURL:(NSString *)url data:(NSDictionary *)data HUD:(MBProgressHUD *)hud sema:(dispatch_semaphore_t)sema;
+- (void)installSequenceWithURL:(NSString *)url data:(NSDictionary *)data progress:(void (^)(NSString *status, float _progress))progress sema:(dispatch_semaphore_t)sema;
 
 - (int)questions_in_folder:(NSString *)name;
 

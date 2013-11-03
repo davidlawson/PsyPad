@@ -12,6 +12,7 @@
 @class User;
 @class MBProgressHUD;
 @class AppConfiguration;
+@class APIController;
 
 @interface MainMenuViewController : UIViewController <UITextFieldDelegate, SSZipArchiveDelegate>
 
@@ -34,8 +35,7 @@
 @property (strong, nonatomic) User *user;
 
 @property (strong, nonatomic) AppConfiguration *appConfiguration;
-
-@property (strong, nonatomic) MBProgressHUD *hud;
+@property (strong, nonatomic) APIController *APIController;
 
 - (IBAction)loginPress;
 - (IBAction)doLogout;

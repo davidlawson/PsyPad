@@ -7,12 +7,14 @@
 //
 
 @class MBProgressHUD, AppConfiguration;
+@class APIController;
 
 @interface AdminPanelTableViewController : UITableViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) NSMutableArray *serverUsers;
 @property (strong, nonatomic) AppConfiguration *appConfiguration;
+@property (strong, nonatomic) APIController *APIController;
 
 @property (strong, nonatomic) UIAlertView *addUserAlertView;
 

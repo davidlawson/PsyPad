@@ -18,6 +18,7 @@
 #import "TestViewController.h"
 #import "AdminPanelTableViewController.h"
 #import "AppConfiguration.h"
+#import "APIController.h"
 
 @interface MainMenuViewController ()
 
@@ -47,25 +48,18 @@
     if (!self.viewSetup)
     {
         [self loadAppConfiguration];
+        self.APIController = [APIController controllerWithConfiguration:self.appConfiguration];
         [self loadUsers];
     }
 }
 
 - (void)loadUsers
 {
-    NSManagedObjectContext *context = [APP_DELEGATE managedObjectContext];
-
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:context]];
-
-    NSError *error;
-    self.users = [[context executeFetchRequest:request error:&error] mutableCopy];
-
-    if (error)
-    {
-        NSLog(@"Error loading users: %@", [error localizedDescription]);
+    NSArray *users = [User allUsers];
+    if (users)
+        self.users = [users mutableCopy];
+    else
         abort();
-    }
 
     NSLog(@"Loaded %d user(s) from database", self.users.count);
 }
@@ -141,7 +135,7 @@
     if (self.loginTextField.text.length == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"You have not entered a User ID."
+                                                        message:@"You have not entered a participant username."
                                                        delegate:nil
                                               cancelButtonTitle:@"Okay"
                                               otherButtonTitles:nil];
@@ -199,7 +193,7 @@
 
     [self.view endEditing:YES];
 
-    self.statusLabel.text = @"Querying local database...";
+    self.statusLabel.text = @"Loading user...";
 
     [UIView animateWithDuration:0.3 animations:^
     {
@@ -228,14 +222,10 @@
 - (void)loadUser:(NSString *)userID
 {
     // Attempt to connect to server and download latest configuration
-    // If a new imageset is there, download that
-
-    self.statusLabel.text = @"Downloading participant...";
-
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    // If a new image set is there, download that
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingFormat:@"api/load_user/%@", userID]]];
+    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingFormat:@"api/load_participant/%@", userID]]];
     [request setHTTPMethod:@"POST"];
 
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -494,6 +484,7 @@
         AdminPanelTableViewController *theController = [controller.viewControllers objectAtIndex:0];
         theController.users = self.users;
         theController.appConfiguration = self.appConfiguration;
+        theController.APIController = self.APIController;
     }
 }
 

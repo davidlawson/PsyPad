@@ -128,7 +128,7 @@
     [self installSequence:sequenceFolder name:sequenceName preloaded:YES];
 }*/
 
-- (void)installSequenceWithURL:(NSString *)url data:(NSDictionary *)data HUD:(MBProgressHUD *)hud sema:(dispatch_semaphore_t)sema;
+- (void)installSequenceWithURL:(NSString *)url data:(NSDictionary *)data progress:(void (^)(NSString *status, float _progress))progress sema:(dispatch_semaphore_t)sema;
 {
     NSManagedObjectContext *MOC = [APP_DELEGATE managedObjectContext];
     //NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"TestSequence" inManagedObjectContext:MOC];
@@ -139,26 +139,28 @@
     NSArray *array = [MOC executeFetchRequest:request error:nil];
     if (array.count > 0)
     {
-        hud.labelText = @"Installing sequence...";
+        dispatch_async(dispatch_get_main_queue(), ^{ progress(@"Installing sequence...", 0); });
 
         TestSequence *sequence = [array objectAtIndex:0];
-        [self installSequence:[NSURL fileURLWithPath:sequence.path] name:sequence.name data:data];
-        self.sequence.url = url;
+        if (!self.sequence || self.sequence.url != sequence.url)
+        {
+            [self installSequence:[NSURL fileURLWithPath:sequence.path] name:sequence.name data:data];
+            self.sequence.url = url;
+        }
         dispatch_semaphore_signal(sema);
     }
     else
     {
-        hud.mode = MBProgressHUDModeDeterminate;
-        hud.labelText = @"Downloading sequence...";
+        dispatch_async(dispatch_get_main_queue(), ^{ progress(@"Downloading sequence...", 0); });
 
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:url]];
+        NSMutableURLRequest *_request = [[NSMutableURLRequest alloc] init];
+        [_request setURL:[NSURL URLWithString:url]];
 
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:_request];
 
         [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long int totalBytesRead, long long int totalBytesExpectedToRead)
         {
-            hud.progress = (float)totalBytesRead/(float)totalBytesExpectedToRead;
+            dispatch_async(dispatch_get_main_queue(), ^{ progress(@"Downloading sequence...", (float)totalBytesRead/(float)totalBytesExpectedToRead); });
         }];
 
         NSURL *documentsDirectory = [APP_DELEGATE applicationDocumentsDirectory];
@@ -174,7 +176,7 @@
 
         operation.outputStream = [NSOutputStream outputStreamToFileAtPath:newURL.path append:NO];
 
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
         {
             [self installSequence:[NSURL fileURLWithPath:newURL.path] name:@"sequence" data:data];
             self.sequence.url = url;
@@ -182,7 +184,7 @@
 
             dispatch_semaphore_signal(sema);
 
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+        } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
         {
             dispatch_semaphore_signal(sema);
 
