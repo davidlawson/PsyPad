@@ -202,9 +202,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (MBProgressHUD *)createHUD
+{
+    UIWindow *window = APP_DELEGATE.window;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
+    return hud;
+}
+
 - (void)loadServerParticipants
 {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Loading users...";
 
@@ -226,7 +233,7 @@
 
 - (void)downloadParticipant:(NSString *)username
 {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Downloading participant...";
 
@@ -261,7 +268,7 @@
 
 - (void)uploadUser:(User *)user
 {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Uploading user...";
 
@@ -285,7 +292,7 @@
 
 - (void)uploadLogs
 {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Uploading...";
 
@@ -314,7 +321,7 @@
 
 - (void)downloadAllParticipants
 {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Downloading participants...";
 
@@ -349,7 +356,7 @@
 
 - (void)uploadAllParticipants
 {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Uploading participants...";
 
@@ -441,7 +448,7 @@
         }
         else
         {
-            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.hud = [self createHUD];
             self.hud.mode = MBProgressHUDModeIndeterminate;
             self.hud.labelText = @"Creating Participant";
 

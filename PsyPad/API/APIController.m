@@ -52,45 +52,46 @@
                                           cancelButtonTitle:@"Close"
                                           otherButtonTitles:nil];
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [alert show];
-    });
+    [alert show];
 }
 
 - (void)loadServerParticipants:(void (^)(NSMutableArray *serverUsers))success failure:(void (^)())failure
 {
     AFHTTPRequestOperation *operation = [self operationWithURL:@"api/list_participants" data:nil];
 
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, NSDictionary *responseObject)
     {
         NSMutableArray *serverUsers = [NSMutableArray array];
 
-        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:_operation.responseData options:0 error:nil];
-        if (!data)
+        if ([responseObject objectForKey:@"error"])
         {
-            [self showError:_operation.responseString];
-            dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+            [self showError:[responseObject objectForKey:@"error"]];
+            failure();
             return;
         }
-        else if (data.count > 0)
+        else if (responseObject.count > 0)
         {
-            for (NSString *username in [data.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
+            for (NSString *username in [responseObject.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
                 return [a compare:b];
             }])
             {
                 NSMutableDictionary *user = [NSMutableDictionary dictionary];
                 [user setObject:username forKey:@"username"];
-                [user setObject:[data objectForKey:username] forKey:@"description"];
+                [user setObject:[responseObject objectForKey:username] forKey:@"description"];
                 [serverUsers addObject:user];
             }
 
-            dispatch_async(dispatch_get_main_queue(), ^{ success(serverUsers); });
+            success(serverUsers);
         }
 
     } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
     {
-        [self showError:error.description];
-        dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+        if (_operation.responseObject)
+            [self showError:[(NSDictionary *)_operation.responseObject objectForKey:@"error"]];
+        else
+            [self showError:error.description];
+
+        failure();
     }];
 
     [operation start];
@@ -100,13 +101,25 @@
 {
     AFHTTPRequestOperation *operation = [self operationWithURL:[NSString stringWithFormat:@"api/load_participant/%@", username] data:nil];
 
+    operation.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long int totalBytesRead, long long int totalBytesExpectedToRead)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            progress(@"Downloading participant...", (float)totalBytesRead/(float)totalBytesExpectedToRead);
+        });
+    }];
+
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
     {
-        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:_operation.responseData options:0 error:nil];
-        if (!data)
+        if ([responseObject isKindOfClass:[NSDictionary class]] && [responseObject objectForKey:@"error"])
         {
-            [self showError:_operation.responseString];
-            dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+            dispatch_async(dispatch_get_main_queue(), ^
+            {
+                [self showError:[responseObject objectForKey:@"error"]];
+                failure();
+            });
             return;
         }
         else
@@ -139,7 +152,7 @@
                 newUser.id = username;
             }
 
-            for (NSDictionary *configurationData in data)
+            for (NSDictionary *configurationData in (NSArray *)responseObject)
             {
                 TestConfiguration *newConfiguration = [NSEntityDescription insertNewObjectForEntityForName:@"TestConfiguration"
                 inManagedObjectContext:APP_DELEGATE.managedObjectContext];
@@ -154,7 +167,18 @@
                     NSDictionary *image_sequence_data = [NSJSONSerialization JSONObjectWithData:[image_sequence_data_string dataUsingEncoding:NSASCIIStringEncoding] options:nil error:nil];
 
                     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-                    [newConfiguration installSequenceWithURL:image_sequence_url data:image_sequence_data progress:progress sema:sema];
+
+                    [newConfiguration installSequenceWithURL:image_sequence_url data:image_sequence_data progress:^(NSString *status, float _progress)
+                    {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            progress([NSString stringWithFormat:@"Configuration %d/%d, %@",
+                                            [(NSArray *)responseObject indexOfObject:configurationData] + 1,
+                                            [(NSArray *)responseObject count],
+                                            status],
+                                    _progress);
+                        });
+                    } sema:sema];
+
                     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
                 }
 
@@ -165,12 +189,22 @@
 
             [[APP_DELEGATE managedObjectContext] unlock];
 
-            dispatch_async(dispatch_get_main_queue(), ^{ success(newUser); });
+            dispatch_async(dispatch_get_main_queue(), ^
+            {
+                success(newUser);
+            });
         }
     } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
     {
-        [self showError:error.description];
-        dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            if (_operation.responseObject)
+                [self showError:[(NSDictionary *)_operation.responseObject objectForKey:@"error"]];
+            else
+                [self showError:error.description];
+
+            failure();
+        });
     }];
 
     [operation start];
@@ -190,20 +224,24 @@
 
     AFHTTPRequestOperation *operation = [self operationWithURL:[NSString stringWithFormat:@"api/save_participant/%@", user.id] data:requestData];
 
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, NSDictionary *responseObject)
     {
-        if ([_operation.responseString isEqualToString:@"Success"])
-            dispatch_async(dispatch_get_main_queue(), ^{ success(); });
+        if ([responseObject objectForKey:@"success"])
+            success();
         else
         {
-            [self showError:_operation.responseString];
-            dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+            [self showError:[responseObject objectForKey:@"error"]];
+            failure();
         }
 
     } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
     {
-        [self showError:error.description];
-        dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+        if (_operation.responseObject)
+            [self showError:[(NSDictionary *)_operation.responseObject objectForKey:@"error"]];
+        else
+            [self showError:error.description];
+
+        failure();
     }];
 
     [operation start];
@@ -224,12 +262,10 @@
 
             [self downloadParticipant:(NSString *)[user objectForKey:@"username"] progress:^(NSString *status, float _progress)
             {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    progress([status stringByAppendingFormat:@" (%d/%d)",
-                                    [serverUsers indexOfObject:user]+1,
-                                    serverUsers.count],
-                            _progress);
-                });
+                progress([status stringByAppendingFormat:@" (%d/%d)",
+                                [serverUsers indexOfObject:user]+1,
+                                serverUsers.count],
+                        _progress);
 
             } success:^(User *newUser)
             {
@@ -238,7 +274,7 @@
 
             } failure:^
             {
-                dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+                failure();
                 failed = YES;
                 dispatch_semaphore_signal(sema);
             }];
@@ -248,11 +284,11 @@
             if (failed) break;
         }
 
-        dispatch_async(dispatch_get_main_queue(), ^{ success(loadedParticipants); });
+        success(loadedParticipants);
 
     } failure:^
     {
-        dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+        failure();
     }];
 }
 
@@ -270,7 +306,7 @@
 
         } failure:^
         {
-            dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+            failure();
             failed = YES;
             dispatch_semaphore_signal(sema);
         }];
@@ -280,7 +316,7 @@
         if (failed) break;
     }
 
-    dispatch_async(dispatch_get_main_queue(), ^{ success(); });
+    success();
 }
 
 - (void)uploadLogs:(NSArray *)users progress:(void (^)(NSString *status, float progress))progress success:(void (^)())success failure:(void (^)())failure
@@ -315,23 +351,27 @@
 
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)
     {
-        dispatch_async(dispatch_get_main_queue(), ^{ progress(@"Uploading logs...", (float)totalBytesWritten/(float)totalBytesExpectedToWrite); });
+        progress(@"Uploading logs...", (float)totalBytesWritten/(float)totalBytesExpectedToWrite);
     }];
 
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, NSDictionary *responseObject)
     {
-        if ([_operation.responseString isEqualToString:@"Success"])
-            dispatch_async(dispatch_get_main_queue(), ^{ success(); });
+        if ([responseObject objectForKey:@"success"])
+            success();
         else
         {
-            [self showError:_operation.responseString];
-            dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+            [self showError:[responseObject objectForKey:@"error"]];
+            failure();
         }
 
     } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
     {
-        [self showError:_operation.responseString];
-        dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+        if (_operation.responseObject)
+            [self showError:[(NSDictionary *)_operation.responseObject objectForKey:@"error"]];
+        else
+            [self showError:error.description];
+
+        failure();
     }];
 
     [operation start];

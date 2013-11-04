@@ -106,7 +106,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 
         [self.centreBox setWidth:300 height:104];
-        [self.centreBox moveToY:self.view.height/2 - self.centreBox.height/2];
+        //[self.centreBox moveToY:self.view.height/2 - self.centreBox.height/2];
 
         [self.statusLabel centerToX:self.centreBox.width/2 y:51];
         self.statusLabel.alpha = 0.0;
@@ -175,7 +175,12 @@
                                                       cancelButtonTitle:@"Okay"
                                                       otherButtonTitles:nil];
                 [inval show];
+                [self.loginTextField resignFirstResponder];
             }
+        };
+
+        cancelButton.action = ^ {
+            [self.loginTextField resignFirstResponder];
         };
 
         self.passwordAlertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
@@ -193,7 +198,7 @@
 
     [self.view endEditing:YES];
 
-    self.statusLabel.text = @"Loading user...";
+    self.statusLabel.text = @"Loading participant...";
 
     [UIView animateWithDuration:0.3 animations:^
     {
@@ -224,116 +229,24 @@
     // Attempt to connect to server and download latest configuration
     // If a new image set is there, download that
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingFormat:@"api/load_participant/%@", userID]]];
-    [request setHTTPMethod:@"POST"];
-
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-    [requestData setObject:self.appConfiguration.server_username forKey:@"username"];
-    [requestData setObject:self.appConfiguration.server_password forKey:@"password"];
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestData options:nil error:nil];
-
-    [request setHTTPBody:jsonData];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    [self.APIController downloadParticipant:userID progress:^(NSString *status, float progress)
     {
-        NSLog(@"%@", operation.responseString);
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
-        {
-            [[APP_DELEGATE managedObjectContext] lock];
+        self.statusLabel.text = [NSString stringWithFormat:@"Loading participant... (%.0f%%)", progress * 100];
 
-            NSDictionary *data = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:nil];
-            if (!data)
-            {
-                //
-            }
-            else
-            {
-                User *newUser = nil;
-
-                BOOL usernameTaken = NO;
-                for (User *user in self.users)
-                {
-                    if ([user.id isEqualToString:userID])
-                    {
-                        usernameTaken = YES;
-                        newUser = user;
-                        for (TestConfiguration *configuration in newUser.configurations)
-                        {
-                            [newUser removeConfigurationsObject:configuration];
-                            [[APP_DELEGATE managedObjectContext] deleteObject:configuration];
-                        }
-                        break;
-                    }
-                }
-
-                if (!usernameTaken)
-                {
-                    newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
-                    newUser.id = userID;
-
-                    [self.users addObject:newUser];
-                }
-
-                for (NSDictionary *configurationData in data)
-                {
-                    TestConfiguration *newConfiguration = [NSEntityDescription insertNewObjectForEntityForName:@"TestConfiguration"
-                                                                                        inManagedObjectContext:APP_DELEGATE.managedObjectContext];
-                    newConfiguration.user = newUser;
-
-                    [newConfiguration loadData:configurationData];
-
-                    if ([configurationData objectForKey:@"imageset_url"])
-                    {
-                        NSString *image_sequence_url = [self.appConfiguration.server_url stringByAppendingString:[configurationData objectForKey:@"imageset_url"]];
-                        NSString *image_sequence_data_string = [configurationData objectForKey:@"imageset_data"];
-                        NSDictionary *image_sequence_data = [NSJSONSerialization JSONObjectWithData:[image_sequence_data_string dataUsingEncoding:NSASCIIStringEncoding] options:nil error:nil];
-
-                        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-                        [newConfiguration installSequenceWithURL:image_sequence_url data:image_sequence_data HUD:self.hud sema:sema];
-                        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                        //dispatch_release(sema);
-                    }
-
-                    /*if ([configurationData objectForKey:@"NQPF"])
-                        [newConfiguration setNQPF:[(NSString *)[configurationData objectForKey:@"NQPF"] intValue]];*/
-
-                    [newUser addConfigurationsObject:newConfiguration];
-                }
-
-                [APP_DELEGATE saveContext];
-            }
-
-            [[APP_DELEGATE managedObjectContext] unlock];
-
-            [self loadedUser:userID];
-        });
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    } success:^(User *newUser)
     {
         [self loadedUser:userID];
 
-        NSLog(@"%@", error.description);
-        //self.connectionStatusLabel.text = error.description;
-        //self.uploadDataButton.enabled = YES;
+    } failure:^
+    {
+        [self loadedUser:userID];
     }];
-
-    [operation start];
 
     // Then try load locally.
 }
 
 - (void)loadedUser:(NSString *)userID
 {
-    dispatch_async(dispatch_get_main_queue(), ^
-    {
-        [self.hud hide:YES];
-    });
-
     unsigned int user = [self.users indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop)
     {
         return [((User *)obj).id isEqualToString:userID];
@@ -341,29 +254,24 @@
 
     if (user == NSNotFound)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unknown User"
-                                                        message:@"User not found."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Oh well..."
-                                              otherButtonTitles:nil];
+        [self cancelLogin];
 
-        dispatch_async(dispatch_get_main_queue(), ^
-        {
-            [self cancelLogin];
-            [alert show];
-        });
+        [[[UIAlertView alloc] initWithTitle:@"Unknown User"
+                                    message:@"User not found."
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
 
         return;
     }
-
-    dispatch_async(dispatch_get_main_queue(), ^
+    else
     {
-        self.statusLabel.text = @"Found user, loading...";
+        self.statusLabel.text = @"Found participant, loading...";
         self.user = [self.users objectAtIndex:user];
-        self.statusLabel.text = @"Loaded user.";
+        self.statusLabel.text = @"Loaded participant.";
 
         [self showMainMenu];
-    });
+    }
 }
 
 - (void)showMainMenu
@@ -410,7 +318,7 @@
                              [self.centreBox setHeight:51+44+20+44+30];
                          }
 
-                         [self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
+                         //[self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
 
                          self.statusLabel.alpha = 0.0;
                          self.beginTestButton.alpha = 1.0;
@@ -435,7 +343,7 @@
                          self.infoLabel.alpha = 0.0;
 
                          [self.centreBox setHeight:104];
-                         [self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
+                         //[self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
 
                          self.loginButton.alpha = 1.0;
                          self.loginTextField.alpha = 1.0;
@@ -451,12 +359,11 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Test Configurations"
-                                                        message:@"No tests are enabled/have been configured."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+        [[[UIAlertView alloc] initWithTitle:@"No Test Configurations"
+                                    message:@"No tests are enabled/have been configured."
+                                   delegate:nil
+                          cancelButtonTitle:@"Ok"
+                          otherButtonTitles:nil] show];
     }
 }
 

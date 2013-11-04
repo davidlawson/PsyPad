@@ -139,7 +139,7 @@
     NSArray *array = [MOC executeFetchRequest:request error:nil];
     if (array.count > 0)
     {
-        dispatch_async(dispatch_get_main_queue(), ^{ progress(@"Installing sequence...", 0); });
+        progress(@"Installing sequence...", 0);
 
         TestSequence *sequence = [array objectAtIndex:0];
         if (!self.sequence || self.sequence.url != sequence.url)
@@ -151,16 +151,18 @@
     }
     else
     {
-        dispatch_async(dispatch_get_main_queue(), ^{ progress(@"Downloading sequence...", 0); });
+        progress(@"Downloading sequence...", 0);
 
         NSMutableURLRequest *_request = [[NSMutableURLRequest alloc] init];
         [_request setURL:[NSURL URLWithString:url]];
 
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:_request];
 
+        operation.responseSerializer = [AFHTTPResponseSerializer serializer];
+
         [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long int totalBytesRead, long long int totalBytesExpectedToRead)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{ progress(@"Downloading sequence...", (float)totalBytesRead/(float)totalBytesExpectedToRead); });
+            progress(@"Downloading sequence...", (float)totalBytesRead/(float)totalBytesExpectedToRead);
         }];
 
         NSURL *documentsDirectory = [APP_DELEGATE applicationDocumentsDirectory];
@@ -188,21 +190,17 @@
         {
             dispatch_semaphore_signal(sema);
 
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Error"
-                                                            message:[NSString stringWithFormat:@"%@", error.description]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Aww."
-                                                  otherButtonTitles:nil];
-
-            dispatch_async(dispatch_get_main_queue(), ^
-            {
-                [alert show];
-            });
+            [[[UIAlertView alloc] initWithTitle:@"Download Error"
+                                        message:[NSString stringWithFormat:@"%@", error.description]
+                                       delegate:nil
+                              cancelButtonTitle:@"Close"
+                              otherButtonTitles:nil] show];
 
             NSLog(@"%@", error.description);
         }];
 
         [operation start];
+        NSLog(@"Started operation");
     }
 }
 

@@ -14,7 +14,7 @@
 @class User;
 @class MBProgressHUD;
 
-@interface TestConfiguration : NSManagedObject <SSZipArchiveDelegate>
+@interface TestConfiguration : NSManagedObject
 
 // id irrelevant
 // position stored with relationship
