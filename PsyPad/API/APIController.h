@@ -18,4 +18,11 @@
 
 - (void)downloadParticipant:(NSString *)username progress:(void (^)(NSString *status, float progress))progress success:(void (^)(User *newUser))success failure:(void (^)())failure;
 
+- (void)uploadUser:(User *)user success:(void (^)())success failure:(void (^)())failure;
+
+- (void)downloadAllParticipants:(void (^)(NSString *status, float progress))progress success:(void (^)(NSMutableArray *newUsers))success failure:(void (^)())failure;
+
+- (void)uploadAllUsers:(NSArray *)users success:(void (^)())success failure:(void (^)())failure;
+
+- (void)uploadLogs:(NSArray *)users progress:(void (^)(NSString *status, float progress))progress success:(void (^)())success failure:(void (^)())failure;
 @end

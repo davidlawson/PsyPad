@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "TestConfiguration.h"
+#import "TestLogItem.h"
+#import "TestLog.h"
 
 @implementation APIController
 
@@ -168,6 +170,167 @@
     } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
     {
         [self showError:error.description];
+        dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+    }];
+
+    [operation start];
+}
+
+- (void)uploadUser:(User *)user success:(void (^)())success failure:(void (^)())failure
+{
+    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
+
+    NSMutableArray *configurations = [NSMutableArray array];
+    for (TestConfiguration *configuration in user.configurations)
+    {
+        [configurations addObject:configuration.serialise];
+    }
+
+    [requestData setObject:configurations forKey:@"configurations"];
+
+    AFHTTPRequestOperation *operation = [self operationWithURL:[NSString stringWithFormat:@"api/save_participant/%@", user.id] data:requestData];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
+    {
+        if ([_operation.responseString isEqualToString:@"Success"])
+            dispatch_async(dispatch_get_main_queue(), ^{ success(); });
+        else
+        {
+            [self showError:_operation.responseString];
+            dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+        }
+
+    } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
+    {
+        [self showError:error.description];
+        dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+    }];
+
+    [operation start];
+
+    return;
+}
+
+- (void)downloadAllParticipants:(void (^)(NSString *status, float progress))progress success:(void (^)(NSMutableArray *newUsers))success failure:(void (^)())failure
+{
+    [self loadServerParticipants:^(NSMutableArray *serverUsers)
+    {
+        NSMutableArray *loadedParticipants = [NSMutableArray array];
+        __block BOOL failed = NO;
+
+        for (NSDictionary *user in serverUsers)
+        {
+            dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+
+            [self downloadParticipant:(NSString *)[user objectForKey:@"username"] progress:^(NSString *status, float _progress)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    progress([status stringByAppendingFormat:@" (%d/%d)",
+                                    [serverUsers indexOfObject:user]+1,
+                                    serverUsers.count],
+                            _progress);
+                });
+
+            } success:^(User *newUser)
+            {
+                [loadedParticipants addObject:user];
+                dispatch_semaphore_signal(sema);
+
+            } failure:^
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+                failed = YES;
+                dispatch_semaphore_signal(sema);
+            }];
+
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+
+            if (failed) break;
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{ success(loadedParticipants); });
+
+    } failure:^
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+    }];
+}
+
+- (void)uploadAllUsers:(NSArray *)users success:(void (^)())success failure:(void (^)())failure
+{
+    __block BOOL failed = NO;
+
+    for (User *user in users)
+    {
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+
+        [self uploadUser:user success:^
+        {
+            dispatch_semaphore_signal(sema);
+
+        } failure:^
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+            failed = YES;
+            dispatch_semaphore_signal(sema);
+        }];
+
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+
+        if (failed) break;
+    }
+
+    dispatch_async(dispatch_get_main_queue(), ^{ success(); });
+}
+
+- (void)uploadLogs:(NSArray *)users progress:(void (^)(NSString *status, float progress))progress success:(void (^)())success failure:(void (^)())failure
+{
+    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
+
+    NSMutableDictionary *logData = [NSMutableDictionary dictionary];
+
+    for (User *user in users)
+    {
+        NSMutableDictionary *oneUser = [NSMutableDictionary dictionary];
+
+        for (TestLog *log in user.logs)
+        {
+            NSString *logIdentifier = nil;
+            NSMutableString *logContent = [NSMutableString string];
+            for (TestLogItem *logItem in log.logitems)
+            {
+                if (logIdentifier == nil) logIdentifier = [NSString stringWithFormat:@"%.0f", logItem.timestamp.timeIntervalSince1970];
+                [logContent appendFormat:@"%.0f|%@|%@\n", logItem.timestamp.timeIntervalSince1970, logItem.type, logItem.info];
+            }
+
+            [oneUser setObject:logContent forKey:logIdentifier];
+        }
+
+        [logData setObject:oneUser forKey:user.id];
+    }
+
+    [requestData setObject:logData forKey:@"log_data"];
+
+    AFHTTPRequestOperation *operation = [self operationWithURL:@"api/upload_logs" data:requestData];
+
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{ progress(@"Uploading logs...", (float)totalBytesWritten/(float)totalBytesExpectedToWrite); });
+    }];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
+    {
+        if ([_operation.responseString isEqualToString:@"Success"])
+            dispatch_async(dispatch_get_main_queue(), ^{ success(); });
+        else
+        {
+            [self showError:_operation.responseString];
+            dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
+        }
+
+    } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
+    {
+        [self showError:_operation.responseString];
         dispatch_async(dispatch_get_main_queue(), ^{ failure(); });
     }];
 

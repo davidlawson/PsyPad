@@ -22,6 +22,7 @@
 #import "TextFieldTableViewCell.h"
 #import "TestConfiguration.h"
 #import "UserTableViewCell.h"
+#import "MBProgressHUD.h"
 
 @interface AdminPanelTableViewController ()
 
@@ -182,7 +183,7 @@
 {
     if (indexPath.section == 0 && indexPath.row == self.users.count)
     {
-        [self addUser];
+        [self addParticipant];
     }
     else if (indexPath.section == 1 && indexPath.row == self.serverUsers.count)
     {
@@ -193,9 +194,9 @@
         if (indexPath.row == 0)
             [self uploadLogs];
         else if (indexPath.row == 1)
-            [self downloadAllData];
+            [self downloadAllParticipants];
         else if (indexPath.row == 2)
-            [self uploadAllData];
+            [self uploadAllParticipants];
     }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -264,31 +265,7 @@
     self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Uploading user...";
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingFormat:@"api/save_participant/%@", user.id]]];
-    [request setHTTPMethod:@"POST"];
-
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-    [requestData setObject:self.appConfiguration.server_username forKey:@"username"];
-    [requestData setObject:self.appConfiguration.server_password forKey:@"password"];
-
-    NSMutableArray *configurations = [NSMutableArray array];
-    for (TestConfiguration *configuration in user.configurations)
-    {
-        [configurations addObject:configuration.serialise];
-    }
-
-    [requestData setObject:configurations forKey:@"configurations"];
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestData options:nil error:nil];
-
-    [request setHTTPBody:jsonData];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    [self.APIController uploadUser:user success:^
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
@@ -296,246 +273,105 @@
         [[[UIAlertView alloc] initWithTitle:nil
                                     message:@"User uploaded successfully"
                                    delegate:nil
-                          cancelButtonTitle:@"Horray!"
+                          cancelButtonTitle:@"Close"
                           otherButtonTitles:nil] show];
 
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    } failure:^
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Error"
-                                                        message:[NSString stringWithFormat:@"%@", error.description]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Aww."
-                                              otherButtonTitles:nil];
-        [alert show];
-        NSLog(@"%@", error.description);
-        //self.connectionStatusLabel.text = error.description;
-        //self.uploadDataButton.enabled = YES;
     }];
-
-    [operation start];
-
-    return;
 }
 
 - (void)uploadLogs
 {
-    //[[[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Feature not yet implemented." delegate:nil cancelButtonTitle:@"Oh well..." otherButtonTitles:nil] show];
-    [self uploadData];
-}
-
-- (void)downloadAllData
-{
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Downloading participants...";
+    self.hud.mode = MBProgressHUDModeDeterminate;
+    self.hud.labelText = @"Uploading...";
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingFormat:@"api/load_participants"]]];
-    [request setHTTPMethod:@"POST"];
-
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-    [requestData setObject:self.appConfiguration.server_username forKey:@"username"];
-    [requestData setObject:self.appConfiguration.server_password forKey:@"password"];
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestData options:nil error:nil];
-
-    [request setHTTPBody:jsonData];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    [self.APIController uploadLogs:self.users progress:^(NSString *status, float progress)
     {
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
-        {
-            [[APP_DELEGATE managedObjectContext] lock];
+        self.hud.labelText = status;
+        self.hud.progress = progress;
 
-            NSDictionary *data = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:nil];
-            if (!data)
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Load Error"
-                                                                message:[NSString stringWithFormat:@"%@", operation.responseString]
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Aww."
-                                                      otherButtonTitles:nil];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [alert show];
-                });
-            }
-            else
-            {
-                for (NSString *username in data.allKeys)
-                {
-                    NSDictionary *userData = [data objectForKey:username];
-
-                    User *newUser = nil;
-
-                    BOOL usernameTaken = NO;
-                    for (User *user in self.users)
-                    {
-                        if ([user.id isEqualToString:username])
-                        {
-                            usernameTaken = YES;
-                            newUser = user;
-                            for (TestConfiguration *configuration in newUser.configurations)
-                            {
-                                [newUser removeConfigurationsObject:configuration];
-                                [[APP_DELEGATE managedObjectContext] deleteObject:configuration];
-                            }
-                            break;
-                        }
-                    }
-
-                    if (!usernameTaken)
-                    {
-                        newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
-                        newUser.id = username;
-
-                        [self.users addObject:newUser];
-                    }
-
-                    for (NSDictionary *configurationData in userData)
-                    {
-                        TestConfiguration *newConfiguration = [NSEntityDescription insertNewObjectForEntityForName:@"TestConfiguration"
-                                                                                            inManagedObjectContext:APP_DELEGATE.managedObjectContext];
-                        newConfiguration.user = newUser;
-
-                        [newConfiguration loadData:configurationData];
-
-                        if ([configurationData objectForKey:@"imageset_url"])
-                        {
-                            NSString *image_sequence_url = [self.appConfiguration.server_url stringByAppendingString:[configurationData objectForKey:@"imageset_url"]];
-                            NSString *image_sequence_data_string = [configurationData objectForKey:@"imageset_data"];
-                            NSDictionary *image_sequence_data = [NSJSONSerialization JSONObjectWithData:[image_sequence_data_string dataUsingEncoding:NSASCIIStringEncoding] options:nil error:nil];
-
-                            dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-                            [newConfiguration installSequenceWithURL:image_sequence_url data:image_sequence_data HUD:self.hud sema:sema];
-                            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                            //dispatch_release(sema);
-                        }
-
-                        /*if ([configurationData objectForKey:@"NQPF"])
-                            [newConfiguration setNQPF:[(NSString *)[configurationData objectForKey:@"NQPF"] intValue]];*/
-
-                        [newUser addConfigurationsObject:newConfiguration];
-                    }
-
-                    [APP_DELEGATE saveContext];
-                }
-
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"Users downloaded successfully."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Cool!"
-                                                      otherButtonTitles:nil];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [alert show];
-                });
-            }
-
-            [[APP_DELEGATE managedObjectContext] unlock];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self.hud hide:YES];
-                [self.hud removeFromSuperview];
-            });
-        });
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        [self.hud hide:YES];
-        [self.hud removeFromSuperview];
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Download Error"
-                                                        message:[NSString stringWithFormat:@"%@", error.description]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Aww."
-                                              otherButtonTitles:nil];
-        [alert show];
-        NSLog(@"%@", error.description);
-        //self.connectionStatusLabel.text = error.description;
-        //self.uploadDataButton.enabled = YES;
-    }];
-
-    [operation start];
-
-    return;
-}
-
-- (void)uploadAllData
-{
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Uploading users...";
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingFormat:@"api/save_participants"]]];
-    [request setHTTPMethod:@"POST"];
-
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-    [requestData setObject:self.appConfiguration.server_username forKey:@"username"];
-    [requestData setObject:self.appConfiguration.server_password forKey:@"password"];
-
-    NSMutableDictionary *users = [NSMutableDictionary dictionary];
-
-    for (User *user in self.users)
-    {
-        NSMutableArray *configurations = [NSMutableArray array];
-        for (TestConfiguration *configuration in user.configurations)
-        {
-            [configurations addObject:configuration.serialise];
-        }
-
-        [users setObject:configurations forKey:user.id];
-    }
-
-    [requestData setObject:users forKey:@"users"];
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestData options:nil error:nil];
-
-    [request setHTTPBody:jsonData];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    } success:^
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
 
         [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"Users uploaded successfully"
+                                    message:[NSString stringWithFormat:@"Logs successfully uploaded"]
                                    delegate:nil
-                          cancelButtonTitle:@"Horray!"
+                          cancelButtonTitle:@"Close"
                           otherButtonTitles:nil] show];
 
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    } failure:^
+    {
+        [self.hud hide:YES];
+        [self.hud removeFromSuperview];
+    }];
+}
+
+- (void)downloadAllParticipants
+{
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeDeterminate;
+    self.hud.labelText = @"Downloading participants...";
+
+    [self.APIController downloadAllParticipants:^(NSString *status, float progress)
+    {
+        self.hud.labelText = status;
+        self.hud.progress = progress;
+
+    } success:^(NSMutableArray *newUsers)
+    {
+        for (User *user in newUsers)
+        {
+            if (![self.users containsObject:user])
+                [self.users addObject:user];
+        }
+
+        [self.hud hide:YES];
+        [self.hud removeFromSuperview];
+
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:[NSString stringWithFormat:@"%d participants downloaded", newUsers.count]
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
+
+    } failure:^
+    {
+        [self.hud hide:YES];
+        [self.hud removeFromSuperview];
+    }];
+}
+
+- (void)uploadAllParticipants
+{
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+    self.hud.labelText = @"Uploading participants...";
+
+    [self.APIController uploadAllUsers:self.users success:^
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
 
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Error"
-                                                        message:[NSString stringWithFormat:@"%@", error.description]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Aww."
-                                              otherButtonTitles:nil];
-        [alert show];
-        NSLog(@"%@", error.description);
-        //self.connectionStatusLabel.text = error.description;
-        //self.uploadDataButton.enabled = YES;
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:@"Participants uploaded successfully"
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
+
+    } failure:^
+    {
+        [self.hud hide:YES];
+        [self.hud removeFromSuperview];
     }];
-
-    [operation start];
-
-    return;
 }
 
-- (void)addUser
+- (void)addParticipant
 {
     User *defaultUser = NULL;
     for (User *user in self.users)
@@ -549,12 +385,11 @@
 
     if (defaultUser == NULL)
     {
-        UIAlertView *inval = [[UIAlertView alloc] initWithTitle:@"No Default User"
-                                                        message:@"You need a default user downloaded from the server to copy from."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Okay"
-                                              otherButtonTitles:nil];
-        [inval show];
+        [[[UIAlertView alloc] initWithTitle:@"No Default User"
+                                    message:@"You need a default user downloaded from the server to copy from."
+                                   delegate:nil
+                          cancelButtonTitle:@"Okay"
+                          otherButtonTitles:nil] show];
         return;
     }
 
@@ -582,20 +417,35 @@
 
         if (usernameTaken)
         {
-            UIAlertView *inval = [[UIAlertView alloc] initWithTitle:@"Username Taken"
-                                                            message:@"Sorry, that user already exists."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Okay"
-                                                  otherButtonTitles:nil];
-            [inval show];
+            [[[UIAlertView alloc] initWithTitle:@"Username Taken"
+                                        message:@"Sorry, that participant already exists."
+                                       delegate:nil
+                              cancelButtonTitle:@"Okay"
+                              otherButtonTitles:nil] show];
+        }
+        else if ([userID isEqualToString:@"default"] || [userID isEqualToString:@"admin"])
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Reserved Username"
+                                        message:@"Sorry, please choose another username."
+                                       delegate:nil
+                              cancelButtonTitle:@"Okay"
+                              otherButtonTitles:nil] show];
+        }
+        else if (userID.length == 0)
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Empty Username"
+                                        message:@"Please choose a username."
+                                       delegate:nil
+                              cancelButtonTitle:@"Okay"
+                              otherButtonTitles:nil] show];
         }
         else
         {
             self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             self.hud.mode = MBProgressHUDModeIndeterminate;
-            self.hud.labelText = @"Creating User";
+            self.hud.labelText = @"Creating Participant";
 
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
             {
                 [[APP_DELEGATE managedObjectContext] lock];
 
@@ -617,7 +467,8 @@
 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.users indexOfObject:newUser] inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [self.hud hide:YES];
+                    [self.hud removeFromSuperview];
                 });
             });
 
@@ -637,91 +488,6 @@
 {
     [self.addUserAlertView clickButtonAtIndex:1];
     return NO;
-}
-
-- (void)uploadData
-{
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.hud.mode = MBProgressHUDModeDeterminate;
-    self.hud.labelText = @"Uploading...";
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingString:@"api/upload_logs"]]];
-    [request setHTTPMethod:@"POST"];
-
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-
-    NSMutableDictionary *logData = [NSMutableDictionary dictionary];
-
-    for (User *user in self.users)
-    {
-        NSMutableDictionary *oneUser = [NSMutableDictionary dictionary];
-
-        for (TestLog *log in user.logs)
-        {
-            NSString *logIdentifier = nil;
-            NSMutableString *logContent = [NSMutableString string];
-            for (TestLogItem *logItem in log.logitems)
-            {
-                if (logIdentifier == nil) logIdentifier = [NSString stringWithFormat:@"%.0f", logItem.timestamp.timeIntervalSince1970];
-                [logContent appendFormat:@"%.0f|%@|%@\n", logItem.timestamp.timeIntervalSince1970, logItem.type, logItem.info];
-            }
-
-            [oneUser setObject:logContent forKey:logIdentifier];
-        }
-
-        [logData setObject:oneUser forKey:user.id];
-    }
-
-    [requestData setObject:logData forKey:@"log_data"];
-    [requestData setObject:self.appConfiguration.server_username forKey:@"username"];
-    [requestData setObject:self.appConfiguration.server_password forKey:@"password"];
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestData options:nil error:nil];
-
-    [request setHTTPBody:jsonData];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-
-        NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-
-        self.hud.progress = (float)totalBytesWritten/(float)totalBytesExpectedToWrite;
-        //self.connectionStatusLabel.text = [NSString stringWithFormat:@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite];
-
-    }];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete"
-                                                        message:[NSString stringWithFormat:@"Data successfully uploaded. Response: %@", operation.responseString]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Yay!"
-                                              otherButtonTitles:nil];
-        [alert show];
-        //self.uploadDataButton.enabled = YES;
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Error"
-                                                        message:[NSString stringWithFormat:@"%@", error.description]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Aww."
-                                              otherButtonTitles:nil];
-        [alert show];
-        NSLog(@"%@", error.description);
-        //self.connectionStatusLabel.text = error.description;
-        //self.uploadDataButton.enabled = YES;
-    }];
-
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
-
-    return;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
