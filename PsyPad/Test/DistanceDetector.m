@@ -147,8 +147,8 @@
 {
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 
-    #warning accuracy low
-    NSDictionary *options = [NSDictionary dictionaryWithObject:CIDetectorAccuracyLow forKey:CIDetectorAccuracy];
+    #warning accuracy high
+    NSDictionary *options = [NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh forKey:CIDetectorAccuracy];
     CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:options];
 
     CIImage *image = [CIImage imageWithCGImage:self.photo.CGImage];

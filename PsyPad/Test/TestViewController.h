@@ -11,6 +11,7 @@
 @class Staircase;
 @class AppConfiguration;
 @class MBProgressHUD;
+@class APIController;
 
 @interface TestViewController : UIViewController
 
@@ -45,6 +46,7 @@
 @property (weak, nonatomic) Staircase *currentStaircase;
 
 @property (strong, nonatomic) AppConfiguration *appConfiguration;
+@property (strong, nonatomic) APIController *APIController;
 @property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) MBProgressHUD *hud;
 

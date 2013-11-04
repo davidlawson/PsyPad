@@ -29,6 +29,7 @@
 
 #import "UIColor+Hex.h"
 #import "DistanceDetector.h"
+#import "APIController.h"
 
 // Shortcuts for the view size
 #define VIEW_HEIGHT self.view.bounds.size.height
@@ -310,150 +311,18 @@
 
 - (void)uploadData
 {
-    /*NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingString:@"api/uploadlogs"]]];
-    [request setHTTPMethod:@"POST"];
-
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-
-    NSMutableDictionary *logData = [NSMutableDictionary dictionary];
-
-    for (User *user in self.users)
+    [self.APIController uploadLogs:@[self.user] progress:^(NSString *status, float _progress)
     {
-        NSMutableDictionary *oneUser = [NSMutableDictionary dictionary];
+        NSLog(@"Progress: %.2f", _progress);
 
-        for (TestLog *log in user.logs)
-        {
-            NSMutableString *logContent = [NSMutableString string];
-            for (TestLogItem *logItem in log.logitems)
-            {
-                [logContent appendFormat:@"%@|%@|%@\n", logItem.timestamp, logItem.type, logItem.info];
-            }
+    } success:^
+    {
+        NSLog(@"Upload Success");
 
-            [oneUser setObject:logContent forKey:[NSString stringWithFormat:@"%d", log.logid.intValue]];
-        }
-
-        [logData setObject:oneUser forKey:user.id];
-    }
-
-    [requestData setObject:logData forKey:@"log_data"];
-    [requestData setObject:self.appConfiguration.server_username forKey:@"username"];
-    [requestData setObject:self.appConfiguration.server_password forKey:@"password"];
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestData options:nil error:nil];
-
-    [request setHTTPBody:jsonData];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-
-        NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-
-        //self.connectionStatusLabel.text = [NSString stringWithFormat:@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite];
-
+    } failure:^
+    {
+        NSLog(@"Upload Failure");
     }];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        //self.uploadDataButton.enabled = YES;
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Error"
-                                                        message:[NSString stringWithFormat:@"%@", error.description]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Aww."
-                                              otherButtonTitles:nil];
-        [alert show];
-        NSLog(@"%@", error.description);
-        //self.connectionStatusLabel.text = error.description;
-        //self.uploadDataButton.enabled = YES;
-    }];
-
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
-
-    return;*/
-
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingString:@"api/upload_logs"]]];
-    [request setHTTPMethod:@"POST"];
-
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-
-    NSMutableDictionary *logData = [NSMutableDictionary dictionary];
-
-    //for (User *user in self.users)
-    //{
-        NSMutableDictionary *oneUser = [NSMutableDictionary dictionary];
-
-        for (TestLog *log in self.user.logs)
-        {
-            NSString *logIdentifier = nil;
-            NSMutableString *logContent = [NSMutableString string];
-            for (TestLogItem *logItem in log.logitems)
-            {
-                if (logIdentifier == nil) logIdentifier = [NSString stringWithFormat:@"%.0f", logItem.timestamp.timeIntervalSince1970];
-                [logContent appendFormat:@"%.0f|%@|%@\n", logItem.timestamp.timeIntervalSince1970, logItem.type, logItem.info];
-            }
-
-            [oneUser setObject:logContent forKey:logIdentifier];
-        }
-
-        [logData setObject:oneUser forKey:self.user.id];
-    //}
-
-    [requestData setObject:logData forKey:@"log_data"];
-    [requestData setObject:self.appConfiguration.server_username forKey:@"username"];
-    [requestData setObject:self.appConfiguration.server_password forKey:@"password"];
-
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestData options:nil error:nil];
-
-    [request setHTTPBody:jsonData];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-
-        NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-
-        //self.hud.progress = (float)totalBytesWritten/(float)totalBytesExpectedToWrite;
-        //self.connectionStatusLabel.text = [NSString stringWithFormat:@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite];
-
-    }];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        /*[MBProgressHUD hideHUDForView:self.view animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete"
-                                                        message:[NSString stringWithFormat:@"Data successfully uploaded. Response: %@", operation.responseString]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Yay!"
-                                              otherButtonTitles:nil];
-        [alert show];*/
-        //self.uploadDataButton.enabled = YES;
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        /*[MBProgressHUD hideHUDForView:self.view animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Error"
-                                                        message:[NSString stringWithFormat:@"%@", error.description]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Aww."
-                                              otherButtonTitles:nil];
-        [alert show];*/
-        NSLog(@"%@", error.description);
-        //self.connectionStatusLabel.text = error.description;
-        //self.uploadDataButton.enabled = YES;
-    }];
-
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
-
-    return;
 }
 
 - (void)pressTestButton:(id)sender

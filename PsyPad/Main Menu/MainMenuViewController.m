@@ -376,6 +376,7 @@
         controller.configurations = self.user.enabledConfigurations;
         controller.appConfiguration = self.appConfiguration;
         controller.users = self.users;
+        controller.APIController = self.APIController;
     }
     else if ([segue.identifier isEqualToString:@"BeginPracticeTest"])
     {
@@ -384,6 +385,7 @@
         controller.configurations = self.user.enabledPracticeConfigurations;
         controller.appConfiguration = self.appConfiguration;
         controller.users = self.users;
+        controller.APIController = self.APIController;
     }
     else if ([segue.identifier isEqualToString:@"AdminPanel"])
     {
