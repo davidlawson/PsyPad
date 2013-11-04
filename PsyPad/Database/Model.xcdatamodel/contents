@@ -8,6 +8,7 @@
     </entity>
     <entity name="TestConfiguration" representedClassName="TestConfiguration" syncable="YES">
         <attribute name="animation_frame_rate" attributeType="Integer 16" defaultValueString="50" syncable="YES"/>
+        <attribute name="attempt_facial_recognition" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="background_colour" attributeType="String" defaultValueString="#000000" syncable="YES"/>
         <attribute name="button_text_four" attributeType="String" defaultValueString="Four" syncable="YES"/>
         <attribute name="button_text_one" attributeType="String" defaultValueString="One" syncable="YES"/>

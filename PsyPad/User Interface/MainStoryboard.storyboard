@@ -1798,12 +1798,36 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bwj-hq-xEf">
+                                        <rect key="frame" x="0.0" y="2426" width="540" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwj-hq-xEf" id="Bo8-YL-lyc">
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Attempt facial recognition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4k1-BJ-MV6">
+                                                    <rect key="frame" x="10" y="0.0" width="363" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Q6S-kA-wam">
+                                                    <rect key="frame" x="480" y="8" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                                    <connections>
+                                                        <action selector="saveChanges:" destination="bZ2-1M-DtL" eventType="valueChanged" id="AOe-JS-rld"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Time Between Each Question" id="lR2-2s-u27">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3Vu-ys-ffL">
-                                        <rect key="frame" x="0.0" y="2474" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2518" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Vu-ys-ffL" id="6da-Fk-2XV">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1834,7 +1858,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VX0-yd-jqh">
-                                        <rect key="frame" x="0.0" y="2518" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2562" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VX0-yd-jqh" id="uHm-nz-CmY">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1869,7 +1893,7 @@
                             <tableViewSection headerTitle="Presentation Time" id="r4K-zk-8Iq">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mkK-1q-6nS">
-                                        <rect key="frame" x="0.0" y="2610" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2654" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mkK-1q-6nS" id="BIc-8A-nFx">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1893,7 +1917,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Qn7-tN-gKo">
-                                        <rect key="frame" x="0.0" y="2654" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2698" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qn7-tN-gKo" id="IK0-cy-DgO">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1921,7 +1945,7 @@
                             <tableViewSection headerTitle="Randomisation Settings" id="ZUo-dM-hUF">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="EaK-tk-Kmd">
-                                        <rect key="frame" x="0.0" y="2746" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2790" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EaK-tk-Kmd" id="yp4-AO-jS0">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1945,7 +1969,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zGs-lm-QOS">
-                                        <rect key="frame" x="0.0" y="2790" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="2834" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zGs-lm-QOS" id="zhl-pN-50U">
                                             <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -1977,6 +2001,7 @@
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="animationFrameRate" destination="vfV-qe-JaY" id="rgq-y0-dzN"/>
+                        <outlet property="attemptFacialRecognition" destination="Q6S-kA-wam" id="lSa-MV-eOI"/>
                         <outlet property="backgroundColour" destination="upT-oz-TjM" id="wSs-MQ-wVw"/>
                         <outlet property="button1BG" destination="fxn-IN-5bv" id="x3G-BW-Qqh"/>
                         <outlet property="button1FG" destination="geQ-pi-oov" id="Co6-Zq-1GX"/>

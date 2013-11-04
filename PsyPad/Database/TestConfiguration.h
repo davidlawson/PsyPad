@@ -20,6 +20,7 @@
 // position stored with relationship
 
 @property (nonatomic, retain) NSNumber * animation_frame_rate;
+@property (nonatomic, retain) NSNumber * attempt_facial_recognition;
 @property (nonatomic, retain) NSString * background_colour;
 @property (nonatomic, retain) NSString * button_text_four;
 @property (nonatomic, retain) NSString * button_text_one;

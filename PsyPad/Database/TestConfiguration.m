@@ -17,6 +17,7 @@
 @implementation TestConfiguration
 
 @dynamic animation_frame_rate;
+@dynamic attempt_facial_recognition;
 @dynamic background_colour;
 @dynamic button_text_four;
 @dynamic button_text_one;
@@ -472,6 +473,11 @@
 
     self.randomisation_specified_seed =
             @([(NSString *)[data objectForKey:@"specified_seed"] intValue]);
+
+    if ([(NSString *)[data objectForKey:@"attempt_facial_recognition"] isEqualToString:@"1"])
+        self.attempt_facial_recognition = @YES;
+    else
+        self.attempt_facial_recognition = @NO;
 }
 
 - (NSDictionary *)serialise
@@ -564,6 +570,7 @@
     [data setObject:self.images_together_presentation_time forKey:@"presentation_time"];
     [data setObject:self.randomisation_use_specified_seed forKey:@"use_specified_seed"];
     [data setObject:self.randomisation_specified_seed forKey:@"specified_seed"];
+    [data setObject:self.attempt_facial_recognition forKey:@"attempt_facial_recognition"];
 
     NSLog(@"%@", data);
 

@@ -22,6 +22,7 @@
 		5AF0E5C1204C19BECA4857F7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0E75B36ED26022AF3F4E5 /* MobileCoreServices.framework */; };
 		5AF0E63465BCA419C9918EE4 /* Staircase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EDECD815728F1903E396 /* Staircase.m */; };
 		5AF0E6552E4BAE482FA33C0F /* ManageUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EDF2375B76A42DA5EF62 /* ManageUserTableViewController.m */; };
+		5AF0E8592B9AD503599993C7 /* DistanceDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E590046B35D9DE7819C4 /* DistanceDetector.m */; };
 		5AF0EA20E93B462604540281 /* TestSequenceFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E49ABC79866125DC819F /* TestSequenceFolder.m */; };
 		5AF0EA6A20242EC8C33302E2 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EC3D081D2F2B5BC0573F /* APIController.m */; };
 		5AF0EB2DD285A8F2E6DF60B8 /* AdminPanelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EB2270778FECB039C261 /* AdminPanelTableViewController.m */; };
@@ -99,6 +100,7 @@
 		5AF0E3A1AD1029A57F63B68C /* APIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIController.h; sourceTree = "<group>"; };
 		5AF0E49ABC79866125DC819F /* TestSequenceFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSequenceFolder.m; sourceTree = "<group>"; };
 		5AF0E52A944A57021D9519D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5AF0E590046B35D9DE7819C4 /* DistanceDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceDetector.m; sourceTree = "<group>"; };
 		5AF0E61F0BEAD03448FE32BD /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		5AF0E64D67CE65EBACC34616 /* TestLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLog.m; sourceTree = "<group>"; };
 		5AF0E6679284694FAE8FA987 /* AdminPanelTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminPanelTableViewController.h; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		5AF0EBDDCF9D7178C5BCA732 /* TestSequenceFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSequenceFolder.h; sourceTree = "<group>"; };
 		5AF0EC2AE3C7CB7009391ED1 /* TestSequenceImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSequenceImage.h; sourceTree = "<group>"; };
 		5AF0EC3D081D2F2B5BC0573F /* APIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIController.m; sourceTree = "<group>"; };
+		5AF0ED3AA80AD1B4E5497DEB /* DistanceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceDetector.h; sourceTree = "<group>"; };
 		5AF0ED62E745BBD70B82E167 /* TestSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSequence.h; sourceTree = "<group>"; };
 		5AF0ED9AEF05FF5F440123DA /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5AF0EDAFEE8AD326C5F4C401 /* TestSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSequence.m; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				5AF0E29AD0FE381FB2090214 /* Custom Controls */,
 				5AF0EDECD815728F1903E396 /* Staircase.m */,
 				5AF0E312DFA8457A95F447AE /* Staircase.h */,
+				5AF0ED3AA80AD1B4E5497DEB /* DistanceDetector.h */,
+				5AF0E590046B35D9DE7819C4 /* DistanceDetector.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -714,6 +719,7 @@
 				63A1ED6017B89C100089C204 /* UserTableViewCell.m in Sources */,
 				5AF0E0005D2CBAD344805694 /* UIColor+Hex.m in Sources */,
 				5AF0EA6A20242EC8C33302E2 /* APIController.m in Sources */,
+				5AF0E8592B9AD503599993C7 /* DistanceDetector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

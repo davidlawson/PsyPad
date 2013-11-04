@@ -89,7 +89,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *button4FG;
 
 @property (weak, nonatomic) IBOutlet UISwitch *requireNextSwitch;
-
+@property (weak, nonatomic) IBOutlet UISwitch *attemptFacialRecognition;
 
 @property (weak, nonatomic) IBOutlet UILabel *timeBetweenEachQuestionMeanLabel;
 @property (weak, nonatomic) IBOutlet UISlider *timeBetweenEachQuestionMean;

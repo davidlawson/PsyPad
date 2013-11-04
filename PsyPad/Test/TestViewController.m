@@ -28,6 +28,7 @@
 #import "AppConfiguration.h"
 
 #import "UIColor+Hex.h"
+#import "DistanceDetector.h"
 
 // Shortcuts for the view size
 #define VIEW_HEIGHT self.view.bounds.size.height
@@ -83,6 +84,8 @@
     {
         self.exitButton.hidden = YES;
     }
+
+    self.distanceDetector = [[DistanceDetector alloc] init];
 
     [[UIScreen mainScreen] setBrightness:1.0];
 }
@@ -463,6 +466,9 @@
     [self log:@"reaction_time" info:@"%.2fms", reaction_time];
 
     [self log:@"button_press" info:@"%d (%@)", pressedButton.number, [pressedButton titleForState:UIControlStateNormal]];
+
+    if (self.currentConfiguration.attempt_facial_recognition.boolValue)
+        [self.distanceDetector takePhoto:self question:self.questionNumber];
 
     if (self.currentConfiguration.use_staircase_method.boolValue)
     {
@@ -904,6 +910,8 @@
 - (void)viewDidUnload
 {
     free(self.seedState);
+
+    [self.distanceDetector done];
 
     [self setBeginTestButton:nil];
     [self setQuestionLabel:nil];
