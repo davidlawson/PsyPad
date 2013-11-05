@@ -56,10 +56,7 @@
 - (void)loadUsers
 {
     NSArray *users = [User allUsers];
-    if (users)
-        self.users = [users mutableCopy];
-    else
-        abort();
+    self.users = [users mutableCopy];
 
     NSLog(@"Loaded %d user(s) from database", self.users.count);
 }

@@ -46,7 +46,7 @@
         }
     }
 
-    abort(); // folder not found
+    return nil; // folder not found
 }
 
 - (void)reset

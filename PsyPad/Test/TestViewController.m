@@ -249,9 +249,6 @@
 
 - (void)setupImageCollection
 {
-    //imagecollection contains all of the signal images
-    //we will grab # noise images if number of images to display > 1 as well from 'noise' folder
-
     self.imageCollection = [NSMutableArray array];
 
     for (TestSequenceFolder *folder in self.currentConfiguration.sequence.folders)
@@ -435,6 +432,9 @@
 {
     TestSequenceImage *image = [self.imageCollection objectAtIndex:(NSUInteger)self.questionNumber-1];
 
+    if (!image)
+        return nil;
+
     TestImageButton *imageButton;
 
     if (image.is_animated.boolValue == NO)
@@ -450,6 +450,9 @@
 - (TestImageButton *)getNextImageStaircase
 {
     TestSequenceImage *image = [self.currentConfiguration.sequence nextImageFromFolder:self.currentStaircase.currentLevel withState:self.seedState];
+
+    if (!image)
+        return nil;
 
     TestImageButton *imageButton;
 
@@ -660,6 +663,14 @@
     [self log:@"currentReversal" info:@"%d", self.currentStaircase.currentReversal];
 
     self.image = [self getNextImageStaircase];
+
+    if (self.image == nil)
+    {
+        [self log:@"error" info:@"image not found"];
+        [self testFinished];
+        return;
+    }
+
     [self.view addSubview:self.image];
     [self log:@"presented_image" info:@"%@/%@", self.image.dbImage.folder.name, self.image.dbImage.name];
 
@@ -702,6 +713,14 @@
     [self log:@"next_question" info:@"%d/%d", self.questionNumber, self.currentConfiguration.countQuestions];
 
     self.image = [self getNextImage];
+
+    if (self.image == nil)
+    {
+        [self log:@"error" info:@"image not found"];
+        [self testFinished];
+        return;
+    }
+
     [self.view addSubview:self.image];
     [self log:@"presented_image" info:@"%@/%@", self.image.dbImage.folder.name, self.image.dbImage.name];
 
