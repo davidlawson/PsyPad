@@ -16,7 +16,7 @@
 
 - (void)loadServerParticipants:(void (^)(NSMutableArray *serverUsers))success failure:(void (^)())failure;
 
-- (void)downloadParticipant:(NSString *)username progress:(void (^)(NSString *status, float _progress))progress success:(void (^)(User *newUser))success failure:(void (^)())failure;
+- (void)downloadParticipant:(NSString *)username progress:(void (^)(NSString *status, float _progress))progress success:(void (^)(User *newUser))success failure:(void (^)())failure supressErrors:(BOOL)supressErrors;
 
 - (void)uploadUser:(User *)user success:(void (^)())success failure:(void (^)())failure;
 

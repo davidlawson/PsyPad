@@ -40,6 +40,7 @@
 - (IBAction)loginPress;
 - (IBAction)doLogout;
 
+- (void)loadUsers;
 - (IBAction)beginTestPress:(id)sender;
 
 @end

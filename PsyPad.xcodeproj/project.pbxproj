@@ -63,6 +63,8 @@
 		63606108168DC82900F200CA /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606102168DC82900F200CA /* RIButtonItem.m */; };
 		63606109168DC82900F200CA /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606104168DC82900F200CA /* UIActionSheet+Blocks.m */; };
 		6360610A168DC82900F200CA /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606106168DC82900F200CA /* UIAlertView+Blocks.m */; };
+		636836F118288D08001FBC5F /* grating-ios7.png in Resources */ = {isa = PBXBuildFile; fileRef = 636836EF18288D08001FBC5F /* grating-ios7.png */; };
+		636836F218288D08001FBC5F /* grating-ios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636836F018288D08001FBC5F /* grating-ios7@2x.png */; };
 		6385E38A18176BB300508530 /* BorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6385E38918176BB300508530 /* BorderButton.m */; };
 		6385E38C18176EF400508530 /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6385E38B18176EF400508530 /* plus@2x.png */; };
 		6385E38E18176F3D00508530 /* tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6385E38D18176F3D00508530 /* tick@2x.png */; };
@@ -185,6 +187,8 @@
 		63606104168DC82900F200CA /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+Blocks.m"; path = "../UIAlertView-Blocks/UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
 		63606105168DC82900F200CA /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+Blocks.h"; path = "../UIAlertView-Blocks/UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		63606106168DC82900F200CA /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+Blocks.m"; path = "../UIAlertView-Blocks/UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		636836EF18288D08001FBC5F /* grating-ios7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grating-ios7.png"; sourceTree = "<group>"; };
+		636836F018288D08001FBC5F /* grating-ios7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grating-ios7@2x.png"; sourceTree = "<group>"; };
 		6385E38818176BB300508530 /* BorderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderButton.h; sourceTree = "<group>"; };
 		6385E38918176BB300508530 /* BorderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderButton.m; sourceTree = "<group>"; };
 		6385E38B18176EF400508530 /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 		5AF0E84EE31BDE1ACF796DCB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				636836EF18288D08001FBC5F /* grating-ios7.png */,
+				636836F018288D08001FBC5F /* grating-ios7@2x.png */,
 				6335536B1820DA5300CEECE3 /* unimelb_logo.png */,
 				6335536C1820DA5300CEECE3 /* arc_logo.png */,
 				6335536D1820DA5300CEECE3 /* arc_logo@2x.png */,
@@ -614,7 +620,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				635D07A4168D7D0D002B845F /* InfoPlist.strings in Resources */,
+				636836F118288D08001FBC5F /* grating-ios7.png in Resources */,
 				633553711820DA5300CEECE3 /* arc_logo@2x.png in Resources */,
+				636836F218288D08001FBC5F /* grating-ios7@2x.png in Resources */,
 				63C492D81807D5E900F6AFEF /* Default-Landscape@2x.png in Resources */,
 				63C492D01807D4B900F6AFEF /* splash@2x.png in Resources */,
 				633553701820DA5300CEECE3 /* arc_logo.png in Resources */,
@@ -876,8 +884,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46756309933747649878AFBC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Turpin (VLDWUKP35J)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Turpin (VLDWUKP35J)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PsyPad/Supporting Files/PsyPad-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -892,8 +900,8 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
+				PROVISIONING_PROFILE = "52883B41-8436-44C2-8529-317503192CB6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "52883B41-8436-44C2-8529-317503192CB6";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};

@@ -23,6 +23,7 @@
 #import "TestConfiguration.h"
 #import "UserTableViewCell.h"
 #import "MBProgressHUD.h"
+#import "MainMenuViewController.h"
 
 @interface AdminPanelTableViewController ()
 
@@ -261,7 +262,7 @@
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
-    }];
+    } supressErrors:NO];
 
     return;
 }
@@ -562,6 +563,7 @@
 
 - (IBAction)dismissModal:(id)sender
 {
+    [(MainMenuViewController *)self.presentingViewController loadUsers];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

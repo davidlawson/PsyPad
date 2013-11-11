@@ -124,16 +124,9 @@
     return 0;
 }
 
-/*- (void) installPreloadedSequence:(NSString *)sequenceName
-{
-    NSURL *sequenceFolder = [[APP_DELEGATE applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"Sequences/%@", sequenceName]];
-    [self installSequence:sequenceFolder name:sequenceName preloaded:YES];
-}*/
-
 - (void)installSequenceWithURL:(NSString *)url data:(NSDictionary *)data progress:(void (^)(NSString *status, float _progress))progress sema:(dispatch_semaphore_t)sema;
 {
     NSManagedObjectContext *MOC = [APP_DELEGATE managedObjectContext];
-    //NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"TestSequence" inManagedObjectContext:MOC];
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TestSequence"];
     request.predicate = [NSPredicate predicateWithFormat:@"(url = %@)", url];
@@ -141,7 +134,7 @@
     NSArray *array = [MOC executeFetchRequest:request error:nil];
     if (array.count > 0)
     {
-        progress(@"Installing sequence...", 0);
+        progress(@"Installing sequence...", 1);
 
         TestSequence *sequence = [array objectAtIndex:0];
         if (!self.sequence || self.sequence.url != sequence.url)
@@ -182,7 +175,14 @@
 
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
         {
-            [self installSequence:[NSURL fileURLWithPath:newURL.path] name:@"sequence" data:data];
+            progress(@"Installing sequence...", 1);
+            dispatch_semaphore_t sequence_sema = dispatch_semaphore_create(0);
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
+            {
+                [self installSequence:[NSURL fileURLWithPath:newURL.path] name:@"sequence" data:data];
+                dispatch_semaphore_signal(sequence_sema);
+            });
+            dispatch_semaphore_wait(sequence_sema, DISPATCH_TIME_FOREVER);
             self.sequence.url = url;
             [APP_DELEGATE saveContext];
 
@@ -202,7 +202,6 @@
         }];
 
         [operation start];
-        NSLog(@"Started operation");
     }
 }
 

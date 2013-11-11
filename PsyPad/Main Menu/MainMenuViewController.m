@@ -20,6 +20,8 @@
 #import "AppConfiguration.h"
 #import "APIController.h"
 
+#define CENTRE_BOX_Y 330
+
 @interface MainMenuViewController ()
 
 @property (nonatomic) BOOL viewSetup;
@@ -103,7 +105,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 
         [self.centreBox setWidth:300 height:104];
-        //[self.centreBox moveToY:self.view.height/2 - self.centreBox.height/2];
+        [self.centreBox moveToY:CENTRE_BOX_Y];
 
         [self.statusLabel centerToX:self.centreBox.width/2 y:51];
         self.statusLabel.alpha = 0.0;
@@ -232,12 +234,15 @@
 
     } success:^(User *newUser)
     {
+        if (![self.users containsObject:newUser])
+            [self.users addObject:newUser];
+        
         [self loadedUser:userID];
 
     } failure:^
     {
         [self loadedUser:userID];
-    }];
+    } supressErrors:YES];
 
     // Then try load locally.
 }
@@ -308,11 +313,14 @@
                          if (self.user.enabledPracticeConfigurations.count > 0)
                          {
                              [self.centreBox setHeight:51+44+20+44+20+44+30];
+                             [self.centreBox moveToY:CENTRE_BOX_Y];
+
                              self.beginPracticeTestButton.alpha = 1.0;
                          }
                          else
                          {
                              [self.centreBox setHeight:51+44+20+44+30];
+                             [self.centreBox moveToY:CENTRE_BOX_Y];
                          }
 
                          //[self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
@@ -340,7 +348,7 @@
                          self.infoLabel.alpha = 0.0;
 
                          [self.centreBox setHeight:104];
-                         //[self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
+                         [self.centreBox moveToY:CENTRE_BOX_Y];
 
                          self.loginButton.alpha = 1.0;
                          self.loginTextField.alpha = 1.0;
@@ -448,7 +456,8 @@
         animations:^
         {
             self.overlay.alpha = 0.0;
-            [self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
+
+            [self.centreBox moveToY:CENTRE_BOX_Y];
         }
     ];
 }
