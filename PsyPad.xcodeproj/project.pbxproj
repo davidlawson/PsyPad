@@ -50,7 +50,6 @@
 		633553701820DA5300CEECE3 /* arc_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536C1820DA5300CEECE3 /* arc_logo.png */; };
 		633553711820DA5300CEECE3 /* arc_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536D1820DA5300CEECE3 /* arc_logo@2x.png */; };
 		633553721820DA5300CEECE3 /* unimelb_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536E1820DA5300CEECE3 /* unimelb_logo@2x.png */; };
-		6357F483168EC32300B5232F /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 63122FA6168EBF6C00F9D388 /* Model.xcdatamodel */; };
 		635D079A168D7D0D002B845F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D0799168D7D0D002B845F /* UIKit.framework */; };
 		635D079C168D7D0D002B845F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D079B168D7D0D002B845F /* Foundation.framework */; };
 		635D079E168D7D0D002B845F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D079D168D7D0D002B845F /* CoreGraphics.framework */; };
@@ -69,6 +68,7 @@
 		6385E38C18176EF400508530 /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6385E38B18176EF400508530 /* plus@2x.png */; };
 		6385E38E18176F3D00508530 /* tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6385E38D18176F3D00508530 /* tick@2x.png */; };
 		63A1ED6017B89C100089C204 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A1ED5F17B89C100089C204 /* UserTableViewCell.m */; };
+		63A27C43188B96AB00642FE4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63A27C40188B96AB00642FE4 /* Model.xcdatamodeld */; };
 		63C492D01807D4B900F6AFEF /* splash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C492CF1807D4B900F6AFEF /* splash@2x.png */; };
 		63C492D21807D50300F6AFEF /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C492D11807D50300F6AFEF /* splash.png */; };
 		63C492D41807D56D00F6AFEF /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 63C492D31807D56D00F6AFEF /* Default-Landscape.png */; };
@@ -139,7 +139,6 @@
 		5AF0EFA92E79365204688816 /* NSArray+GetRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GetRandom.h"; sourceTree = "<group>"; };
 		5AF0EFE0824C1518B886B1BF /* TestLogItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLogItem.m; sourceTree = "<group>"; };
 		5AF0EFE89B4C637A29351647 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		63122FA6168EBF6C00F9D388 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		631BD07D170AA2390086DC8B /* AppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfiguration.h; sourceTree = "<group>"; };
 		631BD07E170AA2390086DC8B /* AppConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfiguration.m; sourceTree = "<group>"; };
 		631CB31A1698F46C007A0534 /* TestLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLogTableViewController.h; sourceTree = "<group>"; };
@@ -195,6 +194,8 @@
 		6385E38D18176F3D00508530 /* tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x.png"; sourceTree = "<group>"; };
 		63A1ED5E17B89C100089C204 /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserTableViewCell.h; path = "Custom Controls/UserTableViewCell.h"; sourceTree = "<group>"; };
 		63A1ED5F17B89C100089C204 /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserTableViewCell.m; path = "Custom Controls/UserTableViewCell.m"; sourceTree = "<group>"; };
+		63A27C41188B96AB00642FE4 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		63A27C42188B96AB00642FE4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		63C492CF1807D4B900F6AFEF /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
 		63C492D11807D50300F6AFEF /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		63C492D31807D56D00F6AFEF /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
@@ -415,7 +416,7 @@
 		5AF0EACAB2428B9771E20D2A /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				63122FA6168EBF6C00F9D388 /* Model.xcdatamodel */,
+				63A27C40188B96AB00642FE4 /* Model.xcdatamodeld */,
 				631BD07D170AA2390086DC8B /* AppConfiguration.h */,
 				631BD07E170AA2390086DC8B /* AppConfiguration.m */,
 				631CB3221698F61A007A0534 /* User.h */,
@@ -691,11 +692,11 @@
 				6360610A168DC82900F200CA /* UIAlertView+Blocks.m in Sources */,
 				5AF0ECEFD70C74D7C83442AC /* TestConfiguration.m in Sources */,
 				5AF0EC3A506560EBF3BD4715 /* TestSequenceImage.m in Sources */,
+				63A27C43188B96AB00642FE4 /* Model.xcdatamodeld in Sources */,
 				5AF0E1E31E95B770EA668A38 /* TestLogItem.m in Sources */,
 				5AF0EE6BD19448AB62FC31E9 /* TestSequence.m in Sources */,
 				5AF0EA20E93B462604540281 /* TestSequenceFolder.m in Sources */,
 				5AF0ED20344A4A8834011EFC /* TestLog.m in Sources */,
-				6357F483168EC32300B5232F /* Model.xcdatamodel in Sources */,
 				63F9F1BA168ED165006532D9 /* UIButton+Block.m in Sources */,
 				63F9F1BB168ED165006532D9 /* UIButtonBlock.m in Sources */,
 				63DC3D561696FFF900ACCFBE /* SelectConfigurationTableViewController.m in Sources */,
@@ -931,6 +932,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		63A27C40188B96AB00642FE4 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				63A27C41188B96AB00642FE4 /* Model 2.xcdatamodel */,
+				63A27C42188B96AB00642FE4 /* Model.xcdatamodel */,
+			);
+			currentVersion = 63A27C41188B96AB00642FE4 /* Model 2.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 635D078C168D7D0D002B845F /* Project object */;
 }

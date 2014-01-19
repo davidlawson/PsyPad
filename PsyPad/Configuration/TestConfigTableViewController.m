@@ -125,6 +125,9 @@
 
     conf.images_together_presentation_time_is_infinite = @(self.presentationTimeIsInfinite.on);
     conf.images_together_presentation_time = @(self.presentationTime.value);
+    
+    conf.response_window_is_infinite = @(self.responseWindowIsInfinite.on);
+    conf.response_window = @(self.responseWindow.value);
 
     conf.randomisation_use_specified_seed = @(self.useSpecifiedSeed.on);
 
@@ -231,6 +234,10 @@
     self.presentationTimeIsInfinite.on = conf.images_together_presentation_time_is_infinite.boolValue;
     self.presentationTime.value = conf.images_together_presentation_time.floatValue;
     self.presentationTimeLabel.text = [NSString stringWithFormat:@"%.2fs", conf.images_together_presentation_time.floatValue];
+    
+    self.responseWindowIsInfinite.on = conf.response_window_is_infinite.boolValue;
+    self.responseWindow.value = conf.response_window.floatValue;
+    self.presentationTimeLabel.text = [NSString stringWithFormat:@"%.2fs", conf.response_window.floatValue];
 
     self.useSpecifiedSeed.on = conf.randomisation_use_specified_seed.boolValue;
     self.specifiedSeed.text = [NSString stringWithFormat:@"%u", conf.randomisation_specified_seed.unsignedIntValue];

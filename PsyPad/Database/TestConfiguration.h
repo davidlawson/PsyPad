@@ -90,6 +90,9 @@
 @property (nonatomic, retain) TestSequence *sequence;
 @property (nonatomic, retain) User *user;
 
+@property (nonatomic, retain) NSNumber *response_window_is_infinite;
+@property (nonatomic, retain) NSNumber *response_window;
+
 /*enum testing_method {
     dTestingMethodTogether = 0,
     dTestingMethodSequential = 1

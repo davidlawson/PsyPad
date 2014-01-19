@@ -100,6 +100,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *presentationTimeLabel;
 @property (weak, nonatomic) IBOutlet UISlider *presentationTime;
 
+@property (weak, nonatomic) IBOutlet UISwitch *responseWindowIsInfinite;
+@property (weak, nonatomic) IBOutlet UILabel *responseWindowLabel;
+@property (weak, nonatomic) IBOutlet UISlider *responseWindow;
+
 @property (weak, nonatomic) IBOutlet UISwitch *useSpecifiedSeed;
 @property (weak, nonatomic) IBOutlet UITextField *specifiedSeed;
 
@@ -132,7 +136,9 @@ enum Test1ConfigTableViewController_TableView_positions
     
     sPresentationTime = 12,
     
-    sRandomisationSettings = 13
+    sResponseWindow = 13,
+    
+    sRandomisationSettings = 14
 };
 
 - (IBAction)saveChanges:(id)sender;

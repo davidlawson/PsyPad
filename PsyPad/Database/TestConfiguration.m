@@ -87,6 +87,9 @@
 @dynamic sequence;
 @dynamic user;
 
+@dynamic response_window;
+@dynamic response_window_is_infinite;
+
 - (int)countQuestions
 {
     int total = 0;
@@ -465,6 +468,14 @@
 
     self.images_together_presentation_time =
             @([(NSString *)[data objectForKey:@"presentation_time"] floatValue]);
+    
+    if ([(NSString *)[data objectForKey:@"response_window_is_infinite"] isEqualToString:@"1"])
+        self.response_window_is_infinite = @YES;
+    else
+        self.response_window_is_infinite = @NO;
+    
+    self.response_window =
+    @([(NSString *)[data objectForKey:@"response_window"] floatValue]);
 
     if ([(NSString *)[data objectForKey:@"use_specified_seed"] isEqualToString:@"1"])
         self.randomisation_use_specified_seed = @YES;
@@ -568,6 +579,10 @@
     [data setObject:self.time_between_question_plusminus forKey:@"time_between_each_question_plusminus"];
     [data setObject:self.images_together_presentation_time_is_infinite forKey:@"infinite_presentation_time"];
     [data setObject:self.images_together_presentation_time forKey:@"presentation_time"];
+    
+    [data setObject:self.response_window_is_infinite forKey:@"response_window_is_infinite"];
+    [data setObject:self.response_window forKey:@"response_window"];
+    
     [data setObject:self.randomisation_use_specified_seed forKey:@"use_specified_seed"];
     [data setObject:self.randomisation_specified_seed forKey:@"specified_seed"];
     [data setObject:self.attempt_facial_recognition forKey:@"attempt_facial_recognition"];
