@@ -703,6 +703,16 @@
               afterDelay:self.currentConfiguration.images_together_presentation_time.floatValue
         ];
     }
+
+    if (self.currentConfiguration.response_window_is_infinite.boolValue == NO)
+    {
+        [self performBlock:^
+        {
+            [self reponseWindowTimeout];
+        }
+                afterDelay:self.currentConfiguration.response_window.floatValue
+        ];
+    }
 }
 
 - (void)presentNextQuestion
@@ -753,6 +763,98 @@
               afterDelay:self.currentConfiguration.images_together_presentation_time.floatValue
         ];
     }
+
+    if (self.currentConfiguration.response_window_is_infinite.boolValue == NO)
+    {
+        [self performBlock:^
+        {
+            [self reponseWindowTimeout];
+        }
+                afterDelay:self.currentConfiguration.response_window.floatValue
+        ];
+    }
+}
+
+- (void)reponseWindowTimeout
+{
+    [self log:@"response_window_timeout" info:nil];
+
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+
+    if (self.currentConfiguration.use_staircase_method.boolValue)
+    {
+        bool answerCorrect = NO;
+        self.currentStaircase.numTimesIncorrect++;
+        self.currentStaircase.numTimesCorrect = 0;
+
+        // same as in pressTestButton
+        if (answerCorrect && self.currentStaircase.numTimesCorrect >= self.currentStaircase.numTimesCorrectToGetHarder)
+        {
+            if (self.currentStaircase.lastReversalType == 0) // down
+            {
+                [self log:@"reversal" info:nil];
+                self.currentStaircase.currentReversal++;
+
+                if (self.currentStaircase.currentReversal >= self.currentStaircase.maxReversals)
+                {
+                    [self.staircases removeObject:self.currentStaircase];
+                    self.currentStaircase = nil;
+                    [self prepareNextQuestion];
+                    return;
+                }
+            }
+            self.currentStaircase.lastReversalType = 1;
+
+            int delta = [(NSNumber *)[self.currentStaircase.deltaValues objectAtIndex:(NSUInteger)self.currentStaircase.currentReversal] intValue];
+            self.currentStaircase.currentLevel -= delta;
+            self.currentStaircase.numTimesCorrect = 0;
+            self.currentStaircase.numTimesIncorrect = 0;
+        }
+        else if (!answerCorrect && self.currentStaircase.numTimesIncorrect >= self.currentStaircase.numTimesIncorrectToGetEasier)
+        {
+            if (self.currentStaircase.lastReversalType == 1) // up
+            {
+                [self log:@"reversal" info:nil];
+                self.currentStaircase.currentReversal++;
+
+                if (self.currentStaircase.currentReversal >= self.currentStaircase.maxReversals)
+                {
+                    [self.staircases removeObject:self.currentStaircase];
+                    self.currentStaircase = nil;
+                    [self prepareNextQuestion];
+                    return;
+                }
+            }
+            self.currentStaircase.lastReversalType = 0;
+
+            int delta = [(NSNumber *)[self.currentStaircase.deltaValues objectAtIndex:(NSUInteger)self.currentStaircase.currentReversal] intValue];
+            self.currentStaircase.currentLevel += delta;
+            self.currentStaircase.numTimesIncorrect = 0;
+            self.currentStaircase.numTimesCorrect = 0;
+        }
+
+        //self.currentStaircase.lastAnswerCorrect = answerCorrect ? 1 : 0;
+
+        if (self.currentStaircase.currentLevel <= self.currentStaircase.minLevel || self.currentStaircase.currentLevel >= self.currentStaircase.maxLevel)
+        {
+            self.currentStaircase.numHits++;
+
+            if (self.currentStaircase.currentLevel <= self.currentStaircase.minLevel) self.currentStaircase.currentLevel = self.currentStaircase.minLevel;
+            if (self.currentStaircase.currentLevel >= self.currentStaircase.maxLevel) self.currentStaircase.currentLevel = self.currentStaircase.maxLevel;
+        }
+        else
+        {
+            self.currentStaircase.numHits = 0;
+        }
+
+        if (self.currentStaircase.numHits == self.currentStaircase.floorCeilingHits)
+        {
+            [self.staircases removeObject:self.currentStaircase];
+            self.currentStaircase = nil;
+        }
+    }
+
+    [self prepareNextQuestion];
 }
 
 - (void)testFinished

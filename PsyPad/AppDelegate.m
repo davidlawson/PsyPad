@@ -66,7 +66,7 @@ void mysighandler(int sig, siginfo_t *info, void *context)
 {
     // Override point for customization after application launch.
     
-    struct sigaction mySigAction;
+    /*struct sigaction mySigAction;
     mySigAction.sa_sigaction = mysighandler;
     mySigAction.sa_flags = SA_SIGINFO;
     sigemptyset(&mySigAction.sa_mask);
@@ -84,7 +84,7 @@ void mysighandler(int sig, siginfo_t *info, void *context)
     sigaction(SIGXCPU, &mySigAction, NULL);
     sigaction(SIGXFSZ, &mySigAction, NULL);
     
-    NSSetUncaughtExceptionHandler(&exceptionHandler);
+    NSSetUncaughtExceptionHandler(&exceptionHandler);*/
     
     return YES;
 }
@@ -167,7 +167,7 @@ void mysighandler(int sig, siginfo_t *info, void *context)
     {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"mom"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }

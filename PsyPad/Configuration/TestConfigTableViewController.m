@@ -237,7 +237,7 @@
     
     self.responseWindowIsInfinite.on = conf.response_window_is_infinite.boolValue;
     self.responseWindow.value = conf.response_window.floatValue;
-    self.presentationTimeLabel.text = [NSString stringWithFormat:@"%.2fs", conf.response_window.floatValue];
+    self.responseWindowLabel.text = [NSString stringWithFormat:@"%.2fs", conf.response_window.floatValue];
 
     self.useSpecifiedSeed.on = conf.randomisation_use_specified_seed.boolValue;
     self.specifiedSeed.text = [NSString stringWithFormat:@"%u", conf.randomisation_specified_seed.unsignedIntValue];
@@ -381,83 +381,6 @@
     {
         dest.sequence = self.configuration.sequence;
     }
-}
-
-#pragma mark - Clean up
-
-- (void)viewDidUnload
-{
-    [self setRequireNextSwitch:nil];
-    [self setConfigurationName:nil];
-    [self setEnabledSwitch:nil];
-    [self setPracticeConfigurationSwitch:nil];
-    [self setMondaySwitch:nil];
-    [self setTuesdaySwitch:nil];
-    [self setWednesdaySwitch:nil];
-    [self setThursdaySwitch:nil];
-    [self setFridaySwitch:nil];
-    [self setSaturdaySwitch:nil];
-    [self setSundaySwitch:nil];
-    [self setLoopAnimatedImages:nil];
-    [self setAnimationFrameRate:nil];
-    [self setUseStaircaseMethodSwitch:nil];
-    [self setNumberOfStaircases:nil];
-    [self setStartLevel:nil];
-    [self setNumberOfReversals:nil];
-    [self setHitsToFinish:nil];
-    [self setMinimumLevel:nil];
-    [self setMaximumLevel:nil];
-    [self setDeltaValues:nil];
-    [self setNumWrongToGetEasier:nil];
-    [self setNumCorrectToGetHarder:nil];
-    [self setQuestionsPerFolder:nil];
-    [self setBackgroundColour:nil];
-    [self setShowExitButton:nil];
-    [self setExitButtonX:nil];
-    [self setExitButtonY:nil];
-    [self setExitButtonW:nil];
-    [self setExitButtonH:nil];
-    [self setExitButtonBG:nil];
-    [self setExitButtonFG:nil];
-    [self setButton1Text:nil];
-    [self setButton2Text:nil];
-    [self setButton3Text:nil];
-    [self setButton4Text:nil];
-    [self setButton1X:nil];
-    [self setButton1Y:nil];
-    [self setButton1W:nil];
-    [self setButton1H:nil];
-    [self setButton2X:nil];
-    [self setButton2Y:nil];
-    [self setButton2W:nil];
-    [self setButton2H:nil];
-    [self setButton3X:nil];
-    [self setButton3Y:nil];
-    [self setButton3W:nil];
-    [self setButton3H:nil];
-    [self setButton4X:nil];
-    [self setButton4Y:nil];
-    [self setButton4W:nil];
-    [self setButton4H:nil];
-    [self setButton1BG:nil];
-    [self setButton1FG:nil];
-    [self setButton2BG:nil];
-    [self setButton2FG:nil];
-    [self setButton3BG:nil];
-    [self setButton3FG:nil];
-    [self setButton4BG:nil];
-    [self setButton4FG:nil];
-    [self setAttemptFacialRecognition:nil];
-    [self setTimeBetweenEachQuestionMean:nil];
-    [self setTimeBetweenEachQuestionPlusMinus:nil];
-    [self setTimeBetweenEachQuestionMeanLabel:nil];
-    [self setTimeBetweenEachQuestionPlusMinusLabel:nil];
-    [self setPresentationTimeIsInfinite:nil];
-    [self setPresentationTime:nil];
-    [self setPresentationTimeLabel:nil];
-    [self setUseSpecifiedSeed:nil];
-    [self setSpecifiedSeed:nil];
-    [super viewDidUnload];
 }
 
 @end
