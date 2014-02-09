@@ -152,6 +152,8 @@
     self.configurationNameLabel.text = self.currentConfiguration.name;
 
     self.view.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.background_colour];
+    UIImage *bgImage = self.currentConfiguration.sequence.backgroundImage;
+    self.backgroundImageView.image = bgImage;
 
     if (self.currentConfiguration.show_exit_button.boolValue)
     {

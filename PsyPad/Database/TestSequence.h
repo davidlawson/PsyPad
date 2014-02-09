@@ -17,6 +17,8 @@
 @property (nonatomic, retain) NSString * path;
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSOrderedSet *folders;
+@property (nonatomic, retain) NSNumber *background_length;
+@property (nonatomic, retain) NSNumber *background_start;
 
 - (TestSequenceImage *)nextImage:(unsigned short *)state;
 
@@ -24,6 +26,7 @@
 
 - (void)reset;
 
+- (UIImage *)backgroundImage;
 @end
 
 @interface TestSequence (CoreDataGeneratedAccessors)

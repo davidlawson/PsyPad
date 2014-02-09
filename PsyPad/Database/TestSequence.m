@@ -5,6 +5,7 @@
 //  Created by David Lawson on 4/12/12.
 //
 
+#import <sys/mman.h>
 #import "TestSequence.h"
 #import "TestSequenceFolder.h"
 #import "TestSequenceImage.h"
@@ -17,6 +18,7 @@
 @dynamic name;
 @dynamic path, url;
 @dynamic folders;
+@dynamic background_length, background_start;
 
 - (id)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -92,5 +94,34 @@
     [super prepareForDeletion];
 }
 
+- (UIImage *)backgroundImage
+{
+    if (!self.background_start || !self.background_length) return nil;
+
+    FILE *file;
+
+    file = fopen([self.path cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+
+    int fd = fileno(file);
+
+    size_t length = (size_t)self.background_length.intValue;
+    long start = self.background_start.longValue;
+
+    long page_start = start - (start % 4096);
+    int offset = start - page_start;
+
+    void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
+
+    NSData *image_data = [NSData dataWithBytes:data + offset length:length];
+
+    munmap(data, length);
+
+    fclose(file);
+
+    if([[UIScreen mainScreen] scale] == 2.0 && [UIImage respondsToSelector:@selector(imageWithData:scale:)])
+        return [UIImage imageWithData:image_data scale:2];
+    else
+        return [UIImage imageWithData:image_data];
+}
 
 @end

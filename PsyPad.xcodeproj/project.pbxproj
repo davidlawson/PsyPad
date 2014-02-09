@@ -161,6 +161,7 @@
 		6335536C1820DA5300CEECE3 /* arc_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arc_logo.png; sourceTree = "<group>"; };
 		6335536D1820DA5300CEECE3 /* arc_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arc_logo@2x.png"; sourceTree = "<group>"; };
 		6335536E1820DA5300CEECE3 /* unimelb_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unimelb_logo@2x.png"; sourceTree = "<group>"; };
+		6336E11E18A72FF30099CB75 /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
 		6339F1EF16B875C4001B4392 /* PsyPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PsyPad.entitlements; path = ../PsyPad.entitlements; sourceTree = "<group>"; };
 		635D0795168D7D0D002B845F /* PsyPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PsyPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		635D0799168D7D0D002B845F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -885,8 +886,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46756309933747649878AFBC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Turpin (VLDWUKP35J)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Turpin (VLDWUKP35J)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PsyPad/Supporting Files/PsyPad-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -901,8 +902,8 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "52883B41-8436-44C2-8529-317503192CB6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "52883B41-8436-44C2-8529-317503192CB6";
+				PROVISIONING_PROFILE = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -938,9 +939,10 @@
 			isa = XCVersionGroup;
 			children = (
 				63A27C41188B96AB00642FE4 /* Model 2.xcdatamodel */,
+				6336E11E18A72FF30099CB75 /* Model 3.xcdatamodel */,
 				63A27C42188B96AB00642FE4 /* Model.xcdatamodel */,
 			);
-			currentVersion = 63A27C41188B96AB00642FE4 /* Model 2.xcdatamodel */;
+			currentVersion = 6336E11E18A72FF30099CB75 /* Model 3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

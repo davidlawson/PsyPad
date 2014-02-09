@@ -212,61 +212,82 @@
 {
     NSMutableOrderedSet *folders = [NSMutableOrderedSet orderedSet];
 
+    NSNumber *background_length;
+    NSNumber *background_start;
+
     NSDictionary *folderNames = data;
     for (NSString *folderName in [folderNames.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b)
     {
         return [a compare:b];
     }])
     {
-        NSLog(@"Found folder: %@", folderName);
-
-        NSMutableOrderedSet *images = [NSMutableOrderedSet orderedSet];
-
-        NSDictionary *imageNames = [data objectForKey:folderName];
-
-        for (NSString *imageName in [imageNames.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b)
+        if ([folderName.lowercaseString isEqualToString:@"background.png"])
         {
-            return [a compare:b];
-        }])
-        {
-            id image_data = [imageNames objectForKey:imageName];
+            NSLog(@"Found image: %@", folderName);
 
-            if ([image_data isKindOfClass:[NSArray class]])
-            {
-                TestSequenceImage *image = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceImage" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
-                image.name = imageName;
-                image.is_animated = [NSNumber numberWithBool:NO];
+            NSArray *image_data = [data objectForKey:folderName];
 
-                NSArray *image_data_array = image_data;
-                NSString *image_data_start = [image_data_array objectAtIndex:0];
-                NSString *image_data_length = [image_data_array objectAtIndex:1];
+            NSArray *image_data_array = image_data;
+            NSString *image_data_start = [image_data_array objectAtIndex:0];
+            NSString *image_data_length = [image_data_array objectAtIndex:1];
 
-                image.start = @((long)image_data_start.longLongValue);
-                image.length = @(image_data_length.intValue);
-
-                [images addObject:image];
-            }
-            else
-            {
-                TestSequenceImage *image = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceImage" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
-                image.name = imageName;
-                image.is_animated = [NSNumber numberWithBool:YES];
-                image.animated_images = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:image_data options:nil error:nil] encoding:NSASCIIStringEncoding];
-
-                [images addObject:image];
-            }
+            background_start = @((long)image_data_start.longLongValue);
+            background_length = @(image_data_length.intValue);
         }
+        else
+        {
+            NSLog(@"Found folder: %@", folderName);
 
-        TestSequenceFolder *folder = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceFolder" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
-        folder.name = folderName;
-        [folder addImages:images];
+            NSMutableOrderedSet *images = [NSMutableOrderedSet orderedSet];
 
-        [folders addObject:folder];
+            NSDictionary *imageNames = [data objectForKey:folderName];
+
+            for (NSString *imageName in [imageNames.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b)
+            {
+                return [a compare:b];
+            }])
+            {
+                id image_data = [imageNames objectForKey:imageName];
+
+                if ([image_data isKindOfClass:[NSArray class]])
+                {
+                    TestSequenceImage *image = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceImage" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+                    image.name = imageName;
+                    image.is_animated = [NSNumber numberWithBool:NO];
+
+                    NSArray *image_data_array = image_data;
+                    NSString *image_data_start = [image_data_array objectAtIndex:0];
+                    NSString *image_data_length = [image_data_array objectAtIndex:1];
+
+                    image.start = @((long)image_data_start.longLongValue);
+                    image.length = @(image_data_length.intValue);
+
+                    [images addObject:image];
+                }
+                else
+                {
+                    TestSequenceImage *image = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceImage" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+                    image.name = imageName;
+                    image.is_animated = [NSNumber numberWithBool:YES];
+                    image.animated_images = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:image_data options:nil error:nil] encoding:NSASCIIStringEncoding];
+
+                    [images addObject:image];
+                }
+            }
+
+            TestSequenceFolder *folder = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceFolder" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+            folder.name = folderName;
+            [folder addImages:images];
+
+            [folders addObject:folder];
+        }
     }
 
     TestSequence *newSequence = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequence" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
     newSequence.name = name;
     newSequence.path = sequenceURL.path;
+    newSequence.background_length = background_length;
+    newSequence.background_start = background_start;
     [newSequence addFolders:folders];
 
     if (self.sequence)
