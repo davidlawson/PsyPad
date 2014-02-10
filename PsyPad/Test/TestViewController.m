@@ -152,8 +152,7 @@
     self.configurationNameLabel.text = self.currentConfiguration.name;
 
     self.view.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.background_colour];
-    UIImage *bgImage = self.currentConfiguration.sequence.backgroundImage;
-    self.backgroundImageView.image = bgImage;
+    self.backgroundImageView.image = nil;
 
     if (self.currentConfiguration.show_exit_button.boolValue)
     {
@@ -197,6 +196,8 @@
     self.configurationNameLabel.hidden = YES;
     self.beginConfigurationButton.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.background_colour];
+    UIImage *bgImage = self.currentConfiguration.sequence.backgroundImage;
+    self.backgroundImageView.image = bgImage;
 
     if (self.currentConfiguration.show_exit_button.boolValue)
     {
