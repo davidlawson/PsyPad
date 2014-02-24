@@ -86,6 +86,7 @@
 		63DC3D7716982D8200ACCFBE /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D7216982D8200ACCFBE /* TextFieldTableViewCell.m */; };
 		63DC3D7816982D8200ACCFBE /* SliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D7416982D8200ACCFBE /* SliderTableViewCell.m */; };
 		63DC3D7916982D8200ACCFBE /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D7616982D8200ACCFBE /* SwitchTableViewCell.m */; };
+		63E6B2D118BB3ECC00554671 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B2D018BB3ECC00554671 /* ImageTableViewCell.m */; };
 		63F9F1BA168ED165006532D9 /* UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F9F1B7168ED165006532D9 /* UIButton+Block.m */; };
 		63F9F1BB168ED165006532D9 /* UIButtonBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F9F1B9168ED165006532D9 /* UIButtonBlock.m */; };
 /* End PBXBuildFile section */
@@ -161,7 +162,7 @@
 		6335536C1820DA5300CEECE3 /* arc_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arc_logo.png; sourceTree = "<group>"; };
 		6335536D1820DA5300CEECE3 /* arc_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arc_logo@2x.png"; sourceTree = "<group>"; };
 		6335536E1820DA5300CEECE3 /* unimelb_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unimelb_logo@2x.png"; sourceTree = "<group>"; };
-		6336E11E18A72FF30099CB75 /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
+		6336E11E18A72FF30099CB75 /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
 		6339F1EF16B875C4001B4392 /* PsyPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PsyPad.entitlements; path = ../PsyPad.entitlements; sourceTree = "<group>"; };
 		635D0795168D7D0D002B845F /* PsyPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PsyPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		635D0799168D7D0D002B845F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -222,6 +223,8 @@
 		63DC3D7416982D8200ACCFBE /* SliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTableViewCell.m; sourceTree = "<group>"; };
 		63DC3D7516982D8200ACCFBE /* SwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
 		63DC3D7616982D8200ACCFBE /* SwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
+		63E6B2CF18BB3ECC00554671 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableViewCell.h; sourceTree = "<group>"; };
+		63E6B2D018BB3ECC00554671 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
 		63F9F1B6168ED165006532D9 /* UIButton+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Block.h"; sourceTree = "<group>"; };
 		63F9F1B7168ED165006532D9 /* UIButton+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Block.m"; sourceTree = "<group>"; };
 		63F9F1B8168ED165006532D9 /* UIButtonBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonBlock.h; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				63DC3D5A169814B400ACCFBE /* TickTableViewCell.h */,
 				63DC3D7416982D8200ACCFBE /* SliderTableViewCell.m */,
 				63DC3D7116982D8200ACCFBE /* TextFieldTableViewCell.h */,
+				63E6B2CF18BB3ECC00554671 /* ImageTableViewCell.h */,
+				63E6B2D018BB3ECC00554671 /* ImageTableViewCell.m */,
 				63DC3D7316982D8200ACCFBE /* SliderTableViewCell.h */,
 				63DC3D7616982D8200ACCFBE /* SwitchTableViewCell.m */,
 			);
@@ -683,6 +688,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				635D07A6168D7D0D002B845F /* main.m in Sources */,
+				63E6B2D118BB3ECC00554671 /* ImageTableViewCell.m in Sources */,
 				635D07AA168D7D0D002B845F /* AppDelegate.m in Sources */,
 				635D07B6168D7D0D002B845F /* MainMenuViewController.m in Sources */,
 				6385E38A18176BB300508530 /* BorderButton.m in Sources */,

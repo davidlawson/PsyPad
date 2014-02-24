@@ -17,6 +17,7 @@
 #import "TestSequenceImage.h"
 #import "AppDelegate.h"
 #import "UIView+Positioning.h"
+#import "ImageTableViewCell.h"
 
 @interface TestConfigSubTableViewController ()
 
@@ -109,7 +110,11 @@
 {
     if ([self.navigationItem.title isEqualToString:@"Sequence Information"])
     {
-        if (section == 0) return 1;
+        if (section == 0)
+        {
+            if (self.sequence.backgroundImage) return 2;
+            else return 1;
+        }
         else return self.sequence.folders.count;
     }
     else if ([self.navigationItem.title isEqualToString:@"Folder Information"])
@@ -141,9 +146,18 @@
     {
         if (indexPath.section == 0)
         {
-            TextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NameCell"];
-            cell.textField.text = self.sequence.name;
-            return cell;
+            if (indexPath.row == 0)
+            {
+                TextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NameCell"];
+                cell.textField.text = self.sequence.name;
+                return cell;
+            }
+            else if (indexPath.row == 1)
+            {
+                ImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ImageCell"];
+                cell.imageView.image = self.sequence.backgroundImage;
+                return cell;
+            }
         }
         else if (indexPath.section == 1)
         {
@@ -186,6 +200,8 @@
 {
     if ([self.navigationItem.title isEqualToString:@"Sequence Information"] && indexPath.section == 1)
         return 64;
+    else if (indexPath.section == 0 && indexPath.row == 1)
+        return 449;
 
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
