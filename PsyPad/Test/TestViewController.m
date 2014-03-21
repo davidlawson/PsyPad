@@ -212,10 +212,14 @@
         self.exitButton.hidden = YES;
     }
 
-    if (self.currentConfiguration.use_staircase_method.boolValue)
-        [self presentNextQuestionStaircase];
-    else
-        [self presentNextQuestion];
+    [self performBlock:^
+    {
+        if (self.currentConfiguration.use_staircase_method.boolValue)
+            [self presentNextQuestionStaircase];
+        else
+            [self presentNextQuestion];
+    }
+            afterDelay:1.0];
 }
 
 - (void)setupStaircase
