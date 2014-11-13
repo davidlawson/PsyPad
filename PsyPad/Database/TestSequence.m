@@ -9,6 +9,7 @@
 #import "TestSequence.h"
 #import "TestSequenceFolder.h"
 #import "TestSequenceImage.h"
+#import "AppDelegate.h"
 
 @implementation TestSequence
 {
@@ -29,6 +30,11 @@
     }
 
     return self;
+}
+
+- (NSString *)absolutePath
+{
+    return [[APP_DELEGATE applicationDocumentsDirectory].path stringByAppendingPathComponent:self.path.lastPathComponent];
 }
 
 - (TestSequenceImage *)nextImage:(unsigned short *)state
@@ -79,11 +85,11 @@
 
 - (void)prepareForDeletion
 {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:self.path])
+    if ([[NSFileManager defaultManager] fileExistsAtPath:self.absolutePath])
     {
         NSLog(@"deletingsequencefiles");
         NSError *error;
-        [[NSFileManager defaultManager] removeItemAtPath:self.path error:&error];
+        [[NSFileManager defaultManager] removeItemAtPath:self.absolutePath error:&error];
         
         if (error)
         {
@@ -100,11 +106,13 @@
 
     FILE *file;
 
-    file = fopen([self.path cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+    file = fopen([self.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 
     if (file == NULL)
     {
         [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load background image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        self.url = nil;
+        [APP_DELEGATE saveContext];
         return nil;
     }
 

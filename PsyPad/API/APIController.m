@@ -41,7 +41,9 @@
 
     [request setHTTPBody:jsonData];
 
-    return [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    requestOperation.responseSerializer = [AFJSONResponseSerializer serializer];
+    return requestOperation;
 }
 
 - (void)showError:(NSString *)error
@@ -374,16 +376,16 @@
             success();
         else
         {
-            [self showError:[responseObject objectForKey:@"error"]];
+            [self showError:[@"Failed to upload logs: " stringByAppendingString:[responseObject objectForKey:@"error"]]];
             failure();
         }
 
     } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
     {
         if (_operation.responseObject)
-            [self showError:[(NSDictionary *)_operation.responseObject objectForKey:@"error"]];
+            [self showError:[@"Failed to upload logs: " stringByAppendingString:[(NSDictionary *)_operation.responseObject objectForKey:@"error"]]];
         else
-            [self showError:error.description];
+            [self showError:[@"Failed to upload logs: " stringByAppendingString:error.description]];
 
         failure();
     }];

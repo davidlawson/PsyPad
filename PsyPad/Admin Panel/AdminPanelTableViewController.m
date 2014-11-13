@@ -248,7 +248,7 @@
         if (![self.users containsObject:newUser])
             [self.users addObject:newUser];
 
-        [[[UIAlertView alloc] initWithTitle:nil
+        [[[UIAlertView alloc] initWithTitle:@""
                                     message:@"User downloaded successfully."
                                    delegate:nil
                           cancelButtonTitle:@"Close"
@@ -278,7 +278,7 @@
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
 
-        [[[UIAlertView alloc] initWithTitle:nil
+        [[[UIAlertView alloc] initWithTitle:@""
                                     message:@"User uploaded successfully"
                                    delegate:nil
                           cancelButtonTitle:@"Close"
@@ -307,7 +307,7 @@
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
 
-        [[[UIAlertView alloc] initWithTitle:nil
+        [[[UIAlertView alloc] initWithTitle:@""
                                     message:[NSString stringWithFormat:@"Logs successfully uploaded"]
                                    delegate:nil
                           cancelButtonTitle:@"Close"
@@ -342,7 +342,7 @@
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
 
-        [[[UIAlertView alloc] initWithTitle:nil
+        [[[UIAlertView alloc] initWithTitle:@""
                                     message:[NSString stringWithFormat:@"%d participants downloaded", newUsers.count]
                                    delegate:nil
                           cancelButtonTitle:@"Close"
@@ -366,7 +366,7 @@
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
 
-        [[[UIAlertView alloc] initWithTitle:nil
+        [[[UIAlertView alloc] initWithTitle:@""
                                     message:@"Participants uploaded successfully"
                                    delegate:nil
                           cancelButtonTitle:@"Close"
@@ -563,8 +563,10 @@
 
 - (IBAction)dismissModal:(id)sender
 {
-    [(MainMenuViewController *)self.presentingViewController loadUsers];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^
+    {
+        [(MainMenuViewController *)self.presentingViewController loadUsers];
+    }];
 }
 
 @end

@@ -19,13 +19,15 @@
 {
     for (TestLogItem *logItem in self.logitems)
     {
-        if ([logItem.type isEqualToString:@"config_name"])
+        if ([logItem.type isEqualToString:@"test_begin"])
         {
-            return logItem.info;
+            NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[logItem.info dataUsingEncoding:NSUTF8StringEncoding] options:nil error:nil];
+            if (data[@"name"])
+                return data[@"name"];
         }
     }
 
-    return @"config_name not found";
+    return @"configuration name not found";
 }
 
 @end

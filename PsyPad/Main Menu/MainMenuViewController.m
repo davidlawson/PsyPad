@@ -187,6 +187,12 @@
 
         [self.passwordAlertView show];
 
+        UITextField *tf = [self.passwordAlertView textFieldAtIndex:0];
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [tf selectAll:nil];
+        });
+
         return;
     }
     else if (self.appConfiguration.server_username.length < 1 || self.appConfiguration.server_password.length < 1)

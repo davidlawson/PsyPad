@@ -93,7 +93,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		46756309933747649878AFBC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		319F66EF1E1398EA45593DFD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5AF0E038AC84C3F0E0CBF0BA /* TestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestConfiguration.h; sourceTree = "<group>"; };
 		5AF0E0B43ACD00DDB91FFA42 /* Mean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mean.h; sourceTree = "<group>"; };
 		5AF0E1B54E3C7EF85636E291 /* TestLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLog.h; sourceTree = "<group>"; };
@@ -232,6 +232,8 @@
 		63F9F1B7168ED165006532D9 /* UIButton+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Block.m"; sourceTree = "<group>"; };
 		63F9F1B8168ED165006532D9 /* UIButtonBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonBlock.h; sourceTree = "<group>"; };
 		63F9F1B9168ED165006532D9 /* UIButtonBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonBlock.m; sourceTree = "<group>"; };
+		86E04F8BAEFD99910003D77B /* Pods.ad-hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods.ad-hoc.xcconfig"; path = "Pods/Target Support Files/Pods/Pods.ad-hoc.xcconfig"; sourceTree = "<group>"; };
+		99CD8960560570CB19EBCDD9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B9C09253E5E04B5EA4554FB3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -261,6 +263,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5851EB98C44876FA3A5F3B90 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				319F66EF1E1398EA45593DFD /* Pods.debug.xcconfig */,
+				99CD8960560570CB19EBCDD9 /* Pods.release.xcconfig */,
+				86E04F8BAEFD99910003D77B /* Pods.ad-hoc.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5AF0E05FDA8CD693F4BC9E60 /* Analysis */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,7 +506,7 @@
 				635D079F168D7D0D002B845F /* PsyPad */,
 				635D0798168D7D0D002B845F /* Frameworks */,
 				635D0796168D7D0D002B845F /* Products */,
-				46756309933747649878AFBC /* Pods.xcconfig */,
+				5851EB98C44876FA3A5F3B90 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -602,6 +614,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "David Lawson";
+				TargetAttributes = {
+					635D0794168D7D0D002B845F = {
+						DevelopmentTeam = VLDWUKP35J;
+					};
+				};
 			};
 			buildConfigurationList = 635D078F168D7D0D002B845F /* Build configuration list for PBXProject "PsyPad" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -676,7 +693,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -770,8 +787,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "\"-ObjC -all_load\"";
-				PROVISIONING_PROFILE = "F101EE88-B10B-42AF-BC84-07A365EF4D2F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F101EE88-B10B-42AF-BC84-07A365EF4D2F";
+				PROVISIONING_PROFILE = "39923FB9-3480-4CAE-8099-D445395B861A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39923FB9-3480-4CAE-8099-D445395B861A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -780,7 +797,7 @@
 		};
 		630532EC16B877050060C14D /* Ad-hoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46756309933747649878AFBC /* Pods.xcconfig */;
+			baseConfigurationReference = 86E04F8BAEFD99910003D77B /* Pods.ad-hoc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
@@ -862,7 +879,7 @@
 		};
 		635D07BA168D7D0D002B845F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46756309933747649878AFBC /* Pods.xcconfig */;
+			baseConfigurationReference = 319F66EF1E1398EA45593DFD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
@@ -886,7 +903,7 @@
 		};
 		635D07BB168D7D0D002B845F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46756309933747649878AFBC /* Pods.xcconfig */;
+			baseConfigurationReference = 99CD8960560570CB19EBCDD9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";

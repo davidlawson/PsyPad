@@ -20,6 +20,8 @@
 @property (nonatomic, retain) NSNumber *background_length;
 @property (nonatomic, retain) NSNumber *background_start;
 
+- (NSString *)absolutePath;
+
 - (TestSequenceImage *)nextImage:(unsigned short *)state;
 
 - (TestSequenceImage *)nextImageFromFolder:(int)level withState:(unsigned short *)state;

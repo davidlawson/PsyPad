@@ -31,6 +31,8 @@
 #import "DistanceDetector.h"
 #import "APIController.h"
 
+#import "NSObject+DelayBlock.h"
+
 // Shortcuts for the view size
 #define VIEW_HEIGHT self.view.bounds.size.height
 #define VIEW_WIDTH self.view.bounds.size.width
@@ -673,6 +675,7 @@
 
     if (self.image == nil)
     {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Image not found" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
         [self log:@"error" info:@"image not found"];
         [self testFinished];
         return;
@@ -737,6 +740,7 @@
 
     if (self.image == nil)
     {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Image not found" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
         [self log:@"error" info:@"image not found"];
         [self testFinished];
         return;

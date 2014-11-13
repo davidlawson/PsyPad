@@ -9,7 +9,7 @@
 #import "TestSequenceFolder.h"
 #import "TestSequence.h"
 #import <sys/mman.h>
-
+#import "AppDelegate.h"
 @implementation TestSequenceImage
 
 @dynamic start;
@@ -25,13 +25,15 @@
     {
         FILE *file;
 
-        file = fopen([self.folder.sequence.path cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+        file = fopen([self.folder.sequence.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 
-        NSLog(@"%@", self.folder.sequence.path);
+        NSLog(@"%@", self.folder.sequence.absolutePath);
 
         if (file == NULL)
         {
             [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+            self.folder.sequence.url = nil;
+            [APP_DELEGATE saveContext];
             return nil;
         }
         
@@ -77,11 +79,13 @@
 
             FILE *file;
 
-            file = fopen([self.folder.sequence.path cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+            file = fopen([self.folder.sequence.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 
             if (file == NULL)
             {
                 [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+                self.folder.sequence.url = nil;
+                [APP_DELEGATE saveContext];
                 return nil;
             }
 
@@ -128,7 +132,7 @@
 
         FILE *file;
 
-        file = fopen([self.folder.sequence.path cStringUsingEncoding:NSASCIIStringEncoding], "r");
+        file = fopen([self.folder.sequence.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "r");
 
         fseek(file, start, SEEK_SET);
 
