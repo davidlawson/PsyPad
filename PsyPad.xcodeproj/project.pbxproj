@@ -50,6 +50,7 @@
 		633553701820DA5300CEECE3 /* arc_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536C1820DA5300CEECE3 /* arc_logo.png */; };
 		633553711820DA5300CEECE3 /* arc_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536D1820DA5300CEECE3 /* arc_logo@2x.png */; };
 		633553721820DA5300CEECE3 /* unimelb_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536E1820DA5300CEECE3 /* unimelb_logo@2x.png */; };
+		63566B4A1991CCFA00925DE3 /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63566B491991CCFA00925DE3 /* Model.xcmappingmodel */; };
 		635D079A168D7D0D002B845F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D0799168D7D0D002B845F /* UIKit.framework */; };
 		635D079C168D7D0D002B845F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D079B168D7D0D002B845F /* Foundation.framework */; };
 		635D079E168D7D0D002B845F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D079D168D7D0D002B845F /* CoreGraphics.framework */; };
@@ -164,6 +165,7 @@
 		6335536E1820DA5300CEECE3 /* unimelb_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unimelb_logo@2x.png"; sourceTree = "<group>"; };
 		6336E11E18A72FF30099CB75 /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
 		6339F1EF16B875C4001B4392 /* PsyPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PsyPad.entitlements; path = ../PsyPad.entitlements; sourceTree = "<group>"; };
+		63566B491991CCFA00925DE3 /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		635D0795168D7D0D002B845F /* PsyPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PsyPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		635D0799168D7D0D002B845F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		635D079B168D7D0D002B845F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -194,6 +196,7 @@
 		6385E38918176BB300508530 /* BorderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderButton.m; sourceTree = "<group>"; };
 		6385E38B18176EF400508530 /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
 		6385E38D18176F3D00508530 /* tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x.png"; sourceTree = "<group>"; };
+		63862D36197FED9A0055D41F /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
 		63A1ED5E17B89C100089C204 /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserTableViewCell.h; path = "Custom Controls/UserTableViewCell.h"; sourceTree = "<group>"; };
 		63A1ED5F17B89C100089C204 /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserTableViewCell.m; path = "Custom Controls/UserTableViewCell.m"; sourceTree = "<group>"; };
 		63A27C41188B96AB00642FE4 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -423,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				63A27C40188B96AB00642FE4 /* Model.xcdatamodeld */,
+				63566B491991CCFA00925DE3 /* Model.xcmappingmodel */,
 				631BD07D170AA2390086DC8B /* AppConfiguration.h */,
 				631BD07E170AA2390086DC8B /* AppConfiguration.m */,
 				631CB3221698F61A007A0534 /* User.h */,
@@ -598,11 +602,6 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "David Lawson";
-				TargetAttributes = {
-					635D0794168D7D0D002B845F = {
-						DevelopmentTeam = V4KA5AB5K3;
-					};
-				};
 			};
 			buildConfigurationList = 635D078F168D7D0D002B845F /* Build configuration list for PBXProject "PsyPad" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -690,6 +689,7 @@
 				635D07A6168D7D0D002B845F /* main.m in Sources */,
 				63E6B2D118BB3ECC00554671 /* ImageTableViewCell.m in Sources */,
 				635D07AA168D7D0D002B845F /* AppDelegate.m in Sources */,
+				63566B4A1991CCFA00925DE3 /* Model.xcmappingmodel in Sources */,
 				635D07B6168D7D0D002B845F /* MainMenuViewController.m in Sources */,
 				6385E38A18176BB300508530 /* BorderButton.m in Sources */,
 				636035BA168D897000AE93D0 /* UIView+Positioning.m in Sources */,
@@ -761,8 +761,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: David Lawson (V4KA5AB5K3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: David Lawson (V4KA5AB5K3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -770,8 +770,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "\"-ObjC -all_load\"";
-				PROVISIONING_PROFILE = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
+				PROVISIONING_PROFILE = "F101EE88-B10B-42AF-BC84-07A365EF4D2F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F101EE88-B10B-42AF-BC84-07A365EF4D2F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -782,7 +782,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46756309933747649878AFBC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PsyPad/Supporting Files/PsyPad-Prefix.pch";
@@ -798,8 +798,6 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -830,8 +828,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "\"-ObjC -all_load\"";
-				PROVISIONING_PROFILE = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -854,8 +852,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "\"-ObjC -all_load\"";
-				PROVISIONING_PROFILE = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -866,7 +864,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46756309933747649878AFBC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PsyPad/Supporting Files/PsyPad-Prefix.pch";
@@ -881,8 +879,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -892,7 +888,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46756309933747649878AFBC /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PsyPad/Supporting Files/PsyPad-Prefix.pch";
@@ -908,8 +904,6 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38CFFA67-DF00-43C6-A73D-3FDAEAF1B997";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -944,11 +938,12 @@
 		63A27C40188B96AB00642FE4 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				63862D36197FED9A0055D41F /* Model 4.xcdatamodel */,
 				63A27C41188B96AB00642FE4 /* Model 2.xcdatamodel */,
 				6336E11E18A72FF30099CB75 /* Model 3.xcdatamodel */,
 				63A27C42188B96AB00642FE4 /* Model.xcdatamodel */,
 			);
-			currentVersion = 6336E11E18A72FF30099CB75 /* Model 3.xcdatamodel */;
+			currentVersion = 63862D36197FED9A0055D41F /* Model 4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -102,6 +102,12 @@
 
     file = fopen([self.path cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 
+    if (file == NULL)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load background image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        return nil;
+    }
+
     int fd = fileno(file);
 
     size_t length = (size_t)self.background_length.intValue;
@@ -122,6 +128,7 @@
         return [UIImage imageWithData:image_data scale:2];
     else
         return [UIImage imageWithData:image_data];
+
 }
 
 @end

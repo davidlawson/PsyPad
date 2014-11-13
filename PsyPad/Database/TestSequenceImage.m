@@ -28,6 +28,12 @@
         file = fopen([self.folder.sequence.path cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 
         NSLog(@"%@", self.folder.sequence.path);
+
+        if (file == NULL)
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+            return nil;
+        }
         
         int fd = fileno(file);
 
@@ -72,6 +78,12 @@
             FILE *file;
 
             file = fopen([self.folder.sequence.path cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+
+            if (file == NULL)
+            {
+                [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+                return nil;
+            }
 
             int fd = fileno(file);
 

@@ -683,17 +683,21 @@
 
     self.buttons = [self getButtonSet];
 
-    for (TestButton *button in self.buttons)
-    {
-        [self.view addSubview:button];
-    }
+    [self performBlock:^{
 
-    NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
-    for (TestButton *button in self.buttons)
-    {
-        [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
-    }
-    [self log:@"presented_buttons" info:@"%@", presentedButtons];
+        for (TestButton *button in self.buttons)
+        {
+            [self.view addSubview:button];
+        }
+
+        NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
+        for (TestButton *button in self.buttons)
+        {
+            [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
+        }
+        [self log:@"presented_buttons" info:@"%@", presentedButtons];
+
+    } afterDelay:self.currentConfiguration.button_presentation_delay.floatValue];
 
     self.timer = [NSDate date];
 
@@ -743,17 +747,21 @@
 
     self.buttons = [self getButtonSet];
 
-    for (TestButton *button in self.buttons)
-    {
-        [self.view addSubview:button];
-    }
+    [self performBlock:^{
 
-    NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
-    for (TestButton *button in self.buttons)
-    {
-        [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
-    }
-    [self log:@"presented_buttons" info:@"%@", presentedButtons];
+        for (TestButton *button in self.buttons)
+        {
+            [self.view addSubview:button];
+        }
+
+        NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
+        for (TestButton *button in self.buttons)
+        {
+            [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
+        }
+        [self log:@"presented_buttons" info:@"%@", presentedButtons];
+
+    } afterDelay:self.currentConfiguration.button_presentation_delay.floatValue];
 
     self.timer = [NSDate date];
 

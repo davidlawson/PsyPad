@@ -90,6 +90,8 @@
     conf.button_text_two = self.button2Text.text;
     conf.button_text_three = self.button3Text.text;
     conf.button_text_four = self.button4Text.text;
+    
+    conf.button_presentation_delay = @(self.buttonPresentationDelay.value);
 
     conf.button1_x = @(self.button1X.text.intValue);
     conf.button1_y = @(self.button1Y.text.intValue);
@@ -196,7 +198,10 @@
     self.button2Text.text = conf.button_text_two;
     self.button3Text.text = conf.button_text_three;
     self.button4Text.text = conf.button_text_four;
-
+    
+    self.buttonPresentationDelay.value = conf.button_presentation_delay.floatValue;
+    self.buttonPresentationDelayLabel.text = [NSString stringWithFormat:@"%.2fs", conf.button_presentation_delay.floatValue];
+    
     self.button1X.text = [NSString stringWithFormat:@"%d", conf.button1_x.intValue];
     self.button1Y.text = [NSString stringWithFormat:@"%d", conf.button1_y.intValue];
     self.button1W.text = [NSString stringWithFormat:@"%d", conf.button1_w.intValue];

@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSString * button_text_one;
 @property (nonatomic, retain) NSString * button_text_three;
 @property (nonatomic, retain) NSString * button_text_two;
+@property (nonatomic, retain) NSNumber * button_presentation_delay;
 @property (nonatomic, retain) NSString * button1_bg;
 @property (nonatomic, retain) NSString * button1_fg;
 @property (nonatomic, retain) NSNumber * button1_h;

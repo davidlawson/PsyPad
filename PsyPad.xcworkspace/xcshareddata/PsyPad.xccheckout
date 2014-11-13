@@ -10,29 +10,29 @@
 	<string>PsyPad</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C7EFCD31-50D4-485C-B107-999BC8CDCC34</key>
+		<key>D3C16DAAF73B937E9314EA2EE0ED087BCF626CE2</key>
 		<string>https://github.com/davidlawson/PsyPad.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>PsyPad.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C7EFCD31-50D4-485C-B107-999BC8CDCC34</key>
+		<key>D3C16DAAF73B937E9314EA2EE0ED087BCF626CE2</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/davidlawson/PsyPad.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C7EFCD31-50D4-485C-B107-999BC8CDCC34</string>
+	<string>D3C16DAAF73B937E9314EA2EE0ED087BCF626CE2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C7EFCD31-50D4-485C-B107-999BC8CDCC34</string>
+			<string>D3C16DAAF73B937E9314EA2EE0ED087BCF626CE2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>PsyPad</string>
 		</dict>

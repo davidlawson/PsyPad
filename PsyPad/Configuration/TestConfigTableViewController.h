@@ -61,6 +61,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *button3Text;
 @property (weak, nonatomic) IBOutlet UITextField *button4Text;
 
+@property (weak, nonatomic) IBOutlet UILabel *buttonPresentationDelayLabel;
+@property (weak, nonatomic) IBOutlet UISlider *buttonPresentationDelay;
+
 @property (weak, nonatomic) IBOutlet UITextField *button1X;
 @property (weak, nonatomic) IBOutlet UITextField *button1Y;
 @property (weak, nonatomic) IBOutlet UITextField *button1W;
@@ -126,19 +129,21 @@ enum Test1ConfigTableViewController_TableView_positions
     
     sButtonText = 7,
     
-    sButtonPositioning = 8,
+    sButtonPresentationDelay = 8,
     
-    sButtonColours = 9,
+    sButtonPositioning = 9,
     
-    sGeneralTestingParameters = 10,
+    sButtonColours = 10,
     
-    sTimeBetweenEachQuestion = 11,
+    sGeneralTestingParameters = 11,
     
-    sPresentationTime = 12,
+    sTimeBetweenEachQuestion = 12,
     
-    sResponseWindow = 13,
+    sPresentationTime = 13,
     
-    sRandomisationSettings = 14
+    sResponseWindow = 14,
+    
+    sRandomisationSettings = 15
 };
 
 - (IBAction)saveChanges:(id)sender;

@@ -10,10 +10,6 @@ PODS:
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.0.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
   - AFNetworking/Reachability (2.0.1)
   - AFNetworking/Security (2.0.1)
   - AFNetworking/Serialization (2.0.1)
@@ -30,9 +26,9 @@ DEPENDENCIES:
   - SSZipArchive
 
 SPEC CHECKSUMS:
-  AFNetworking: a6f11ac4ac087303e6ff87adc1ba57b0dac20ef8
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
-  SSZipArchive: 47d0589a15452311749a4eeecb97e12800d127de
+  AFNetworking: 1c128575a365629fa91f887bb710972456c7b710
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  RaptureXML: b9b0aca9c68c684c189af73dd5e8f8fdeec74600
+  SSZipArchive: 6dc0ea3fe4b55574bee23c9f01d7c0f8437d59ef
 
-COCOAPODS: 0.25.0
+COCOAPODS: 0.33.1

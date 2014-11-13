@@ -23,6 +23,7 @@
 @dynamic button_text_one;
 @dynamic button_text_three;
 @dynamic button_text_two;
+@dynamic button_presentation_delay;
 @dynamic button1_bg;
 @dynamic button1_fg;
 @dynamic button1_h;
@@ -425,6 +426,8 @@
     self.button_text_three = [data objectForKey:@"button3_text"];
     self.button_text_four = [data objectForKey:@"button4_text"];
 
+    self.button_presentation_delay = @([[data objectForKey:@"button_presentation_delay"] floatValue]);
+
     self.button1_bg = [data objectForKey:@"button1_bg"];
     self.button2_bg = [data objectForKey:@"button2_bg"];
     self.button3_bg = [data objectForKey:@"button3_bg"];
@@ -564,6 +567,8 @@
     [data setObject:self.button_text_two forKey:@"button2_text"];
     [data setObject:self.button_text_three forKey:@"button3_text"];
     [data setObject:self.button_text_four forKey:@"button4_text"];
+
+    [data setObject:self.button_presentation_delay forKey:@"button_presentation_delay"];
 
     [data setObject:self.button1_bg forKey:@"button1_bg"];
     [data setObject:self.button2_bg forKey:@"button2_bg"];
