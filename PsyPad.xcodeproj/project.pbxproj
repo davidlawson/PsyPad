@@ -804,6 +804,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PsyPad/Supporting Files/PsyPad-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"${PODS_ROOT}/Headers\"",
 					"\"${PODS_ROOT}/Headers/AFNetworking\"",
 					"\"${PODS_ROOT}/Headers/SSZipArchive\"",
@@ -812,7 +813,6 @@
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -886,6 +886,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PsyPad/Supporting Files/PsyPad-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"${PODS_ROOT}/Headers\"",
 					"\"${PODS_ROOT}/Headers/AFNetworking\"",
 					"\"${PODS_ROOT}/Headers/SSZipArchive\"",
@@ -910,6 +911,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PsyPad/Supporting Files/PsyPad-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"${PODS_ROOT}/Headers\"",
 					"\"${PODS_ROOT}/Headers/AFNetworking\"",
 					"\"${PODS_ROOT}/Headers/SSZipArchive\"",
@@ -918,7 +920,6 @@
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";

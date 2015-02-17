@@ -48,17 +48,53 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 4
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// Boilerplate
+#define COCOAPODS_POD_AVAILABLE_Boilerplate
+#define COCOAPODS_VERSION_MAJOR_Boilerplate 0
+#define COCOAPODS_VERSION_MINOR_Boilerplate 0
+#define COCOAPODS_VERSION_PATCH_Boilerplate 1
+
+// Fabric/Core
+#define COCOAPODS_POD_AVAILABLE_Fabric_Core
+#define COCOAPODS_VERSION_MAJOR_Fabric_Core 1
+#define COCOAPODS_VERSION_MINOR_Fabric_Core 1
+#define COCOAPODS_VERSION_PATCH_Fabric_Core 2
+
+// Fabric/Crashlytics
+#define COCOAPODS_POD_AVAILABLE_Fabric_Crashlytics
+#define COCOAPODS_VERSION_MAJOR_Fabric_Crashlytics 1
+#define COCOAPODS_VERSION_MINOR_Fabric_Crashlytics 1
+#define COCOAPODS_VERSION_PATCH_Fabric_Crashlytics 2
+
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
 
+// MagicalRecord
+#define COCOAPODS_POD_AVAILABLE_MagicalRecord
+#define COCOAPODS_VERSION_MAJOR_MagicalRecord 2
+#define COCOAPODS_VERSION_MINOR_MagicalRecord 3
+#define COCOAPODS_VERSION_PATCH_MagicalRecord 0
+
+// MagicalRecord/Core
+#define COCOAPODS_POD_AVAILABLE_MagicalRecord_Core
+#define COCOAPODS_VERSION_MAJOR_MagicalRecord_Core 2
+#define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 3
+#define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
+
 // RaptureXML
 #define COCOAPODS_POD_AVAILABLE_RaptureXML
 #define COCOAPODS_VERSION_MAJOR_RaptureXML 1
 #define COCOAPODS_VERSION_MINOR_RaptureXML 0
 #define COCOAPODS_VERSION_PATCH_RaptureXML 1
+
+// Reachability
+#define COCOAPODS_POD_AVAILABLE_Reachability
+#define COCOAPODS_VERSION_MAJOR_Reachability 3
+#define COCOAPODS_VERSION_MINOR_Reachability 2
+#define COCOAPODS_VERSION_PATCH_Reachability 0
 
 // SSZipArchive
 #define COCOAPODS_POD_AVAILABLE_SSZipArchive
