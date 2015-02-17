@@ -12,6 +12,7 @@
 #import "TestConfiguration.h"
 #import "AppDelegate.h"
 #import "TestConfigTableViewController.h"
+#import "DatabaseManager.h"
 
 @interface SelectConfigurationTableViewController ()
 
@@ -296,9 +297,9 @@
         }
 
         // This will cascade and delete all folders, and all images inside them from the database
-        [APP_DELEGATE.managedObjectContext deleteObject:selectedConfiguration];
+        [selectedConfiguration MR_deleteEntity];
 
-        [APP_DELEGATE saveContext];
+        [DatabaseManager save];
 
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -311,24 +312,24 @@
         NSMutableArray *nonPracticeConfigurations = [self.user.nonPracticeConfigurations mutableCopy];
         NSMutableOrderedSet *allConfigurations = [self.user.configurations mutableCopy];
 
-        int from = sourceIndexPath.row;
-        int to = destinationIndexPath.row;
+        long from = sourceIndexPath.row;
+        long to = destinationIndexPath.row;
 
         if (to > from)
         {
-            for (int x = from; x < to; x++)
+            for (long x = from; x < to; x++)
             {
-                int a = [allConfigurations indexOfObject:[nonPracticeConfigurations objectAtIndex:x]];
-                int b = [allConfigurations indexOfObject:[nonPracticeConfigurations objectAtIndex:x + 1]];
+                long a = [allConfigurations indexOfObject:[nonPracticeConfigurations objectAtIndex:x]];
+                long b = [allConfigurations indexOfObject:[nonPracticeConfigurations objectAtIndex:x + 1]];
                 [allConfigurations exchangeObjectAtIndex:(NSUInteger)a withObjectAtIndex:(NSUInteger)b];
             }
         }
         else
         {
-            for (int x = from; x > to; x--)
+            for (long x = from; x > to; x--)
             {
-                int a = [allConfigurations indexOfObject:[nonPracticeConfigurations objectAtIndex:x]];
-                int b = [allConfigurations indexOfObject:[nonPracticeConfigurations objectAtIndex:x - 1]];
+                long a = [allConfigurations indexOfObject:[nonPracticeConfigurations objectAtIndex:x]];
+                long b = [allConfigurations indexOfObject:[nonPracticeConfigurations objectAtIndex:x - 1]];
                 [allConfigurations exchangeObjectAtIndex:(NSUInteger)a withObjectAtIndex:(NSUInteger)b];
             }
         }
@@ -340,24 +341,24 @@
         NSMutableArray *practiceConfigurations = [self.user.practiceConfigurations mutableCopy];
         NSMutableOrderedSet *allConfigurations = [self.user.configurations mutableCopy];
 
-        int from = sourceIndexPath.row;
-        int to = destinationIndexPath.row;
+        long from = sourceIndexPath.row;
+        long to = destinationIndexPath.row;
 
         if (to > from)
         {
-            for (int x = from; x < to; x++)
+            for (long x = from; x < to; x++)
             {
-                int a = [allConfigurations indexOfObject:[practiceConfigurations objectAtIndex:x]];
-                int b = [allConfigurations indexOfObject:[practiceConfigurations objectAtIndex:x + 1]];
+                long a = [allConfigurations indexOfObject:[practiceConfigurations objectAtIndex:x]];
+                long b = [allConfigurations indexOfObject:[practiceConfigurations objectAtIndex:x + 1]];
                 [allConfigurations exchangeObjectAtIndex:(NSUInteger)a withObjectAtIndex:(NSUInteger)b];
             }
         }
         else
         {
-            for (int x = from; x > to; x--)
+            for (long x = from; x > to; x--)
             {
-                int a = [allConfigurations indexOfObject:[practiceConfigurations objectAtIndex:x]];
-                int b = [allConfigurations indexOfObject:[practiceConfigurations objectAtIndex:x - 1]];
+                long a = [allConfigurations indexOfObject:[practiceConfigurations objectAtIndex:x]];
+                long b = [allConfigurations indexOfObject:[practiceConfigurations objectAtIndex:x - 1]];
                 [allConfigurations exchangeObjectAtIndex:(NSUInteger)a withObjectAtIndex:(NSUInteger)b];
             }
         }
@@ -365,7 +366,7 @@
         self.user.configurations = allConfigurations;
     }
 
-    [APP_DELEGATE saveContext];
+    [DatabaseManager save];
 }
 
 #pragma mark - User interaction
@@ -390,13 +391,13 @@
 
 - (void)addConfiguration
 {
-    TestConfiguration *newConfiguration = [NSEntityDescription insertNewObjectForEntityForName:@"TestConfiguration" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+    TestConfiguration *newConfiguration = [TestConfiguration MR_createEntity];
     newConfiguration.user = self.user;
     newConfiguration.practice_configuration = @NO;
 
     [self.user addConfigurationsObject:newConfiguration];
 
-    [APP_DELEGATE saveContext];
+    [DatabaseManager save];
 
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.user.nonPracticeConfigurations indexOfObject:newConfiguration] inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 
@@ -405,13 +406,13 @@
 
 - (void)addPracticeConfiguration
 {
-    TestConfiguration *newConfiguration = [NSEntityDescription insertNewObjectForEntityForName:@"TestConfiguration" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+    TestConfiguration *newConfiguration = [TestConfiguration MR_createEntity];
     newConfiguration.user = self.user;
     newConfiguration.practice_configuration = @YES;
 
     [self.user addConfigurationsObject:newConfiguration];
 
-    [APP_DELEGATE saveContext];
+    [DatabaseManager save];
 
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.user.practiceConfigurations indexOfObject:newConfiguration] inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
 

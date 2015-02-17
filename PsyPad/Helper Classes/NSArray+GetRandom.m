@@ -15,7 +15,7 @@
     if (self.count == 0) return nil;
     else if (self.count == 1) return [self objectAtIndex:0];
     else
-        return [self objectAtIndex:(NSUInteger)[Random randiFrom:0 to:self.count - 1 withState:state]];
+        return [self objectAtIndex:(NSUInteger)[Random randiFrom:0 to:(int)self.count - 1 withState:state]];
 }
 
 @end

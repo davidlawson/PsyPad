@@ -12,6 +12,7 @@
 #import "TestConfiguration.h"
 #import "TestLogItem.h"
 #import "TestLog.h"
+#import "DatabaseManager.h"
 
 @implementation APIController
 
@@ -123,9 +124,9 @@
             }
             else
             {
-                [[APP_DELEGATE managedObjectContext] lock];
+                [[NSManagedObjectContext MR_defaultContext] lock];
 
-                NSArray *existingUsers = [User allUsers];
+                NSArray *existingUsers = [User MR_findAll];
 
                 User *newUser = nil;
 
@@ -139,7 +140,7 @@
                         for (TestConfiguration *configuration in newUser.configurations)
                         {
                             [newUser removeConfigurationsObject:configuration];
-                            [[APP_DELEGATE managedObjectContext] deleteObject:configuration];
+                            [configuration MR_deleteEntity];
                         }
                         break;
                     }
@@ -147,14 +148,13 @@
 
                 if (!usernameTaken)
                 {
-                    newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+                    newUser = [User MR_createEntity];
                     newUser.id = username;
                 }
 
                 for (NSDictionary *configurationData in (NSArray *)responseObject)
                 {
-                    TestConfiguration *newConfiguration = [NSEntityDescription insertNewObjectForEntityForName:@"TestConfiguration"
-                                                                                        inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+                    TestConfiguration *newConfiguration = [TestConfiguration MR_createEntity];
                     newConfiguration.user = newUser;
 
                     [newConfiguration loadData:configurationData];
@@ -171,8 +171,8 @@
                         {
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 progress([NSString stringWithFormat:@"Configuration %d/%d, %@",
-                                                                    [(NSArray *)responseObject indexOfObject:configurationData] + 1,
-                                                                    [(NSArray *)responseObject count],
+                                                                    (int)[(NSArray *)responseObject indexOfObject:configurationData] + 1,
+                                                                    (int)[(NSArray *)responseObject count],
                                                                     status],
                                         _progress);
                             });
@@ -184,9 +184,9 @@
                     [newUser addConfigurationsObject:newConfiguration];
                 }
 
-                [APP_DELEGATE saveContext];
+                [DatabaseManager save];
 
-                [[APP_DELEGATE managedObjectContext] unlock];
+                [[NSManagedObjectContext MR_defaultContext] unlock];
 
                 dispatch_async(dispatch_get_main_queue(), ^
                 {
@@ -267,8 +267,8 @@
                     [self downloadParticipant:(NSString *)[user objectForKey:@"username"] progress:^(NSString *status, float _progress)
                     {
                         progress([status stringByAppendingFormat:@" (participant %d/%d)",
-                                        [serverUsers indexOfObject:user]+1,
-                                        serverUsers.count],
+                                        (int)[serverUsers indexOfObject:user]+1,
+                                        (int)serverUsers.count],
                                 _progress);
 
                     } success:^(User *newUser)

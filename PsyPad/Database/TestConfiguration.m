@@ -13,6 +13,8 @@
 #import "TestSequenceFolder.h"
 #import "AppDelegate.h"
 #import "TestSequenceImage.h"
+#import "NSURL+CommonURLs.h"
+#import "DatabaseManager.h"
 
 @implementation TestConfiguration
 
@@ -130,7 +132,7 @@
 
 - (void)installSequenceWithURL:(NSString *)url data:(NSDictionary *)data progress:(void (^)(NSString *status, float _progress))progress sema:(dispatch_semaphore_t)sema;
 {
-    NSManagedObjectContext *MOC = [APP_DELEGATE managedObjectContext];
+    NSManagedObjectContext *MOC = [NSManagedObjectContext MR_defaultContext];
 
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TestSequence"];
     request.predicate = [NSPredicate predicateWithFormat:@"(url = %@)", url];
@@ -164,7 +166,7 @@
             progress(@"Downloading sequence...", (float)totalBytesRead/(float)totalBytesExpectedToRead);
         }];
 
-        NSURL *documentsDirectory = [APP_DELEGATE applicationDocumentsDirectory];
+        NSURL *documentsDirectory = [NSURL documentsDirectory];
         NSString *templateString = [NSString stringWithFormat:@"%@/XXXXXX", [documentsDirectory path]];
 
         char template[templateString.length + 1];
@@ -188,7 +190,7 @@
             });
             dispatch_semaphore_wait(sequence_sema, DISPATCH_TIME_FOREVER);
             self.sequence.url = url;
-            [APP_DELEGATE saveContext];
+            [DatabaseManager save];
 
             dispatch_semaphore_signal(sema);
 
@@ -252,7 +254,7 @@
 
                 if ([image_data isKindOfClass:[NSArray class]])
                 {
-                    TestSequenceImage *image = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceImage" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+                    TestSequenceImage *image = [TestSequenceImage MR_createEntity];
                     image.name = imageName;
                     image.is_animated = [NSNumber numberWithBool:NO];
 
@@ -267,7 +269,7 @@
                 }
                 else
                 {
-                    TestSequenceImage *image = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceImage" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+                    TestSequenceImage *image = [TestSequenceImage MR_createEntity];
                     image.name = imageName;
                     image.is_animated = [NSNumber numberWithBool:YES];
                     image.animated_images = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:image_data options:nil error:nil] encoding:NSASCIIStringEncoding];
@@ -276,7 +278,7 @@
                 }
             }
 
-            TestSequenceFolder *folder = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceFolder" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+            TestSequenceFolder *folder = [TestSequenceFolder MR_createEntity];
             folder.name = folderName;
             [folder addImages:images];
 
@@ -284,7 +286,7 @@
         }
     }
 
-    TestSequence *newSequence = [NSEntityDescription insertNewObjectForEntityForName:@"TestSequence" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+    TestSequence *newSequence = [TestSequence MR_createEntity];
     newSequence.name = name;
     newSequence.path = sequenceURL.path;
     newSequence.background_length = background_length;
@@ -293,13 +295,13 @@
 
     if (self.sequence)
     {
-        [APP_DELEGATE.managedObjectContext deleteObject:self.sequence];
+        [self.sequence MR_deleteEntity];
         self.sequence = nil;
     }
 
     self.sequence = newSequence;
 
-    [APP_DELEGATE saveContext];
+    [DatabaseManager save];
 
     NSLog(@"Saved to database.");
 }

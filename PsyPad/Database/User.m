@@ -10,31 +10,13 @@
 #import "TestConfiguration.h"
 #import "TestLog.h"
 #import "AppDelegate.h"
+#import "DatabaseManager.h"
 
 @implementation User
 
 @dynamic id;
 @dynamic configurations;
 @dynamic logs;
-
-+ (NSArray *)allUsers
-{
-    NSManagedObjectContext *context = [APP_DELEGATE managedObjectContext];
-
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:context]];
-
-    NSError *error;
-    NSArray *users = [context executeFetchRequest:request error:&error];
-
-    if (error)
-    {
-        NSLog(@"Error loading users: %@", [error localizedDescription]);
-        return nil;
-    }
-
-    return users;
-}
 
 - (void)addConfigurationsObject:(TestConfiguration *)value
 {
@@ -72,7 +54,7 @@
 {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
-    int weekday = [comps weekday]; // sunday 0
+    long weekday = [comps weekday]; // sunday 0
 
     return [self.configurations objectsAtIndexes:
             [self.configurations indexesOfObjectsPassingTest:^BOOL(TestConfiguration *obj, NSUInteger idx, BOOL *stop)
@@ -95,7 +77,7 @@
 {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
-    int weekday = [comps weekday]; // sunday 0
+    long weekday = [comps weekday]; // sunday 0
 
     return [self.configurations objectsAtIndexes:
             [self.configurations indexesOfObjectsPassingTest:^BOOL(TestConfiguration *obj, NSUInteger idx, BOOL *stop)

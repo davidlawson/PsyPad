@@ -6,19 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-@implementation NSObject (PerformBlockAfterDelay)
+@interface NSObject (PerformBlockAfterDelay)
 
 - (void)performBlock:(void (^)(void))block
-          afterDelay:(NSTimeInterval)delay
-{
-    block = [block copy];
-    [self performSelector:@selector(fireBlockAfterDelay:)
-               withObject:block
-               afterDelay:delay];
-}
+          afterDelay:(NSTimeInterval)delay;
 
-- (void)fireBlockAfterDelay:(void (^)(void))block {
-    block();
-}
+- (void)fireBlockAfterDelay:(void (^)(void))block;
 
 @end

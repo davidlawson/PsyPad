@@ -28,7 +28,7 @@
     {
         self.reactionTimeData = [NSMutableDictionary dictionary];
 
-        int i = 0; int count = self.log.logitems.count;
+        int i = 0; long count = self.log.logitems.count;
         TestLogItem *item;
 
         while (i < count)
@@ -82,7 +82,7 @@
     else if (self.analysis == kCorrectAnalysis)
     {
         self.correctData = [NSMutableDictionary dictionary];
-        int i = 0; int count = self.log.logitems.count;
+        int i = 0; long count = self.log.logitems.count;
         TestLogItem *item;
 
         while (i < count)
@@ -142,7 +142,7 @@
     else if (self.analysis == kPresentationsAnalysis)
     {
         self.presentationData = [NSMutableDictionary dictionary];
-        int i = 0; int count = self.log.logitems.count;
+        int i = 0; long count = self.log.logitems.count;
         TestLogItem *item;
 
         while (i < count)
@@ -180,7 +180,7 @@
     else if (self.analysis == kThresholdsAnalysis)
     {
         self.thresholdData = [NSMutableArray array];
-        int i = 0; int count = self.log.logitems.count;
+        int i = 0; long count = self.log.logitems.count;
         TestLogItem *item;
 
         item = [self.log.logitems objectAtIndex:(NSUInteger)i++];
@@ -270,7 +270,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (self.analysis == kThresholdsAnalysis) return [NSString stringWithFormat:@"Staircase %d", section+1];
+    if (self.analysis == kThresholdsAnalysis) return [NSString stringWithFormat:@"Staircase %d", (int)section+1];
     return [super tableView:tableView titleForHeaderInSection:section];
 }
 
@@ -342,7 +342,7 @@
 
         [cell displayInt:[[arr objectAtIndex:(NSUInteger)indexPath.row] intValue] withMax:max_mean];
 
-        cell.cellLabel.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
+        cell.cellLabel.text = [NSString stringWithFormat:@"%d", (int)indexPath.row+1];
     }
     /*if (self.analysis == kGlassAnalysis || self.analysis == kRFSAnalysis || self.analysis == kGDMAnalysis)
     {

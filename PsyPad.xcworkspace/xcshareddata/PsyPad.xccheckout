@@ -10,6 +10,8 @@
 	<string>PsyPad</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>BC9AA019261A52A87E4A929078039E267B17EBAF</key>
+		<string>https://github.com/davidlawson/boilerplate</string>
 		<key>D3C16DAAF73B937E9314EA2EE0ED087BCF626CE2</key>
 		<string>https://github.com/davidlawson/PsyPad.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>PsyPad.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>BC9AA019261A52A87E4A929078039E267B17EBAF</key>
+		<string>../../../David/Boilerplate</string>
 		<key>D3C16DAAF73B937E9314EA2EE0ED087BCF626CE2</key>
 		<string>..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>D3C16DAAF73B937E9314EA2EE0ED087BCF626CE2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BC9AA019261A52A87E4A929078039E267B17EBAF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Boilerplate</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

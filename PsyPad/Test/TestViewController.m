@@ -30,6 +30,7 @@
 #import "UIColor+Hex.h"
 #import "DistanceDetector.h"
 #import "APIController.h"
+#import "DatabaseManager.h"
 
 #import "NSObject+DelayBlock.h"
 
@@ -138,7 +139,7 @@
     }
     else if (self.currentConfiguration)
     {
-        int curIndex = [self.configurations indexOfObject:self.currentConfiguration];
+        long curIndex = [self.configurations indexOfObject:self.currentConfiguration];
         if (curIndex + 1 <= self.configurations.count - 1)
         {
             self.questionNumber = 0;
@@ -269,7 +270,7 @@
         }
     }
 
-    for (int i = self.imageCollection.count - 1; i >= 0; i--)
+    for (int i = (int)self.imageCollection.count - 1; i >= 0; i--)
     {
         int j = [Random randiFrom:0 to:i withState:self.seedState];
 
@@ -555,12 +556,11 @@
 
 - (void)createTestLog
 {
-    self.log = [NSEntityDescription insertNewObjectForEntityForName:@"TestLog"
-                                             inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+    self.log = [TestLog MR_createEntity];
     self.log.timestamp = [NSDate date];
     self.log.user = self.user;
 
-    [APP_DELEGATE saveContext];
+    [DatabaseManager save];
 }
 
 - (NSTimeInterval)timeBetweenEachQuestion
@@ -910,7 +910,7 @@
         logItem.timestamp = [NSDate date];
         logItem.log = self.log;
 
-        [APP_DELEGATE saveContext];
+        [DatabaseManager save];
     }
 }
 

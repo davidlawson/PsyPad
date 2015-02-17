@@ -156,8 +156,8 @@
 
         NSString *configName = [log getConfigName];
 
-        logCell.topLabel.text = [NSString stringWithFormat:@"Log %d (%@)", indexPath.row+1, configName];
-        logCell.bottomLabel.text = [NSString stringWithFormat:@"Log entries: %d", log.logitems.count];
+        logCell.topLabel.text = [NSString stringWithFormat:@"Log %d (%@)", (int)indexPath.row+1, configName];
+        logCell.bottomLabel.text = [NSString stringWithFormat:@"Log entries: %d", (int)log.logitems.count];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"dd/MM/yyyy h:mm:ss a"];
@@ -200,7 +200,7 @@
     {
         TestLogTableViewController *controller = segue.destinationViewController;
         controller.log = [self.logs objectAtIndex:(NSUInteger)self.tableView.indexPathForSelectedRow.row];
-        controller.title = [NSString stringWithFormat:@"Log %d", self.tableView.indexPathForSelectedRow.row+1];
+        controller.title = [NSString stringWithFormat:@"Log %d", (int)self.tableView.indexPathForSelectedRow.row+1];
     }
 }
 

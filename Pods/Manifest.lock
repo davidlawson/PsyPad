@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection (= 2.4.1)
-    - AFNetworking/NSURLSession (= 2.4.1)
-    - AFNetworking/Reachability (= 2.4.1)
-    - AFNetworking/Security (= 2.4.1)
-    - AFNetworking/Serialization (= 2.4.1)
-    - AFNetworking/UIKit (= 2.4.1)
-  - AFNetworking/NSURLConnection (2.4.1):
+  - AFNetworking (2.5.1):
+    - AFNetworking/NSURLConnection (= 2.5.1)
+    - AFNetworking/NSURLSession (= 2.5.1)
+    - AFNetworking/Reachability (= 2.5.1)
+    - AFNetworking/Security (= 2.5.1)
+    - AFNetworking/Serialization (= 2.5.1)
+    - AFNetworking/UIKit (= 2.5.1)
+  - AFNetworking/NSURLConnection (2.5.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
+  - AFNetworking/NSURLSession (2.5.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
+  - AFNetworking/Reachability (2.5.1)
+  - AFNetworking/Security (2.5.1)
+  - AFNetworking/Serialization (2.5.1)
+  - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Boilerplate (0.0.1):
@@ -38,7 +38,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - Boilerplate (from `https://github.com/davidlawson/Boilerplate`)
+  - Boilerplate (from `~/Developer/David/Boilerplate`)
   - MagicalRecord (from `https://github.com/magicalpanda/MagicalRecord`, tag `v2.3.0-beta.5`)
   - MBProgressHUD
   - RaptureXML
@@ -46,21 +46,18 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Boilerplate:
-    :git: https://github.com/davidlawson/Boilerplate
+    :path: ~/Developer/David/Boilerplate
   MagicalRecord:
     :git: https://github.com/magicalpanda/MagicalRecord
     :tag: v2.3.0-beta.5
 
 CHECKOUT OPTIONS:
-  Boilerplate:
-    :commit: e1acbdcf97737950404be8344178f835efc25d57
-    :git: https://github.com/davidlawson/Boilerplate
   MagicalRecord:
     :git: https://github.com/magicalpanda/MagicalRecord
     :tag: v2.3.0-beta.5
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   Boilerplate: c611b02a9c220996865854b8eac0952a7ee1c65d
   Fabric: e02d1e589fba3b317c012447b12cd2c0c3063d72
   MagicalRecord: edcc27277d4c15874cc565fb5d91576c146cb2f1

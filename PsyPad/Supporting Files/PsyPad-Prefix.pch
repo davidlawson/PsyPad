@@ -28,4 +28,4 @@
 #define BUTTON_PADDING_TB 70
 #define BUTTON_SPACING 20
 
-#define APP_DELEGATE ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+#import <MagicalRecord/CoreData+MagicalRecord.h>

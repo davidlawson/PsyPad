@@ -10,6 +10,8 @@
 #import "TestSequence.h"
 #import <sys/mman.h>
 #import "AppDelegate.h"
+#import "DatabaseManager.h"
+
 @implementation TestSequenceImage
 
 @dynamic start;
@@ -33,7 +35,7 @@
         {
             [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
             self.folder.sequence.url = nil;
-            [APP_DELEGATE saveContext];
+            [DatabaseManager save];
             return nil;
         }
         
@@ -45,7 +47,7 @@
         NSLog(@"%ld, %zul", start, length);
 
         long page_start = start - (start % 4096);
-        int offset = start - page_start;
+        long offset = start - page_start;
 
         void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
 
@@ -85,14 +87,14 @@
             {
                 [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
                 self.folder.sequence.url = nil;
-                [APP_DELEGATE saveContext];
+                [DatabaseManager save];
                 return nil;
             }
 
             int fd = fileno(file);
 
             long page_start = start - (start % 4096);
-            int offset = start - page_start;
+            long offset = start - page_start;
             
             void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
             

@@ -10,6 +10,8 @@
 #import "TestSequenceFolder.h"
 #import "TestSequenceImage.h"
 #import "AppDelegate.h"
+#import "NSURL+CommonURLs.h"
+#import "DatabaseManager.h"
 
 @implementation TestSequence
 {
@@ -34,7 +36,7 @@
 
 - (NSString *)absolutePath
 {
-    return [[APP_DELEGATE applicationDocumentsDirectory].path stringByAppendingPathComponent:self.path.lastPathComponent];
+    return [[NSURL documentsDirectory].path stringByAppendingPathComponent:self.path.lastPathComponent];
 }
 
 - (TestSequenceImage *)nextImage:(unsigned short *)state
@@ -112,7 +114,7 @@
     {
         [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load background image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
         self.url = nil;
-        [APP_DELEGATE saveContext];
+        [DatabaseManager save];
         return nil;
     }
 
@@ -122,7 +124,7 @@
     long start = self.background_start.longValue;
 
     long page_start = start - (start % 4096);
-    int offset = start - page_start;
+    long offset = start - page_start;
 
     void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
 

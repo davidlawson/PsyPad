@@ -76,7 +76,7 @@
 {
     NSMutableOrderedSet *newSet = [self.images mutableCopy];
 
-    for (int i = newSet.count - 1; i >= 0; i--)
+    for (int i = (int)newSet.count - 1; i >= 0; i--)
     {
         int j = [Random randiFrom:0 to:i withState:state];
 

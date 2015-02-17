@@ -24,6 +24,7 @@
 #import "UserTableViewCell.h"
 #import "MBProgressHUD.h"
 #import "MainMenuViewController.h"
+#import "DatabaseManager.h"
 
 @interface AdminPanelTableViewController ()
 
@@ -85,7 +86,7 @@
         User *user = [self.users objectAtIndex:(NSUInteger)indexPath.row];
 
         tvCell.textLabel.text = user.id;
-        tvCell.detailTextLabel.text = [NSString stringWithFormat:@"%d test configurations, %d practice test configurations, %d logs", user.configurations.count, user.practiceConfigurations.count, user.logs.count];
+        tvCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu test configurations, %lu practice test configurations, %lu logs", (unsigned long)user.configurations.count, (unsigned long)user.practiceConfigurations.count, (unsigned long)user.logs.count];
         tvCell.downloadAction = ^(void)
         {
             [self downloadParticipant:user.id];
@@ -205,7 +206,7 @@
 
 - (MBProgressHUD *)createHUD
 {
-    UIWindow *window = APP_DELEGATE.window;
+    UIWindow *window = self.view.window;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
     return hud;
 }
@@ -343,7 +344,7 @@
         [self.hud removeFromSuperview];
 
         [[[UIAlertView alloc] initWithTitle:@""
-                                    message:[NSString stringWithFormat:@"%d participants downloaded", newUsers.count]
+                                    message:[NSString stringWithFormat:@"%lu participants downloaded", (unsigned long)newUsers.count]
                                    delegate:nil
                           cancelButtonTitle:@"Close"
                           otherButtonTitles:nil] show];
@@ -455,21 +456,21 @@
 
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
             {
-                [[APP_DELEGATE managedObjectContext] lock];
+                [[NSManagedObjectContext MR_defaultContext] lock];
 
-                User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+                User *newUser = [User MR_createEntity];
                 newUser.id = userID;
 
                 for (TestConfiguration *configuration in defaultUser.configurations)
                 {
-                    TestConfiguration *new_config = [NSEntityDescription insertNewObjectForEntityForName:@"TestConfiguration" inManagedObjectContext:APP_DELEGATE.managedObjectContext];
+                    TestConfiguration *new_config = [TestConfiguration MR_createEntity];
                     [new_config copyFromConfiguration:configuration];
                     [newUser addConfigurationsObject:new_config];
                 }
 
-                [APP_DELEGATE saveContext];
+                [DatabaseManager save];
 
-                [[APP_DELEGATE managedObjectContext] unlock];
+                [[NSManagedObjectContext MR_defaultContext] unlock];
 
                 [self.users addObject:newUser];
 
@@ -519,9 +520,9 @@
         [self.users removeObject:selectedUser];
 
         // This will cascade and delete all folders, and all images inside them from the database
-        [APP_DELEGATE.managedObjectContext deleteObject:selectedUser];
+        [selectedUser MR_deleteEntity];
 
-        [APP_DELEGATE saveContext];
+        [DatabaseManager save];
 
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -545,7 +546,7 @@
             break;
     }
 
-    [APP_DELEGATE saveContext];
+    [DatabaseManager save];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

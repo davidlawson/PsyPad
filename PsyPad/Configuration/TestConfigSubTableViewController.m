@@ -166,7 +166,7 @@
             TestSequenceFolder *selectedFolder = [self.sequence.folders objectAtIndex:(NSUInteger)indexPath.row];
 
             folderCell.textLabel.text = selectedFolder.name.length ? selectedFolder.name : @"Folder";
-            folderCell.detailTextLabel.text = [NSString stringWithFormat:@"%d image(s)", selectedFolder.images.count];
+            folderCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu image(s)", (unsigned long)selectedFolder.images.count];
 
             return folderCell;
         }

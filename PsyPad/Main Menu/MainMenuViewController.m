@@ -19,6 +19,7 @@
 #import "AdminPanelTableViewController.h"
 #import "AppConfiguration.h"
 #import "APIController.h"
+#import "DatabaseManager.h"
 
 #define CENTRE_BOX_Y 330
 
@@ -49,7 +50,7 @@
 
     if (!self.viewSetup)
     {
-        [self loadAppConfiguration];
+        self.appConfiguration = [AppConfiguration MR_findFirst];
         self.APIController = [APIController controllerWithConfiguration:self.appConfiguration];
         [self loadUsers];
     }
@@ -57,42 +58,10 @@
 
 - (void)loadUsers
 {
-    NSArray *users = [User allUsers];
+    NSArray *users = [User MR_findAll];
     self.users = [users mutableCopy];
 
-    NSLog(@"Loaded %d user(s) from database", self.users.count);
-}
-
-- (void)loadAppConfiguration
-{
-    NSManagedObjectContext *context = [APP_DELEGATE managedObjectContext];
-
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:@"AppConfiguration" inManagedObjectContext:context]];
-
-    NSError *error;
-    NSArray *result = [context executeFetchRequest:request error:&error];
-
-    if (error)
-    {
-        NSLog(@"Error loading app configuration: %@", [error localizedDescription]);
-        abort();
-    }
-
-    if (result.count > 0)
-    {
-        self.appConfiguration = [result objectAtIndex:0];
-
-        NSLog(@"Loaded application configuration");
-    }
-    else
-    {
-        self.appConfiguration = [NSEntityDescription insertNewObjectForEntityForName:@"AppConfiguration" inManagedObjectContext:context];
-        [self.appConfiguration insertDefaultData];
-        [APP_DELEGATE saveContext];
-
-        NSLog(@"Created application configuration");
-    }
+    NSLog(@"Loaded %lu user(s) from database",(unsigned long) self.users.count);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -255,7 +224,7 @@
 
 - (void)loadedUser:(NSString *)userID
 {
-    unsigned int user = [self.users indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop)
+    unsigned long user = [self.users indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop)
     {
         return [((User *)obj).id isEqualToString:userID];
     }];

@@ -13,6 +13,7 @@
 #import "TestConfigSubTableViewController.h"
 #import "SelectConfigurationTableViewController.h"
 #import "TickTableViewCell.h"
+#import "DatabaseManager.h"
 
 @interface TestConfigTableViewController ()
 
@@ -133,7 +134,7 @@
 
     conf.randomisation_use_specified_seed = @(self.useSpecifiedSeed.on);
 
-    unsigned int uintValue = strtoul([self.specifiedSeed.text UTF8String], NULL, 0);
+    unsigned int uintValue = (unsigned int)strtoul([self.specifiedSeed.text UTF8String], NULL, 0);
     conf.randomisation_specified_seed = [NSNumber numberWithUnsignedInt:uintValue];
 
     // Handle overflows
@@ -145,7 +146,7 @@
     }*/
 
 
-    [APP_DELEGATE saveContext];
+    [DatabaseManager save];
 
     [self populateFields];
 }
@@ -274,7 +275,7 @@
 
     if (indexPath.section == sNumberOfButtons)
     {
-        int numChosen = indexPath.row + 1;
+        long numChosen = indexPath.row + 1;
         if (self.configuration.number_of_buttons.intValue == numChosen)
         {
             [self styleCellSelected:cell];
@@ -327,7 +328,7 @@
         [self styleCellSelected:[self.tableView cellForRowAtIndexPath:indexPath]];
 
         self.configuration.number_of_buttons = @(indexPath.row + 1);
-        [APP_DELEGATE saveContext];
+        [DatabaseManager save];
 
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }

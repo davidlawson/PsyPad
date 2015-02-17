@@ -17,8 +17,6 @@
 @property (nonatomic, retain) NSOrderedSet *configurations;
 @property (nonatomic, retain) NSOrderedSet *logs;
 
-+ (NSArray *)allUsers;
-
 - (NSArray *)nonPracticeConfigurations;
 - (NSArray *)practiceConfigurations;
 
