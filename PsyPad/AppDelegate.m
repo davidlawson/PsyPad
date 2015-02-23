@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "DatabaseManager.h"
+#import "LoginViewController.h"
+#import "UIViewController+DLLoad.h"
 
 @implementation AppDelegate
 
@@ -19,6 +21,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    navController.viewControllers = @[[LoginViewController loadFromMainStoryboard]];
     
     return YES;
 }

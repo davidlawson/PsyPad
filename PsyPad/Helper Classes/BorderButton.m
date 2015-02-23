@@ -10,12 +10,30 @@
 
 @implementation BorderButton
 
-- (void)awakeFromNib
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    [super awakeFromNib];
+    if (self = [super initWithFrame:frame])
+    {
+        [self setup];
+    }
+    
+    return self;
+}
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+    {
+        [self setup];
+    }
+    
+    return self;
+}
+
+- (void)setup
+{
     self.layer.borderWidth = 1;
-    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.layer.borderColor = [UIColor colorWithWhite:193.0f/255.0f alpha:1.0f].CGColor;
     self.layer.cornerRadius = 8;
     self.layer.masksToBounds = YES;
 }
