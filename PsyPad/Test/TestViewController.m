@@ -25,7 +25,7 @@
 #import "Staircase.h"
 #import "NSString+getNumberFromString.h"
 #import "NSArray+GetRandom.h"
-#import "AppConfiguration.h"
+#import "RootEntity.h"
 
 #import "UIColor+Hex.h"
 #import "DistanceDetector.h"

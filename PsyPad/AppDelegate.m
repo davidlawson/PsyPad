@@ -10,20 +10,17 @@
 #import "DatabaseManager.h"
 #import "LoginViewController.h"
 #import "UIViewController+DLLoad.h"
+#import <Boilerplate/DLSettings.h>
 
 @implementation AppDelegate
-
-- (Class)databaseManager
-{
-    return [DatabaseManager class];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
-    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-    navController.viewControllers = @[[LoginViewController loadFromMainStoryboard]];
+    [DLSettings sharedSettings].databaseManagerClass = [DatabaseManager class];
+    
+    [MagicalRecord setShouldDeleteStoreOnModelMismatch:YES];
     
     return YES;
 }

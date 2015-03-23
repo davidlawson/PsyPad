@@ -7,30 +7,25 @@
 //
 
 #import "DatabaseManager.h"
-#import "AppConfiguration.h"
+#import "RootEntity.h"
 
 @implementation DatabaseManager
 
 + (NSArray *)modelNames
 {
     return @[
-        @"Model",
-        @"Model 2",
-        @"Model 3",
-        @"Model 4"
+        @"Model1"
     ];
 }
 
 + (BOOL)databaseEmpty
 {
-    return [AppConfiguration MR_countOfEntities] == 0;
+    return [RootEntity MR_countOfEntities] == 0;
 }
 
 + (void)populateDatabase
 {
-    AppConfiguration *config = [AppConfiguration MR_createEntity];
-    [config insertDefaultData];
-    
+    [RootEntity MR_createEntity];
     [self save];
 }
 

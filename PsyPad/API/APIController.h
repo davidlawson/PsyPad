@@ -6,13 +6,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class AppConfiguration, User;
+@class User;
 
 @interface APIController : NSObject
-
-@property (strong, nonatomic) AppConfiguration *appConfiguration;
-
-+ (APIController *)controllerWithConfiguration:(AppConfiguration *)configuration;
 
 - (void)loadServerParticipants:(void (^)(NSMutableArray *serverUsers))success failure:(void (^)())failure;
 

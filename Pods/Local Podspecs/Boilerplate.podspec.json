@@ -1,0 +1,43 @@
+{
+  "name": "Boilerplate",
+  "version": "0.0.1",
+  "summary": "Boilerplate code for iOS projects.",
+  "description": "                   Boilerplate code for iOS projects.\n",
+  "homepage": "https://github.com/davidlawson/boilerplate",
+  "license": "MIT",
+  "authors": {
+    "David Lawson": "hello@davidlawson.com.au"
+  },
+  "social_media_url": "http://twitter.com/davlawson",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source": {
+    "git": "https://github.com/davidlawson/boilerplate.git",
+    "tag": "0.0.1"
+  },
+  "source_files": [
+    "Classes",
+    "Classes/**/*.{h,m,swift}"
+  ],
+  "prefix_header_contents": "#define NSLog CLS_LOG\n#import <Fabric/Crashlytics.h>\n#import \"DLLocalization.h\"\n#import <MagicalRecord/CoreData+MagicalRecord.h>",
+  "frameworks": [
+    "CoreData",
+    "UIKit",
+    "CoreGraphics"
+  ],
+  "dependencies": {
+    "MagicalRecord/Core+Logging": [
+      "2.3.0-beta.5"
+    ],
+    "AFNetworking": [
+
+    ],
+    "Reachability": [
+
+    ],
+    "Fabric/Crashlytics": [
+      "~> 1.1.1"
+    ]
+  }
+}

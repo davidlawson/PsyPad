@@ -9,7 +9,6 @@
 
 @class User, TestLog, TestConfiguration, TestImageButton, DistanceDetector;
 @class Staircase;
-@class AppConfiguration;
 @class MBProgressHUD;
 @class APIController;
 
@@ -46,7 +45,6 @@
 @property (strong, nonatomic) NSMutableArray *staircases;
 @property (weak, nonatomic) Staircase *currentStaircase;
 
-@property (strong, nonatomic) AppConfiguration *appConfiguration;
 @property (strong, nonatomic) APIController *APIController;
 @property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) MBProgressHUD *hud;

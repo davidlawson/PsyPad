@@ -42,6 +42,8 @@
     return self;
 }
 
+#warning this might not obey the configuration
+
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];

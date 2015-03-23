@@ -84,6 +84,12 @@
 #define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 3
 #define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
 
+// MagicalRecord/Core+Logging
+#define COCOAPODS_POD_AVAILABLE_MagicalRecord_Core_Logging
+#define COCOAPODS_VERSION_MAJOR_MagicalRecord_Core_Logging 2
+#define COCOAPODS_VERSION_MINOR_MagicalRecord_Core_Logging 3
+#define COCOAPODS_VERSION_PATCH_MagicalRecord_Core_Logging 0
+
 // RaptureXML
 #define COCOAPODS_POD_AVAILABLE_RaptureXML
 #define COCOAPODS_VERSION_MAJOR_RaptureXML 1

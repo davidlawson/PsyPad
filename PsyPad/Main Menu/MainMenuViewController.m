@@ -17,7 +17,7 @@
 #import "TestConfiguration.h"
 #import "TestViewController.h"
 #import "AdminPanelTableViewController.h"
-#import "AppConfiguration.h"
+#import "RootEntity.h"
 #import "APIController.h"
 #import "DatabaseManager.h"
 
@@ -50,8 +50,7 @@
 
     if (!self.viewSetup)
     {
-        self.appConfiguration = [AppConfiguration MR_findFirst];
-        self.APIController = [APIController controllerWithConfiguration:self.appConfiguration];
+        self.APIController = [[APIController alloc] init];
         [self loadUsers];
     }
 }
@@ -129,7 +128,7 @@
 
         loginButton.action = ^{
             NSString *password = [self.passwordAlertView textFieldAtIndex:0].text;
-            if ([password isEqualToString:self.appConfiguration.admin_password])
+            if ([password isEqualToString:[RootEntity rootEntity].admin_password])
             {
                 [self performSegueWithIdentifier:@"AdminPanel" sender:nil];
                 self.loginTextField.text = @"";
@@ -162,11 +161,6 @@
             [tf selectAll:nil];
         });
 
-        return;
-    }
-    else if (self.appConfiguration.server_username.length < 1 || self.appConfiguration.server_password.length < 1)
-    {
-        [[[UIAlertView alloc] initWithTitle:@"Initial Setup" message:[NSString stringWithFormat:@"Please login as admin/%@ and configure PsyPad.", self.appConfiguration.admin_password] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
         return;
     }
 
@@ -354,7 +348,6 @@
         TestViewController *controller = segue.destinationViewController;
         controller.user = self.user;
         controller.configurations = self.user.enabledConfigurations;
-        controller.appConfiguration = self.appConfiguration;
         controller.users = self.users;
         controller.APIController = self.APIController;
     }
@@ -363,7 +356,6 @@
         TestViewController *controller = segue.destinationViewController;
         controller.user = self.user;
         controller.configurations = self.user.enabledPracticeConfigurations;
-        controller.appConfiguration = self.appConfiguration;
         controller.users = self.users;
         controller.APIController = self.APIController;
     }
@@ -372,7 +364,6 @@
         UINavigationController *controller = segue.destinationViewController;
         AdminPanelTableViewController *theController = [controller.viewControllers objectAtIndex:0];
         theController.users = self.users;
-        theController.appConfiguration = self.appConfiguration;
         theController.APIController = self.APIController;
     }
 }

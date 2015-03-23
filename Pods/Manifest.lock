@@ -23,7 +23,7 @@ PODS:
   - Boilerplate (0.0.1):
     - AFNetworking
     - Fabric/Crashlytics (~> 1.1.1)
-    - MagicalRecord (= 2.3.0-beta.5)
+    - MagicalRecord/Core+Logging (= 2.3.0-beta.5)
     - Reachability
   - Fabric/Core (1.1.2)
   - Fabric/Crashlytics (1.1.2):
@@ -31,6 +31,7 @@ PODS:
   - MagicalRecord (2.3.0-beta.5):
     - MagicalRecord/Core (= 2.3.0-beta.5)
   - MagicalRecord/Core (2.3.0-beta.5)
+  - MagicalRecord/Core+Logging (2.3.0-beta.5)
   - MBProgressHUD (0.9)
   - RaptureXML (1.0.1)
   - Reachability (3.2)
@@ -58,12 +59,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  Boilerplate: 95d95277d12f6e43beaa0982e32e9f32725dde43
+  Boilerplate: 2afddd945f4f3de5e2fbe5a12caf82ad6b7e2316
   Fabric: e02d1e589fba3b317c012447b12cd2c0c3063d72
-  MagicalRecord: edcc27277d4c15874cc565fb5d91576c146cb2f1
+  MagicalRecord: 5b7e807bc07c5d642af1f7d894b7fe0d3c317ca2
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   RaptureXML: b9b0aca9c68c684c189af73dd5e8f8fdeec74600
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   SSZipArchive: 11299a4e89821bd4085b12f25edaa85853e0051c
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0

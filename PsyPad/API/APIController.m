@@ -6,7 +6,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import "APIController.h"
-#import "AppConfiguration.h"
+#import "RootEntity.h"
 #import "AppDelegate.h"
 #import "User.h"
 #import "TestConfiguration.h"
@@ -16,24 +16,17 @@
 
 @implementation APIController
 
-+ (APIController *)controllerWithConfiguration:(AppConfiguration *)configuration
-{
-    APIController *controller = [[self alloc] init];
-    controller.appConfiguration = configuration;
-    return controller;
-}
-
 - (AFHTTPRequestOperation *)operationWithURL:(NSString *)url data:(NSMutableDictionary *)data
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[self.appConfiguration.server_url stringByAppendingString:url]]];
+    [request setURL:[NSURL URLWithString:[[RootEntity rootEntity].server_url stringByAppendingString:url]]];
     [request setHTTPMethod:@"POST"];
 
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 
     NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-    [requestData setObject:self.appConfiguration.server_username forKey:@"username"];
-    [requestData setObject:self.appConfiguration.server_password forKey:@"password"];
+    [requestData setObject:[RootEntity rootEntity].email forKey:@"user_email"];
+    [requestData setObject:[RootEntity rootEntity].authToken forKey:@"user_token"];
 
     if (data)
         [requestData addEntriesFromDictionary:data];
@@ -161,7 +154,7 @@
 
                     if ([configurationData objectForKey:@"imageset_url"])
                     {
-                        NSString *image_sequence_url = [self.appConfiguration.server_url stringByAppendingString:[configurationData objectForKey:@"imageset_url"]];
+                        NSString *image_sequence_url = [[RootEntity rootEntity].server_url stringByAppendingString:[configurationData objectForKey:@"imageset_url"]];
                         NSString *image_sequence_data_string = [configurationData objectForKey:@"imageset_data"];
                         NSDictionary *image_sequence_data = [NSJSONSerialization JSONObjectWithData:[image_sequence_data_string dataUsingEncoding:NSASCIIStringEncoding] options:nil error:nil];
 

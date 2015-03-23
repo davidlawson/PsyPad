@@ -17,7 +17,7 @@
 #import "ManageUserTableViewController.h"
 #import "TestLogItem.h"
 #import "TestLog.h"
-#import "AppConfiguration.h"
+#import "RootEntity.h"
 #import "APIController.h"
 #import "TextFieldTableViewCell.h"
 #import "TestConfiguration.h"
@@ -65,14 +65,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // Local users
     if (section == 0)
         return self.users.count + 1;
+    // Server users
     else if (section == 1)
         return self.serverUsers.count + 1;
+    // Upload / Download
     else if (section == 2)
         return 3;
+    // Admin
     else
-        return 4;
+        return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -135,26 +139,12 @@
         if (indexPath.row == 0)
         {
             TextFieldTableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:@"AdminPasswordCell"];
-            theCell.textField.text = self.appConfiguration.admin_password;
+            theCell.textField.text = [RootEntity rootEntity].admin_password;
             cell = theCell;
         }
         else if (indexPath.row == 1)
         {
-            TextFieldTableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:@"ServerURLCell"];
-            theCell.textField.text = self.appConfiguration.server_url;
-            cell = theCell;
-        }
-        else if (indexPath.row == 2)
-        {
-            TextFieldTableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:@"UsernameCell"];
-            theCell.textField.text = self.appConfiguration.server_username;
-            cell = theCell;
-        }
-        else if (indexPath.row == 3)
-        {
-            TextFieldTableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:@"PasswordCell"];
-            theCell.textField.text = self.appConfiguration.server_password;
-            cell = theCell;
+            cell = [tableView dequeueReusableCellWithIdentifier:@"LogoutCell"];
         }
     }
 
@@ -199,6 +189,10 @@
             [self downloadAllParticipants];
         else if (indexPath.row == 2)
             [self uploadAllParticipants];
+    }
+    else if (indexPath.section == 3 && indexPath.row == 1)
+    {
+        [self logout];
     }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -491,6 +485,11 @@
     [self.addUserAlertView show];
 }
 
+- (void)logout
+{
+#warning todo
+}
+
 #pragma mark - TextField delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -530,22 +529,7 @@
 
 - (IBAction)saveChanges:(id)sender
 {
-    switch ([(UITextField *)sender tag])
-    {
-        case 1:
-            self.appConfiguration.admin_password = [(UITextField *)sender text];
-            break;
-        case 2:
-            self.appConfiguration.server_url = [(UITextField *)sender text];
-            break;
-        case 3:
-            self.appConfiguration.server_username = [(UITextField *)sender text];
-            break;
-        case 4:
-            self.appConfiguration.server_password = [(UITextField *)sender text];
-            break;
-    }
-
+    [RootEntity rootEntity].admin_password = [(UITextField *)sender text];
     [DatabaseManager save];
 }
 
