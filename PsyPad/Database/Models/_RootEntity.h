@@ -6,6 +6,7 @@
 extern const struct RootEntityAttributes {
 	__unsafe_unretained NSString *admin_password;
 	__unsafe_unretained NSString *authToken;
+	__unsafe_unretained NSString *demoMode;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *server_url;
 } RootEntityAttributes;
@@ -27,6 +28,14 @@ extern const struct RootEntityAttributes {
 
 //- (BOOL)validateAuthToken:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* demoMode;
+
+@property (atomic) BOOL demoModeValue;
+- (BOOL)demoModeValue;
+- (void)setDemoModeValue:(BOOL)value_;
+
+//- (BOOL)validateDemoMode:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* email;
 
 //- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
@@ -44,6 +53,12 @@ extern const struct RootEntityAttributes {
 
 - (NSString*)primitiveAuthToken;
 - (void)setPrimitiveAuthToken:(NSString*)value;
+
+- (NSNumber*)primitiveDemoMode;
+- (void)setPrimitiveDemoMode:(NSNumber*)value;
+
+- (BOOL)primitiveDemoModeValue;
+- (void)setPrimitiveDemoModeValue:(BOOL)value_;
 
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;

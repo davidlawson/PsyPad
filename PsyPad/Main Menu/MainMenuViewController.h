@@ -30,15 +30,11 @@
 
 @property (strong, nonatomic) UIAlertView *passwordAlertView;
 
-@property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) User *user;
-
-@property (strong, nonatomic) APIController *APIController;
 
 - (IBAction)loginPress;
 - (IBAction)doLogout;
 
-- (void)loadUsers;
 - (IBAction)beginTestPress:(id)sender;
 
 @end

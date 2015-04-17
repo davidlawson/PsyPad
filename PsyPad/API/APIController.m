@@ -93,155 +93,6 @@
     [operation start];
 }
 
-- (void)downloadParticipant:(NSString *)username progress:(void (^)(NSString *status, float progress))progress success:(void (^)(User *newUser))success failure:(void (^)())failure supressErrors:(BOOL)supressErrors
-{
-    AFHTTPRequestOperation *operation = [self operationWithURL:[NSString stringWithFormat:@"api/load_participant/%@", username] data:nil];
-
-    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long int totalBytesRead, long long int totalBytesExpectedToRead)
-    {
-        progress(@"Downloading participant...", (float)totalBytesRead/(float)totalBytesExpectedToRead);
-    }];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
-    {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
-        {
-            if ([responseObject isKindOfClass:[NSDictionary class]] && [responseObject objectForKey:@"error"])
-            {
-                dispatch_async(dispatch_get_main_queue(), ^
-                {
-                    [self showError:[responseObject objectForKey:@"error"]];
-                    failure();
-                });
-                return;
-            }
-            else
-            {
-                [[NSManagedObjectContext MR_defaultContext] lock];
-
-                NSArray *existingUsers = [User MR_findAll];
-
-                User *newUser = nil;
-
-                BOOL usernameTaken = NO;
-                for (User *user in existingUsers)
-                {
-                    if ([user.id isEqualToString:username])
-                    {
-                        usernameTaken = YES;
-                        newUser = user;
-                        for (TestConfiguration *configuration in newUser.configurations)
-                        {
-                            [newUser removeConfigurationsObject:configuration];
-                            [configuration MR_deleteEntity];
-                        }
-                        break;
-                    }
-                }
-
-                if (!usernameTaken)
-                {
-                    newUser = [User MR_createEntity];
-                    newUser.id = username;
-                }
-
-                for (NSDictionary *configurationData in (NSArray *)responseObject)
-                {
-                    TestConfiguration *newConfiguration = [TestConfiguration MR_createEntity];
-                    newConfiguration.user = newUser;
-
-                    [newConfiguration loadData:configurationData];
-
-                    if ([configurationData objectForKey:@"imageset_url"])
-                    {
-                        NSString *image_sequence_url = [[RootEntity rootEntity].server_url stringByAppendingString:[configurationData objectForKey:@"imageset_url"]];
-                        NSString *image_sequence_data_string = [configurationData objectForKey:@"imageset_data"];
-                        NSDictionary *image_sequence_data = [NSJSONSerialization JSONObjectWithData:[image_sequence_data_string dataUsingEncoding:NSASCIIStringEncoding] options:nil error:nil];
-
-                        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-
-                        [newConfiguration installSequenceWithURL:image_sequence_url data:image_sequence_data progress:^(NSString *status, float _progress)
-                        {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                progress([NSString stringWithFormat:@"Configuration %d/%d, %@",
-                                                                    (int)[(NSArray *)responseObject indexOfObject:configurationData] + 1,
-                                                                    (int)[(NSArray *)responseObject count],
-                                                                    status],
-                                        _progress);
-                            });
-                        } sema:sema];
-
-                        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                    }
-
-                    [newUser addConfigurationsObject:newConfiguration];
-                }
-
-                [DatabaseManager save];
-
-                [[NSManagedObjectContext MR_defaultContext] unlock];
-
-                dispatch_async(dispatch_get_main_queue(), ^
-                {
-                    success(newUser);
-                });
-            }
-        });
-    } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
-    {
-        if (!supressErrors)
-        {
-            if (_operation.responseObject)
-                [self showError:[(NSDictionary *)_operation.responseObject objectForKey:@"error"]];
-            else
-                [self showError:error.description];
-        }
-
-        failure();
-    }];
-
-    [operation start];
-}
-
-- (void)uploadUser:(User *)user success:(void (^)())success failure:(void (^)())failure
-{
-    NSMutableDictionary *requestData = [NSMutableDictionary dictionary];
-
-    NSMutableArray *configurations = [NSMutableArray array];
-    for (TestConfiguration *configuration in user.configurations)
-    {
-        [configurations addObject:configuration.serialise];
-    }
-
-    [requestData setObject:configurations forKey:@"configurations"];
-
-    AFHTTPRequestOperation *operation = [self operationWithURL:[NSString stringWithFormat:@"api/save_participant/%@", user.id] data:requestData];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, NSDictionary *responseObject)
-    {
-        if ([responseObject objectForKey:@"success"])
-            success();
-        else
-        {
-            [self showError:[responseObject objectForKey:@"error"]];
-            failure();
-        }
-
-    } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
-    {
-        if (_operation.responseObject)
-            [self showError:[(NSDictionary *)_operation.responseObject objectForKey:@"error"]];
-        else
-            [self showError:error.description];
-
-        failure();
-    }];
-
-    [operation start];
-
-    return;
-}
-
 - (void)downloadAllParticipants:(void (^)(NSString *status, float progress))progress success:(void (^)(NSMutableArray *newUsers))success failure:(void (^)())failure
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
@@ -257,7 +108,7 @@
                 {
                     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
 
-                    [self downloadParticipant:(NSString *)[user objectForKey:@"username"] progress:^(NSString *status, float _progress)
+                    /*[self downloadParticipant:(NSString *)[user objectForKey:@"username"] progress:^(NSString *status, float _progress)
                     {
                         progress([status stringByAppendingFormat:@" (participant %d/%d)",
                                         (int)[serverUsers indexOfObject:user]+1,
@@ -274,7 +125,7 @@
                         failure();
                         failed = YES;
                         dispatch_semaphore_signal(sema);
-                    } supressErrors:NO];
+                    } supressErrors:NO];*/
 
                     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
 
@@ -291,40 +142,6 @@
         {
             failure();
         }];
-    });
-}
-
-- (void)uploadAllUsers:(NSArray *)users success:(void (^)())success failure:(void (^)())failure
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
-    {
-        __block BOOL failed = NO;
-
-        for (User *user in users)
-        {
-            dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-
-            [self uploadUser:user success:^
-            {
-                dispatch_semaphore_signal(sema);
-
-            } failure:^
-            {
-                failure();
-                failed = YES;
-                dispatch_semaphore_signal(sema);
-            }];
-
-            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-
-            if (failed) break;
-        }
-
-        dispatch_async(dispatch_get_main_queue(), ^
-        {
-            if (!failed)
-                success();
-        });
     });
 }
 

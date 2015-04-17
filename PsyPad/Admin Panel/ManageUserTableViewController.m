@@ -6,7 +6,6 @@
 //
 
 #import "ManageUserTableViewController.h"
-#import "SelectConfigurationTableViewController.h"
 #import "TestLogTableViewController.h"
 #import "User.h"
 
@@ -31,12 +30,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"ManageConfigurations"])
-    {
-        SelectConfigurationTableViewController *dest = segue.destinationViewController;
-        dest.user = self.user;
-    }
-    else if ([segue.identifier isEqualToString:@"ViewLogs"])
+    if ([segue.identifier isEqualToString:@"ViewLogs"])
     {
         TestLogTableViewController *dest = segue.destinationViewController;
         dest.user = self.user;

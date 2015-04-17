@@ -10,32 +10,33 @@ extern const struct TestConfigurationAttributes {
 	__unsafe_unretained NSString *button1_bg;
 	__unsafe_unretained NSString *button1_fg;
 	__unsafe_unretained NSString *button1_h;
+	__unsafe_unretained NSString *button1_text;
 	__unsafe_unretained NSString *button1_w;
 	__unsafe_unretained NSString *button1_x;
 	__unsafe_unretained NSString *button1_y;
 	__unsafe_unretained NSString *button2_bg;
 	__unsafe_unretained NSString *button2_fg;
 	__unsafe_unretained NSString *button2_h;
+	__unsafe_unretained NSString *button2_text;
 	__unsafe_unretained NSString *button2_w;
 	__unsafe_unretained NSString *button2_x;
 	__unsafe_unretained NSString *button2_y;
 	__unsafe_unretained NSString *button3_bg;
 	__unsafe_unretained NSString *button3_fg;
 	__unsafe_unretained NSString *button3_h;
+	__unsafe_unretained NSString *button3_text;
 	__unsafe_unretained NSString *button3_w;
 	__unsafe_unretained NSString *button3_x;
 	__unsafe_unretained NSString *button3_y;
 	__unsafe_unretained NSString *button4_bg;
 	__unsafe_unretained NSString *button4_fg;
 	__unsafe_unretained NSString *button4_h;
+	__unsafe_unretained NSString *button4_text;
 	__unsafe_unretained NSString *button4_w;
 	__unsafe_unretained NSString *button4_x;
 	__unsafe_unretained NSString *button4_y;
 	__unsafe_unretained NSString *button_presentation_delay;
-	__unsafe_unretained NSString *button_text_four;
-	__unsafe_unretained NSString *button_text_one;
-	__unsafe_unretained NSString *button_text_three;
-	__unsafe_unretained NSString *button_text_two;
+	__unsafe_unretained NSString *configuration_description;
 	__unsafe_unretained NSString *day_of_week_fri;
 	__unsafe_unretained NSString *day_of_week_mon;
 	__unsafe_unretained NSString *day_of_week_sat;
@@ -43,6 +44,7 @@ extern const struct TestConfigurationAttributes {
 	__unsafe_unretained NSString *day_of_week_thu;
 	__unsafe_unretained NSString *day_of_week_tue;
 	__unsafe_unretained NSString *day_of_week_wed;
+	__unsafe_unretained NSString *delta_values;
 	__unsafe_unretained NSString *enabled;
 	__unsafe_unretained NSString *exit_button_bg;
 	__unsafe_unretained NSString *exit_button_fg;
@@ -50,30 +52,33 @@ extern const struct TestConfigurationAttributes {
 	__unsafe_unretained NSString *exit_button_w;
 	__unsafe_unretained NSString *exit_button_x;
 	__unsafe_unretained NSString *exit_button_y;
-	__unsafe_unretained NSString *images_together_presentation_time;
-	__unsafe_unretained NSString *images_together_presentation_time_is_infinite;
-	__unsafe_unretained NSString *loop_animated_images;
+	__unsafe_unretained NSString *finite_presentation_time;
+	__unsafe_unretained NSString *finite_response_window;
+	__unsafe_unretained NSString *hits_to_finish;
+	__unsafe_unretained NSString *infinite_presentation_time;
+	__unsafe_unretained NSString *infinite_response_window;
+	__unsafe_unretained NSString *is_gallery_configuration;
+	__unsafe_unretained NSString *is_practice;
+	__unsafe_unretained NSString *loop_animations;
+	__unsafe_unretained NSString *maximum_level;
+	__unsafe_unretained NSString *minimum_level;
 	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *num_staircases_interleaved;
-	__unsafe_unretained NSString *number_of_buttons;
-	__unsafe_unretained NSString *practice_configuration;
+	__unsafe_unretained NSString *num_buttons;
+	__unsafe_unretained NSString *num_correct_to_get_harder;
+	__unsafe_unretained NSString *num_wrong_to_get_easier;
+	__unsafe_unretained NSString *number_of_reversals;
+	__unsafe_unretained NSString *number_of_staircases;
 	__unsafe_unretained NSString *questions_per_folder;
-	__unsafe_unretained NSString *randomisation_specified_seed;
-	__unsafe_unretained NSString *randomisation_use_specified_seed;
 	__unsafe_unretained NSString *require_next;
-	__unsafe_unretained NSString *response_window;
-	__unsafe_unretained NSString *response_window_is_infinite;
+	__unsafe_unretained NSString *server_id;
+	__unsafe_unretained NSString *server_url;
 	__unsafe_unretained NSString *show_exit_button;
-	__unsafe_unretained NSString *staircase_deltas;
-	__unsafe_unretained NSString *staircase_floor_ceiling_hits;
-	__unsafe_unretained NSString *staircase_max_level;
-	__unsafe_unretained NSString *staircase_min_level;
-	__unsafe_unretained NSString *staircase_num_correct_to_get_harder;
-	__unsafe_unretained NSString *staircase_num_incorrect_to_get_easier;
-	__unsafe_unretained NSString *staircase_num_reversals;
-	__unsafe_unretained NSString *staircase_start_level;
+	__unsafe_unretained NSString *specified_seed;
+	__unsafe_unretained NSString *start_level;
 	__unsafe_unretained NSString *time_between_question_mean;
 	__unsafe_unretained NSString *time_between_question_plusminus;
+	__unsafe_unretained NSString *title;
+	__unsafe_unretained NSString *use_specified_seed;
 	__unsafe_unretained NSString *use_staircase_method;
 } TestConfigurationAttributes;
 
@@ -130,6 +135,10 @@ extern const struct TestConfigurationRelationships {
 
 //- (BOOL)validateButton1_h:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* button1_text;
+
+//- (BOOL)validateButton1_text:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSNumber* button1_w;
 
 @property (atomic) int16_t button1_wValue;
@@ -169,6 +178,10 @@ extern const struct TestConfigurationRelationships {
 - (void)setButton2_hValue:(int16_t)value_;
 
 //- (BOOL)validateButton2_h:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* button2_text;
+
+//- (BOOL)validateButton2_text:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* button2_w;
 
@@ -210,6 +223,10 @@ extern const struct TestConfigurationRelationships {
 
 //- (BOOL)validateButton3_h:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* button3_text;
+
+//- (BOOL)validateButton3_text:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSNumber* button3_w;
 
 @property (atomic) int16_t button3_wValue;
@@ -250,6 +267,10 @@ extern const struct TestConfigurationRelationships {
 
 //- (BOOL)validateButton4_h:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* button4_text;
+
+//- (BOOL)validateButton4_text:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSNumber* button4_w;
 
 @property (atomic) int16_t button4_wValue;
@@ -282,21 +303,9 @@ extern const struct TestConfigurationRelationships {
 
 //- (BOOL)validateButton_presentation_delay:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* button_text_four;
+@property (nonatomic, strong) NSString* configuration_description;
 
-//- (BOOL)validateButton_text_four:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* button_text_one;
-
-//- (BOOL)validateButton_text_one:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* button_text_three;
-
-//- (BOOL)validateButton_text_three:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* button_text_two;
-
-//- (BOOL)validateButton_text_two:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateConfiguration_description:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* day_of_week_fri;
 
@@ -354,6 +363,10 @@ extern const struct TestConfigurationRelationships {
 
 //- (BOOL)validateDay_of_week_wed:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* delta_values;
+
+//- (BOOL)validateDelta_values:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSNumber* enabled;
 
 @property (atomic) BOOL enabledValue;
@@ -402,77 +415,109 @@ extern const struct TestConfigurationRelationships {
 
 //- (BOOL)validateExit_button_y:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* images_together_presentation_time;
+@property (nonatomic, strong) NSNumber* finite_presentation_time;
 
-@property (atomic) float images_together_presentation_timeValue;
-- (float)images_together_presentation_timeValue;
-- (void)setImages_together_presentation_timeValue:(float)value_;
+@property (atomic) float finite_presentation_timeValue;
+- (float)finite_presentation_timeValue;
+- (void)setFinite_presentation_timeValue:(float)value_;
 
-//- (BOOL)validateImages_together_presentation_time:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateFinite_presentation_time:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* images_together_presentation_time_is_infinite;
+@property (nonatomic, strong) NSNumber* finite_response_window;
 
-@property (atomic) BOOL images_together_presentation_time_is_infiniteValue;
-- (BOOL)images_together_presentation_time_is_infiniteValue;
-- (void)setImages_together_presentation_time_is_infiniteValue:(BOOL)value_;
+@property (atomic) float finite_response_windowValue;
+- (float)finite_response_windowValue;
+- (void)setFinite_response_windowValue:(float)value_;
 
-//- (BOOL)validateImages_together_presentation_time_is_infinite:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateFinite_response_window:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* loop_animated_images;
+@property (nonatomic, strong) NSString* hits_to_finish;
 
-@property (atomic) BOOL loop_animated_imagesValue;
-- (BOOL)loop_animated_imagesValue;
-- (void)setLoop_animated_imagesValue:(BOOL)value_;
+//- (BOOL)validateHits_to_finish:(id*)value_ error:(NSError**)error_;
 
-//- (BOOL)validateLoop_animated_images:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong) NSNumber* infinite_presentation_time;
+
+@property (atomic) BOOL infinite_presentation_timeValue;
+- (BOOL)infinite_presentation_timeValue;
+- (void)setInfinite_presentation_timeValue:(BOOL)value_;
+
+//- (BOOL)validateInfinite_presentation_time:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* infinite_response_window;
+
+@property (atomic) BOOL infinite_response_windowValue;
+- (BOOL)infinite_response_windowValue;
+- (void)setInfinite_response_windowValue:(BOOL)value_;
+
+//- (BOOL)validateInfinite_response_window:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* is_gallery_configuration;
+
+@property (atomic) BOOL is_gallery_configurationValue;
+- (BOOL)is_gallery_configurationValue;
+- (void)setIs_gallery_configurationValue:(BOOL)value_;
+
+//- (BOOL)validateIs_gallery_configuration:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* is_practice;
+
+@property (atomic) BOOL is_practiceValue;
+- (BOOL)is_practiceValue;
+- (void)setIs_practiceValue:(BOOL)value_;
+
+//- (BOOL)validateIs_practice:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* loop_animations;
+
+@property (atomic) BOOL loop_animationsValue;
+- (BOOL)loop_animationsValue;
+- (void)setLoop_animationsValue:(BOOL)value_;
+
+//- (BOOL)validateLoop_animations:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* maximum_level;
+
+//- (BOOL)validateMaximum_level:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* minimum_level;
+
+//- (BOOL)validateMinimum_level:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* num_staircases_interleaved;
+@property (nonatomic, strong) NSNumber* num_buttons;
 
-@property (atomic) int16_t num_staircases_interleavedValue;
-- (int16_t)num_staircases_interleavedValue;
-- (void)setNum_staircases_interleavedValue:(int16_t)value_;
+@property (atomic) int16_t num_buttonsValue;
+- (int16_t)num_buttonsValue;
+- (void)setNum_buttonsValue:(int16_t)value_;
 
-//- (BOOL)validateNum_staircases_interleaved:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateNum_buttons:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* number_of_buttons;
+@property (nonatomic, strong) NSString* num_correct_to_get_harder;
 
-@property (atomic) int16_t number_of_buttonsValue;
-- (int16_t)number_of_buttonsValue;
-- (void)setNumber_of_buttonsValue:(int16_t)value_;
+//- (BOOL)validateNum_correct_to_get_harder:(id*)value_ error:(NSError**)error_;
 
-//- (BOOL)validateNumber_of_buttons:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong) NSString* num_wrong_to_get_easier;
 
-@property (nonatomic, strong) NSNumber* practice_configuration;
+//- (BOOL)validateNum_wrong_to_get_easier:(id*)value_ error:(NSError**)error_;
 
-@property (atomic) BOOL practice_configurationValue;
-- (BOOL)practice_configurationValue;
-- (void)setPractice_configurationValue:(BOOL)value_;
+@property (nonatomic, strong) NSString* number_of_reversals;
 
-//- (BOOL)validatePractice_configuration:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateNumber_of_reversals:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* number_of_staircases;
+
+@property (atomic) int16_t number_of_staircasesValue;
+- (int16_t)number_of_staircasesValue;
+- (void)setNumber_of_staircasesValue:(int16_t)value_;
+
+//- (BOOL)validateNumber_of_staircases:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* questions_per_folder;
 
 //- (BOOL)validateQuestions_per_folder:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* randomisation_specified_seed;
-
-@property (atomic) int32_t randomisation_specified_seedValue;
-- (int32_t)randomisation_specified_seedValue;
-- (void)setRandomisation_specified_seedValue:(int32_t)value_;
-
-//- (BOOL)validateRandomisation_specified_seed:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* randomisation_use_specified_seed;
-
-@property (atomic) BOOL randomisation_use_specified_seedValue;
-- (BOOL)randomisation_use_specified_seedValue;
-- (void)setRandomisation_use_specified_seedValue:(BOOL)value_;
-
-//- (BOOL)validateRandomisation_use_specified_seed:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* require_next;
 
@@ -482,21 +527,13 @@ extern const struct TestConfigurationRelationships {
 
 //- (BOOL)validateRequire_next:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* response_window;
+@property (nonatomic, strong) NSString* server_id;
 
-@property (atomic) float response_windowValue;
-- (float)response_windowValue;
-- (void)setResponse_windowValue:(float)value_;
+//- (BOOL)validateServer_id:(id*)value_ error:(NSError**)error_;
 
-//- (BOOL)validateResponse_window:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong) NSString* server_url;
 
-@property (nonatomic, strong) NSNumber* response_window_is_infinite;
-
-@property (atomic) BOOL response_window_is_infiniteValue;
-- (BOOL)response_window_is_infiniteValue;
-- (void)setResponse_window_is_infiniteValue:(BOOL)value_;
-
-//- (BOOL)validateResponse_window_is_infinite:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateServer_url:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* show_exit_button;
 
@@ -506,37 +543,17 @@ extern const struct TestConfigurationRelationships {
 
 //- (BOOL)validateShow_exit_button:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* staircase_deltas;
+@property (nonatomic, strong) NSNumber* specified_seed;
 
-//- (BOOL)validateStaircase_deltas:(id*)value_ error:(NSError**)error_;
+@property (atomic) int32_t specified_seedValue;
+- (int32_t)specified_seedValue;
+- (void)setSpecified_seedValue:(int32_t)value_;
 
-@property (nonatomic, strong) NSString* staircase_floor_ceiling_hits;
+//- (BOOL)validateSpecified_seed:(id*)value_ error:(NSError**)error_;
 
-//- (BOOL)validateStaircase_floor_ceiling_hits:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong) NSString* start_level;
 
-@property (nonatomic, strong) NSString* staircase_max_level;
-
-//- (BOOL)validateStaircase_max_level:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* staircase_min_level;
-
-//- (BOOL)validateStaircase_min_level:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* staircase_num_correct_to_get_harder;
-
-//- (BOOL)validateStaircase_num_correct_to_get_harder:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* staircase_num_incorrect_to_get_easier;
-
-//- (BOOL)validateStaircase_num_incorrect_to_get_easier:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* staircase_num_reversals;
-
-//- (BOOL)validateStaircase_num_reversals:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* staircase_start_level;
-
-//- (BOOL)validateStaircase_start_level:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateStart_level:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* time_between_question_mean;
 
@@ -553,6 +570,18 @@ extern const struct TestConfigurationRelationships {
 - (void)setTime_between_question_plusminusValue:(float)value_;
 
 //- (BOOL)validateTime_between_question_plusminus:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* title;
+
+//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* use_specified_seed;
+
+@property (atomic) BOOL use_specified_seedValue;
+- (BOOL)use_specified_seedValue;
+- (void)setUse_specified_seedValue:(BOOL)value_;
+
+//- (BOOL)validateUse_specified_seed:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* use_staircase_method;
 
@@ -601,6 +630,9 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)primitiveButton1_hValue;
 - (void)setPrimitiveButton1_hValue:(int16_t)value_;
 
+- (NSString*)primitiveButton1_text;
+- (void)setPrimitiveButton1_text:(NSString*)value;
+
 - (NSNumber*)primitiveButton1_w;
 - (void)setPrimitiveButton1_w:(NSNumber*)value;
 
@@ -630,6 +662,9 @@ extern const struct TestConfigurationRelationships {
 
 - (int16_t)primitiveButton2_hValue;
 - (void)setPrimitiveButton2_hValue:(int16_t)value_;
+
+- (NSString*)primitiveButton2_text;
+- (void)setPrimitiveButton2_text:(NSString*)value;
 
 - (NSNumber*)primitiveButton2_w;
 - (void)setPrimitiveButton2_w:(NSNumber*)value;
@@ -661,6 +696,9 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)primitiveButton3_hValue;
 - (void)setPrimitiveButton3_hValue:(int16_t)value_;
 
+- (NSString*)primitiveButton3_text;
+- (void)setPrimitiveButton3_text:(NSString*)value;
+
 - (NSNumber*)primitiveButton3_w;
 - (void)setPrimitiveButton3_w:(NSNumber*)value;
 
@@ -691,6 +729,9 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)primitiveButton4_hValue;
 - (void)setPrimitiveButton4_hValue:(int16_t)value_;
 
+- (NSString*)primitiveButton4_text;
+- (void)setPrimitiveButton4_text:(NSString*)value;
+
 - (NSNumber*)primitiveButton4_w;
 - (void)setPrimitiveButton4_w:(NSNumber*)value;
 
@@ -715,17 +756,8 @@ extern const struct TestConfigurationRelationships {
 - (float)primitiveButton_presentation_delayValue;
 - (void)setPrimitiveButton_presentation_delayValue:(float)value_;
 
-- (NSString*)primitiveButton_text_four;
-- (void)setPrimitiveButton_text_four:(NSString*)value;
-
-- (NSString*)primitiveButton_text_one;
-- (void)setPrimitiveButton_text_one:(NSString*)value;
-
-- (NSString*)primitiveButton_text_three;
-- (void)setPrimitiveButton_text_three:(NSString*)value;
-
-- (NSString*)primitiveButton_text_two;
-- (void)setPrimitiveButton_text_two:(NSString*)value;
+- (NSString*)primitiveConfiguration_description;
+- (void)setPrimitiveConfiguration_description:(NSString*)value;
 
 - (NSNumber*)primitiveDay_of_week_fri;
 - (void)setPrimitiveDay_of_week_fri:(NSNumber*)value;
@@ -769,6 +801,9 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)primitiveDay_of_week_wedValue;
 - (void)setPrimitiveDay_of_week_wedValue:(BOOL)value_;
 
+- (NSString*)primitiveDelta_values;
+- (void)setPrimitiveDelta_values:(NSString*)value;
+
 - (NSNumber*)primitiveEnabled;
 - (void)setPrimitiveEnabled:(NSNumber*)value;
 
@@ -805,59 +840,83 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)primitiveExit_button_yValue;
 - (void)setPrimitiveExit_button_yValue:(int16_t)value_;
 
-- (NSNumber*)primitiveImages_together_presentation_time;
-- (void)setPrimitiveImages_together_presentation_time:(NSNumber*)value;
+- (NSNumber*)primitiveFinite_presentation_time;
+- (void)setPrimitiveFinite_presentation_time:(NSNumber*)value;
 
-- (float)primitiveImages_together_presentation_timeValue;
-- (void)setPrimitiveImages_together_presentation_timeValue:(float)value_;
+- (float)primitiveFinite_presentation_timeValue;
+- (void)setPrimitiveFinite_presentation_timeValue:(float)value_;
 
-- (NSNumber*)primitiveImages_together_presentation_time_is_infinite;
-- (void)setPrimitiveImages_together_presentation_time_is_infinite:(NSNumber*)value;
+- (NSNumber*)primitiveFinite_response_window;
+- (void)setPrimitiveFinite_response_window:(NSNumber*)value;
 
-- (BOOL)primitiveImages_together_presentation_time_is_infiniteValue;
-- (void)setPrimitiveImages_together_presentation_time_is_infiniteValue:(BOOL)value_;
+- (float)primitiveFinite_response_windowValue;
+- (void)setPrimitiveFinite_response_windowValue:(float)value_;
 
-- (NSNumber*)primitiveLoop_animated_images;
-- (void)setPrimitiveLoop_animated_images:(NSNumber*)value;
+- (NSString*)primitiveHits_to_finish;
+- (void)setPrimitiveHits_to_finish:(NSString*)value;
 
-- (BOOL)primitiveLoop_animated_imagesValue;
-- (void)setPrimitiveLoop_animated_imagesValue:(BOOL)value_;
+- (NSNumber*)primitiveInfinite_presentation_time;
+- (void)setPrimitiveInfinite_presentation_time:(NSNumber*)value;
+
+- (BOOL)primitiveInfinite_presentation_timeValue;
+- (void)setPrimitiveInfinite_presentation_timeValue:(BOOL)value_;
+
+- (NSNumber*)primitiveInfinite_response_window;
+- (void)setPrimitiveInfinite_response_window:(NSNumber*)value;
+
+- (BOOL)primitiveInfinite_response_windowValue;
+- (void)setPrimitiveInfinite_response_windowValue:(BOOL)value_;
+
+- (NSNumber*)primitiveIs_gallery_configuration;
+- (void)setPrimitiveIs_gallery_configuration:(NSNumber*)value;
+
+- (BOOL)primitiveIs_gallery_configurationValue;
+- (void)setPrimitiveIs_gallery_configurationValue:(BOOL)value_;
+
+- (NSNumber*)primitiveIs_practice;
+- (void)setPrimitiveIs_practice:(NSNumber*)value;
+
+- (BOOL)primitiveIs_practiceValue;
+- (void)setPrimitiveIs_practiceValue:(BOOL)value_;
+
+- (NSNumber*)primitiveLoop_animations;
+- (void)setPrimitiveLoop_animations:(NSNumber*)value;
+
+- (BOOL)primitiveLoop_animationsValue;
+- (void)setPrimitiveLoop_animationsValue:(BOOL)value_;
+
+- (NSString*)primitiveMaximum_level;
+- (void)setPrimitiveMaximum_level:(NSString*)value;
+
+- (NSString*)primitiveMinimum_level;
+- (void)setPrimitiveMinimum_level:(NSString*)value;
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
-- (NSNumber*)primitiveNum_staircases_interleaved;
-- (void)setPrimitiveNum_staircases_interleaved:(NSNumber*)value;
+- (NSNumber*)primitiveNum_buttons;
+- (void)setPrimitiveNum_buttons:(NSNumber*)value;
 
-- (int16_t)primitiveNum_staircases_interleavedValue;
-- (void)setPrimitiveNum_staircases_interleavedValue:(int16_t)value_;
+- (int16_t)primitiveNum_buttonsValue;
+- (void)setPrimitiveNum_buttonsValue:(int16_t)value_;
 
-- (NSNumber*)primitiveNumber_of_buttons;
-- (void)setPrimitiveNumber_of_buttons:(NSNumber*)value;
+- (NSString*)primitiveNum_correct_to_get_harder;
+- (void)setPrimitiveNum_correct_to_get_harder:(NSString*)value;
 
-- (int16_t)primitiveNumber_of_buttonsValue;
-- (void)setPrimitiveNumber_of_buttonsValue:(int16_t)value_;
+- (NSString*)primitiveNum_wrong_to_get_easier;
+- (void)setPrimitiveNum_wrong_to_get_easier:(NSString*)value;
 
-- (NSNumber*)primitivePractice_configuration;
-- (void)setPrimitivePractice_configuration:(NSNumber*)value;
+- (NSString*)primitiveNumber_of_reversals;
+- (void)setPrimitiveNumber_of_reversals:(NSString*)value;
 
-- (BOOL)primitivePractice_configurationValue;
-- (void)setPrimitivePractice_configurationValue:(BOOL)value_;
+- (NSNumber*)primitiveNumber_of_staircases;
+- (void)setPrimitiveNumber_of_staircases:(NSNumber*)value;
+
+- (int16_t)primitiveNumber_of_staircasesValue;
+- (void)setPrimitiveNumber_of_staircasesValue:(int16_t)value_;
 
 - (NSString*)primitiveQuestions_per_folder;
 - (void)setPrimitiveQuestions_per_folder:(NSString*)value;
-
-- (NSNumber*)primitiveRandomisation_specified_seed;
-- (void)setPrimitiveRandomisation_specified_seed:(NSNumber*)value;
-
-- (int32_t)primitiveRandomisation_specified_seedValue;
-- (void)setPrimitiveRandomisation_specified_seedValue:(int32_t)value_;
-
-- (NSNumber*)primitiveRandomisation_use_specified_seed;
-- (void)setPrimitiveRandomisation_use_specified_seed:(NSNumber*)value;
-
-- (BOOL)primitiveRandomisation_use_specified_seedValue;
-- (void)setPrimitiveRandomisation_use_specified_seedValue:(BOOL)value_;
 
 - (NSNumber*)primitiveRequire_next;
 - (void)setPrimitiveRequire_next:(NSNumber*)value;
@@ -865,17 +924,11 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)primitiveRequire_nextValue;
 - (void)setPrimitiveRequire_nextValue:(BOOL)value_;
 
-- (NSNumber*)primitiveResponse_window;
-- (void)setPrimitiveResponse_window:(NSNumber*)value;
+- (NSString*)primitiveServer_id;
+- (void)setPrimitiveServer_id:(NSString*)value;
 
-- (float)primitiveResponse_windowValue;
-- (void)setPrimitiveResponse_windowValue:(float)value_;
-
-- (NSNumber*)primitiveResponse_window_is_infinite;
-- (void)setPrimitiveResponse_window_is_infinite:(NSNumber*)value;
-
-- (BOOL)primitiveResponse_window_is_infiniteValue;
-- (void)setPrimitiveResponse_window_is_infiniteValue:(BOOL)value_;
+- (NSString*)primitiveServer_url;
+- (void)setPrimitiveServer_url:(NSString*)value;
 
 - (NSNumber*)primitiveShow_exit_button;
 - (void)setPrimitiveShow_exit_button:(NSNumber*)value;
@@ -883,29 +936,14 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)primitiveShow_exit_buttonValue;
 - (void)setPrimitiveShow_exit_buttonValue:(BOOL)value_;
 
-- (NSString*)primitiveStaircase_deltas;
-- (void)setPrimitiveStaircase_deltas:(NSString*)value;
+- (NSNumber*)primitiveSpecified_seed;
+- (void)setPrimitiveSpecified_seed:(NSNumber*)value;
 
-- (NSString*)primitiveStaircase_floor_ceiling_hits;
-- (void)setPrimitiveStaircase_floor_ceiling_hits:(NSString*)value;
+- (int32_t)primitiveSpecified_seedValue;
+- (void)setPrimitiveSpecified_seedValue:(int32_t)value_;
 
-- (NSString*)primitiveStaircase_max_level;
-- (void)setPrimitiveStaircase_max_level:(NSString*)value;
-
-- (NSString*)primitiveStaircase_min_level;
-- (void)setPrimitiveStaircase_min_level:(NSString*)value;
-
-- (NSString*)primitiveStaircase_num_correct_to_get_harder;
-- (void)setPrimitiveStaircase_num_correct_to_get_harder:(NSString*)value;
-
-- (NSString*)primitiveStaircase_num_incorrect_to_get_easier;
-- (void)setPrimitiveStaircase_num_incorrect_to_get_easier:(NSString*)value;
-
-- (NSString*)primitiveStaircase_num_reversals;
-- (void)setPrimitiveStaircase_num_reversals:(NSString*)value;
-
-- (NSString*)primitiveStaircase_start_level;
-- (void)setPrimitiveStaircase_start_level:(NSString*)value;
+- (NSString*)primitiveStart_level;
+- (void)setPrimitiveStart_level:(NSString*)value;
 
 - (NSNumber*)primitiveTime_between_question_mean;
 - (void)setPrimitiveTime_between_question_mean:(NSNumber*)value;
@@ -918,6 +956,15 @@ extern const struct TestConfigurationRelationships {
 
 - (float)primitiveTime_between_question_plusminusValue;
 - (void)setPrimitiveTime_between_question_plusminusValue:(float)value_;
+
+- (NSString*)primitiveTitle;
+- (void)setPrimitiveTitle:(NSString*)value;
+
+- (NSNumber*)primitiveUse_specified_seed;
+- (void)setPrimitiveUse_specified_seed:(NSNumber*)value;
+
+- (BOOL)primitiveUse_specified_seedValue;
+- (void)setPrimitiveUse_specified_seedValue:(BOOL)value_;
 
 - (NSNumber*)primitiveUse_staircase_method;
 - (void)setPrimitiveUse_staircase_method:(NSNumber*)value;

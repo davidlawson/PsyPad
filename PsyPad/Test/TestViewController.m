@@ -33,6 +33,7 @@
 #import "DatabaseManager.h"
 
 #import "NSObject+DelayBlock.h"
+#import "DemoViewController.h"
 
 // Shortcuts for the view size
 #define VIEW_HEIGHT self.view.bounds.size.height
@@ -76,7 +77,7 @@
 
     self.view.backgroundColor = [UIColor colorWithHexString:self.firstConfiguration.background_colour];
 
-    if (self.currentConfiguration.show_exit_button.boolValue)
+    if (self.currentConfiguration.show_exit_buttonValue)
     {
         self.exitButton.hidden = NO;
         [self.exitButton setTitleColor:[UIColor colorWithHexString:self.firstConfiguration.exit_button_fg] forState:UIControlStateNormal];
@@ -152,12 +153,12 @@
 
 - (void)presentConfiguration
 {
-    self.configurationNameLabel.text = self.currentConfiguration.name;
+    self.configurationNameLabel.text = self.currentConfiguration.title;
 
     self.view.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.background_colour];
     self.backgroundImageView.image = nil;
 
-    if (self.currentConfiguration.show_exit_button.boolValue)
+    if (self.currentConfiguration.show_exit_buttonValue)
     {
         self.exitButton.hidden = NO;
         [self.exitButton setTitleColor:[UIColor colorWithHexString:self.currentConfiguration.exit_button_fg] forState:UIControlStateNormal];
@@ -180,7 +181,7 @@
 
     [self setupRandomGenerator];
 
-    if (self.currentConfiguration.use_staircase_method.boolValue)
+    if (self.currentConfiguration.use_staircase_methodValue)
     {
         [self setupStaircase];
     }
@@ -202,7 +203,7 @@
     UIImage *bgImage = self.currentConfiguration.sequence.backgroundImage;
     self.backgroundImageView.image = bgImage;
 
-    if (self.currentConfiguration.show_exit_button.boolValue)
+    if (self.currentConfiguration.show_exit_buttonValue)
     {
         self.exitButton.hidden = NO;
         [self.exitButton setTitleColor:[UIColor colorWithHexString:self.currentConfiguration.exit_button_fg] forState:UIControlStateNormal];
@@ -217,7 +218,7 @@
 
     [self performBlock:^
     {
-        if (self.currentConfiguration.use_staircase_method.boolValue)
+        if (self.currentConfiguration.use_staircase_methodValue)
             [self presentNextQuestionStaircase];
         else
             [self presentNextQuestion];
@@ -229,29 +230,29 @@
 {
     self.staircases = [NSMutableArray array];
 
-    for (int i = 0; i < self.currentConfiguration.num_staircases_interleaved.intValue; i++)
+    for (int i = 0; i < self.currentConfiguration.number_of_staircasesValue; i++)
     {
         Staircase *staircase = [[Staircase alloc] init];
-        staircase.currentLevel = [self.currentConfiguration.staircase_start_level getNumberInGroup:i element:0];
+        staircase.currentLevel = [self.currentConfiguration.start_level getNumberInGroup:i element:0];
         staircase.currentReversal = 0;
-        staircase.maxReversals = [self.currentConfiguration.staircase_num_reversals getNumberInGroup:i element:0];
+        staircase.maxReversals = [self.currentConfiguration.number_of_reversals getNumberInGroup:i element:0];
 
         staircase.deltaValues = [NSMutableArray array];
         for (int j = 0; j < staircase.maxReversals; j++)
         {
-            NSNumber *number = [NSNumber numberWithInt:[self.currentConfiguration.staircase_deltas getNumberInGroup:i element:j]];
+            NSNumber *number = [NSNumber numberWithInt:[self.currentConfiguration.delta_values getNumberInGroup:i element:j]];
             [staircase.deltaValues addObject:number];
         }
 
         staircase.lastReversalType = -1;
         staircase.numHits = 0;
-        staircase.numTimesCorrectToGetHarder = [self.currentConfiguration.staircase_num_correct_to_get_harder getNumberInGroup:i element:0];
+        staircase.numTimesCorrectToGetHarder = [self.currentConfiguration.num_correct_to_get_harder getNumberInGroup:i element:0];
         staircase.numTimesCorrect = 0;
-        staircase.numTimesIncorrectToGetEasier = [self.currentConfiguration.staircase_num_incorrect_to_get_easier getNumberInGroup:i element:0];
+        staircase.numTimesIncorrectToGetEasier = [self.currentConfiguration.num_wrong_to_get_easier getNumberInGroup:i element:0];
         staircase.numTimesIncorrect = 0;
-        staircase.floorCeilingHits = [self.currentConfiguration.staircase_floor_ceiling_hits getNumberInGroup:i element:0];
-        staircase.minLevel = [self.currentConfiguration.staircase_min_level getNumberInGroup:i element:0];
-        staircase.maxLevel = [self.currentConfiguration.staircase_max_level getNumberInGroup:i element:0];
+        staircase.floorCeilingHits = [self.currentConfiguration.hits_to_finish getNumberInGroup:i element:0];
+        staircase.minLevel = [self.currentConfiguration.minimum_level getNumberInGroup:i element:0];
+        staircase.maxLevel = [self.currentConfiguration.maximum_level getNumberInGroup:i element:0];
         staircase.id = i;
         [self.staircases addObject:staircase];
     }
@@ -283,7 +284,7 @@
 {
     NSDictionary *data = self.currentConfiguration.serialise;
     NSData *jsonified = [NSJSONSerialization dataWithJSONObject:data options:nil error:nil];
-    NSString *string = [[NSString alloc] initWithData:jsonified encoding:NSASCIIStringEncoding];
+    NSString *string = [[NSString alloc] initWithData:jsonified encoding:NSUTF8StringEncoding];
     [self log:@"test_begin" info:string];
 }
 
@@ -312,13 +313,23 @@
         [UIView cancelPreviousPerformRequestsWithTarget:self];
 
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        TestLog *log = self.log;
+        UIViewController *parentVC = [(UINavigationController *)self.presentingViewController topViewController];
+        [self dismissViewControllerAnimated:YES completion:^
+        {
+            if ([parentVC isKindOfClass:[DemoViewController class]])
+            {
+                [parentVC performSegueWithIdentifier:@"ShowLog" sender:log];
+            }
+        }];
     }
 }
 
 - (void)uploadData
 {
-    [self.APIController uploadLogs:@[self.user] progress:^(NSString *status, float _progress)
+#warning todo
+    /*[self.APIController uploadLogs:@[self.user] progress:^(NSString *status, float _progress)
     {
         NSLog(@"Progress: %.2f", _progress);
 
@@ -329,7 +340,7 @@
     } failure:^
     {
         NSLog(@"Upload Failure");
-    }];
+    }];*/
 }
 
 - (void)pressTestButton:(id)sender
@@ -343,10 +354,10 @@
 
     [self log:@"button_press" info:@"%d (%@)", pressedButton.number, [pressedButton titleForState:UIControlStateNormal]];
 
-    if (self.currentConfiguration.attempt_facial_recognition.boolValue)
+    if (self.currentConfiguration.attempt_facial_recognitionValue)
         [self.distanceDetector takePhoto:self question:self.questionNumber];
 
-    if (self.currentConfiguration.use_staircase_method.boolValue)
+    if (self.currentConfiguration.use_staircase_methodValue)
     {
         bool answerCorrect;
 
@@ -447,10 +458,10 @@
 
     TestImageButton *imageButton;
 
-    if (image.is_animated.boolValue == NO)
+    if (image.is_animatedValue == NO)
         imageButton = [[TestImageButton alloc] initWithImage:image.image];
     else
-        imageButton = [[TestImageButton alloc] initWithAnimatedImage:image.images framerate:self.currentConfiguration.animation_frame_rate.intValue loop:self.currentConfiguration.loop_animated_images.boolValue];
+        imageButton = [[TestImageButton alloc] initWithAnimatedImage:image.images framerate:self.currentConfiguration.animation_frame_rateValue loop:self.currentConfiguration.loop_animationsValue];
 
     imageButton.dbImage = image;
 
@@ -466,10 +477,10 @@
 
     TestImageButton *imageButton;
 
-    if (image.is_animated.boolValue == NO)
+    if (image.is_animatedValue == NO)
         imageButton = [[TestImageButton alloc] initWithImage:image.image];
     else
-        imageButton = [[TestImageButton alloc] initWithAnimatedImage:image.images framerate:self.currentConfiguration.animation_frame_rate.intValue loop:self.currentConfiguration.loop_animated_images.boolValue];
+        imageButton = [[TestImageButton alloc] initWithAnimatedImage:image.images framerate:self.currentConfiguration.animation_frame_rateValue loop:self.currentConfiguration.loop_animationsValue];
 
     imageButton.dbImage = image;
 
@@ -479,12 +490,12 @@
 - (NSMutableArray *)getButtonSet
 {
     NSMutableArray *buttons = [NSMutableArray array];
-    for (int i = 0; i < self.currentConfiguration.number_of_buttons.intValue; i++)
+    for (int i = 0; i < self.currentConfiguration.num_buttonsValue; i++)
     {
         NSString *buttonText; UIColor *bg_colour, *fg_colour; int width = 0, height = 0, x = 0, y = 0;
         if (i == 0)
         {
-            buttonText = self.currentConfiguration.button_text_one;
+            buttonText = self.currentConfiguration.button1_text;
             bg_colour = [UIColor colorWithHexString:self.currentConfiguration.button1_bg];
             fg_colour = [UIColor colorWithHexString:self.currentConfiguration.button1_fg];
             x = self.currentConfiguration.button1_x.intValue;
@@ -494,7 +505,7 @@
         }
         else if (i == 1)
         {
-            buttonText = self.currentConfiguration.button_text_two;
+            buttonText = self.currentConfiguration.button2_text;
             bg_colour = [UIColor colorWithHexString:self.currentConfiguration.button2_bg];
             fg_colour = [UIColor colorWithHexString:self.currentConfiguration.button2_fg];
             x = self.currentConfiguration.button2_x.intValue;
@@ -504,7 +515,7 @@
         }
         else if (i == 2)
         {
-            buttonText = self.currentConfiguration.button_text_three;
+            buttonText = self.currentConfiguration.button3_text;
             bg_colour = [UIColor colorWithHexString:self.currentConfiguration.button3_bg];
             fg_colour = [UIColor colorWithHexString:self.currentConfiguration.button3_fg];
             x = self.currentConfiguration.button3_x.intValue;
@@ -514,7 +525,7 @@
         }
         else if (i == 3)
         {
-            buttonText = self.currentConfiguration.button_text_four;
+            buttonText = self.currentConfiguration.button4_text;
             bg_colour = [UIColor colorWithHexString:self.currentConfiguration.button4_bg];
             fg_colour = [UIColor colorWithHexString:self.currentConfiguration.button4_fg];
             x = self.currentConfiguration.button4_x.intValue;
@@ -542,9 +553,9 @@
 
 - (void)setupRandomGenerator
 {
-    if (self.currentConfiguration.randomisation_use_specified_seed.boolValue)
+    if (self.currentConfiguration.use_specified_seedValue)
     {
-        self.seed = self.currentConfiguration.randomisation_specified_seed.unsignedIntValue;
+        self.seed = self.currentConfiguration.specified_seedValue;
     }
     else
     {
@@ -576,13 +587,13 @@
 
 - (void)prepareNextQuestion
 {
-    if (self.currentConfiguration.use_staircase_method.boolValue == NO && ! (self.questionNumber < self.currentConfiguration.countQuestions))
+    if (self.currentConfiguration.use_staircase_methodValue == NO && ! (self.questionNumber < self.currentConfiguration.countQuestions))
     {
         [self testFinished];
     }
     else
     {
-        if (self.currentConfiguration.require_next.boolValue == NO)
+        if (self.currentConfiguration.require_nextValue == NO)
         {
             self.questionLabel.hidden = YES;
 
@@ -596,7 +607,7 @@
 
             [self performBlock:^
             {
-                if (self.currentConfiguration.use_staircase_method.boolValue)
+                if (self.currentConfiguration.use_staircase_methodValue)
                     [self presentNextQuestionStaircase];
                 else
                     [self presentNextQuestion];
@@ -646,7 +657,7 @@
 
      [self performBlock:^
      {
-         if (self.currentConfiguration.use_staircase_method.boolValue)
+         if (self.currentConfiguration.use_staircase_methodValue)
              [self presentNextQuestionStaircase];
          else
              [self presentNextQuestion];
@@ -707,24 +718,24 @@
     if (self.image.isAnimated)
         [self.image.animationImageView startAnimating];
 
-    if (self.currentConfiguration.images_together_presentation_time_is_infinite.boolValue == NO)
+    if (self.currentConfiguration.infinite_presentation_timeValue == NO)
     {
         [self performBlock:^
         {
             [self log:@"image_hidden" info:nil];
             self.image.hidden = YES;
         }
-              afterDelay:self.currentConfiguration.images_together_presentation_time.floatValue
+              afterDelay:self.currentConfiguration.finite_presentation_timeValue
         ];
     }
 
-    if (self.currentConfiguration.response_window_is_infinite.boolValue == NO)
+    if (self.currentConfiguration.infinite_response_windowValue == NO)
     {
         [self performBlock:^
         {
             [self reponseWindowTimeout];
         }
-                afterDelay:self.currentConfiguration.response_window.floatValue
+                afterDelay:self.currentConfiguration.finite_response_windowValue
         ];
     }
 }
@@ -772,24 +783,24 @@
     if (self.image.isAnimated)
         [self.image.animationImageView startAnimating];
 
-    if (self.currentConfiguration.images_together_presentation_time_is_infinite.boolValue == NO)
+    if (self.currentConfiguration.infinite_presentation_timeValue == NO)
     {
         [self performBlock:^
         {
             [self log:@"image_hidden" info:nil];
             self.image.hidden = YES;
         }
-              afterDelay:self.currentConfiguration.images_together_presentation_time.floatValue
+              afterDelay:self.currentConfiguration.finite_presentation_timeValue
         ];
     }
 
-    if (self.currentConfiguration.response_window_is_infinite.boolValue == NO)
+    if (self.currentConfiguration.infinite_response_windowValue == NO)
     {
         [self performBlock:^
         {
             [self reponseWindowTimeout];
         }
-                afterDelay:self.currentConfiguration.response_window.floatValue
+                afterDelay:self.currentConfiguration.finite_response_windowValue
         ];
     }
 }
@@ -800,7 +811,7 @@
 
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 
-    if (self.currentConfiguration.use_staircase_method.boolValue)
+    if (self.currentConfiguration.use_staircase_methodValue)
     {
         bool answerCorrect = NO;
         self.currentStaircase.numTimesIncorrect++;

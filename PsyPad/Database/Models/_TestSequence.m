@@ -13,6 +13,7 @@ const struct TestSequenceAttributes TestSequenceAttributes = {
 
 const struct TestSequenceRelationships TestSequenceRelationships = {
 	.folders = @"folders",
+	.testConfigurations = @"testConfigurations",
 };
 
 @implementation TestSequenceID
@@ -109,6 +110,17 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"folders"];
 
 	[self didAccessValueForKey:@"folders"];
+	return result;
+}
+
+@dynamic testConfigurations;
+
+- (NSMutableSet*)testConfigurationsSet {
+	[self willAccessValueForKey:@"testConfigurations"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"testConfigurations"];
+
+	[self didAccessValueForKey:@"testConfigurations"];
 	return result;
 }
 

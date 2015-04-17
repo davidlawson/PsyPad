@@ -10,7 +10,6 @@
 @class User, TestLog, TestConfiguration, TestImageButton, DistanceDetector;
 @class Staircase;
 @class MBProgressHUD;
-@class APIController;
 
 @interface TestViewController : UIViewController
 
@@ -45,8 +44,6 @@
 @property (strong, nonatomic) NSMutableArray *staircases;
 @property (weak, nonatomic) Staircase *currentStaircase;
 
-@property (strong, nonatomic) APIController *APIController;
-@property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) MBProgressHUD *hud;
 
 - (IBAction)pressBeginButton:(id)sender;

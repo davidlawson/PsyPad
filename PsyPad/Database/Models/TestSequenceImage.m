@@ -14,7 +14,7 @@
 
 - (UIImage *)image
 {
-    if (self.is_animated.boolValue == NO)
+    if (self.is_animatedValue == NO)
     {
         FILE *file;
 
@@ -37,7 +37,7 @@
 
         NSLog(@"%ld, %zul", start, length);
 
-        long page_start = start - (start % 4096);
+        long page_start = start - (start % getpagesize());
         long offset = start - page_start;
 
         void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
@@ -57,18 +57,14 @@
     }
     else
     {
-        NSDictionary *animImages = [NSJSONSerialization JSONObjectWithData:[self.animated_images dataUsingEncoding:NSASCIIStringEncoding] options:nil error:nil];
+        NSArray *animImages = [NSJSONSerialization JSONObjectWithData:[self.animated_images dataUsingEncoding:NSUTF8StringEncoding] options:nil error:nil];
 
-        for (NSString *name in [animImages.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
-            return [a compare:b];
+        for (NSDictionary *animImage in [animImages sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b) {
+            return [a[@"n"] compare:b[@"n"]];
         }])
         {
-            NSArray *image_info = [animImages objectForKey:name];
-            NSString *image_data_start = [image_info objectAtIndex:0];
-            NSString *image_data_length = [image_info objectAtIndex:1];
-
-            long start = (long)image_data_start.longLongValue;
-            int length = image_data_length.intValue;
+            long start = [animImage[@"s"] longLongValue];
+            int length = [animImage[@"l"] intValue];
 
             FILE *file;
 
@@ -84,7 +80,7 @@
 
             int fd = fileno(file);
 
-            long page_start = start - (start % 4096);
+            long page_start = start - (start % getpagesize());
             long offset = start - page_start;
             
             void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
@@ -110,18 +106,14 @@
 {
     NSMutableArray *allImages = [NSMutableArray array];
 
-    NSDictionary *animImages = [NSJSONSerialization JSONObjectWithData:[self.animated_images dataUsingEncoding:NSASCIIStringEncoding] options:nil error:nil];
+    NSArray *animImages = [NSJSONSerialization JSONObjectWithData:[self.animated_images dataUsingEncoding:NSUTF8StringEncoding] options:nil error:nil];
 
-    for (NSString *name in [animImages.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *a, NSString *b) {
-        return [a compare:b];
+    for (NSDictionary *animImage in [animImages sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b) {
+        return [a[@"n"] compare:b[@"n"]];
     }])
     {
-        NSArray *image_info = [animImages objectForKey:name];
-        NSString *image_data_start = [image_info objectAtIndex:0];
-        NSString *image_data_length = [image_info objectAtIndex:1];
-
-        long start = (long)image_data_start.longLongValue;
-        int length = image_data_length.intValue;
+        long start = [animImage[@"s"] longLongValue];
+        int length = [animImage[@"l"] intValue];
 
         FILE *file;
 

@@ -184,7 +184,7 @@
         TestLogItem *item;
 
         item = [self.log.logitems objectAtIndex:(NSUInteger)i++];
-        NSDictionary *config = [NSJSONSerialization JSONObjectWithData:[item.info dataUsingEncoding:NSASCIIStringEncoding] options:0 error:nil];
+        NSDictionary *config = [NSJSONSerialization JSONObjectWithData:[item.info dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         int num_staircases = [(NSNumber *)[config objectForKey:@"number_of_staircases"] intValue];
 
         for (int j = 0; j < num_staircases; j++)

@@ -20,12 +20,15 @@
 #import "RootEntity.h"
 #import "APIController.h"
 #import "DatabaseManager.h"
-
-#define CENTRE_BOX_Y 330
+#import "DLKeyboardObserver.h"
 
 @interface MainMenuViewController ()
 
-@property (nonatomic) BOOL viewSetup;
+@property (nonatomic, strong) DLKeyboardObserver *keyboardObserver;
+
+@property (nonatomic) CGFloat defaultBoxYOffset;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *boxHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *boxYConstraint;
 
 @end
 
@@ -33,65 +36,38 @@
 
 #pragma mark - Setup
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self)
-    {
-        self.viewSetup = NO;
-    }
-
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    if (!self.viewSetup)
+    __weak typeof(self) weakSelf = self;
+    
+    self.defaultBoxYOffset = self.boxYConstraint.constant;
+    
+    self.keyboardObserver = [[DLKeyboardObserver alloc] init];
+    self.keyboardObserver.keyboardChanged = ^(BOOL visible, CGFloat height)
     {
-        self.APIController = [[APIController alloc] init];
-        [self loadUsers];
-    }
-}
-
-- (void)loadUsers
-{
-    NSArray *users = [User MR_findAll];
-    self.users = [users mutableCopy];
-
-    NSLog(@"Loaded %lu user(s) from database",(unsigned long) self.users.count);
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
-    if (!self.viewSetup)
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-
-        [self.centreBox setWidth:300 height:104];
-        [self.centreBox moveToY:CENTRE_BOX_Y];
-
-        [self.statusLabel centerToX:self.centreBox.width/2 y:51];
-        self.statusLabel.alpha = 0.0;
-
-        [self.infoLabel moveToX:30 y:14];
-        self.infoLabel.alpha = 0.0;
-
-        [self.beginTestButton moveToX:30 y:51];
-        self.beginTestButton.alpha = 0.0;
-
-        [self.beginPracticeTestButton moveToX:30 y:51+44+20];
-        self.beginPracticeTestButton.alpha = 0.0;
-
-        [self.logoutButton moveToX:30 y:51+44+20+44+20];
-        self.logoutButton.alpha = 0.0;
-
-        self.viewSetup = YES;
-    }
+        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^
+         {
+             weakSelf.boxYConstraint.constant = weakSelf.defaultBoxYOffset;
+             
+             if (visible)
+                 weakSelf.boxYConstraint.constant = height / 2.0f;
+             
+             [weakSelf.view layoutIfNeeded];
+             
+             weakSelf.overlay.alpha = visible ? 1.0 : 0.0;
+             
+         } completion:nil];
+    };
+    
+    self.boxHeightConstraint.constant = 104;
+    
+    self.statusLabel.alpha = 0.0f;
+    self.infoLabel.alpha = 0.0f;
+    self.logoutButton.alpha = 0.0f;
+    self.beginTestButton.alpha = 0.0f;
+    self.beginPracticeTestButton.alpha = 0.0f;
 }
 
 #pragma mark - User interaction
@@ -117,6 +93,10 @@
 {
     if ([userID isEqualToString:@"admin"])
     {
+        // Bug in iOS8.3
+        // http://stackoverflow.com/questions/29637443/nsinteralinconsistencyexception-uikeyboardlayoutalignmentview
+        [self.loginTextField resignFirstResponder];
+        
         RIButtonItem *cancelButton = [RIButtonItem itemWithLabel:@"Cancel"];
 
         RIButtonItem *loginButton = [RIButtonItem itemWithLabel:@"Login"];
@@ -136,12 +116,15 @@
             }
             else
             {
-                UIAlertView *inval = [[UIAlertView alloc] initWithTitle:@"Access Denied"
-                                                                message:@"Incorrect password entered."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Okay"
-                                                      otherButtonTitles:nil];
-                [inval show];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+                {
+                    [[[UIAlertView alloc] initWithTitle:@"Access Denied"
+                                               message:@"Incorrect password entered."
+                                              delegate:nil
+                                     cancelButtonTitle:@"Okay"
+                                     otherButtonTitles:nil] show];
+                });
+                
                 [self.loginTextField resignFirstResponder];
             }
         };
@@ -197,33 +180,27 @@
     // Attempt to connect to server and download latest configuration
     // If a new image set is there, download that
 
-    [self.APIController downloadParticipant:userID progress:^(NSString *status, float progress)
+    [[ServerManager sharedManager] downloadParticipant:userID progress:^(NSString *status, float progress)
     {
         self.statusLabel.text = [NSString stringWithFormat:@"Loading participant... (%.0f%%)", progress * 100];
 
     } success:^(User *newUser)
     {
-        if (![self.users containsObject:newUser])
-            [self.users addObject:newUser];
-        
         [self loadedUser:userID];
 
-    } failure:^
+    } failure:^(NSString *error)
     {
         [self loadedUser:userID];
-    } supressErrors:YES];
+    }];
 
     // Then try load locally.
 }
 
 - (void)loadedUser:(NSString *)userID
 {
-    unsigned long user = [self.users indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop)
-    {
-        return [((User *)obj).id isEqualToString:userID];
-    }];
+    User *user = [User MR_findFirstByAttribute:UserAttributes.id withValue:userID];
 
-    if (user == NSNotFound)
+    if (!user)
     {
         [self cancelLogin];
 
@@ -238,7 +215,7 @@
     else
     {
         self.statusLabel.text = @"Found participant, loading...";
-        self.user = [self.users objectAtIndex:user];
+        self.user = user;
         self.statusLabel.text = @"Loaded participant.";
 
         [self showMainMenu];
@@ -248,15 +225,6 @@
 - (void)showMainMenu
 {
     self.infoLabel.text = [NSString stringWithFormat:@"Logged in as %@", self.user.id];
-
-    if (self.user.enabledPracticeConfigurations.count == 0)
-    {
-        [self.logoutButton moveToY:51+44+20];
-    }
-    else
-    {
-        [self.logoutButton moveToY:51+44+20+44+20];
-    }
 
     if (self.user.enabledPracticeConfigurations.count > 1)
     {
@@ -276,28 +244,28 @@
         [self.beginTestButton setTitle:@"Begin Test" forState:UIControlStateNormal];
     }
 
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:0.3
                      animations:^
                      {
                          if (self.user.enabledPracticeConfigurations.count > 0)
                          {
-                             [self.centreBox setHeight:51+44+20+44+20+44+30];
-                             [self.centreBox moveToY:CENTRE_BOX_Y];
-
-                             self.beginPracticeTestButton.alpha = 1.0;
+                             weakSelf.boxHeightConstraint.constant = 25+20+20+44+20+44+20+44+30;
+                             weakSelf.beginPracticeTestButton.alpha = 1.0;
                          }
                          else
                          {
-                             [self.centreBox setHeight:51+44+20+44+30];
-                             [self.centreBox moveToY:CENTRE_BOX_Y];
+                             weakSelf.boxHeightConstraint.constant = 25+20+20+44+20+44+30;
+                             weakSelf.beginPracticeTestButton.alpha = 0.0;
                          }
 
-                         //[self.centreBox moveToY:self.view.height/2-self.centreBox.height/2];
-
-                         self.statusLabel.alpha = 0.0;
-                         self.beginTestButton.alpha = 1.0;
-                         self.logoutButton.alpha = 1.0;
-                         self.infoLabel.alpha = 1.0;
+                         weakSelf.statusLabel.alpha = 0.0;
+                         weakSelf.beginTestButton.alpha = 1.0;
+                         weakSelf.logoutButton.alpha = 1.0;
+                         weakSelf.infoLabel.alpha = 1.0;
+                         
+                         [weakSelf.view layoutIfNeeded];
                      }
     ];
 }
@@ -308,19 +276,22 @@
 
     self.loginTextField.text = @"";
 
+    __weak typeof(self) weakSelf = self;
+    
     [UIView animateWithDuration:0.3
                      animations:^
                      {
-                         self.beginTestButton.alpha = 0.0;
-                         self.beginPracticeTestButton.alpha = 0.0;
-                         self.logoutButton.alpha = 0.0;
-                         self.infoLabel.alpha = 0.0;
+                         weakSelf.beginTestButton.alpha = 0.0;
+                         weakSelf.beginPracticeTestButton.alpha = 0.0;
+                         weakSelf.logoutButton.alpha = 0.0;
+                         weakSelf.infoLabel.alpha = 0.0;
 
-                         [self.centreBox setHeight:104];
-                         [self.centreBox moveToY:CENTRE_BOX_Y];
+                         weakSelf.boxHeightConstraint.constant = 104;
 
-                         self.loginButton.alpha = 1.0;
-                         self.loginTextField.alpha = 1.0;
+                         weakSelf.loginButton.alpha = 1.0;
+                         weakSelf.loginTextField.alpha = 1.0;
+                         
+                         [weakSelf.view layoutIfNeeded];
                      }
     ];
 }
@@ -348,34 +319,17 @@
         TestViewController *controller = segue.destinationViewController;
         controller.user = self.user;
         controller.configurations = self.user.enabledConfigurations;
-        controller.users = self.users;
-        controller.APIController = self.APIController;
     }
     else if ([segue.identifier isEqualToString:@"BeginPracticeTest"])
     {
         TestViewController *controller = segue.destinationViewController;
         controller.user = self.user;
         controller.configurations = self.user.enabledPracticeConfigurations;
-        controller.users = self.users;
-        controller.APIController = self.APIController;
-    }
-    else if ([segue.identifier isEqualToString:@"AdminPanel"])
-    {
-        UINavigationController *controller = segue.destinationViewController;
-        AdminPanelTableViewController *theController = [controller.viewControllers objectAtIndex:0];
-        theController.users = self.users;
-        theController.APIController = self.APIController;
     }
 }
 
 
 #pragma mark - Delegate Methods
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -387,63 +341,19 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
-#pragma mark - Cleanup
-
-- (void)viewDidUnload
-{
-    [self setCentreBox:nil];
-    [self setInfoLabel:nil];
-    [super viewDidUnload];
-}
-
 #pragma mark - TextField delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == self.loginTextField)
+    {
         [self loginPress];
+    }
     else
     {
         [self.passwordAlertView clickButtonAtIndex:1];
     }
     return NO;
-}
-
-
-#pragma mark - Keyboard handler
-
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    NSValue *animationDurationValue = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval animationDuration;
-    [animationDurationValue getValue:&animationDuration];
-
-    [UIView animateWithDuration:animationDuration
-        animations:^
-        {
-            self.overlay.alpha = 0.0;
-
-            [self.centreBox moveToY:CENTRE_BOX_Y];
-        }
-    ];
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification
-{
-    CGRect keyboardFrame = [[notification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    keyboardFrame = [self.view convertRect:keyboardFrame fromView:nil];
-
-    NSValue *animationDurationValue = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval animationDuration;
-    [animationDurationValue getValue:&animationDuration];
-
-    [UIView animateWithDuration:animationDuration
-        animations:^
-        {
-            self.overlay.alpha = 1.0;
-            [self.centreBox moveToY:(self.view.height-keyboardFrame.size.height)/2-self.centreBox.height/2];
-        }
-    ];
 }
 
 @end

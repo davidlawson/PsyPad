@@ -14,7 +14,7 @@
     return [self.configurations objectsAtIndexes:
             [self.configurations indexesOfObjectsPassingTest:^BOOL(TestConfiguration *obj, NSUInteger idx, BOOL *stop)
             {
-                return obj.practice_configuration.boolValue == NO;
+                return obj.is_practiceValue == NO;
             }]];
 }
 
@@ -23,7 +23,7 @@
     return [self.configurations objectsAtIndexes:
             [self.configurations indexesOfObjectsPassingTest:^BOOL(TestConfiguration *obj, NSUInteger idx, BOOL *stop)
             {
-                return obj.practice_configuration.boolValue == YES;
+                return obj.is_practiceValue == YES;
             }]];
 }
 
@@ -36,16 +36,16 @@
     return [self.configurations objectsAtIndexes:
             [self.configurations indexesOfObjectsPassingTest:^BOOL(TestConfiguration *obj, NSUInteger idx, BOOL *stop)
             {
-                if ( (!obj.day_of_week_sun.boolValue && weekday == 1)
-                        || (!obj.day_of_week_mon.boolValue && weekday == 2)
-                        || (!obj.day_of_week_tue.boolValue && weekday == 3)
-                        || (!obj.day_of_week_wed.boolValue && weekday == 4)
-                        || (!obj.day_of_week_thu.boolValue && weekday == 5)
-                        || (!obj.day_of_week_fri.boolValue && weekday == 6)
-                        || (!obj.day_of_week_sat.boolValue && weekday == 7))
+                if ( (!obj.day_of_week_sunValue && weekday == 1)
+                        || (!obj.day_of_week_monValue && weekday == 2)
+                        || (!obj.day_of_week_tueValue && weekday == 3)
+                        || (!obj.day_of_week_wedValue && weekday == 4)
+                        || (!obj.day_of_week_thuValue && weekday == 5)
+                        || (!obj.day_of_week_friValue && weekday == 6)
+                        || (!obj.day_of_week_satValue && weekday == 7))
                     return NO;
 
-                return obj.practice_configuration.boolValue == NO && obj.enabled.boolValue && obj.sequence != NULL;
+                return obj.is_practiceValue == NO && obj.enabledValue && obj.sequence != NULL;
             }]];
 }
 
@@ -68,8 +68,8 @@
                         || (!obj.day_of_week_sat.boolValue && weekday == 7))
                     return NO;
 
-                return obj.practice_configuration.boolValue == YES
-                        && obj.enabled.boolValue && obj.sequence != NULL;
+                return obj.is_practiceValue == YES
+                        && obj.enabledValue && obj.sequence != NULL;
             }]];
 }
 

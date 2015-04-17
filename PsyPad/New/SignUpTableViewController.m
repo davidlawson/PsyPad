@@ -13,6 +13,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "LoginViewController.h"
 #import <Boilerplate/NSString+Email.h>
+#import "DatabaseManager.h"
 
 @interface SignUpTableViewController ()
 
@@ -136,6 +137,7 @@
     };
     
     [RootEntity rootEntity].server_url = self.serverField.text;
+    [DatabaseManager save];
     
     [[ServerManager sharedManager] signUpWithEmail:self.emailField.text
                                           password:self.passwordField.text

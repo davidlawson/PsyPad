@@ -16,6 +16,4 @@
 @property (strong, nonatomic) NSOrderedSet *logs;
 @property (strong, nonatomic) User *user;
 
-- (IBAction)close:(id)sender;
-
 @end

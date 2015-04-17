@@ -50,15 +50,12 @@
 		631CB3281698F7B7007A0534 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CB3271698F7B7007A0534 /* TestViewController.m */; };
 		631CB32E1698F7C3007A0534 /* TestButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CB32B1698F7C3007A0534 /* TestButton.m */; };
 		631CB32F1698F7C3007A0534 /* TestImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CB32D1698F7C3007A0534 /* TestImageButton.m */; };
+		6326BED01AE0184F0052CD72 /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63E43CA41ADE4065009962D5 /* flat-ui-icons-regular.ttf */; };
 		63276B6A16A4C1060002CF30 /* AnalysisTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63276B6916A4C1060002CF30 /* AnalysisTableViewController.m */; };
 		63276B7016A4C23A0002CF30 /* BarChartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63276B6F16A4C23A0002CF30 /* BarChartCell.m */; };
 		6330F4D61A93299500A62986 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6330F4D51A93299500A62986 /* DatabaseManager.m */; };
 		6330F4D91A932A4900A62986 /* NSURL+CommonURLs.m in Sources */ = {isa = PBXBuildFile; fileRef = 6330F4D81A932A4900A62986 /* NSURL+CommonURLs.m */; };
 		6330F4DB1A932CC000A62986 /* NSObject+DelayBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 6330F4DA1A932CC000A62986 /* NSObject+DelayBlock.m */; };
-		6335536F1820DA5300CEECE3 /* unimelb_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536B1820DA5300CEECE3 /* unimelb_logo.png */; };
-		633553701820DA5300CEECE3 /* arc_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536C1820DA5300CEECE3 /* arc_logo.png */; };
-		633553711820DA5300CEECE3 /* arc_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536D1820DA5300CEECE3 /* arc_logo@2x.png */; };
-		633553721820DA5300CEECE3 /* unimelb_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6335536E1820DA5300CEECE3 /* unimelb_logo@2x.png */; };
 		635D079A168D7D0D002B845F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D0799168D7D0D002B845F /* UIKit.framework */; };
 		635D079C168D7D0D002B845F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D079B168D7D0D002B845F /* Foundation.framework */; };
 		635D079E168D7D0D002B845F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635D079D168D7D0D002B845F /* CoreGraphics.framework */; };
@@ -71,12 +68,13 @@
 		63606108168DC82900F200CA /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606102168DC82900F200CA /* RIButtonItem.m */; };
 		63606109168DC82900F200CA /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606104168DC82900F200CA /* UIActionSheet+Blocks.m */; };
 		6360610A168DC82900F200CA /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606106168DC82900F200CA /* UIAlertView+Blocks.m */; };
+		6374D3B31ADF8901003A3AAF /* AvailableConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6374D3B21ADF8901003A3AAF /* AvailableConfiguration.m */; };
+		6374D3B61ADF8999003A3AAF /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6374D3B51ADF8999003A3AAF /* DemoViewController.m */; };
 		6385E38A18176BB300508530 /* BorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6385E38918176BB300508530 /* BorderButton.m */; };
-		6385E38C18176EF400508530 /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6385E38B18176EF400508530 /* plus@2x.png */; };
-		6385E38E18176F3D00508530 /* tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6385E38D18176F3D00508530 /* tick@2x.png */; };
 		63A1ED6017B89C100089C204 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A1ED5F17B89C100089C204 /* UserTableViewCell.m */; };
 		63AE80B81A9AC8160074C32A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63AE80B71A9AC8160074C32A /* Images.xcassets */; };
 		63AE80BB1A9ACE5C0074C32A /* SignUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AE80BA1A9ACE5C0074C32A /* SignUpTableViewController.m */; };
+		63B0E8D41ADF7E9000316695 /* ConfigurationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B0E8D31ADF7E9000316695 /* ConfigurationTableViewCell.m */; };
 		63BF7A541ABEA23E00825F70 /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF7A531ABEA23E00825F70 /* LaunchViewController.m */; };
 		63BF7A571ABEB1B500825F70 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF7A561ABEB1B500825F70 /* ServerManager.m */; };
 		63BF7A801ABEB2D300825F70 /* _TestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF7A621ABEB2D300825F70 /* _TestConfiguration.m */; };
@@ -98,16 +96,12 @@
 		63BF7A971ABEB6E600825F70 /* RootEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF7A951ABEB6E600825F70 /* RootEntity.m */; };
 		63CD19381A9ABB74006946C5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CD19371A9ABB74006946C5 /* LoginViewController.m */; };
 		63DC3D2A1696F9A600ACCFBE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63DC3D291696F9A600ACCFBE /* libz.dylib */; };
-		63DC3D3F1696F9FD00ACCFBE /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DC3D3E1696F9FD00ACCFBE /* tick.png */; };
-		63DC3D561696FFF900ACCFBE /* SelectConfigurationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D551696FFF900ACCFBE /* SelectConfigurationTableViewController.m */; };
-		63DC3D581698133A00ACCFBE /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DC3D571698133A00ACCFBE /* plus.png */; };
 		63DC3D5C169814B400ACCFBE /* TickTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D5B169814B400ACCFBE /* TickTableViewCell.m */; };
 		63DC3D631698170700ACCFBE /* AdminPanelNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D621698170700ACCFBE /* AdminPanelNavigationController.m */; };
-		63DC3D6F16982B5100ACCFBE /* TestConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D6C16982B5100ACCFBE /* TestConfigTableViewController.m */; };
-		63DC3D7016982B5100ACCFBE /* TestConfigSubTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D6E16982B5100ACCFBE /* TestConfigSubTableViewController.m */; };
 		63DC3D7716982D8200ACCFBE /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D7216982D8200ACCFBE /* TextFieldTableViewCell.m */; };
 		63DC3D7816982D8200ACCFBE /* SliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D7416982D8200ACCFBE /* SliderTableViewCell.m */; };
 		63DC3D7916982D8200ACCFBE /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC3D7616982D8200ACCFBE /* SwitchTableViewCell.m */; };
+		63E43CA71ADF556C009962D5 /* ConfigurationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E43CA61ADF556C009962D5 /* ConfigurationsTableViewController.m */; };
 		63E6B2D118BB3ECC00554671 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6B2D018BB3ECC00554671 /* ImageTableViewCell.m */; };
 		63F9F1BA168ED165006532D9 /* UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F9F1B7168ED165006532D9 /* UIButton+Block.m */; };
 		63F9F1BB168ED165006532D9 /* UIButtonBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F9F1B9168ED165006532D9 /* UIButtonBlock.m */; };
@@ -169,10 +163,6 @@
 		6330F4D71A932A4900A62986 /* NSURL+CommonURLs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+CommonURLs.h"; sourceTree = "<group>"; };
 		6330F4D81A932A4900A62986 /* NSURL+CommonURLs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+CommonURLs.m"; sourceTree = "<group>"; };
 		6330F4DA1A932CC000A62986 /* NSObject+DelayBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DelayBlock.m"; sourceTree = "<group>"; };
-		6335536B1820DA5300CEECE3 /* unimelb_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unimelb_logo.png; sourceTree = "<group>"; };
-		6335536C1820DA5300CEECE3 /* arc_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arc_logo.png; sourceTree = "<group>"; };
-		6335536D1820DA5300CEECE3 /* arc_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arc_logo@2x.png"; sourceTree = "<group>"; };
-		6335536E1820DA5300CEECE3 /* unimelb_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unimelb_logo@2x.png"; sourceTree = "<group>"; };
 		6339F1EF16B875C4001B4392 /* PsyPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PsyPad.entitlements; path = ../PsyPad.entitlements; sourceTree = "<group>"; };
 		635D0795168D7D0D002B845F /* PsyPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PsyPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		635D0799168D7D0D002B845F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -198,15 +188,19 @@
 		63606104168DC82900F200CA /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+Blocks.m"; path = "../UIAlertView-Blocks/UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
 		63606105168DC82900F200CA /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+Blocks.h"; path = "../UIAlertView-Blocks/UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		63606106168DC82900F200CA /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+Blocks.m"; path = "../UIAlertView-Blocks/UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		6374D3B11ADF8900003A3AAF /* AvailableConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailableConfiguration.h; sourceTree = "<group>"; };
+		6374D3B21ADF8901003A3AAF /* AvailableConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailableConfiguration.m; sourceTree = "<group>"; };
+		6374D3B41ADF8999003A3AAF /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		6374D3B51ADF8999003A3AAF /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		6385E38818176BB300508530 /* BorderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderButton.h; sourceTree = "<group>"; };
 		6385E38918176BB300508530 /* BorderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderButton.m; sourceTree = "<group>"; };
-		6385E38B18176EF400508530 /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
-		6385E38D18176F3D00508530 /* tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x.png"; sourceTree = "<group>"; };
 		63A1ED5E17B89C100089C204 /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserTableViewCell.h; path = "Custom Controls/UserTableViewCell.h"; sourceTree = "<group>"; };
 		63A1ED5F17B89C100089C204 /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserTableViewCell.m; path = "Custom Controls/UserTableViewCell.m"; sourceTree = "<group>"; };
 		63AE80B71A9AC8160074C32A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		63AE80B91A9ACE5C0074C32A /* SignUpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTableViewController.h; sourceTree = "<group>"; };
 		63AE80BA1A9ACE5C0074C32A /* SignUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableViewController.m; sourceTree = "<group>"; };
+		63B0E8D21ADF7E9000316695 /* ConfigurationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationTableViewCell.h; sourceTree = "<group>"; };
+		63B0E8D31ADF7E9000316695 /* ConfigurationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationTableViewCell.m; sourceTree = "<group>"; };
 		63BF7A521ABEA23E00825F70 /* LaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
 		63BF7A531ABEA23E00825F70 /* LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
 		63BF7A551ABEB1B500825F70 /* ServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
@@ -247,24 +241,19 @@
 		63CD19361A9ABB74006946C5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		63CD19371A9ABB74006946C5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		63DC3D291696F9A600ACCFBE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		63DC3D3E1696F9FD00ACCFBE /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
-		63DC3D541696FFF900ACCFBE /* SelectConfigurationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectConfigurationTableViewController.h; sourceTree = "<group>"; };
-		63DC3D551696FFF900ACCFBE /* SelectConfigurationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectConfigurationTableViewController.m; sourceTree = "<group>"; };
-		63DC3D571698133A00ACCFBE /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		63DC3D5A169814B400ACCFBE /* TickTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickTableViewCell.h; sourceTree = "<group>"; };
 		63DC3D5B169814B400ACCFBE /* TickTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickTableViewCell.m; sourceTree = "<group>"; };
 		63DC3D611698170700ACCFBE /* AdminPanelNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminPanelNavigationController.h; sourceTree = "<group>"; };
 		63DC3D621698170700ACCFBE /* AdminPanelNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminPanelNavigationController.m; sourceTree = "<group>"; };
-		63DC3D6B16982B5100ACCFBE /* TestConfigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestConfigTableViewController.h; sourceTree = "<group>"; };
-		63DC3D6C16982B5100ACCFBE /* TestConfigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConfigTableViewController.m; sourceTree = "<group>"; };
-		63DC3D6D16982B5100ACCFBE /* TestConfigSubTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestConfigSubTableViewController.h; sourceTree = "<group>"; };
-		63DC3D6E16982B5100ACCFBE /* TestConfigSubTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConfigSubTableViewController.m; sourceTree = "<group>"; };
 		63DC3D7116982D8200ACCFBE /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldTableViewCell.h; sourceTree = "<group>"; };
 		63DC3D7216982D8200ACCFBE /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldTableViewCell.m; sourceTree = "<group>"; };
 		63DC3D7316982D8200ACCFBE /* SliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderTableViewCell.h; sourceTree = "<group>"; };
 		63DC3D7416982D8200ACCFBE /* SliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderTableViewCell.m; sourceTree = "<group>"; };
 		63DC3D7516982D8200ACCFBE /* SwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
 		63DC3D7616982D8200ACCFBE /* SwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
+		63E43CA41ADE4065009962D5 /* flat-ui-icons-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "flat-ui-icons-regular.ttf"; sourceTree = "<group>"; };
+		63E43CA51ADF556C009962D5 /* ConfigurationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationsTableViewController.h; sourceTree = "<group>"; };
+		63E43CA61ADF556C009962D5 /* ConfigurationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationsTableViewController.m; sourceTree = "<group>"; };
 		63E6B2CF18BB3ECC00554671 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableViewCell.h; sourceTree = "<group>"; };
 		63E6B2D018BB3ECC00554671 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
 		63F9F1B6168ED165006532D9 /* UIButton+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Block.h"; sourceTree = "<group>"; };
@@ -362,6 +351,14 @@
 				63AE80BA1A9ACE5C0074C32A /* SignUpTableViewController.m */,
 				63BF7A551ABEB1B500825F70 /* ServerManager.h */,
 				63BF7A561ABEB1B500825F70 /* ServerManager.m */,
+				63E43CA51ADF556C009962D5 /* ConfigurationsTableViewController.h */,
+				63E43CA61ADF556C009962D5 /* ConfigurationsTableViewController.m */,
+				63B0E8D21ADF7E9000316695 /* ConfigurationTableViewCell.h */,
+				63B0E8D31ADF7E9000316695 /* ConfigurationTableViewCell.m */,
+				6374D3B11ADF8900003A3AAF /* AvailableConfiguration.h */,
+				6374D3B21ADF8901003A3AAF /* AvailableConfiguration.m */,
+				6374D3B41ADF8999003A3AAF /* DemoViewController.h */,
+				6374D3B51ADF8999003A3AAF /* DemoViewController.m */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -392,14 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				63AE80B71A9AC8160074C32A /* Images.xcassets */,
-				6335536B1820DA5300CEECE3 /* unimelb_logo.png */,
-				6335536C1820DA5300CEECE3 /* arc_logo.png */,
-				6335536D1820DA5300CEECE3 /* arc_logo@2x.png */,
-				6335536E1820DA5300CEECE3 /* unimelb_logo@2x.png */,
-				63DC3D571698133A00ACCFBE /* plus.png */,
-				6385E38B18176EF400508530 /* plus@2x.png */,
-				6385E38D18176F3D00508530 /* tick@2x.png */,
-				63DC3D3E1696F9FD00ACCFBE /* tick.png */,
+				63E43CA41ADE4065009962D5 /* flat-ui-icons-regular.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -473,12 +463,6 @@
 		5AF0EA8C7A3DEBCBB378BF99 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				63DC3D6C16982B5100ACCFBE /* TestConfigTableViewController.m */,
-				63DC3D6D16982B5100ACCFBE /* TestConfigSubTableViewController.h */,
-				63DC3D6B16982B5100ACCFBE /* TestConfigTableViewController.h */,
-				63DC3D541696FFF900ACCFBE /* SelectConfigurationTableViewController.h */,
-				63DC3D6E16982B5100ACCFBE /* TestConfigSubTableViewController.m */,
-				63DC3D551696FFF900ACCFBE /* SelectConfigurationTableViewController.m */,
 				5AF0E4D147A6C544C6120CCD /* Custom Controls */,
 			);
 			path = Configuration;
@@ -723,17 +707,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6326BED01AE0184F0052CD72 /* flat-ui-icons-regular.ttf in Resources */,
 				635D07A4168D7D0D002B845F /* InfoPlist.strings in Resources */,
-				633553711820DA5300CEECE3 /* arc_logo@2x.png in Resources */,
-				633553701820DA5300CEECE3 /* arc_logo.png in Resources */,
-				63DC3D3F1696F9FD00ACCFBE /* tick.png in Resources */,
-				63DC3D581698133A00ACCFBE /* plus.png in Resources */,
 				5AF0E3B4932D22B782FDC1D7 /* Main.storyboard in Resources */,
-				6335536F1820DA5300CEECE3 /* unimelb_logo.png in Resources */,
-				633553721820DA5300CEECE3 /* unimelb_logo@2x.png in Resources */,
 				63AE80B81A9AC8160074C32A /* Images.xcassets in Resources */,
-				6385E38E18176F3D00508530 /* tick@2x.png in Resources */,
-				6385E38C18176EF400508530 /* plus@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,21 +792,20 @@
 				63BF7A851ABEB2D300825F70 /* _TestSequenceImage.m in Sources */,
 				635D07B6168D7D0D002B845F /* MainMenuViewController.m in Sources */,
 				63BF7A8C1ABEB2D300825F70 /* TestSequenceFolder.m in Sources */,
+				6374D3B31ADF8901003A3AAF /* AvailableConfiguration.m in Sources */,
 				6385E38A18176BB300508530 /* BorderButton.m in Sources */,
 				636035BA168D897000AE93D0 /* UIView+Positioning.m in Sources */,
 				636035BF168D897E00AE93D0 /* Random.m in Sources */,
 				63606108168DC82900F200CA /* RIButtonItem.m in Sources */,
 				6330F4D61A93299500A62986 /* DatabaseManager.m in Sources */,
 				63606109168DC82900F200CA /* UIActionSheet+Blocks.m in Sources */,
+				63B0E8D41ADF7E9000316695 /* ConfigurationTableViewCell.m in Sources */,
 				6360610A168DC82900F200CA /* UIAlertView+Blocks.m in Sources */,
 				63BF7A831ABEB2D300825F70 /* _TestSequence.m in Sources */,
 				63F9F1BA168ED165006532D9 /* UIButton+Block.m in Sources */,
 				63F9F1BB168ED165006532D9 /* UIButtonBlock.m in Sources */,
-				63DC3D561696FFF900ACCFBE /* SelectConfigurationTableViewController.m in Sources */,
 				63DC3D5C169814B400ACCFBE /* TickTableViewCell.m in Sources */,
 				63DC3D631698170700ACCFBE /* AdminPanelNavigationController.m in Sources */,
-				63DC3D6F16982B5100ACCFBE /* TestConfigTableViewController.m in Sources */,
-				63DC3D7016982B5100ACCFBE /* TestConfigSubTableViewController.m in Sources */,
 				63DC3D7716982D8200ACCFBE /* TextFieldTableViewCell.m in Sources */,
 				63BF7A911ABEB62E00825F70 /* Model.xcdatamodeld in Sources */,
 				63BF7A801ABEB2D300825F70 /* _TestConfiguration.m in Sources */,
@@ -846,6 +822,8 @@
 				6330F4DB1A932CC000A62986 /* NSObject+DelayBlock.m in Sources */,
 				631CB32F1698F7C3007A0534 /* TestImageButton.m in Sources */,
 				63BF7A811ABEB2D300825F70 /* _TestLog.m in Sources */,
+				63E43CA71ADF556C009962D5 /* ConfigurationsTableViewController.m in Sources */,
+				6374D3B61ADF8999003A3AAF /* DemoViewController.m in Sources */,
 				63276B6A16A4C1060002CF30 /* AnalysisTableViewController.m in Sources */,
 				63276B7016A4C23A0002CF30 /* BarChartCell.m in Sources */,
 				5AF0EF093E7AF2B134082306 /* Fraction.m in Sources */,
@@ -1114,6 +1092,7 @@
 				63BF7A5D1ABEB2A100825F70 /* Ad-hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

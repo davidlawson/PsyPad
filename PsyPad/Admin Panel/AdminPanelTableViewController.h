@@ -12,8 +12,7 @@
 @interface AdminPanelTableViewController : UITableViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) NSMutableArray *users;
-@property (strong, nonatomic) NSMutableArray *serverUsers;
-@property (strong, nonatomic) APIController *APIController;
+@property (strong, nonatomic) NSArray *serverUsers;
 
 @property (strong, nonatomic) UIAlertView *addUserAlertView;
 

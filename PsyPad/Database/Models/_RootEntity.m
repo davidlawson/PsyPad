@@ -6,6 +6,7 @@
 const struct RootEntityAttributes RootEntityAttributes = {
 	.admin_password = @"admin_password",
 	.authToken = @"authToken",
+	.demoMode = @"demoMode",
 	.email = @"email",
 	.server_url = @"server_url",
 };
@@ -36,12 +37,38 @@ const struct RootEntityAttributes RootEntityAttributes = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"demoModeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"demoMode"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
 @dynamic admin_password;
 
 @dynamic authToken;
+
+@dynamic demoMode;
+
+- (BOOL)demoModeValue {
+	NSNumber *result = [self demoMode];
+	return [result boolValue];
+}
+
+- (void)setDemoModeValue:(BOOL)value_ {
+	[self setDemoMode:@(value_)];
+}
+
+- (BOOL)primitiveDemoModeValue {
+	NSNumber *result = [self primitiveDemoMode];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveDemoModeValue:(BOOL)value_ {
+	[self setPrimitiveDemoMode:@(value_)];
+}
 
 @dynamic email;
 

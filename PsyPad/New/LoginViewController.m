@@ -15,6 +15,8 @@
 #import "RootEntity.h"
 #import "UIViewController+DLLoad.h"
 #import "MainMenuViewController.h"
+#import "DatabaseManager.h"
+#import "DemoViewController.h"
 
 @interface LoginViewController ()
 
@@ -93,7 +95,7 @@
     {
         [hud hide:YES];
         
-        [weakSelf.navigationController setViewControllers:@[[MainMenuViewController loadFromMainStoryboard]] animated:YES];
+        [weakSelf.navigationController setViewControllers:@[[DemoViewController loadFromMainStoryboard]] animated:YES];
     };
     
     void (^failure)(NSString *error) = ^(NSString *error)
@@ -108,6 +110,8 @@
     };
     
     [RootEntity rootEntity].server_url = self.serverURLField.text;
+    [RootEntity rootEntity].admin_password = self.passwordField.text;
+    [DatabaseManager save];
     
     [[ServerManager sharedManager] loginWithEmail:self.emailField.text
                                          password:self.passwordField.text

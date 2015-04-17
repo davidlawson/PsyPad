@@ -9,6 +9,9 @@
 #import "LaunchViewController.h"
 #import "LoginViewController.h"
 #import "UIViewController+DLLoad.h"
+#import "RootEntity.h"
+#import "MainMenuViewController.h"
+#import "DemoViewController.h"
 
 @interface LaunchViewController ()
 
@@ -22,7 +25,18 @@
     
     // perform application initialization (but not migration) steps here
     
-    [self.navigationController setViewControllers:@[[LoginViewController loadFromMainStoryboard]] animated:YES];
+    UIViewController *vc;
+    if ([RootEntity rootEntity].loggedIn)
+    {
+        if ([RootEntity rootEntity].demoModeValue)
+            vc = [DemoViewController loadFromMainStoryboard];
+        else
+            vc = [MainMenuViewController loadFromMainStoryboard];
+    }
+    else
+        vc = [LoginViewController loadFromMainStoryboard];
+        
+    [self.navigationController setViewControllers:@[vc] animated:YES];
 }
 
 - (IBAction)tappedVisitWebsite:(UIButton *)sender

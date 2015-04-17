@@ -20,12 +20,18 @@
 
 - (void)loggedInWithEmail:(NSString *)email authToken:(NSString *)authToken
 {
-    
+    self.email = email;
+    self.authToken = authToken;
+    self.demoMode = @YES;
+    [self.managedObjectContext MR_saveToPersistentStoreAndWait];
 }
 
 - (void)loggedOut
 {
-    
+    self.email = nil;
+    self.authToken = nil;
+    self.demoMode = @YES;
+    [self.managedObjectContext MR_saveToPersistentStoreAndWait];
 }
 
 - (void)setServer_url:(NSString *)server_url

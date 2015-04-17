@@ -10,32 +10,33 @@ const struct TestConfigurationAttributes TestConfigurationAttributes = {
 	.button1_bg = @"button1_bg",
 	.button1_fg = @"button1_fg",
 	.button1_h = @"button1_h",
+	.button1_text = @"button1_text",
 	.button1_w = @"button1_w",
 	.button1_x = @"button1_x",
 	.button1_y = @"button1_y",
 	.button2_bg = @"button2_bg",
 	.button2_fg = @"button2_fg",
 	.button2_h = @"button2_h",
+	.button2_text = @"button2_text",
 	.button2_w = @"button2_w",
 	.button2_x = @"button2_x",
 	.button2_y = @"button2_y",
 	.button3_bg = @"button3_bg",
 	.button3_fg = @"button3_fg",
 	.button3_h = @"button3_h",
+	.button3_text = @"button3_text",
 	.button3_w = @"button3_w",
 	.button3_x = @"button3_x",
 	.button3_y = @"button3_y",
 	.button4_bg = @"button4_bg",
 	.button4_fg = @"button4_fg",
 	.button4_h = @"button4_h",
+	.button4_text = @"button4_text",
 	.button4_w = @"button4_w",
 	.button4_x = @"button4_x",
 	.button4_y = @"button4_y",
 	.button_presentation_delay = @"button_presentation_delay",
-	.button_text_four = @"button_text_four",
-	.button_text_one = @"button_text_one",
-	.button_text_three = @"button_text_three",
-	.button_text_two = @"button_text_two",
+	.configuration_description = @"configuration_description",
 	.day_of_week_fri = @"day_of_week_fri",
 	.day_of_week_mon = @"day_of_week_mon",
 	.day_of_week_sat = @"day_of_week_sat",
@@ -43,6 +44,7 @@ const struct TestConfigurationAttributes TestConfigurationAttributes = {
 	.day_of_week_thu = @"day_of_week_thu",
 	.day_of_week_tue = @"day_of_week_tue",
 	.day_of_week_wed = @"day_of_week_wed",
+	.delta_values = @"delta_values",
 	.enabled = @"enabled",
 	.exit_button_bg = @"exit_button_bg",
 	.exit_button_fg = @"exit_button_fg",
@@ -50,30 +52,33 @@ const struct TestConfigurationAttributes TestConfigurationAttributes = {
 	.exit_button_w = @"exit_button_w",
 	.exit_button_x = @"exit_button_x",
 	.exit_button_y = @"exit_button_y",
-	.images_together_presentation_time = @"images_together_presentation_time",
-	.images_together_presentation_time_is_infinite = @"images_together_presentation_time_is_infinite",
-	.loop_animated_images = @"loop_animated_images",
+	.finite_presentation_time = @"finite_presentation_time",
+	.finite_response_window = @"finite_response_window",
+	.hits_to_finish = @"hits_to_finish",
+	.infinite_presentation_time = @"infinite_presentation_time",
+	.infinite_response_window = @"infinite_response_window",
+	.is_gallery_configuration = @"is_gallery_configuration",
+	.is_practice = @"is_practice",
+	.loop_animations = @"loop_animations",
+	.maximum_level = @"maximum_level",
+	.minimum_level = @"minimum_level",
 	.name = @"name",
-	.num_staircases_interleaved = @"num_staircases_interleaved",
-	.number_of_buttons = @"number_of_buttons",
-	.practice_configuration = @"practice_configuration",
+	.num_buttons = @"num_buttons",
+	.num_correct_to_get_harder = @"num_correct_to_get_harder",
+	.num_wrong_to_get_easier = @"num_wrong_to_get_easier",
+	.number_of_reversals = @"number_of_reversals",
+	.number_of_staircases = @"number_of_staircases",
 	.questions_per_folder = @"questions_per_folder",
-	.randomisation_specified_seed = @"randomisation_specified_seed",
-	.randomisation_use_specified_seed = @"randomisation_use_specified_seed",
 	.require_next = @"require_next",
-	.response_window = @"response_window",
-	.response_window_is_infinite = @"response_window_is_infinite",
+	.server_id = @"server_id",
+	.server_url = @"server_url",
 	.show_exit_button = @"show_exit_button",
-	.staircase_deltas = @"staircase_deltas",
-	.staircase_floor_ceiling_hits = @"staircase_floor_ceiling_hits",
-	.staircase_max_level = @"staircase_max_level",
-	.staircase_min_level = @"staircase_min_level",
-	.staircase_num_correct_to_get_harder = @"staircase_num_correct_to_get_harder",
-	.staircase_num_incorrect_to_get_easier = @"staircase_num_incorrect_to_get_easier",
-	.staircase_num_reversals = @"staircase_num_reversals",
-	.staircase_start_level = @"staircase_start_level",
+	.specified_seed = @"specified_seed",
+	.start_level = @"start_level",
 	.time_between_question_mean = @"time_between_question_mean",
 	.time_between_question_plusminus = @"time_between_question_plusminus",
+	.title = @"title",
+	.use_specified_seed = @"use_specified_seed",
 	.use_staircase_method = @"use_staircase_method",
 };
 
@@ -263,43 +268,48 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"images_together_presentation_timeValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"images_together_presentation_time"];
+	if ([key isEqualToString:@"finite_presentation_timeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"finite_presentation_time"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"images_together_presentation_time_is_infiniteValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"images_together_presentation_time_is_infinite"];
+	if ([key isEqualToString:@"finite_response_windowValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"finite_response_window"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"loop_animated_imagesValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"loop_animated_images"];
+	if ([key isEqualToString:@"infinite_presentation_timeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"infinite_presentation_time"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"num_staircases_interleavedValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"num_staircases_interleaved"];
+	if ([key isEqualToString:@"infinite_response_windowValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"infinite_response_window"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"number_of_buttonsValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"number_of_buttons"];
+	if ([key isEqualToString:@"is_gallery_configurationValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"is_gallery_configuration"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"practice_configurationValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"practice_configuration"];
+	if ([key isEqualToString:@"is_practiceValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"is_practice"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"randomisation_specified_seedValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"randomisation_specified_seed"];
+	if ([key isEqualToString:@"loop_animationsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"loop_animations"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"randomisation_use_specified_seedValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"randomisation_use_specified_seed"];
+	if ([key isEqualToString:@"num_buttonsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"num_buttons"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"number_of_staircasesValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"number_of_staircases"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -308,18 +318,13 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"response_windowValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"response_window"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"response_window_is_infiniteValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"response_window_is_infinite"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 	if ([key isEqualToString:@"show_exit_buttonValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"show_exit_button"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"specified_seedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"specified_seed"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -330,6 +335,11 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	}
 	if ([key isEqualToString:@"time_between_question_plusminusValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"time_between_question_plusminus"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"use_specified_seedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"use_specified_seed"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -407,6 +417,8 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 - (void)setPrimitiveButton1_hValue:(int16_t)value_ {
 	[self setPrimitiveButton1_h:@(value_)];
 }
+
+@dynamic button1_text;
 
 @dynamic button1_w;
 
@@ -492,6 +504,8 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	[self setPrimitiveButton2_h:@(value_)];
 }
 
+@dynamic button2_text;
+
 @dynamic button2_w;
 
 - (int16_t)button2_wValue {
@@ -575,6 +589,8 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 - (void)setPrimitiveButton3_hValue:(int16_t)value_ {
 	[self setPrimitiveButton3_h:@(value_)];
 }
+
+@dynamic button3_text;
 
 @dynamic button3_w;
 
@@ -660,6 +676,8 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	[self setPrimitiveButton4_h:@(value_)];
 }
 
+@dynamic button4_text;
+
 @dynamic button4_w;
 
 - (int16_t)button4_wValue {
@@ -740,13 +758,7 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	[self setPrimitiveButton_presentation_delay:@(value_)];
 }
 
-@dynamic button_text_four;
-
-@dynamic button_text_one;
-
-@dynamic button_text_three;
-
-@dynamic button_text_two;
+@dynamic configuration_description;
 
 @dynamic day_of_week_fri;
 
@@ -888,6 +900,8 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	[self setPrimitiveDay_of_week_wed:@(value_)];
 }
 
+@dynamic delta_values;
+
 @dynamic enabled;
 
 - (BOOL)enabledValue {
@@ -992,169 +1006,201 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	[self setPrimitiveExit_button_y:@(value_)];
 }
 
-@dynamic images_together_presentation_time;
+@dynamic finite_presentation_time;
 
-- (float)images_together_presentation_timeValue {
-	NSNumber *result = [self images_together_presentation_time];
+- (float)finite_presentation_timeValue {
+	NSNumber *result = [self finite_presentation_time];
 	return [result floatValue];
 }
 
-- (void)setImages_together_presentation_timeValue:(float)value_ {
-	[self setImages_together_presentation_time:@(value_)];
+- (void)setFinite_presentation_timeValue:(float)value_ {
+	[self setFinite_presentation_time:@(value_)];
 }
 
-- (float)primitiveImages_together_presentation_timeValue {
-	NSNumber *result = [self primitiveImages_together_presentation_time];
+- (float)primitiveFinite_presentation_timeValue {
+	NSNumber *result = [self primitiveFinite_presentation_time];
 	return [result floatValue];
 }
 
-- (void)setPrimitiveImages_together_presentation_timeValue:(float)value_ {
-	[self setPrimitiveImages_together_presentation_time:@(value_)];
+- (void)setPrimitiveFinite_presentation_timeValue:(float)value_ {
+	[self setPrimitiveFinite_presentation_time:@(value_)];
 }
 
-@dynamic images_together_presentation_time_is_infinite;
+@dynamic finite_response_window;
 
-- (BOOL)images_together_presentation_time_is_infiniteValue {
-	NSNumber *result = [self images_together_presentation_time_is_infinite];
+- (float)finite_response_windowValue {
+	NSNumber *result = [self finite_response_window];
+	return [result floatValue];
+}
+
+- (void)setFinite_response_windowValue:(float)value_ {
+	[self setFinite_response_window:@(value_)];
+}
+
+- (float)primitiveFinite_response_windowValue {
+	NSNumber *result = [self primitiveFinite_response_window];
+	return [result floatValue];
+}
+
+- (void)setPrimitiveFinite_response_windowValue:(float)value_ {
+	[self setPrimitiveFinite_response_window:@(value_)];
+}
+
+@dynamic hits_to_finish;
+
+@dynamic infinite_presentation_time;
+
+- (BOOL)infinite_presentation_timeValue {
+	NSNumber *result = [self infinite_presentation_time];
 	return [result boolValue];
 }
 
-- (void)setImages_together_presentation_time_is_infiniteValue:(BOOL)value_ {
-	[self setImages_together_presentation_time_is_infinite:@(value_)];
+- (void)setInfinite_presentation_timeValue:(BOOL)value_ {
+	[self setInfinite_presentation_time:@(value_)];
 }
 
-- (BOOL)primitiveImages_together_presentation_time_is_infiniteValue {
-	NSNumber *result = [self primitiveImages_together_presentation_time_is_infinite];
+- (BOOL)primitiveInfinite_presentation_timeValue {
+	NSNumber *result = [self primitiveInfinite_presentation_time];
 	return [result boolValue];
 }
 
-- (void)setPrimitiveImages_together_presentation_time_is_infiniteValue:(BOOL)value_ {
-	[self setPrimitiveImages_together_presentation_time_is_infinite:@(value_)];
+- (void)setPrimitiveInfinite_presentation_timeValue:(BOOL)value_ {
+	[self setPrimitiveInfinite_presentation_time:@(value_)];
 }
 
-@dynamic loop_animated_images;
+@dynamic infinite_response_window;
 
-- (BOOL)loop_animated_imagesValue {
-	NSNumber *result = [self loop_animated_images];
+- (BOOL)infinite_response_windowValue {
+	NSNumber *result = [self infinite_response_window];
 	return [result boolValue];
 }
 
-- (void)setLoop_animated_imagesValue:(BOOL)value_ {
-	[self setLoop_animated_images:@(value_)];
+- (void)setInfinite_response_windowValue:(BOOL)value_ {
+	[self setInfinite_response_window:@(value_)];
 }
 
-- (BOOL)primitiveLoop_animated_imagesValue {
-	NSNumber *result = [self primitiveLoop_animated_images];
+- (BOOL)primitiveInfinite_response_windowValue {
+	NSNumber *result = [self primitiveInfinite_response_window];
 	return [result boolValue];
 }
 
-- (void)setPrimitiveLoop_animated_imagesValue:(BOOL)value_ {
-	[self setPrimitiveLoop_animated_images:@(value_)];
+- (void)setPrimitiveInfinite_response_windowValue:(BOOL)value_ {
+	[self setPrimitiveInfinite_response_window:@(value_)];
 }
+
+@dynamic is_gallery_configuration;
+
+- (BOOL)is_gallery_configurationValue {
+	NSNumber *result = [self is_gallery_configuration];
+	return [result boolValue];
+}
+
+- (void)setIs_gallery_configurationValue:(BOOL)value_ {
+	[self setIs_gallery_configuration:@(value_)];
+}
+
+- (BOOL)primitiveIs_gallery_configurationValue {
+	NSNumber *result = [self primitiveIs_gallery_configuration];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIs_gallery_configurationValue:(BOOL)value_ {
+	[self setPrimitiveIs_gallery_configuration:@(value_)];
+}
+
+@dynamic is_practice;
+
+- (BOOL)is_practiceValue {
+	NSNumber *result = [self is_practice];
+	return [result boolValue];
+}
+
+- (void)setIs_practiceValue:(BOOL)value_ {
+	[self setIs_practice:@(value_)];
+}
+
+- (BOOL)primitiveIs_practiceValue {
+	NSNumber *result = [self primitiveIs_practice];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIs_practiceValue:(BOOL)value_ {
+	[self setPrimitiveIs_practice:@(value_)];
+}
+
+@dynamic loop_animations;
+
+- (BOOL)loop_animationsValue {
+	NSNumber *result = [self loop_animations];
+	return [result boolValue];
+}
+
+- (void)setLoop_animationsValue:(BOOL)value_ {
+	[self setLoop_animations:@(value_)];
+}
+
+- (BOOL)primitiveLoop_animationsValue {
+	NSNumber *result = [self primitiveLoop_animations];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveLoop_animationsValue:(BOOL)value_ {
+	[self setPrimitiveLoop_animations:@(value_)];
+}
+
+@dynamic maximum_level;
+
+@dynamic minimum_level;
 
 @dynamic name;
 
-@dynamic num_staircases_interleaved;
+@dynamic num_buttons;
 
-- (int16_t)num_staircases_interleavedValue {
-	NSNumber *result = [self num_staircases_interleaved];
+- (int16_t)num_buttonsValue {
+	NSNumber *result = [self num_buttons];
 	return [result shortValue];
 }
 
-- (void)setNum_staircases_interleavedValue:(int16_t)value_ {
-	[self setNum_staircases_interleaved:@(value_)];
+- (void)setNum_buttonsValue:(int16_t)value_ {
+	[self setNum_buttons:@(value_)];
 }
 
-- (int16_t)primitiveNum_staircases_interleavedValue {
-	NSNumber *result = [self primitiveNum_staircases_interleaved];
+- (int16_t)primitiveNum_buttonsValue {
+	NSNumber *result = [self primitiveNum_buttons];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveNum_staircases_interleavedValue:(int16_t)value_ {
-	[self setPrimitiveNum_staircases_interleaved:@(value_)];
+- (void)setPrimitiveNum_buttonsValue:(int16_t)value_ {
+	[self setPrimitiveNum_buttons:@(value_)];
 }
 
-@dynamic number_of_buttons;
+@dynamic num_correct_to_get_harder;
 
-- (int16_t)number_of_buttonsValue {
-	NSNumber *result = [self number_of_buttons];
+@dynamic num_wrong_to_get_easier;
+
+@dynamic number_of_reversals;
+
+@dynamic number_of_staircases;
+
+- (int16_t)number_of_staircasesValue {
+	NSNumber *result = [self number_of_staircases];
 	return [result shortValue];
 }
 
-- (void)setNumber_of_buttonsValue:(int16_t)value_ {
-	[self setNumber_of_buttons:@(value_)];
+- (void)setNumber_of_staircasesValue:(int16_t)value_ {
+	[self setNumber_of_staircases:@(value_)];
 }
 
-- (int16_t)primitiveNumber_of_buttonsValue {
-	NSNumber *result = [self primitiveNumber_of_buttons];
+- (int16_t)primitiveNumber_of_staircasesValue {
+	NSNumber *result = [self primitiveNumber_of_staircases];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveNumber_of_buttonsValue:(int16_t)value_ {
-	[self setPrimitiveNumber_of_buttons:@(value_)];
-}
-
-@dynamic practice_configuration;
-
-- (BOOL)practice_configurationValue {
-	NSNumber *result = [self practice_configuration];
-	return [result boolValue];
-}
-
-- (void)setPractice_configurationValue:(BOOL)value_ {
-	[self setPractice_configuration:@(value_)];
-}
-
-- (BOOL)primitivePractice_configurationValue {
-	NSNumber *result = [self primitivePractice_configuration];
-	return [result boolValue];
-}
-
-- (void)setPrimitivePractice_configurationValue:(BOOL)value_ {
-	[self setPrimitivePractice_configuration:@(value_)];
+- (void)setPrimitiveNumber_of_staircasesValue:(int16_t)value_ {
+	[self setPrimitiveNumber_of_staircases:@(value_)];
 }
 
 @dynamic questions_per_folder;
-
-@dynamic randomisation_specified_seed;
-
-- (int32_t)randomisation_specified_seedValue {
-	NSNumber *result = [self randomisation_specified_seed];
-	return [result intValue];
-}
-
-- (void)setRandomisation_specified_seedValue:(int32_t)value_ {
-	[self setRandomisation_specified_seed:@(value_)];
-}
-
-- (int32_t)primitiveRandomisation_specified_seedValue {
-	NSNumber *result = [self primitiveRandomisation_specified_seed];
-	return [result intValue];
-}
-
-- (void)setPrimitiveRandomisation_specified_seedValue:(int32_t)value_ {
-	[self setPrimitiveRandomisation_specified_seed:@(value_)];
-}
-
-@dynamic randomisation_use_specified_seed;
-
-- (BOOL)randomisation_use_specified_seedValue {
-	NSNumber *result = [self randomisation_use_specified_seed];
-	return [result boolValue];
-}
-
-- (void)setRandomisation_use_specified_seedValue:(BOOL)value_ {
-	[self setRandomisation_use_specified_seed:@(value_)];
-}
-
-- (BOOL)primitiveRandomisation_use_specified_seedValue {
-	NSNumber *result = [self primitiveRandomisation_use_specified_seed];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveRandomisation_use_specified_seedValue:(BOOL)value_ {
-	[self setPrimitiveRandomisation_use_specified_seed:@(value_)];
-}
 
 @dynamic require_next;
 
@@ -1176,45 +1222,9 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	[self setPrimitiveRequire_next:@(value_)];
 }
 
-@dynamic response_window;
+@dynamic server_id;
 
-- (float)response_windowValue {
-	NSNumber *result = [self response_window];
-	return [result floatValue];
-}
-
-- (void)setResponse_windowValue:(float)value_ {
-	[self setResponse_window:@(value_)];
-}
-
-- (float)primitiveResponse_windowValue {
-	NSNumber *result = [self primitiveResponse_window];
-	return [result floatValue];
-}
-
-- (void)setPrimitiveResponse_windowValue:(float)value_ {
-	[self setPrimitiveResponse_window:@(value_)];
-}
-
-@dynamic response_window_is_infinite;
-
-- (BOOL)response_window_is_infiniteValue {
-	NSNumber *result = [self response_window_is_infinite];
-	return [result boolValue];
-}
-
-- (void)setResponse_window_is_infiniteValue:(BOOL)value_ {
-	[self setResponse_window_is_infinite:@(value_)];
-}
-
-- (BOOL)primitiveResponse_window_is_infiniteValue {
-	NSNumber *result = [self primitiveResponse_window_is_infinite];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveResponse_window_is_infiniteValue:(BOOL)value_ {
-	[self setPrimitiveResponse_window_is_infinite:@(value_)];
-}
+@dynamic server_url;
 
 @dynamic show_exit_button;
 
@@ -1236,21 +1246,27 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	[self setPrimitiveShow_exit_button:@(value_)];
 }
 
-@dynamic staircase_deltas;
+@dynamic specified_seed;
 
-@dynamic staircase_floor_ceiling_hits;
+- (int32_t)specified_seedValue {
+	NSNumber *result = [self specified_seed];
+	return [result intValue];
+}
 
-@dynamic staircase_max_level;
+- (void)setSpecified_seedValue:(int32_t)value_ {
+	[self setSpecified_seed:@(value_)];
+}
 
-@dynamic staircase_min_level;
+- (int32_t)primitiveSpecified_seedValue {
+	NSNumber *result = [self primitiveSpecified_seed];
+	return [result intValue];
+}
 
-@dynamic staircase_num_correct_to_get_harder;
+- (void)setPrimitiveSpecified_seedValue:(int32_t)value_ {
+	[self setPrimitiveSpecified_seed:@(value_)];
+}
 
-@dynamic staircase_num_incorrect_to_get_easier;
-
-@dynamic staircase_num_reversals;
-
-@dynamic staircase_start_level;
+@dynamic start_level;
 
 @dynamic time_between_question_mean;
 
@@ -1290,6 +1306,28 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 
 - (void)setPrimitiveTime_between_question_plusminusValue:(float)value_ {
 	[self setPrimitiveTime_between_question_plusminus:@(value_)];
+}
+
+@dynamic title;
+
+@dynamic use_specified_seed;
+
+- (BOOL)use_specified_seedValue {
+	NSNumber *result = [self use_specified_seed];
+	return [result boolValue];
+}
+
+- (void)setUse_specified_seedValue:(BOOL)value_ {
+	[self setUse_specified_seed:@(value_)];
+}
+
+- (BOOL)primitiveUse_specified_seedValue {
+	NSNumber *result = [self primitiveUse_specified_seed];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveUse_specified_seedValue:(BOOL)value_ {
+	[self setPrimitiveUse_specified_seed:@(value_)];
 }
 
 @dynamic use_staircase_method;

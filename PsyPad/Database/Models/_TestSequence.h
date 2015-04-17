@@ -13,9 +13,11 @@ extern const struct TestSequenceAttributes {
 
 extern const struct TestSequenceRelationships {
 	__unsafe_unretained NSString *folders;
+	__unsafe_unretained NSString *testConfigurations;
 } TestSequenceRelationships;
 
 @class TestSequenceFolder;
+@class TestConfiguration;
 
 @interface TestSequenceID : NSManagedObjectID {}
 @end
@@ -58,6 +60,10 @@ extern const struct TestSequenceRelationships {
 
 - (NSMutableOrderedSet*)foldersSet;
 
+@property (nonatomic, strong) NSSet *testConfigurations;
+
+- (NSMutableSet*)testConfigurationsSet;
+
 @end
 
 @interface _TestSequence (FoldersCoreDataGeneratedAccessors)
@@ -72,6 +78,14 @@ extern const struct TestSequenceRelationships {
 - (void)removeFoldersAtIndexes:(NSIndexSet *)indexes;
 - (void)replaceObjectInFoldersAtIndex:(NSUInteger)idx withObject:(TestSequenceFolder*)value;
 - (void)replaceFoldersAtIndexes:(NSIndexSet *)indexes withFolders:(NSArray *)values;
+
+@end
+
+@interface _TestSequence (TestConfigurationsCoreDataGeneratedAccessors)
+- (void)addTestConfigurations:(NSSet*)value_;
+- (void)removeTestConfigurations:(NSSet*)value_;
+- (void)addTestConfigurationsObject:(TestConfiguration*)value_;
+- (void)removeTestConfigurationsObject:(TestConfiguration*)value_;
 
 @end
 
@@ -100,5 +114,8 @@ extern const struct TestSequenceRelationships {
 
 - (NSMutableOrderedSet*)primitiveFolders;
 - (void)setPrimitiveFolders:(NSMutableOrderedSet*)value;
+
+- (NSMutableSet*)primitiveTestConfigurations;
+- (void)setPrimitiveTestConfigurations:(NSMutableSet*)value;
 
 @end

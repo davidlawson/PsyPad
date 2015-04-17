@@ -11,15 +11,12 @@
 @interface UserTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
-@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailTextLabel;
 
 @property (copy, nonatomic) void (^downloadAction)(void);
-@property (copy, nonatomic) void (^uploadAction)(void);
 
 - (IBAction)pressedDownloadButton:(id)sender;
-- (IBAction)pressedUploadButton:(id)sender;
 
 
 @end

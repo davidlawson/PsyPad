@@ -22,9 +22,27 @@
 #import "TextFieldTableViewCell.h"
 #import "TestConfiguration.h"
 #import "UserTableViewCell.h"
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "MainMenuViewController.h"
 #import "DatabaseManager.h"
+#import "LoginViewController.h"
+#import "UIViewController+DLLoad.h"
+#import "SwitchTableViewCell.h"
+#import "DemoViewController.h"
+
+enum {
+    sLocalUsers = 0,
+    sServerUsers = 1,
+    
+    sUploadDownload = 2,
+    rUploadLogs = 0,
+    rDownloadAll = 1,
+    
+    sAdmin = 3,
+    rDemoMode = 0,
+    rAdminPassword = 1,
+    rLogout = 2
+};
 
 @interface AdminPanelTableViewController ()
 
@@ -35,6 +53,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.users = [[User MR_findAll] mutableCopy];
 }
 
 #pragma mark - UIViewController delegate methods
@@ -50,12 +70,6 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -65,84 +79,83 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Local users
-    if (section == 0)
-        return self.users.count + 1;
-    // Server users
-    else if (section == 1)
+    if (section == sLocalUsers)
+        return MAX(1, self.users.count);
+    else if (section == sServerUsers)
         return self.serverUsers.count + 1;
-    // Upload / Download
-    else if (section == 2)
-        return 3;
-    // Admin
-    else
+    else if (section == sUploadDownload)
         return 2;
+    else // if (section == sAdmin)
+        return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak typeof(self) weakSelf = self;
+    
     UITableViewCell *cell;
 
-    if (indexPath.section == 0 && indexPath.row < self.users.count)
+    if (indexPath.section == sLocalUsers)
     {
+        if (self.users.count == 0)
+        {
+            return [tableView dequeueReusableCellWithIdentifier:@"NoParticipantsCell" forIndexPath:indexPath];
+        }
+        
         UserTableViewCell *tvCell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
 
         User *user = [self.users objectAtIndex:(NSUInteger)indexPath.row];
 
         tvCell.textLabel.text = user.id;
-        tvCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu test configurations, %lu practice test configurations, %lu logs", (unsigned long)user.configurations.count, (unsigned long)user.practiceConfigurations.count, (unsigned long)user.logs.count];
+        tvCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu test, %lu practice, %lu logs", (unsigned long)user.configurations.count, (unsigned long)user.practiceConfigurations.count, (unsigned long)user.logs.count];
         tvCell.downloadAction = ^(void)
         {
-            [self downloadParticipant:user.id];
-        };
-        tvCell.uploadAction = ^(void)
-        {
-            [self uploadUser:user];
+            [weakSelf downloadParticipant:user.id];
         };
 
         cell = tvCell;
     }
-    else if (indexPath.section == 0)
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"AddUserCell"];
-    }
-    else if (indexPath.section == 1 && indexPath.row < self.serverUsers.count)
+    else if (indexPath.section == sServerUsers && indexPath.row < self.serverUsers.count)
     {
         UserTableViewCell *tvCell = [tableView dequeueReusableCellWithIdentifier:@"ServerUserCell"];
 
         NSDictionary *user = [self.serverUsers objectAtIndex:(NSUInteger)indexPath.row];
 
-        tvCell.textLabel.text = [user objectForKey:@"username"];
-        tvCell.detailTextLabel.text = [user objectForKey:@"description"];
+        tvCell.textLabel.text = user[@"username"];
+        tvCell.detailTextLabel.text = user[@"desc"];
         tvCell.downloadAction = ^(void)
         {
-            [self downloadParticipant:[user objectForKey:@"username"]];
+            [weakSelf downloadParticipant:user[@"username"]];
         };
 
         cell = tvCell;
     }
-    else if (indexPath.section == 1)
+    else if (indexPath.section == sServerUsers)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"LoadUserListCell"];
     }
-    else if (indexPath.section == 2)
+    else if (indexPath.section == sUploadDownload)
     {
-        if (indexPath.row == 0)
+        if (indexPath.row == rUploadLogs)
             cell = [tableView dequeueReusableCellWithIdentifier:@"UploadLogsCell"];
-        else if (indexPath.row == 1)
+        else // if (indexPath.row == rDownloadAll)
             cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadAllCell"];
-        else if (indexPath.row == 2)
-            cell = [tableView dequeueReusableCellWithIdentifier:@"UploadAllCell"];
     }
-    else if (indexPath.section == 3)
+    else if (indexPath.section == sAdmin)
     {
-        if (indexPath.row == 0)
+        if (indexPath.row == rDemoMode)
+        {
+            SwitchTableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:@"DemoModeCell"];
+            theCell.theSwitch.on = [RootEntity rootEntity].demoModeValue;
+            cell = theCell;
+        }
+        else if (indexPath.row == rAdminPassword)
         {
             TextFieldTableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:@"AdminPasswordCell"];
             theCell.textField.text = [RootEntity rootEntity].admin_password;
             cell = theCell;
         }
-        else if (indexPath.row == 1)
+        else // if (indexPath.row == rLogout)
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"LogoutCell"];
         }
@@ -153,15 +166,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == self.users.count)
+    if (indexPath.section == sLocalUsers && indexPath.row == self.users.count)
     {
         return 44;
     }
-    else if (indexPath.section == 1 && indexPath.row == self.serverUsers.count)
+    else if (indexPath.section == sServerUsers && indexPath.row == self.serverUsers.count)
     {
         return 44;
     }
-    else if (indexPath.section == 2 || indexPath.section == 3)
+    else if (indexPath.section == sUploadDownload || indexPath.section == sAdmin)
     {
         return 44;
     }
@@ -173,24 +186,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == self.users.count)
-    {
-        [self addParticipant];
-    }
-    else if (indexPath.section == 1 && indexPath.row == self.serverUsers.count)
+    if (indexPath.section == sServerUsers && indexPath.row == self.serverUsers.count)
     {
         [self loadServerParticipants];
     }
-    else if (indexPath.section == 2)
+    else if (indexPath.section == sUploadDownload)
     {
-        if (indexPath.row == 0)
+        if (indexPath.row == rUploadLogs)
             [self uploadLogs];
-        else if (indexPath.row == 1)
+        else // if (indexPath.row == rDownloadAll)
             [self downloadAllParticipants];
-        else if (indexPath.row == 2)
-            [self uploadAllParticipants];
     }
-    else if (indexPath.section == 3 && indexPath.row == 1)
+    else if (indexPath.section == sAdmin && indexPath.row == rLogout)
     {
         [self logout];
     }
@@ -211,17 +218,24 @@
     self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Loading users...";
 
-    [self.APIController loadServerParticipants:^(NSMutableArray *serverUsers)
+    [[ServerManager sharedManager] loadServerParticipants:^(NSArray *participants)
     {
-        self.serverUsers = serverUsers;
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+        self.serverUsers = participants;
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sServerUsers]
+                      withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
 
-    } failure:^
+    } failure:^(NSString *error)
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
+        
+        [[[UIAlertView alloc] initWithTitle:@"Failed to Load Participants"
+                                    message:error
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
     }];
 
     return;
@@ -233,7 +247,8 @@
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Downloading participant...";
 
-    [self.APIController downloadParticipant:username progress:^(NSString *status, float progress)
+    [[ServerManager sharedManager] downloadParticipant:username
+                                              progress:^(NSString *status, float progress)
     {
         self.hud.labelText = status;
         self.hud.progress = progress;
@@ -253,42 +268,22 @@
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
 
-    } failure:^
+    } failure:^(NSString *error)
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
-    } supressErrors:NO];
-
-    return;
-}
-
-- (void)uploadUser:(User *)user
-{
-    self.hud = [self createHUD];
-    self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Uploading user...";
-
-    [self.APIController uploadUser:user success:^
-    {
-        [self.hud hide:YES];
-        [self.hud removeFromSuperview];
-
-        [[[UIAlertView alloc] initWithTitle:@""
-                                    message:@"User uploaded successfully"
+        
+        [[[UIAlertView alloc] initWithTitle:@"Failed to Download Participant"
+                                    message:error
                                    delegate:nil
                           cancelButtonTitle:@"Close"
                           otherButtonTitles:nil] show];
-
-    } failure:^
-    {
-        [self.hud hide:YES];
-        [self.hud removeFromSuperview];
     }];
 }
 
 - (void)uploadLogs
 {
-    self.hud = [self createHUD];
+    /*self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Uploading...";
 
@@ -312,12 +307,12 @@
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
-    }];
+    }];*/
 }
 
 - (void)downloadAllParticipants
 {
-    self.hud = [self createHUD];
+    /*self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Downloading participants...";
 
@@ -347,147 +342,31 @@
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
-    }];
-}
-
-- (void)uploadAllParticipants
-{
-    self.hud = [self createHUD];
-    self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Uploading participants...";
-
-    [self.APIController uploadAllUsers:self.users success:^
-    {
-        [self.hud hide:YES];
-        [self.hud removeFromSuperview];
-
-        [[[UIAlertView alloc] initWithTitle:@""
-                                    message:@"Participants uploaded successfully"
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
-
-    } failure:^
-    {
-        [self.hud hide:YES];
-        [self.hud removeFromSuperview];
-    }];
-}
-
-- (void)addParticipant
-{
-    User *defaultUser = NULL;
-    for (User *user in self.users)
-    {
-        if ([user.id isEqualToString:@"default"])
-        {
-            defaultUser = user;
-            break;
-        }
-    }
-
-    if (defaultUser == NULL)
-    {
-        [[[UIAlertView alloc] initWithTitle:@"No Default User"
-                                    message:@"You need a default user downloaded from the server to copy from."
-                                   delegate:nil
-                          cancelButtonTitle:@"Okay"
-                          otherButtonTitles:nil] show];
-        return;
-    }
-
-    RIButtonItem *cancelButton = [RIButtonItem itemWithLabel:@"Cancel"];
-
-    RIButtonItem *createUserButton = [RIButtonItem itemWithLabel:@"Create User"];
-
-    self.addUserAlertView = [[UIAlertView alloc] initWithTitle:@"New User"
-                                                        message:@"Please choose a user ID:"
-                                               cancelButtonItem:cancelButton
-                                               otherButtonItems:createUserButton, nil];
-
-    createUserButton.action = ^{
-        NSString *userID = [self.addUserAlertView textFieldAtIndex:0].text;
-
-        BOOL usernameTaken = NO;
-        for (User *user in self.users)
-        {
-            if ([user.id isEqualToString:userID])
-            {
-                usernameTaken = YES;
-                break;
-            }
-        }
-
-        if (usernameTaken)
-        {
-            [[[UIAlertView alloc] initWithTitle:@"Username Taken"
-                                        message:@"Sorry, that participant already exists."
-                                       delegate:nil
-                              cancelButtonTitle:@"Okay"
-                              otherButtonTitles:nil] show];
-        }
-        else if ([userID isEqualToString:@"default"] || [userID isEqualToString:@"admin"])
-        {
-            [[[UIAlertView alloc] initWithTitle:@"Reserved Username"
-                                        message:@"Sorry, please choose another username."
-                                       delegate:nil
-                              cancelButtonTitle:@"Okay"
-                              otherButtonTitles:nil] show];
-        }
-        else if (userID.length == 0)
-        {
-            [[[UIAlertView alloc] initWithTitle:@"Empty Username"
-                                        message:@"Please choose a username."
-                                       delegate:nil
-                              cancelButtonTitle:@"Okay"
-                              otherButtonTitles:nil] show];
-        }
-        else
-        {
-            self.hud = [self createHUD];
-            self.hud.mode = MBProgressHUDModeIndeterminate;
-            self.hud.labelText = @"Creating Participant";
-
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
-            {
-                [[NSManagedObjectContext MR_defaultContext] lock];
-
-                User *newUser = [User MR_createEntity];
-                newUser.id = userID;
-
-                for (TestConfiguration *configuration in defaultUser.configurations)
-                {
-                    TestConfiguration *new_config = [TestConfiguration MR_createEntity];
-                    [new_config copyFromConfiguration:configuration];
-                    [newUser addConfigurationsObject:new_config];
-                }
-
-                [DatabaseManager save];
-
-                [[NSManagedObjectContext MR_defaultContext] unlock];
-
-                [self.users addObject:newUser];
-
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.users indexOfObject:newUser] inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-                    [self.hud hide:YES];
-                    [self.hud removeFromSuperview];
-                });
-            });
-
-            //[self performSegueWithIdentifier:@"ConfigurationInformation" sender:[NSIndexPath indexPathForRow:[self.user.configurations indexOfObject:newConfiguration] inSection:0]];
-        }
-    };
-
-    self.addUserAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [self.addUserAlertView textFieldAtIndex:0].delegate = self;
-
-    [self.addUserAlertView show];
+    }];*/
 }
 
 - (void)logout
 {
-#warning todo
+    __weak typeof(self) weakSelf = self;
+    
+    RIButtonItem *logOut = [RIButtonItem itemWithLabel:@"Log Out"];
+    logOut.action = ^
+    {
+        [[ServerManager sharedManager] logout];
+        
+        UINavigationController *nav = (UINavigationController *)weakSelf.navigationController.presentingViewController;
+        [nav setViewControllers:@[[LoginViewController loadFromMainStoryboard], nav.topViewController] animated:NO];
+        
+        [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^
+         {
+             [nav popViewControllerAnimated:YES];
+         }];
+    };
+    
+    [[[UIAlertView alloc] initWithTitle:@""
+                                message:@"Are you sure you want to\nlog out of PsyPad?"
+                       cancelButtonItem:[RIButtonItem itemWithLabel:@"Cancel"]
+                       otherButtonItems:logOut, nil] show];
 }
 
 #pragma mark - TextField delegate
@@ -548,10 +427,45 @@
 
 - (IBAction)dismissModal:(id)sender
 {
+    UIViewController *presenting = [(UINavigationController *)self.presentingViewController topViewController];
+    
     [self dismissViewControllerAnimated:YES completion:^
     {
-        [(MainMenuViewController *)self.presentingViewController loadUsers];
+        if ([presenting isKindOfClass:[DemoViewController class]]
+            && ![RootEntity rootEntity].demoModeValue)
+        {
+            UINavigationController *nav = presenting.navigationController;
+            NSMutableArray *vcs = nav.viewControllers.mutableCopy;
+            [vcs removeLastObject];
+            [vcs addObject:[MainMenuViewController loadFromMainStoryboard]];
+            [nav setViewControllers:vcs animated:YES];
+        }
+        else if ([presenting isKindOfClass:[MainMenuViewController class]]
+                 && [RootEntity rootEntity].demoModeValue)
+        {
+            UINavigationController *nav = presenting.navigationController;
+            NSMutableArray *vcs = nav.viewControllers.mutableCopy;
+            [vcs removeLastObject];
+            [vcs addObject:[DemoViewController loadFromMainStoryboard]];
+            [nav setViewControllers:vcs animated:YES];
+        }
     }];
+}
+
+- (IBAction)demoModeToggled:(UISwitch *)sender
+{
+    [RootEntity rootEntity].demoModeValue = sender.on;
+    
+    if (!sender.on)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Leaving Demo Mode"
+                                    message:@"Please ensure you have entered an admin password. Login with \"admin\" and that password to configure PsyPad."
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
+    }
+    
+    [DatabaseManager save];
 }
 
 @end

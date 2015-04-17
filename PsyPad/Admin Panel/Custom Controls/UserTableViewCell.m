@@ -10,6 +10,8 @@
 
 @implementation UserTableViewCell
 
+@synthesize textLabel, detailTextLabel;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -30,12 +32,6 @@
 {
     if (self.downloadAction)
         self.downloadAction();
-}
-
-- (IBAction)pressedUploadButton:(id)sender
-{
-    if (self.uploadAction)
-        self.uploadAction();
 }
 
 @end
