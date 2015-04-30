@@ -3,7 +3,5 @@
 #endif
 
 #import "Pods-environment.h"
-#define NSLog CLS_LOG
-#import <Fabric/Crashlytics.h>
 #import "DLLocalization.h"
 #import <MagicalRecord/CoreData+MagicalRecord.h>

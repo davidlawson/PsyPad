@@ -5,6 +5,7 @@
 
 extern const struct TestLogAttributes {
 	__unsafe_unretained NSString *timestamp;
+	__unsafe_unretained NSString *uploaded;
 } TestLogAttributes;
 
 extern const struct TestLogRelationships {
@@ -27,6 +28,14 @@ extern const struct TestLogRelationships {
 @property (nonatomic, strong) NSDate* timestamp;
 
 //- (BOOL)validateTimestamp:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* uploaded;
+
+@property (atomic) BOOL uploadedValue;
+- (BOOL)uploadedValue;
+- (void)setUploadedValue:(BOOL)value_;
+
+//- (BOOL)validateUploaded:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSOrderedSet *logitems;
 
@@ -57,6 +66,12 @@ extern const struct TestLogRelationships {
 
 - (NSDate*)primitiveTimestamp;
 - (void)setPrimitiveTimestamp:(NSDate*)value;
+
+- (NSNumber*)primitiveUploaded;
+- (void)setPrimitiveUploaded:(NSNumber*)value;
+
+- (BOOL)primitiveUploadedValue;
+- (void)setPrimitiveUploadedValue:(BOOL)value_;
 
 - (NSMutableOrderedSet*)primitiveLogitems;
 - (void)setPrimitiveLogitems:(NSMutableOrderedSet*)value;

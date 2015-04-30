@@ -110,7 +110,6 @@
     };
     
     [RootEntity rootEntity].server_url = self.serverURLField.text;
-    [RootEntity rootEntity].admin_password = self.passwordField.text;
     [DatabaseManager save];
     
     [[ServerManager sharedManager] loginWithEmail:self.emailField.text

@@ -283,11 +283,11 @@ enum {
 
 - (void)uploadLogs
 {
-    /*self.hud = [self createHUD];
+    self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Uploading...";
 
-    [self.APIController uploadLogs:self.users progress:^(NSString *status, float progress)
+    [[ServerManager sharedManager] uploadLogsWithProgress:^(NSString *status, float progress)
     {
         self.hud.labelText = status;
         self.hud.progress = progress;
@@ -303,20 +303,26 @@ enum {
                           cancelButtonTitle:@"Close"
                           otherButtonTitles:nil] show];
 
-    } failure:^
+    } failure:^(NSString *error)
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
-    }];*/
+        
+        [[[UIAlertView alloc] initWithTitle:@"Failed to Upload Logs"
+                                    message:error
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
+    }];
 }
 
 - (void)downloadAllParticipants
 {
-    /*self.hud = [self createHUD];
+    self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeDeterminate;
     self.hud.labelText = @"Downloading participants...";
 
-    [self.APIController downloadAllParticipants:^(NSString *status, float progress)
+    [[ServerManager sharedManager] downloadAllParticipants:^(NSString *status, float progress)
     {
         self.hud.labelText = status;
         self.hud.progress = progress;
@@ -338,11 +344,17 @@ enum {
                           cancelButtonTitle:@"Close"
                           otherButtonTitles:nil] show];
 
-    } failure:^
+    } failure:^(NSString *error)
     {
         [self.hud hide:YES];
         [self.hud removeFromSuperview];
-    }];*/
+        
+        [[[UIAlertView alloc] initWithTitle:@"Failed to Upload Logs"
+                                    message:error
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
+    }];
 }
 
 - (void)logout
@@ -458,8 +470,18 @@ enum {
     
     if (!sender.on)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Leaving Demo Mode"
-                                    message:@"Please ensure you have entered an admin password. Login with \"admin\" and that password to configure PsyPad."
+        NSString *message;
+        if ([RootEntity rootEntity].admin_password.length == 0)
+        {
+            message = @"No admin password has been set. If you want to restrict access to the admin panel, please set an admin password. Login as \"admin\" to open the admin panel.";
+        }
+        else
+        {
+            message = @"Make sure you know the admin password (or set a new one) so you can return to the admin panel. Login as \"admin\" to open the admin panel.";
+        }
+        
+        [[[UIAlertView alloc] initWithTitle:@"Warning"
+                                    message:message
                                    delegate:nil
                           cancelButtonTitle:@"Close"
                           otherButtonTitles:nil] show];

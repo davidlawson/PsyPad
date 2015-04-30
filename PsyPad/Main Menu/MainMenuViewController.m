@@ -93,6 +93,14 @@
 {
     if ([userID isEqualToString:@"admin"])
     {
+        if ([RootEntity rootEntity].admin_password.length == 0)
+        {
+            [self performSegueWithIdentifier:@"AdminPanel" sender:nil];
+            self.loginTextField.text = @"";
+            [self.loginTextField resignFirstResponder];
+            return;
+        }
+
         // Bug in iOS8.3
         // http://stackoverflow.com/questions/29637443/nsinteralinconsistencyexception-uikeyboardlayoutalignmentview
         [self.loginTextField resignFirstResponder];

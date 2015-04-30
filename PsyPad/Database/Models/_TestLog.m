@@ -5,6 +5,7 @@
 
 const struct TestLogAttributes TestLogAttributes = {
 	.timestamp = @"timestamp",
+	.uploaded = @"uploaded",
 };
 
 const struct TestLogRelationships TestLogRelationships = {
@@ -38,10 +39,36 @@ const struct TestLogRelationships TestLogRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"uploadedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"uploaded"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
 @dynamic timestamp;
+
+@dynamic uploaded;
+
+- (BOOL)uploadedValue {
+	NSNumber *result = [self uploaded];
+	return [result boolValue];
+}
+
+- (void)setUploadedValue:(BOOL)value_ {
+	[self setUploaded:@(value_)];
+}
+
+- (BOOL)primitiveUploadedValue {
+	NSNumber *result = [self primitiveUploaded];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveUploadedValue:(BOOL)value_ {
+	[self setPrimitiveUploaded:@(value_)];
+}
 
 @dynamic logitems;
 

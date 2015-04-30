@@ -13,6 +13,8 @@
 #import "TestConfiguration.h"
 #import "AvailableConfiguration.h"
 #import "User.h"
+#import "TestLog.h"
+#import "TestLogItem.h"
 
 @implementation ServerManager
 
@@ -272,6 +274,121 @@
                                 @"user_token": self.currentUser.authToken }
                      success:successBlock
                      failure:[self failureBlock:failure]];
+}
+
+- (void)downloadAllParticipants:(void (^)(NSString *status, float progress))progress
+                        success:(void (^)(NSMutableArray *newUsers))success
+                        failure:(void (^)(NSString *error))failure
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
+    {
+        [self loadServerParticipants:^(NSArray *participants)
+         {
+             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
+             {
+                 NSMutableArray *loadedParticipants = [NSMutableArray array];
+                 __block BOOL failed = NO;
+                 
+                 for (NSDictionary *user in participants)
+                 {
+                     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+                     
+                     [self downloadParticipant:user[@"username"]
+                                      progress:^(NSString *status, float _progress)
+                      {
+                          progress([status stringByAppendingFormat:@" (participant %d/%d)",
+                                    (int)[participants indexOfObject:user]+1,
+                                    (int)participants.count],
+                                   _progress);
+                          
+                      }
+                                       success:^(User *newUser)
+                      {
+                          [loadedParticipants addObject:user];
+                          dispatch_semaphore_signal(sema);
+                          
+                      }
+                                       failure:^(NSString *error)
+                      {
+                          failure(error);
+                          failed = YES;
+                          dispatch_semaphore_signal(sema);
+                      }];
+                     
+                     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+                     
+                     if (failed) break;
+                 }
+                 
+                 dispatch_async(dispatch_get_main_queue(), ^
+                 {
+                     if (!failed)
+                         success(loadedParticipants);
+                 });
+             });
+         } failure:^(NSString *error)
+         {
+             failure(error);
+        }];
+    });
+}
+
+- (void)uploadLogsWithProgress:(void (^)(NSString *status, float progress))progress
+                       success:(void (^)())success
+                       failure:(void (^)(NSString *error))failure
+{
+    NSArray *logs = [TestLog MR_findByAttribute:TestLogAttributes.uploaded withValue:@NO];
+    
+    if (logs.count == 0)
+    {
+        failure(@"No logs available to upload");
+        return;
+    }
+    
+    NSMutableArray *logData = [NSMutableArray array];
+    
+    for (TestLog *log in logs)
+    {
+        NSMutableString *logContent = [NSMutableString string];
+        for (TestLogItem *logItem in log.logitems)
+        {
+            [logContent appendFormat:@"%.0f|%@|%@\n", logItem.timestamp.timeIntervalSince1970, logItem.type, logItem.info];
+        }
+        
+        if (log.user)
+        {
+            [logData addObject:@{ @"participant": log.user.id,
+                                  @"timestamp": @(log.timestamp.timeIntervalSince1970),
+                                  @"content": logContent }];
+        }
+        else
+        {
+            [logData addObject:@{ @"timestamp": @(log.timestamp.timeIntervalSince1970),
+                                  @"content": logContent }];
+        }
+    }
+    
+    void (^successBlock)(AFHTTPRequestOperation *, NSDictionary *) = ^(AFHTTPRequestOperation *operation, NSDictionary *response)
+    {
+        for (TestLog *log in logs)
+            log.uploaded = @YES;
+        
+        [DatabaseManager save];
+        
+        success();
+    };
+    
+    AFHTTPRequestOperation *operation = [self.requestManager POST:@"api/upload_logs"
+                                                       parameters:@{ @"user_email": self.currentUser.email,
+                                                                     @"user_token": self.currentUser.authToken,
+                                                                     @"logs": logData }
+                                                          success:successBlock
+                                                          failure:[self failureBlock:failure]];
+    
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)
+     {
+         progress(@"Uploading logs...", (float)totalBytesWritten/(float)totalBytesExpectedToWrite);
+     }];
 }
 
 @end

@@ -29,4 +29,12 @@
                     success:(void (^)(User *newUser))success
                     failure:(void (^)(NSString *error))failure;
 
+- (void)downloadAllParticipants:(void (^)(NSString *status, float progress))progress
+                        success:(void (^)(NSMutableArray *newUsers))success
+                        failure:(void (^)(NSString *error))failure;
+
+- (void)uploadLogsWithProgress:(void (^)(NSString *status, float progress))progress
+                       success:(void (^)())success
+                       failure:(void (^)(NSString *error))failure;
+
 @end

@@ -9,7 +9,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-AFgzipRequestSerializer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Boilerplate.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Godzippa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-KSCrash.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,42 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>055784B5C85A0B33B4DA0F2A</key>
+		<key>007C97EAF9B1B90EAB07593C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E70F34A8488F272F3A1EE3F</key>
+		<key>18A204EEAF05BFB1EAE132DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3CE9110BBB2AF13DE723D0CE</key>
+		<key>1E7F420382D9015671E489FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B8C9FC3F6F2D25E3D70F184</key>
+		<key>2425DC14CD41485BF8794C45</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>82B4801BF446818F8215E0E6</key>
+		<key>347BD1B56AB51025ED59EA6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>832CAEC1E11B584A8D1CF66B</key>
+		<key>8A9A75BB037D96D4AD5DB294</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DBE122C3D1DBE22D805405C9</key>
+		<key>9014CD847FAF8FE7C601CDF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F7C90B69AA216DCC0C759C1F</key>
+		<key>905C928167D538A2952F8C6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A6AEF1DF128AC3EDA639362E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9A3797824BEFDE7C921F0F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B985127392EBAAB3260E962E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

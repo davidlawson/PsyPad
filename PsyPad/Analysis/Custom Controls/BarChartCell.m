@@ -9,94 +9,93 @@
 #import "BarChartCell.h"
 #import "UIView+Positioning.h"
 
+@interface BarChartCell ()
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *barMiddleWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *barLabelWidth;
+
+
+@end
+
 @implementation BarChartCell
 
 - (void)displayPercentage:(float)percentage
 {
     float width = [self.barContainer width];
 
-    [self.barMiddle setWidth:percentage*width];
-    [self.barMiddle moveToX:0];
+    self.barMiddleWidth.constant = percentage*width;
 
     self.barLabel.text = [NSString stringWithFormat:@"%.2f%%", percentage*100];
     CGSize textSize = [self.barLabel.text sizeWithFont:self.barLabel.font];
 
     if (textSize.width > percentage*width)
     {
-        [self.barLabel setWidth:width];
+        self.barLabelWidth.constant = width;
         self.barLabel.textAlignment = NSTextAlignmentLeft;
-        [self.barLabel moveToX:0];
     }
     else
     {
-        [self.barLabel setWidth:percentage*width];
-        [self.barLabel moveToX:0];
+        self.barLabelWidth.constant = percentage*width;
     }
 }
 
 - (void)displayInt:(int)number withMax:(int)max
 {
     float width = [self.barContainer width];
-    [self.barMiddle setWidth:(float)number/max*width];
-    [self.barMiddle moveToX:0];
+    
+    self.barMiddleWidth.constant = (float)number/max*width;
 
     self.barLabel.text = [NSString stringWithFormat:@"%d", number];
     CGSize textSize = [self.barLabel.text sizeWithFont:self.barLabel.font];
 
     if (textSize.width > (float)number/max*width)
     {
-        [self.barLabel setWidth:width];
+        self.barLabelWidth.constant = width;
         self.barLabel.textAlignment = NSTextAlignmentLeft;
-        [self.barLabel moveToX:0];
     }
     else
     {
-        [self.barLabel setWidth:(float)number/max*width];
-        [self.barLabel moveToX:0];
+        self.barLabelWidth.constant = (float)number/max*width;
     }
 }
 
 - (void)displayMean:(float)mean withMax:(float)max
 {
     float width = [self.barContainer width];
-    [self.barMiddle setWidth:mean/max*width];
-    [self.barMiddle moveToX:0];
+    
+    self.barMiddleWidth.constant = mean/max*width;
 
     self.barLabel.text = [NSString stringWithFormat:@"%.2f", mean];
     CGSize textSize = [self.barLabel.text sizeWithFont:self.barLabel.font];
 
     if (textSize.width > mean/max*width)
     {
-        [self.barLabel setWidth:width];
+        self.barLabelWidth.constant = width;
         self.barLabel.textAlignment = NSTextAlignmentLeft;
-        [self.barLabel moveToX:0];
     }
     else
     {
-        [self.barLabel setWidth:mean/max*width];
-        [self.barLabel moveToX:0];
+        self.barLabelWidth.constant = mean/max*width;
     }
 }
 
 - (void)displayMean:(float)mean withMax:(float)max stdev:(float)stdev
 {
     float width = [self.barContainer width];
-    [self.barMiddle setWidth:mean/max*width];
-    [self.barMiddle moveToX:0];
+    
+    self.barMiddleWidth.constant = mean/max*width;
 
     self.barLabel.text = [NSString stringWithFormat:@"%.2fms (σ=%.2f)", mean, stdev];
     CGSize textSize = [self.barLabel.text sizeWithFont:self.barLabel.font];
 
     if (textSize.width > mean/max*width)
     {
-        [self.barLabel setWidth:width];
+        self.barLabelWidth.constant = width;
         self.barLabel.textAlignment = NSTextAlignmentLeft;
-        [self.barLabel moveToX:0];
     }
     else
     {
-        [self.barLabel setWidth:mean/max*width];
-        [self.barLabel moveToX:0];
+        self.barLabelWidth.constant = mean/max*width;
     }
 }
 

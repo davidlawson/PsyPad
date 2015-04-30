@@ -10,7 +10,7 @@
   },
   "social_media_url": "http://twitter.com/davlawson",
   "platforms": {
-    "ios": "7.0"
+    "ios": "8.0"
   },
   "source": {
     "git": "https://github.com/davidlawson/boilerplate.git",
@@ -20,7 +20,7 @@
     "Classes",
     "Classes/**/*.{h,m,swift}"
   ],
-  "prefix_header_contents": "#define NSLog CLS_LOG\n#import <Fabric/Crashlytics.h>\n#import \"DLLocalization.h\"\n#import <MagicalRecord/CoreData+MagicalRecord.h>",
+  "prefix_header_contents": "#import \"DLLocalization.h\"\n#import <MagicalRecord/CoreData+MagicalRecord.h>",
   "frameworks": [
     "CoreData",
     "UIKit",
@@ -28,16 +28,19 @@
   ],
   "dependencies": {
     "MagicalRecord/Core+Logging": [
-      "2.3.0-beta.5"
+
     ],
     "AFNetworking": [
+
+    ],
+    "AFgzipRequestSerializer": [
 
     ],
     "Reachability": [
 
     ],
-    "Fabric/Crashlytics": [
-      "~> 1.1.1"
+    "KSCrash": [
+
     ]
   }
 }

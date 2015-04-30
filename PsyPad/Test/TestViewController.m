@@ -93,6 +93,9 @@
     self.distanceDetector = [[DistanceDetector alloc] init];
 
     [[UIScreen mainScreen] setBrightness:1.0];
+    
+    self.currentConfiguration = [self nextConfiguration];
+    [self presentConfiguration];
 }
 
 #pragma mark - UIViewController delegate methods
@@ -114,22 +117,6 @@
 }
 
 #pragma mark - User interaction
-
-- (IBAction)pressBeginButton:(id)sender
-{
-     self.beginTestButton.hidden = YES;
-
-     self.currentConfiguration = [self nextConfiguration];
-
-     if (self.configurations.count == 1)
-     {
-         [self beginConfiguration];
-     }
-     else if (self.configurations.count > 1)
-     {
-         [self presentConfiguration];
-     }
-}
 
 - (TestConfiguration *)nextConfiguration
 {
@@ -328,19 +315,18 @@
 
 - (void)uploadData
 {
-#warning todo
-    /*[self.APIController uploadLogs:@[self.user] progress:^(NSString *status, float _progress)
+    [[ServerManager sharedManager] uploadLogsWithProgress:^(NSString *status, float _progress)
     {
-        NSLog(@"Progress: %.2f", _progress);
+        NSLog(@"Uploading logs, progress: %.2f", _progress);
 
     } success:^
     {
         NSLog(@"Upload Success");
 
-    } failure:^
+    } failure:^(NSString *error)
     {
-        NSLog(@"Upload Failure");
-    }];*/
+        NSLog(@"Upload Failure: %@", error);
+    }];
 }
 
 - (void)pressTestButton:(id)sender
@@ -451,6 +437,9 @@
 
 - (TestImageButton *)getNextImage
 {
+    if (self.questionNumber > self.imageCollection.count)
+        return nil;
+    
     TestSequenceImage *image = [self.imageCollection objectAtIndex:(NSUInteger)self.questionNumber-1];
 
     if (!image)
@@ -694,6 +683,8 @@
 
     [self.view addSubview:self.image];
     [self log:@"presented_image" info:@"%@/%@", self.image.dbImage.folder.name, self.image.dbImage.name];
+    
+    [self.view bringSubviewToFront:self.exitButton];
 
     self.buttons = [self getButtonSet];
 
@@ -759,6 +750,8 @@
 
     [self.view addSubview:self.image];
     [self log:@"presented_image" info:@"%@/%@", self.image.dbImage.folder.name, self.image.dbImage.name];
+    
+    [self.view bringSubviewToFront:self.exitButton];
 
     self.buttons = [self getButtonSet];
 
@@ -933,11 +926,6 @@
 
     [self.distanceDetector done];
 
-    [self setBeginTestButton:nil];
-    [self setQuestionLabel:nil];
-    [self setConfigurationNameLabel:nil];
-    [self setBeginConfigurationButton:nil];
-    [self setExitButton:nil];
     [super viewDidUnload];
 }
 

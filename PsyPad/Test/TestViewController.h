@@ -14,7 +14,6 @@
 @interface TestViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (weak, nonatomic) IBOutlet UIButton *beginTestButton;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *configurationNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *beginConfigurationButton;
@@ -46,7 +45,6 @@
 
 @property (strong, nonatomic) MBProgressHUD *hud;
 
-- (IBAction)pressBeginButton:(id)sender;
 - (IBAction)beginConfiguration;
 - (IBAction)pressExitButton:(id)sender;
 

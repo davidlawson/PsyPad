@@ -1,0 +1,6 @@
+framework module AFgzipRequestSerializer {
+  umbrella header "Pods-AFgzipRequestSerializer-umbrella.h"
+
+  export *
+  module * { export * }
+}

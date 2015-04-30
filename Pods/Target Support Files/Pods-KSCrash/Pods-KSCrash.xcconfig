@@ -1,0 +1,2 @@
+PODS_KSCRASH_GCC_ENABLE_CPP_EXCEPTIONS = YES
+PODS_KSCRASH_OTHER_LDFLAGS = -l"c++" -l"z" -framework "Foundation" -framework "MessageUI" -framework "SystemConfiguration"

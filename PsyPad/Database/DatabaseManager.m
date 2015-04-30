@@ -11,12 +11,11 @@
 
 @implementation DatabaseManager
 
-+ (NSArray *)modelNames
-{
-    return @[
-        @"Model1"
-    ];
-}
++ (NSString *)modelFileName        { return @"Model.momd"; }
++ (NSString *)storeFileName        { return @"Database.sqlite"; }
++ (NSArray *)modelNames            { return @[@"Model1"]; }
++ (NSString *)iCloudContainer      { return nil; }
++ (NSString *)iCloudContentNameKey { return nil; }
 
 + (BOOL)databaseEmpty
 {

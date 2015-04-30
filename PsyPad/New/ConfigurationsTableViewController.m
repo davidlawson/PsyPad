@@ -277,6 +277,9 @@ enum {
          [weakSelf.hud hide:YES];
          [weakSelf.hud removeFromSuperview];
          
+         [weakSelf refreshLocalConfigurations];
+         [weakSelf.tableView reloadData];
+         
          [weakSelf reloadConfigurations];
          
          [[[UIAlertView alloc] initWithTitle:@""
