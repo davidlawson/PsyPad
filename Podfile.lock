@@ -2,25 +2,25 @@ PODS:
   - AFgzipRequestSerializer (0.0.2):
     - AFNetworking (~> 2.0)
     - Godzippa (~> 1.0)
-  - AFNetworking (2.5.1):
-    - AFNetworking/NSURLConnection (= 2.5.1)
-    - AFNetworking/NSURLSession (= 2.5.1)
-    - AFNetworking/Reachability (= 2.5.1)
-    - AFNetworking/Security (= 2.5.1)
-    - AFNetworking/Serialization (= 2.5.1)
-    - AFNetworking/UIKit (= 2.5.1)
-  - AFNetworking/NSURLConnection (2.5.1):
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.1):
+  - AFNetworking/NSURLSession (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.1)
-  - AFNetworking/Security (2.5.1)
-  - AFNetworking/Serialization (2.5.1)
-  - AFNetworking/UIKit (2.5.1):
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Boilerplate (0.0.1):
@@ -30,63 +30,63 @@ PODS:
     - MagicalRecord/Core+Logging
     - Reachability
   - Godzippa (1.1.0)
-  - KSCrash (0.0.3):
-    - KSCrash/Installations (= 0.0.3)
-    - KSCrash/Recording (= 0.0.3)
-    - KSCrash/Reporting (= 0.0.3)
-  - KSCrash/Installations (0.0.3):
+  - KSCrash (0.0.4):
+    - KSCrash/Installations (= 0.0.4)
+    - KSCrash/Recording (= 0.0.4)
+    - KSCrash/Reporting (= 0.0.4)
+  - KSCrash/Installations (0.0.4):
     - KSCrash/Recording
     - KSCrash/Reporting
-  - KSCrash/Recording (0.0.3)
-  - KSCrash/Reporting (0.0.3):
+  - KSCrash/Recording (0.0.4)
+  - KSCrash/Reporting (0.0.4):
     - KSCrash/Recording
-    - KSCrash/Reporting/Filters (= 0.0.3)
-    - KSCrash/Reporting/Sinks (= 0.0.3)
-    - KSCrash/Reporting/Tools (= 0.0.3)
-  - KSCrash/Reporting/Filters (0.0.3):
+    - KSCrash/Reporting/Filters (= 0.0.4)
+    - KSCrash/Reporting/Sinks (= 0.0.4)
+    - KSCrash/Reporting/Tools (= 0.0.4)
+  - KSCrash/Reporting/Filters (0.0.4):
     - KSCrash/Recording
-    - KSCrash/Reporting/Filters/Alert (= 0.0.3)
-    - KSCrash/Reporting/Filters/AppleFmt (= 0.0.3)
-    - KSCrash/Reporting/Filters/Base (= 0.0.3)
-    - KSCrash/Reporting/Filters/Basic (= 0.0.3)
-    - KSCrash/Reporting/Filters/GZip (= 0.0.3)
-    - KSCrash/Reporting/Filters/JSON (= 0.0.3)
-    - KSCrash/Reporting/Filters/Sets (= 0.0.3)
-  - KSCrash/Reporting/Filters/Alert (0.0.3):
-    - KSCrash/Recording
-    - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/AppleFmt (0.0.3):
+    - KSCrash/Reporting/Filters/Alert (= 0.0.4)
+    - KSCrash/Reporting/Filters/AppleFmt (= 0.0.4)
+    - KSCrash/Reporting/Filters/Base (= 0.0.4)
+    - KSCrash/Reporting/Filters/Basic (= 0.0.4)
+    - KSCrash/Reporting/Filters/GZip (= 0.0.4)
+    - KSCrash/Reporting/Filters/JSON (= 0.0.4)
+    - KSCrash/Reporting/Filters/Sets (= 0.0.4)
+  - KSCrash/Reporting/Filters/Alert (0.0.4):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/Base (0.0.3):
-    - KSCrash/Recording
-  - KSCrash/Reporting/Filters/Basic (0.0.3):
+  - KSCrash/Reporting/Filters/AppleFmt (0.0.4):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/GZip (0.0.3):
+  - KSCrash/Reporting/Filters/Base (0.0.4):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Filters/Basic (0.0.4):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/JSON (0.0.3):
+  - KSCrash/Reporting/Filters/GZip (0.0.4):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/Sets (0.0.3):
+  - KSCrash/Reporting/Filters/JSON (0.0.4):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Sets (0.0.4):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/AppleFmt
     - KSCrash/Reporting/Filters/Base
     - KSCrash/Reporting/Filters/Basic
     - KSCrash/Reporting/Filters/GZip
     - KSCrash/Reporting/Filters/JSON
-  - KSCrash/Reporting/Sinks (0.0.3):
+  - KSCrash/Reporting/Sinks (0.0.4):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters
     - KSCrash/Reporting/Tools
-  - KSCrash/Reporting/Tools (0.0.3):
+  - KSCrash/Reporting/Tools (0.0.4):
     - KSCrash/Recording
   - MagicalRecord (2.3.0-beta.5):
     - MagicalRecord/Core (= 2.3.0-beta.5)
   - MagicalRecord/Core (2.3.0-beta.5)
   - MagicalRecord/Core+Logging (2.3.0-beta.5)
-  - MBProgressHUD (0.9)
+  - MBProgressHUD (0.9.1)
   - RaptureXML (1.0.1)
   - Reachability (3.2)
   - SSZipArchive (0.3.2)
@@ -113,14 +113,14 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFgzipRequestSerializer: 329638fc8ed023a15188dc03dd2f1a930da30ea4
-  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   Boilerplate: e6a16985a70db5f608858a68563c1717c51e72d4
   Godzippa: 21621e8ddc2f1521db473a72b48148c3f0e79d76
-  KSCrash: 8cb2d6e316c9c12b1444df232e650547be742494
+  KSCrash: a17f93c9b300753bf66dd7d72260cace0d307b1b
   MagicalRecord: 5b7e807bc07c5d642af1f7d894b7fe0d3c317ca2
-  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   RaptureXML: b5c33c04c1a4adfd8ad0d5463329a31820596e82
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SSZipArchive: 11801759495fa4efb7512ef652eb0042d68305d7
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.37.2

@@ -19,9 +19,9 @@
     // Override point for customization after application launch.
     
     [DLSettings sharedSettings].databaseManagerClass = [DatabaseManager class];
-    [DLSettings sharedSettings].trackerURL = [NSURL URLWithString:@"https://beluga-whale.herokuapp.com/api/t"];
-    [DLSettings sharedSettings].crashHandlerURL = [NSURL URLWithString:@"https://beluga-whale.herokuapp.com/api/c"];
-    [DLSettings sharedSettings].apiKey = @"P17FN289G02NSZLA61PA";
+    //[DLSettings sharedSettings].trackerURL = [NSURL URLWithString:@""];
+    //[DLSettings sharedSettings].crashHandlerURL = [NSURL URLWithString:@""];
+    //[DLSettings sharedSettings].apiKey = @"";
     
     [MagicalRecord setShouldDeleteStoreOnModelMismatch:YES];
     

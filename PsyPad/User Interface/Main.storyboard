@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="jKf-qD-fTA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="jKf-qD-fTA">
     <dependencies>
         <deployment version="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
@@ -1787,9 +1787,13 @@ Affiliation</string>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z8l-Sl-xYX">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Vz-K5-qGZ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Vz-K5-qGZ">
                                 <rect key="frame" x="972" y="20" width="32" height="32"/>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="FmF-H3-UFk"/>
+                                    <constraint firstAttribute="height" constant="32" id="v2C-Hu-NrQ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
                                 <state key="normal" title="X">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1843,6 +1847,10 @@ Affiliation</string>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Vz-K5-qGZ" firstAttribute="top" secondItem="8nt-UN-8yd" secondAttribute="top" constant="20" id="juR-TS-ome"/>
+                            <constraint firstItem="7Vz-K5-qGZ" firstAttribute="leading" secondItem="8nt-UN-8yd" secondAttribute="leading" constant="972" id="wXc-ij-Hle"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="K4N-wE-ynd"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -1853,6 +1861,10 @@ Affiliation</string>
                         <outlet property="beginConfigurationButton" destination="KXq-nv-glK" id="hsk-Xs-wQm"/>
                         <outlet property="configurationNameLabel" destination="Uel-IF-pUP" id="Hcs-3n-W9f"/>
                         <outlet property="exitButton" destination="7Vz-K5-qGZ" id="TBM-u8-vaM"/>
+                        <outlet property="exitButtonHeight" destination="v2C-Hu-NrQ" id="vwK-rs-9k4"/>
+                        <outlet property="exitButtonLeft" destination="wXc-ij-Hle" id="3ha-mN-Cpg"/>
+                        <outlet property="exitButtonTop" destination="juR-TS-ome" id="Dmw-Gv-w8U"/>
+                        <outlet property="exitButtonWidth" destination="FmF-H3-UFk" id="d4N-S4-JCB"/>
                         <outlet property="questionLabel" destination="OOE-aC-TjU" id="kkm-rK-UKh"/>
                     </connections>
                 </viewController>

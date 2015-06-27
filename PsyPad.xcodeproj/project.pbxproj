@@ -35,7 +35,6 @@
 		5AF0E63465BCA419C9918EE4 /* Staircase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EDECD815728F1903E396 /* Staircase.m */; };
 		5AF0E6552E4BAE482FA33C0F /* ManageUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EDF2375B76A42DA5EF62 /* ManageUserTableViewController.m */; };
 		5AF0E8592B9AD503599993C7 /* DistanceDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E590046B35D9DE7819C4 /* DistanceDetector.m */; };
-		5AF0EA6A20242EC8C33302E2 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EC3D081D2F2B5BC0573F /* APIController.m */; };
 		5AF0EB2DD285A8F2E6DF60B8 /* AdminPanelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EB2270778FECB039C261 /* AdminPanelTableViewController.m */; };
 		5AF0EC3121BF8F52B737D033 /* UIImage+Picker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EB0671EC4B4CDA0887E1 /* UIImage+Picker.m */; };
 		5AF0ECF4CC1084F8A4B0825C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0EE151654C60F05532BEF /* CoreVideo.framework */; };
@@ -113,7 +112,6 @@
 		5AF0E1E5D69FD88434DD9985 /* NSString+getNumberFromString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+getNumberFromString.m"; sourceTree = "<group>"; };
 		5AF0E312DFA8457A95F447AE /* Staircase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staircase.h; sourceTree = "<group>"; };
 		5AF0E39E0296913BEDA4190D /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		5AF0E3A1AD1029A57F63B68C /* APIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIController.h; sourceTree = "<group>"; };
 		5AF0E52A944A57021D9519D3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5AF0E590046B35D9DE7819C4 /* DistanceDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceDetector.m; sourceTree = "<group>"; };
 		5AF0E61F0BEAD03448FE32BD /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -128,7 +126,6 @@
 		5AF0EB0671EC4B4CDA0887E1 /* UIImage+Picker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Picker.m"; sourceTree = "<group>"; };
 		5AF0EB2270778FECB039C261 /* AdminPanelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminPanelTableViewController.m; sourceTree = "<group>"; };
 		5AF0EB38562144A83BCAB3D4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		5AF0EC3D081D2F2B5BC0573F /* APIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIController.m; sourceTree = "<group>"; };
 		5AF0ED3AA80AD1B4E5497DEB /* DistanceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceDetector.h; sourceTree = "<group>"; };
 		5AF0ED9AEF05FF5F440123DA /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		5AF0EDBA381C246DDDE98616 /* NSString+containsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+containsCategory.h"; sourceTree = "<group>"; };
@@ -497,15 +494,6 @@
 			path = "Custom Controls";
 			sourceTree = "<group>";
 		};
-		5AF0ED77319CCCA38D882D4C /* API */ = {
-			isa = PBXGroup;
-			children = (
-				5AF0EC3D081D2F2B5BC0573F /* APIController.m */,
-				5AF0E3A1AD1029A57F63B68C /* APIController.h */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		5AF0EF55C1C5A93AD9AD756C /* Admin Panel */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,7 +564,6 @@
 				5AF0E679D4C1DC425229AFC1 /* Test */,
 				5AF0E71FEB281608983131D6 /* User Interface */,
 				5AF0EF55C1C5A93AD9AD756C /* Admin Panel */,
-				5AF0ED77319CCCA38D882D4C /* API */,
 				5AF0E62017BCB0C4CD33F454 /* New */,
 			);
 			path = PsyPad;
@@ -845,7 +832,6 @@
 				6330F4D91A932A4900A62986 /* NSURL+CommonURLs.m in Sources */,
 				63A1ED6017B89C100089C204 /* UserTableViewCell.m in Sources */,
 				5AF0E0005D2CBAD344805694 /* UIColor+Hex.m in Sources */,
-				5AF0EA6A20242EC8C33302E2 /* APIController.m in Sources */,
 				5AF0E8592B9AD503599993C7 /* DistanceDetector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -897,7 +883,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Turpin (VLDWUKP35J)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -915,6 +901,10 @@
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f15bfaac-0505-47fa-8594-aa5767ef11a4";
+				STRIP_STYLE = debugging;
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1004,6 +994,10 @@
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56b8e869-9050-4370-94d8-22e293511718";
+				STRIP_STYLE = debugging;
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1016,7 +1010,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Turpin (VLDWUKP35J)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1034,6 +1028,10 @@
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65b35aa9-afa4-4e0c-8bb9-05bc2be71816";
+				STRIP_STYLE = debugging;
+				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};

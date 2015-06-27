@@ -29,7 +29,6 @@
 
 #import "UIColor+Hex.h"
 #import "DistanceDetector.h"
-#import "APIController.h"
 #import "DatabaseManager.h"
 
 #import "NSObject+DelayBlock.h"
@@ -40,6 +39,11 @@
 #define VIEW_WIDTH self.view.bounds.size.width
 
 @interface TestViewController ()
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *exitButtonTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *exitButtonHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *exitButtonWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *exitButtonLeft;
 
 @end
 
@@ -77,13 +81,16 @@
 
     self.view.backgroundColor = [UIColor colorWithHexString:self.firstConfiguration.background_colour];
 
+    //todo currentConfiguration is nil here?
     if (self.currentConfiguration.show_exit_buttonValue)
     {
         self.exitButton.hidden = NO;
         [self.exitButton setTitleColor:[UIColor colorWithHexString:self.firstConfiguration.exit_button_fg] forState:UIControlStateNormal];
         self.exitButton.backgroundColor = [UIColor colorWithHexString:self.firstConfiguration.exit_button_bg];
-        [self.exitButton setWidth:self.firstConfiguration.exit_button_w.intValue height:self.firstConfiguration.exit_button_h.intValue];
-        [self.exitButton moveToX:self.firstConfiguration.exit_button_x.intValue y:self.firstConfiguration.exit_button_y.intValue];
+        self.exitButtonWidth.constant = self.firstConfiguration.exit_button_w.intValue;
+        self.exitButtonHeight.constant = self.firstConfiguration.exit_button_h.intValue;
+        self.exitButtonTop.constant = self.firstConfiguration.exit_button_y.intValue;
+        self.exitButtonLeft.constant = self.firstConfiguration.exit_button_x.intValue;
     }
     else
     {
@@ -150,8 +157,10 @@
         self.exitButton.hidden = NO;
         [self.exitButton setTitleColor:[UIColor colorWithHexString:self.currentConfiguration.exit_button_fg] forState:UIControlStateNormal];
         self.exitButton.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.exit_button_bg];
-        [self.exitButton setWidth:self.currentConfiguration.exit_button_w.intValue height:self.currentConfiguration.exit_button_h.intValue];
-        [self.exitButton moveToX:self.currentConfiguration.exit_button_x.intValue y:self.currentConfiguration.exit_button_y.intValue];
+        self.exitButtonWidth.constant = self.currentConfiguration.exit_button_w.intValue;
+        self.exitButtonHeight.constant = self.currentConfiguration.exit_button_h.intValue;
+        self.exitButtonTop.constant = self.currentConfiguration.exit_button_y.intValue;
+        self.exitButtonLeft.constant = self.currentConfiguration.exit_button_x.intValue;
     }
     else
     {
@@ -195,8 +204,10 @@
         self.exitButton.hidden = NO;
         [self.exitButton setTitleColor:[UIColor colorWithHexString:self.currentConfiguration.exit_button_fg] forState:UIControlStateNormal];
         self.exitButton.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.exit_button_bg];
-        [self.exitButton setWidth:self.currentConfiguration.exit_button_w.intValue height:self.currentConfiguration.exit_button_h.intValue];
-        [self.exitButton moveToX:self.currentConfiguration.exit_button_x.intValue y:self.currentConfiguration.exit_button_y.intValue];
+        self.exitButtonWidth.constant = self.currentConfiguration.exit_button_w.intValue;
+        self.exitButtonHeight.constant = self.currentConfiguration.exit_button_h.intValue;
+        self.exitButtonTop.constant = self.currentConfiguration.exit_button_y.intValue;
+        self.exitButtonLeft.constant = self.currentConfiguration.exit_button_x.intValue;
     }
     else
     {

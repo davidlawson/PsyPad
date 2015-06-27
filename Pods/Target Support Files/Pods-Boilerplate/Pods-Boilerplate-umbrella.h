@@ -21,6 +21,7 @@
 #import "DLDatabaseManager.h"
 #import "DLIterativeMigrator.h"
 #import "DLServerManager.h"
+#import "DLUserAccount.h"
 
 FOUNDATION_EXPORT double BoilerplateVersionNumber;
 FOUNDATION_EXPORT const unsigned char BoilerplateVersionString[];

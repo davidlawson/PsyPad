@@ -28,7 +28,7 @@
     return self;
 }
 
-- (id<UserAccount>)currentUser
+- (id<DLUserAccount>)currentUser
 {
     return [RootEntity rootEntity];
 }

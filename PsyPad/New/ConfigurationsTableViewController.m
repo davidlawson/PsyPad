@@ -165,7 +165,7 @@ enum {
         }
         
         cell = (ConfigurationTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"UpdatableConfigurationCell" forIndexPath:indexPath];
-        cell.downloadButton.tag = indexPath.row;
+        cell.updateButton.tag = indexPath.row;
         
         AvailableConfiguration *config = self.updatableConfigurations[indexPath.row];
         
@@ -190,7 +190,7 @@ enum {
         }
         
         cell = (ConfigurationTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"AvailableConfigurationCell" forIndexPath:indexPath];
-        cell.updateButton.tag = indexPath.row;
+        cell.downloadButton.tag = indexPath.row;
         
         AvailableConfiguration *config = self.availableConfigurations[indexPath.row];
         

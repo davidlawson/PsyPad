@@ -18,7 +18,6 @@
 #import "TestLogItem.h"
 #import "TestLog.h"
 #import "RootEntity.h"
-#import "APIController.h"
 #import "TextFieldTableViewCell.h"
 #import "TestConfiguration.h"
 #import "UserTableViewCell.h"
@@ -105,6 +104,7 @@ enum {
         UserTableViewCell *tvCell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
 
         User *user = [self.users objectAtIndex:(NSUInteger)indexPath.row];
+        // TODO somehow user is a NSDictionary sometimes
 
         tvCell.textLabel.text = user.id;
         tvCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu test, %lu practice, %lu logs", (unsigned long)user.configurations.count, (unsigned long)user.practiceConfigurations.count, (unsigned long)user.logs.count];

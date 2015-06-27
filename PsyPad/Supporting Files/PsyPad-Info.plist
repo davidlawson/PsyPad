@@ -13,7 +13,7 @@
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
 	<key>CFBundleIdentifier</key>
-	<string>au.net.psypad</string>
+	<string>PsyPad</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -21,11 +21,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>2.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.1</string>
+	<string>21</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -46,8 +46,6 @@
 	<array>
 		<string>flat-ui-icons-regular.ttf</string>
 	</array>
-	<key>UIMainStoryboardFile</key>
-	<string>MainStoryboard</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main</string>
 	<key>UIPrerenderedIcon</key>

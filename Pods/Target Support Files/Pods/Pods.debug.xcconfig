@@ -1,4 +1,4 @@
-FRAMEWORK_SEARCH_PATHS = "$PODS_FRAMEWORK_BUILD_PATH"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_FRAMEWORK_BUILD_PATH"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
 OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFNetworking.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFgzipRequestSerializer.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Boilerplate.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Godzippa.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/KSCrash.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/MBProgressHUD.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/MagicalRecord.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/RaptureXML.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Reachability.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/SSZipArchive.framework/Headers"
