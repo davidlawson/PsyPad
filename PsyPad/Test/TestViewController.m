@@ -150,7 +150,9 @@
     self.configurationNameLabel.text = self.currentConfiguration.title;
 
     self.view.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.background_colour];
-    self.backgroundImageView.image = nil;
+    
+    UIImage *titleImage = self.currentConfiguration.sequence.titleImage;
+    self.backgroundImageView.image = titleImage;
 
     if (self.currentConfiguration.show_exit_buttonValue)
     {
@@ -243,7 +245,8 @@
         }
 
         staircase.lastReversalType = -1;
-        staircase.numHits = 0;
+        staircase.numHitsFloor = 0;
+        staircase.numHitsCeiling = 0;
         staircase.numTimesCorrectToGetHarder = [self.currentConfiguration.num_correct_to_get_harder getNumberInGroup:i element:0];
         staircase.numTimesCorrect = 0;
         staircase.numTimesIncorrectToGetEasier = [self.currentConfiguration.num_wrong_to_get_easier getNumberInGroup:i element:0];
@@ -422,19 +425,19 @@
 
         //self.currentStaircase.lastAnswerCorrect = answerCorrect ? 1 : 0;
 
-        if (self.currentStaircase.currentLevel <= self.currentStaircase.minLevel || self.currentStaircase.currentLevel >= self.currentStaircase.maxLevel)
+        if (self.currentStaircase.currentLevel < self.currentStaircase.minLevel)
         {
-            self.currentStaircase.numHits++;
-
-            if (self.currentStaircase.currentLevel <= self.currentStaircase.minLevel) self.currentStaircase.currentLevel = self.currentStaircase.minLevel;
-            if (self.currentStaircase.currentLevel >= self.currentStaircase.maxLevel) self.currentStaircase.currentLevel = self.currentStaircase.maxLevel;
+            self.currentStaircase.numHitsFloor++;
+            self.currentStaircase.currentLevel = self.currentStaircase.minLevel;
         }
-        else
+        else if (self.currentStaircase.currentLevel > self.currentStaircase.maxLevel)
         {
-            self.currentStaircase.numHits = 0;
+            self.currentStaircase.numHitsCeiling++;
+            self.currentStaircase.currentLevel = self.currentStaircase.maxLevel;
         }
 
-        if (self.currentStaircase.numHits == self.currentStaircase.floorCeilingHits)
+        if (self.currentStaircase.numHitsFloor == self.currentStaircase.floorCeilingHits
+            || self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
         {
             [self.staircases removeObject:self.currentStaircase];
             self.currentStaircase = nil;
@@ -869,19 +872,19 @@
 
         //self.currentStaircase.lastAnswerCorrect = answerCorrect ? 1 : 0;
 
-        if (self.currentStaircase.currentLevel <= self.currentStaircase.minLevel || self.currentStaircase.currentLevel >= self.currentStaircase.maxLevel)
+        if (self.currentStaircase.currentLevel < self.currentStaircase.minLevel)
         {
-            self.currentStaircase.numHits++;
-
-            if (self.currentStaircase.currentLevel <= self.currentStaircase.minLevel) self.currentStaircase.currentLevel = self.currentStaircase.minLevel;
-            if (self.currentStaircase.currentLevel >= self.currentStaircase.maxLevel) self.currentStaircase.currentLevel = self.currentStaircase.maxLevel;
+            self.currentStaircase.numHitsFloor++;
+            self.currentStaircase.currentLevel = self.currentStaircase.minLevel;
         }
-        else
+        else if (self.currentStaircase.currentLevel > self.currentStaircase.maxLevel)
         {
-            self.currentStaircase.numHits = 0;
+            self.currentStaircase.numHitsCeiling++;
+            self.currentStaircase.currentLevel = self.currentStaircase.maxLevel;
         }
 
-        if (self.currentStaircase.numHits == self.currentStaircase.floorCeilingHits)
+        if (self.currentStaircase.numHitsFloor == self.currentStaircase.floorCeilingHits
+            || self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
         {
             [self.staircases removeObject:self.currentStaircase];
             self.currentStaircase = nil;

@@ -11,6 +11,7 @@
 
 - (void)reset;
 
+- (UIImage *)titleImage;
 - (UIImage *)backgroundImage;
 
 @end

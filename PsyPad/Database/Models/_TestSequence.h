@@ -8,6 +8,8 @@ extern const struct TestSequenceAttributes {
 	__unsafe_unretained NSString *background_start;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *path;
+	__unsafe_unretained NSString *title_length;
+	__unsafe_unretained NSString *title_start;
 	__unsafe_unretained NSString *url;
 } TestSequenceAttributes;
 
@@ -51,6 +53,22 @@ extern const struct TestSequenceRelationships {
 @property (nonatomic, strong) NSString* path;
 
 //- (BOOL)validatePath:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* title_length;
+
+@property (atomic) int32_t title_lengthValue;
+- (int32_t)title_lengthValue;
+- (void)setTitle_lengthValue:(int32_t)value_;
+
+//- (BOOL)validateTitle_length:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* title_start;
+
+@property (atomic) int64_t title_startValue;
+- (int64_t)title_startValue;
+- (void)setTitle_startValue:(int64_t)value_;
+
+//- (BOOL)validateTitle_start:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* url;
 
@@ -108,6 +126,18 @@ extern const struct TestSequenceRelationships {
 
 - (NSString*)primitivePath;
 - (void)setPrimitivePath:(NSString*)value;
+
+- (NSNumber*)primitiveTitle_length;
+- (void)setPrimitiveTitle_length:(NSNumber*)value;
+
+- (int32_t)primitiveTitle_lengthValue;
+- (void)setPrimitiveTitle_lengthValue:(int32_t)value_;
+
+- (NSNumber*)primitiveTitle_start;
+- (void)setPrimitiveTitle_start:(NSNumber*)value;
+
+- (int64_t)primitiveTitle_startValue;
+- (void)setPrimitiveTitle_startValue:(int64_t)value_;
 
 - (NSString*)primitiveUrl;
 - (void)setPrimitiveUrl:(NSString*)value;

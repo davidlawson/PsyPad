@@ -214,7 +214,7 @@ enum {
     AvailableConfiguration *configuration = self.availableConfigurations[sender.tag];
     
     self.hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    self.hud.mode = MBProgressHUDModeDeterminate;
+    self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Downloading configuration...";
     
     __weak typeof(self) weakSelf = self;
@@ -260,7 +260,7 @@ enum {
     AvailableConfiguration *configuration = self.updatableConfigurations[sender.tag];
     
     self.hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    self.hud.mode = MBProgressHUDModeDeterminate;
+    self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Updating configuration...";
     
     __weak typeof(self) weakSelf = self;

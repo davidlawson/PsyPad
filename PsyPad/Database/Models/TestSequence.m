@@ -117,4 +117,43 @@
 
 }
 
+- (UIImage *)titleImage
+{
+    if (!self.title_start || !self.title_length) return nil;
+    
+    FILE *file;
+    
+    file = fopen([self.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+    
+    if (file == NULL)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load title image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        self.url = nil;
+        [DatabaseManager save];
+        return nil;
+    }
+    
+    int fd = fileno(file);
+    
+    size_t length = (size_t)self.title_length.intValue;
+    long start = self.title_start.longValue;
+    
+    long page_start = start - (start % 4096);
+    long offset = start - page_start;
+    
+    void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
+    
+    NSData *image_data = [NSData dataWithBytes:data + offset length:length];
+    
+    munmap(data, length);
+    
+    fclose(file);
+    
+    if([[UIScreen mainScreen] scale] == 2.0 && [UIImage respondsToSelector:@selector(imageWithData:scale:)])
+        return [UIImage imageWithData:image_data scale:2];
+    else
+        return [UIImage imageWithData:image_data];
+    
+}
+
 @end

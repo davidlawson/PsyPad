@@ -104,6 +104,8 @@
         <attribute name="background_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="path" attributeType="String" syncable="YES"/>
+        <attribute name="title_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="folders" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TestSequenceFolder" inverseName="sequence" inverseEntity="TestSequenceFolder" syncable="YES"/>
         <relationship name="testConfigurations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TestConfiguration" inverseName="sequence" inverseEntity="TestConfiguration" syncable="YES"/>
@@ -131,7 +133,7 @@
         <element name="TestConfiguration" positionX="0" positionY="0" width="128" height="1215"/>
         <element name="TestLog" positionX="0" positionY="0" width="128" height="105"/>
         <element name="TestLogItem" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="TestSequence" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="TestSequence" positionX="0" positionY="0" width="128" height="180"/>
         <element name="TestSequenceFolder" positionX="0" positionY="0" width="128" height="90"/>
         <element name="TestSequenceImage" positionX="0" positionY="0" width="128" height="135"/>
         <element name="User" positionX="0" positionY="0" width="128" height="90"/>

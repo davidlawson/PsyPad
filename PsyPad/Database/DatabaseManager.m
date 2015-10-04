@@ -13,7 +13,7 @@
 
 + (NSString *)modelFileName        { return @"Model.momd"; }
 + (NSString *)storeFileName        { return @"Database.sqlite"; }
-+ (NSArray *)modelNames            { return @[@"Model1"]; }
++ (NSArray *)modelNames            { return @[@"Model1", @"Model2"]; }
 + (NSString *)iCloudContainer      { return nil; }
 + (NSString *)iCloudContentNameKey { return nil; }
 

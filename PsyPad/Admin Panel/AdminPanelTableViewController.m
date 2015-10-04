@@ -244,7 +244,7 @@ enum {
 - (void)downloadParticipant:(NSString *)username
 {
     self.hud = [self createHUD];
-    self.hud.mode = MBProgressHUDModeDeterminate;
+    self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Downloading participant...";
 
     [[ServerManager sharedManager] downloadParticipant:username
@@ -284,7 +284,7 @@ enum {
 - (void)uploadLogs
 {
     self.hud = [self createHUD];
-    self.hud.mode = MBProgressHUDModeDeterminate;
+    self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Uploading...";
 
     [[ServerManager sharedManager] uploadLogsWithProgress:^(NSString *status, float progress)
@@ -319,7 +319,7 @@ enum {
 - (void)downloadAllParticipants
 {
     self.hud = [self createHUD];
-    self.hud.mode = MBProgressHUDModeDeterminate;
+    self.hud.mode = MBProgressHUDModeIndeterminate;
     self.hud.labelText = @"Downloading participants...";
 
     [[ServerManager sharedManager] downloadAllParticipants:^(NSString *status, float progress)

@@ -8,6 +8,8 @@ const struct TestSequenceAttributes TestSequenceAttributes = {
 	.background_start = @"background_start",
 	.name = @"name",
 	.path = @"path",
+	.title_length = @"title_length",
+	.title_start = @"title_start",
 	.url = @"url",
 };
 
@@ -49,6 +51,16 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 	}
 	if ([key isEqualToString:@"background_startValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"background_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"title_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"title_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"title_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"title_start"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -99,6 +111,46 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 @dynamic name;
 
 @dynamic path;
+
+@dynamic title_length;
+
+- (int32_t)title_lengthValue {
+	NSNumber *result = [self title_length];
+	return [result intValue];
+}
+
+- (void)setTitle_lengthValue:(int32_t)value_ {
+	[self setTitle_length:@(value_)];
+}
+
+- (int32_t)primitiveTitle_lengthValue {
+	NSNumber *result = [self primitiveTitle_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveTitle_lengthValue:(int32_t)value_ {
+	[self setPrimitiveTitle_length:@(value_)];
+}
+
+@dynamic title_start;
+
+- (int64_t)title_startValue {
+	NSNumber *result = [self title_start];
+	return [result longLongValue];
+}
+
+- (void)setTitle_startValue:(int64_t)value_ {
+	[self setTitle_start:@(value_)];
+}
+
+- (int64_t)primitiveTitle_startValue {
+	NSNumber *result = [self primitiveTitle_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveTitle_startValue:(int64_t)value_ {
+	[self setPrimitiveTitle_start:@(value_)];
+}
 
 @dynamic url;
 

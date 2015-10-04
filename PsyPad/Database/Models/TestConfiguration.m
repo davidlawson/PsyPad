@@ -158,6 +158,15 @@
         background_start = data[@"bg_s"];
     }
     
+    NSNumber *title_length = nil;
+    NSNumber *title_start = nil;
+    
+    if (data[@"t_l"] && data[@"t_s"])
+    {
+        title_length = data[@"t_l"];
+        title_start = data[@"t_s"];
+    }
+    
     NSArray *folders = data[@"g"];
     for (NSDictionary *group in [folders sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b)
     {
@@ -214,6 +223,8 @@
     newSequence.path = sequenceURL.path;
     newSequence.background_length = background_length;
     newSequence.background_start = background_start;
+    newSequence.title_length = title_length;
+    newSequence.title_start = title_start;
     [newSequence addFolders:createdFolders];
 
     if (self.sequence)

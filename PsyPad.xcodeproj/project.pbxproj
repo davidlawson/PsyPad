@@ -235,6 +235,7 @@
 		63BF7A931ABEB6E600825F70 /* _RootEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RootEntity.m; sourceTree = "<group>"; };
 		63BF7A941ABEB6E600825F70 /* RootEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootEntity.h; sourceTree = "<group>"; };
 		63BF7A951ABEB6E600825F70 /* RootEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootEntity.m; sourceTree = "<group>"; };
+		63C75B961BC0F5260071814B /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		63CD19361A9ABB74006946C5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		63CD19371A9ABB74006946C5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		63DC3D291696F9A600ACCFBE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -1089,9 +1090,10 @@
 		63BF7A8F1ABEB62E00825F70 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				63C75B961BC0F5260071814B /* Model2.xcdatamodel */,
 				63BF7A901ABEB62E00825F70 /* Model1.xcdatamodel */,
 			);
-			currentVersion = 63BF7A901ABEB62E00825F70 /* Model1.xcdatamodel */;
+			currentVersion = 63C75B961BC0F5260071814B /* Model2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

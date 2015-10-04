@@ -13,7 +13,8 @@
 @property (nonatomic) int maxReversals;
 @property (nonatomic) int lastReversalType; // 0 down, 1 up
 @property (nonatomic) int currentLevel;
-@property (nonatomic) int numHits;
+@property (nonatomic) int numHitsFloor;
+@property (nonatomic) int numHitsCeiling;
 @property (nonatomic) int numTimesCorrect;
 @property (nonatomic) int numTimesCorrectToGetHarder;
 @property (nonatomic) int numTimesIncorrect;
