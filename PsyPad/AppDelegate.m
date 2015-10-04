@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "UIViewController+DLLoad.h"
 #import <Boilerplate/DLSettings.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 @implementation AppDelegate
 
@@ -19,10 +20,6 @@
     // Override point for customization after application launch.
     
     [DLSettings sharedSettings].databaseManagerClass = [DatabaseManager class];
-    //[DLSettings sharedSettings].trackerURL = [NSURL URLWithString:@""];
-    //[DLSettings sharedSettings].crashHandlerURL = [NSURL URLWithString:@""];
-    //[DLSettings sharedSettings].apiKey = @"";
-    
     [MagicalRecord setShouldDeleteStoreOnModelMismatch:YES];
     
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
@@ -65,7 +62,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
     return UIInterfaceOrientationMaskLandscape;
 }

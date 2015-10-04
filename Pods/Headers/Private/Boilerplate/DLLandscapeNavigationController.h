@@ -1,1 +1,1 @@
-../../../../../../David/Boilerplate/Classes/DLLandscapeNavigationController.h
+../../../Boilerplate/Classes/DLLandscapeNavigationController.h

@@ -1,1 +1,1 @@
-../../../../MagicalRecord/MagicalRecord/Core/MagicalRecord.h
+../../../../MagicalRecord/MagicalRecord/MagicalRecord.h

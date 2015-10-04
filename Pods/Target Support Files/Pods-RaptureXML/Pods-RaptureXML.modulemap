@@ -1,6 +1,0 @@
-framework module RaptureXML {
-  umbrella header "Pods-RaptureXML-umbrella.h"
-
-  export *
-  module * { export * }
-}

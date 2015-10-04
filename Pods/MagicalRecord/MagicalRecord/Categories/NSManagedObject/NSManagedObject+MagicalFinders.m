@@ -104,8 +104,6 @@
 + (instancetype) MR_findFirstByAttribute:(NSString *)attribute withValue:(id)searchValue inContext:(NSManagedObjectContext *)context
 {	
 	NSFetchRequest *request = [self MR_requestFirstByAttribute:attribute withValue:searchValue inContext:context];
-    //    [request setPropertiesToFetch:[NSArray arrayWithObject:attribute]];
-    
 	return [self MR_executeFetchRequestAndReturnFirstObject:request inContext:context];
 }
 
@@ -372,14 +370,11 @@
                                                 ascending:ascending
                                             withPredicate:searchTerm
                                                 inContext:context];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-	NSFetchedResultsController *controller = [self MR_fetchController:request 
+	NSFetchedResultsController *controller = [self MR_fetchController:request
                                                              delegate:nil
                                                          useFileCache:NO
                                                             groupedBy:groupingKeyPath
-                                                            inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
-#pragma clang diagnostic pop
+                                                            inContext:context];
 
     [self MR_performFetch:controller];
     return controller;

@@ -2,7 +2,7 @@
   "name": "Boilerplate",
   "version": "0.0.1",
   "summary": "Boilerplate code for iOS projects.",
-  "description": "                   Boilerplate code for iOS projects.\n",
+  "description": "Boilerplate code for iOS projects.",
   "homepage": "https://github.com/davidlawson/boilerplate",
   "license": "MIT",
   "authors": {
@@ -20,14 +20,14 @@
     "Classes",
     "Classes/**/*.{h,m,swift}"
   ],
-  "prefix_header_contents": "#import \"DLLocalization.h\"\n#import <MagicalRecord/CoreData+MagicalRecord.h>",
+  "prefix_header_contents": "#import \"DLLocalization.h\"\n#import <MagicalRecord/MagicalRecord.h>",
   "frameworks": [
     "CoreData",
     "UIKit",
     "CoreGraphics"
   ],
   "dependencies": {
-    "MagicalRecord/Core+Logging": [
+    "MagicalRecord": [
 
     ],
     "AFNetworking": [
@@ -37,9 +37,6 @@
 
     ],
     "Reachability": [
-
-    ],
-    "KSCrash": [
 
     ]
   }

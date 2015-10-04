@@ -1,8 +1,7 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_FRAMEWORK_BUILD_PATH"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(SDKROOT)/usr/include/libxml2
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFNetworking.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFgzipRequestSerializer.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Boilerplate.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Godzippa.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/KSCrash.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/MBProgressHUD.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/MagicalRecord.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/RaptureXML.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Reachability.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/SSZipArchive.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "AFNetworking" -framework "AFgzipRequestSerializer" -framework "Boilerplate" -framework "Godzippa" -framework "KSCrash" -framework "MBProgressHUD" -framework "MagicalRecord" -framework "RaptureXML" -framework "Reachability" -framework "SSZipArchive"
-OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/AFNetworking.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/AFgzipRequestSerializer.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Boilerplate.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Godzippa.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MBProgressHUD.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MagicalRecord.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/RaptureXML.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Reachability.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SSZipArchive.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "AFNetworking" -framework "AFgzipRequestSerializer" -framework "Boilerplate" -framework "Godzippa" -framework "MBProgressHUD" -framework "MagicalRecord" -framework "RaptureXML" -framework "Reachability" -framework "SSZipArchive"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
 PODS_ROOT = ${SRCROOT}/Pods

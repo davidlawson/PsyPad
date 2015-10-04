@@ -1,6 +1,0 @@
-framework module KSCrash {
-  umbrella header "Pods-KSCrash-umbrella.h"
-
-  export *
-  module * { export * }
-}

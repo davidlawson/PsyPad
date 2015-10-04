@@ -1,0 +1,6 @@
+framework module Godzippa {
+  umbrella header "Godzippa-umbrella.h"
+
+  export *
+  module * { export * }
+}

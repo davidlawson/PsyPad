@@ -1,1 +1,1 @@
-../../../../../../David/Boilerplate/Classes/NSString+Email.h
+../../../Boilerplate/Classes/NSString+Email.h

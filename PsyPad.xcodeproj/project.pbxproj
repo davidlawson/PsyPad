@@ -660,7 +660,7 @@
 		635D078C168D7D0D002B845F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "David Lawson";
 				TargetAttributes = {
 					635D0794168D7D0D002B845F = {
@@ -859,8 +859,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: David Lawson (V4KA5AB5K3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: David Lawson (V4KA5AB5K3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -868,8 +866,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "\"-ObjC -all_load\"";
-				PROVISIONING_PROFILE = "39923FB9-3480-4CAE-8099-D445395B861A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39923FB9-3480-4CAE-8099-D445395B861A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -900,6 +896,7 @@
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "f15bfaac-0505-47fa-8594-aa5767ef11a4";
@@ -919,9 +916,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -936,8 +932,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "\"-ObjC -all_load\"";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -952,8 +946,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Lawson (YRZAGJ6X9R)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -961,8 +953,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "\"-ObjC -all_load\"";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -993,9 +983,10 @@
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56b8e869-9050-4370-94d8-22e293511718";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "34a00a0f-4856-4b0a-ad56-e08153e300f0";
 				STRIP_STYLE = debugging;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -1027,6 +1018,7 @@
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65b35aa9-afa4-4e0c-8bb9-05bc2be71816";

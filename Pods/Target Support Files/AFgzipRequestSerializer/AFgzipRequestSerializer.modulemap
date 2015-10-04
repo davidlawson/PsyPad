@@ -1,0 +1,6 @@
+framework module AFgzipRequestSerializer {
+  umbrella header "AFgzipRequestSerializer-umbrella.h"
+
+  export *
+  module * { export * }
+}

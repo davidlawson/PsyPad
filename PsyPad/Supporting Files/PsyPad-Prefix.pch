@@ -28,4 +28,4 @@
 #define BUTTON_PADDING_TB 70
 #define BUTTON_SPACING 20
 
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord.h>

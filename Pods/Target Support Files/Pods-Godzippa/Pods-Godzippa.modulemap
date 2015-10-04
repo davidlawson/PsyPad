@@ -1,6 +1,0 @@
-framework module Godzippa {
-  umbrella header "Pods-Godzippa-umbrella.h"
-
-  export *
-  module * { export * }
-}
