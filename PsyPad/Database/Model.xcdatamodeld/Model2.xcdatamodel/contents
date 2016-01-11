@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="2" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="2" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 4.3">
     <entity name="RootEntity" representedClassName="RootEntity" syncable="YES">
         <attribute name="admin_password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="demoMode" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="server_url" attributeType="String" defaultValueString="http://server.psypad.net.au/" syncable="YES"/>
+        <attribute name="server_url" attributeType="String" defaultValueString="https://server.psypad.net.au/" syncable="YES"/>
     </entity>
     <entity name="TestConfiguration" representedClassName="TestConfiguration" syncable="YES">
         <attribute name="animation_frame_rate" attributeType="Integer 16" syncable="YES"/>

@@ -12,6 +12,7 @@
 #import "RootEntity.h"
 #import "MainMenuViewController.h"
 #import "DemoViewController.h"
+#import "DatabaseManager.h"
 
 @interface LaunchViewController ()
 
@@ -24,6 +25,13 @@
     [super handleLaunch];
     
     // perform application initialization (but not migration) steps here
+    
+    // Ensure https is used instead of http
+    if ([[RootEntity rootEntity].server_url isEqualToString:@"http://server.psypad.net.au/"])
+    {
+        [RootEntity rootEntity].server_url = @"https://server.psypad.net.au/";
+        [DatabaseManager save];
+    }
     
     UIViewController *vc;
     if ([RootEntity rootEntity].loggedIn)

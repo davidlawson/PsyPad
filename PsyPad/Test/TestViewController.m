@@ -150,8 +150,7 @@
     self.configurationNameLabel.text = self.currentConfiguration.title;
 
     self.view.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.background_colour];
-    
-    UIImage *titleImage = self.currentConfiguration.sequence.titleImage;
+        UIImage *titleImage = self.currentConfiguration.sequence.titleImage;
     self.backgroundImageView.image = titleImage;
 
     if (self.currentConfiguration.show_exit_buttonValue)
@@ -377,6 +376,24 @@
             self.currentStaircase.numTimesIncorrect++;
             self.currentStaircase.numTimesCorrect = 0;
         }
+        
+        if (answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.minLevel)
+        {
+            self.currentStaircase.numHitsFloor++;
+        }
+        else if (!answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.maxLevel)
+        {
+            self.currentStaircase.numHitsCeiling++;
+        }
+        
+        if (self.currentStaircase.numHitsFloor == self.currentStaircase.floorCeilingHits
+            || self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
+        {
+            [self.staircases removeObject:self.currentStaircase];
+            self.currentStaircase = nil;
+            [self prepareNextQuestion];
+            return;
+        }
 
         if (answerCorrect && self.currentStaircase.numTimesCorrect >= self.currentStaircase.numTimesCorrectToGetHarder)
         {
@@ -427,20 +444,11 @@
 
         if (self.currentStaircase.currentLevel < self.currentStaircase.minLevel)
         {
-            self.currentStaircase.numHitsFloor++;
             self.currentStaircase.currentLevel = self.currentStaircase.minLevel;
         }
         else if (self.currentStaircase.currentLevel > self.currentStaircase.maxLevel)
         {
-            self.currentStaircase.numHitsCeiling++;
             self.currentStaircase.currentLevel = self.currentStaircase.maxLevel;
-        }
-
-        if (self.currentStaircase.numHitsFloor == self.currentStaircase.floorCeilingHits
-            || self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
-        {
-            [self.staircases removeObject:self.currentStaircase];
-            self.currentStaircase = nil;
         }
     }
 
@@ -824,6 +832,24 @@
         self.currentStaircase.numTimesIncorrect++;
         self.currentStaircase.numTimesCorrect = 0;
 
+        if (answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.minLevel)
+        {
+            self.currentStaircase.numHitsFloor++;
+        }
+        else if (!answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.maxLevel)
+        {
+            self.currentStaircase.numHitsCeiling++;
+        }
+        
+        if (self.currentStaircase.numHitsFloor == self.currentStaircase.floorCeilingHits
+            || self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
+        {
+            [self.staircases removeObject:self.currentStaircase];
+            self.currentStaircase = nil;
+            [self prepareNextQuestion];
+            return;
+        }
+        
         // same as in pressTestButton
         if (answerCorrect && self.currentStaircase.numTimesCorrect >= self.currentStaircase.numTimesCorrectToGetHarder)
         {
@@ -874,20 +900,11 @@
 
         if (self.currentStaircase.currentLevel < self.currentStaircase.minLevel)
         {
-            self.currentStaircase.numHitsFloor++;
             self.currentStaircase.currentLevel = self.currentStaircase.minLevel;
         }
         else if (self.currentStaircase.currentLevel > self.currentStaircase.maxLevel)
         {
-            self.currentStaircase.numHitsCeiling++;
             self.currentStaircase.currentLevel = self.currentStaircase.maxLevel;
-        }
-
-        if (self.currentStaircase.numHitsFloor == self.currentStaircase.floorCeilingHits
-            || self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
-        {
-            [self.staircases removeObject:self.currentStaircase];
-            self.currentStaircase = nil;
         }
     }
 
