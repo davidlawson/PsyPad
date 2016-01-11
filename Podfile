@@ -1,4 +1,4 @@
-use_frameworks!
+#use_frameworks!
 
 pod 'MagicalRecord'
 pod 'AFNetworking', inhibit_warnings: true
