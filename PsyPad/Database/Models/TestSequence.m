@@ -88,7 +88,7 @@
 
     if (file == NULL)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load background image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to open image set while loading background image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
         self.url = nil;
         [DatabaseManager save];
         return nil;
@@ -127,7 +127,7 @@
     
     if (file == NULL)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load title image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to open image set while loading title image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
         self.url = nil;
         [DatabaseManager save];
         return nil;
@@ -154,6 +154,76 @@
     else
         return [UIImage imageWithData:image_data];
     
+}
+
+- (NSData *)correctWAVData
+{
+    if (!self.correct_wav_start || !self.correct_wav_length) return nil;
+    
+    FILE *file;
+    
+    file = fopen([self.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+    
+    if (file == NULL)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to open image set while loading 'correct button' audio file" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        self.url = nil;
+        [DatabaseManager save];
+        return nil;
+    }
+    
+    int fd = fileno(file);
+    
+    size_t length = (size_t)self.correct_wav_length.intValue;
+    long start = self.correct_wav_start.longValue;
+    
+    long page_start = start - (start % 4096);
+    long offset = start - page_start;
+    
+    void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
+    
+    NSData *wav_data = [NSData dataWithBytes:data + offset length:length];
+    
+    munmap(data, length);
+    
+    fclose(file);
+    
+    return wav_data;
+}
+
+- (NSData *)incorrectWAVData
+{
+    if (!self.incorrect_wav_start || !self.incorrect_wav_length) return nil;
+    
+    FILE *file;
+    
+    file = fopen([self.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+    
+    if (file == NULL)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to open image set while loading 'incorrect button' audio file" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        self.url = nil;
+        [DatabaseManager save];
+        return nil;
+    }
+    
+    int fd = fileno(file);
+    
+    size_t length = (size_t)self.incorrect_wav_length.intValue;
+    long start = self.incorrect_wav_start.longValue;
+    
+    long page_start = start - (start % 4096);
+    long offset = start - page_start;
+    
+    void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
+    
+    NSData *wav_data = [NSData dataWithBytes:data + offset length:length];
+    
+    munmap(data, length);
+    
+    fclose(file);
+    
+    return wav_data;
 }
 
 @end

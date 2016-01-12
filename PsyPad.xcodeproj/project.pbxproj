@@ -238,6 +238,7 @@
 		63C75B961BC0F5260071814B /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		63CD19361A9ABB74006946C5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		63CD19371A9ABB74006946C5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		63DB704F1C43AF7300A1F92B /* Model3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model3.xcdatamodel; sourceTree = "<group>"; };
 		63DC3D291696F9A600ACCFBE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		63DC3D5A169814B400ACCFBE /* TickTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TickTableViewCell.h; sourceTree = "<group>"; };
 		63DC3D5B169814B400ACCFBE /* TickTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TickTableViewCell.m; sourceTree = "<group>"; };
@@ -1082,10 +1083,11 @@
 		63BF7A8F1ABEB62E00825F70 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				63DB704F1C43AF7300A1F92B /* Model3.xcdatamodel */,
 				63C75B961BC0F5260071814B /* Model2.xcdatamodel */,
 				63BF7A901ABEB62E00825F70 /* Model1.xcdatamodel */,
 			);
-			currentVersion = 63C75B961BC0F5260071814B /* Model2.xcdatamodel */;
+			currentVersion = 63DB704F1C43AF7300A1F92B /* Model3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

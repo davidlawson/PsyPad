@@ -6,6 +6,10 @@
 const struct TestSequenceAttributes TestSequenceAttributes = {
 	.background_length = @"background_length",
 	.background_start = @"background_start",
+	.correct_wav_length = @"correct_wav_length",
+	.correct_wav_start = @"correct_wav_start",
+	.incorrect_wav_length = @"incorrect_wav_length",
+	.incorrect_wav_start = @"incorrect_wav_start",
 	.name = @"name",
 	.path = @"path",
 	.title_length = @"title_length",
@@ -51,6 +55,26 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 	}
 	if ([key isEqualToString:@"background_startValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"background_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"correct_wav_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"correct_wav_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"correct_wav_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"correct_wav_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"incorrect_wav_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"incorrect_wav_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"incorrect_wav_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"incorrect_wav_start"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -106,6 +130,86 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 
 - (void)setPrimitiveBackground_startValue:(int64_t)value_ {
 	[self setPrimitiveBackground_start:@(value_)];
+}
+
+@dynamic correct_wav_length;
+
+- (int32_t)correct_wav_lengthValue {
+	NSNumber *result = [self correct_wav_length];
+	return [result intValue];
+}
+
+- (void)setCorrect_wav_lengthValue:(int32_t)value_ {
+	[self setCorrect_wav_length:@(value_)];
+}
+
+- (int32_t)primitiveCorrect_wav_lengthValue {
+	NSNumber *result = [self primitiveCorrect_wav_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveCorrect_wav_lengthValue:(int32_t)value_ {
+	[self setPrimitiveCorrect_wav_length:@(value_)];
+}
+
+@dynamic correct_wav_start;
+
+- (int64_t)correct_wav_startValue {
+	NSNumber *result = [self correct_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setCorrect_wav_startValue:(int64_t)value_ {
+	[self setCorrect_wav_start:@(value_)];
+}
+
+- (int64_t)primitiveCorrect_wav_startValue {
+	NSNumber *result = [self primitiveCorrect_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveCorrect_wav_startValue:(int64_t)value_ {
+	[self setPrimitiveCorrect_wav_start:@(value_)];
+}
+
+@dynamic incorrect_wav_length;
+
+- (int32_t)incorrect_wav_lengthValue {
+	NSNumber *result = [self incorrect_wav_length];
+	return [result intValue];
+}
+
+- (void)setIncorrect_wav_lengthValue:(int32_t)value_ {
+	[self setIncorrect_wav_length:@(value_)];
+}
+
+- (int32_t)primitiveIncorrect_wav_lengthValue {
+	NSNumber *result = [self primitiveIncorrect_wav_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveIncorrect_wav_lengthValue:(int32_t)value_ {
+	[self setPrimitiveIncorrect_wav_length:@(value_)];
+}
+
+@dynamic incorrect_wav_start;
+
+- (int64_t)incorrect_wav_startValue {
+	NSNumber *result = [self incorrect_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setIncorrect_wav_startValue:(int64_t)value_ {
+	[self setIncorrect_wav_start:@(value_)];
+}
+
+- (int64_t)primitiveIncorrect_wav_startValue {
+	NSNumber *result = [self primitiveIncorrect_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveIncorrect_wav_startValue:(int64_t)value_ {
+	[self setPrimitiveIncorrect_wav_start:@(value_)];
 }
 
 @dynamic name;

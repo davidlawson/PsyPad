@@ -10,8 +10,11 @@
 @class User, TestLog, TestConfiguration, TestImageButton, DistanceDetector;
 @class Staircase;
 @class MBProgressHUD;
+@class AVAudioPlayer;
 
 @interface TestViewController : UIViewController
+
+@property (nonatomic, strong) AVAudioPlayer *correctAudioPlayer, *incorrectAudioPlayer;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;

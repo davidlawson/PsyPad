@@ -8,6 +8,7 @@
 #import "TestViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "AppDelegate.h"
 #import "TestConfiguration.h"
@@ -170,6 +171,50 @@
 
     self.configurationNameLabel.hidden = NO;
     self.beginConfigurationButton.hidden = NO;
+    
+    NSData *correctWAVData;
+    if ((correctWAVData = self.currentConfiguration.sequence.correctWAVData))
+    {
+        NSError *error = nil;
+        self.correctAudioPlayer = [[AVAudioPlayer alloc] initWithData:correctWAVData fileTypeHint:AVFileTypeWAVE error:&error];
+        if (error)
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load 'correct button' audio file" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+            self.correctAudioPlayer = nil;
+        }
+        else
+        {
+            [self.correctAudioPlayer prepareToPlay];
+            self.correctAudioPlayer.volume = 0;
+            [self.correctAudioPlayer play];
+        }
+    }
+    else
+    {
+        self.correctAudioPlayer = nil;
+    }
+    
+    NSData *incorrectWAVData;
+    if ((incorrectWAVData = self.currentConfiguration.sequence.incorrectWAVData))
+    {
+        NSError *error = nil;
+        self.incorrectAudioPlayer = [[AVAudioPlayer alloc] initWithData:incorrectWAVData fileTypeHint:AVFileTypeWAVE error:&error];
+        if (error)
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load 'incorrect button' audio file" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+            self.incorrectAudioPlayer = nil;
+        }
+        else
+        {
+            [self.incorrectAudioPlayer prepareToPlay];
+            self.incorrectAudioPlayer.volume = 0;
+            [self.incorrectAudioPlayer play];
+        }
+    }
+    else
+    {
+        self.incorrectAudioPlayer = nil;
+    }
 }
 
 - (IBAction)beginConfiguration
@@ -368,6 +413,13 @@
             answerCorrect = YES;
             self.currentStaircase.numTimesCorrect++;
             self.currentStaircase.numTimesIncorrect = 0;
+            
+            if (self.correctAudioPlayer)
+            {
+                self.correctAudioPlayer.currentTime = 0;
+                self.correctAudioPlayer.volume = 1;
+                [self.correctAudioPlayer play];
+            }
         }
         else
         {
@@ -375,6 +427,13 @@
             answerCorrect = NO;
             self.currentStaircase.numTimesIncorrect++;
             self.currentStaircase.numTimesCorrect = 0;
+            
+            if (self.incorrectAudioPlayer)
+            {
+                self.incorrectAudioPlayer.currentTime = 0;
+                self.incorrectAudioPlayer.volume = 1;
+                [self.incorrectAudioPlayer play];
+            }
         }
         
         if (answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.minLevel)

@@ -14,4 +14,7 @@
 - (UIImage *)titleImage;
 - (UIImage *)backgroundImage;
 
+- (NSData *)correctWAVData;
+- (NSData *)incorrectWAVData;
+
 @end

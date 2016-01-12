@@ -167,6 +167,24 @@
         title_start = data[@"t_s"];
     }
     
+    NSNumber *correct_wav_length = nil;
+    NSNumber *correct_wav_start = nil;
+    
+    if (data[@"c_l"] && data[@"c_s"])
+    {
+        correct_wav_length = data[@"c_l"];
+        correct_wav_start = data[@"c_s"];
+    }
+    
+    NSNumber *incorrect_wav_length = nil;
+    NSNumber *incorrect_wav_start = nil;
+    
+    if (data[@"i_l"] && data[@"i_s"])
+    {
+        incorrect_wav_length = data[@"i_l"];
+        incorrect_wav_start = data[@"i_s"];
+    }
+    
     NSArray *folders = data[@"g"];
     for (NSDictionary *group in [folders sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b)
     {
@@ -225,6 +243,10 @@
     newSequence.background_start = background_start;
     newSequence.title_length = title_length;
     newSequence.title_start = title_start;
+    newSequence.correct_wav_length = correct_wav_length;
+    newSequence.correct_wav_start = correct_wav_start;
+    newSequence.incorrect_wav_length = incorrect_wav_length;
+    newSequence.incorrect_wav_start = incorrect_wav_start;
     [newSequence addFolders:createdFolders];
 
     if (self.sequence)

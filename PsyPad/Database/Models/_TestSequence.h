@@ -6,6 +6,10 @@
 extern const struct TestSequenceAttributes {
 	__unsafe_unretained NSString *background_length;
 	__unsafe_unretained NSString *background_start;
+	__unsafe_unretained NSString *correct_wav_length;
+	__unsafe_unretained NSString *correct_wav_start;
+	__unsafe_unretained NSString *incorrect_wav_length;
+	__unsafe_unretained NSString *incorrect_wav_start;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *path;
 	__unsafe_unretained NSString *title_length;
@@ -45,6 +49,38 @@ extern const struct TestSequenceRelationships {
 - (void)setBackground_startValue:(int64_t)value_;
 
 //- (BOOL)validateBackground_start:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* correct_wav_length;
+
+@property (atomic) int32_t correct_wav_lengthValue;
+- (int32_t)correct_wav_lengthValue;
+- (void)setCorrect_wav_lengthValue:(int32_t)value_;
+
+//- (BOOL)validateCorrect_wav_length:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* correct_wav_start;
+
+@property (atomic) int64_t correct_wav_startValue;
+- (int64_t)correct_wav_startValue;
+- (void)setCorrect_wav_startValue:(int64_t)value_;
+
+//- (BOOL)validateCorrect_wav_start:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* incorrect_wav_length;
+
+@property (atomic) int32_t incorrect_wav_lengthValue;
+- (int32_t)incorrect_wav_lengthValue;
+- (void)setIncorrect_wav_lengthValue:(int32_t)value_;
+
+//- (BOOL)validateIncorrect_wav_length:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* incorrect_wav_start;
+
+@property (atomic) int64_t incorrect_wav_startValue;
+- (int64_t)incorrect_wav_startValue;
+- (void)setIncorrect_wav_startValue:(int64_t)value_;
+
+//- (BOOL)validateIncorrect_wav_start:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* name;
 
@@ -120,6 +156,30 @@ extern const struct TestSequenceRelationships {
 
 - (int64_t)primitiveBackground_startValue;
 - (void)setPrimitiveBackground_startValue:(int64_t)value_;
+
+- (NSNumber*)primitiveCorrect_wav_length;
+- (void)setPrimitiveCorrect_wav_length:(NSNumber*)value;
+
+- (int32_t)primitiveCorrect_wav_lengthValue;
+- (void)setPrimitiveCorrect_wav_lengthValue:(int32_t)value_;
+
+- (NSNumber*)primitiveCorrect_wav_start;
+- (void)setPrimitiveCorrect_wav_start:(NSNumber*)value;
+
+- (int64_t)primitiveCorrect_wav_startValue;
+- (void)setPrimitiveCorrect_wav_startValue:(int64_t)value_;
+
+- (NSNumber*)primitiveIncorrect_wav_length;
+- (void)setPrimitiveIncorrect_wav_length:(NSNumber*)value;
+
+- (int32_t)primitiveIncorrect_wav_lengthValue;
+- (void)setPrimitiveIncorrect_wav_lengthValue:(int32_t)value_;
+
+- (NSNumber*)primitiveIncorrect_wav_start;
+- (void)setPrimitiveIncorrect_wav_start:(NSNumber*)value;
+
+- (int64_t)primitiveIncorrect_wav_startValue;
+- (void)setPrimitiveIncorrect_wav_startValue:(int64_t)value_;
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
