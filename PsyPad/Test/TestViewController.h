@@ -14,7 +14,11 @@
 
 @interface TestViewController : UIViewController
 
-@property (nonatomic, strong) AVAudioPlayer *correctAudioPlayer, *incorrectAudioPlayer;
+@property (nonatomic, strong) AVAudioPlayer *correctAudioPlayer,
+                                            *incorrectAudioPlayer,
+                                            *onAudioPlayer,
+                                            *offAudioPlayer,
+                                            *timeoutAudioPlayer;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;

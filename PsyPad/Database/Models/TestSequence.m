@@ -78,37 +78,45 @@
     [super prepareForDeletion];
 }
 
-- (UIImage *)backgroundImage
+- (NSData *)mappedDataWithStart:(long)start length:(size_t)length description:(NSString *)description
 {
-    if (!self.background_start || !self.background_length) return nil;
-
     FILE *file;
-
+    
     file = fopen([self.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
-
+    
     if (file == NULL)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to open image set while loading background image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:[NSString stringWithFormat:@"Failed to open %@", description]
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
         self.url = nil;
         [DatabaseManager save];
         return nil;
     }
-
+    
     int fd = fileno(file);
-
-    size_t length = (size_t)self.background_length.intValue;
-    long start = self.background_start.longValue;
-
+    
     long page_start = start - (start % 4096);
     long offset = start - page_start;
-
+    
     void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
-
-    NSData *image_data = [NSData dataWithBytes:data + offset length:length];
-
+    
+    NSData *nsData = [NSData dataWithBytes:data + offset length:length];
+    
     munmap(data, length);
-
+    
     fclose(file);
+    
+    return nsData;
+}
+
+- (UIImage *)backgroundImage
+{
+    if (!self.background_start || !self.background_length) return nil;
+
+    NSData *image_data = [self mappedDataWithStart:self.background_start.longValue length:self.background_length.intValue description:@"image set while loading background image"];
 
     if([[UIScreen mainScreen] scale] == 2.0 && [UIImage respondsToSelector:@selector(imageWithData:scale:)])
         return [UIImage imageWithData:image_data scale:2];
@@ -121,33 +129,7 @@
 {
     if (!self.title_start || !self.title_length) return nil;
     
-    FILE *file;
-    
-    file = fopen([self.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
-    
-    if (file == NULL)
-    {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to open image set while loading title image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
-        self.url = nil;
-        [DatabaseManager save];
-        return nil;
-    }
-    
-    int fd = fileno(file);
-    
-    size_t length = (size_t)self.title_length.intValue;
-    long start = self.title_start.longValue;
-    
-    long page_start = start - (start % 4096);
-    long offset = start - page_start;
-    
-    void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
-    
-    NSData *image_data = [NSData dataWithBytes:data + offset length:length];
-    
-    munmap(data, length);
-    
-    fclose(file);
+    NSData *image_data = [self mappedDataWithStart:self.title_start.longValue length:self.title_length.intValue description:@"image set while loading title image"];
     
     if([[UIScreen mainScreen] scale] == 2.0 && [UIImage respondsToSelector:@selector(imageWithData:scale:)])
         return [UIImage imageWithData:image_data scale:2];
@@ -160,70 +142,35 @@
 {
     if (!self.correct_wav_start || !self.correct_wav_length) return nil;
     
-    FILE *file;
-    
-    file = fopen([self.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
-    
-    if (file == NULL)
-    {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to open image set while loading 'correct button' audio file" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
-        self.url = nil;
-        [DatabaseManager save];
-        return nil;
-    }
-    
-    int fd = fileno(file);
-    
-    size_t length = (size_t)self.correct_wav_length.intValue;
-    long start = self.correct_wav_start.longValue;
-    
-    long page_start = start - (start % 4096);
-    long offset = start - page_start;
-    
-    void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
-    
-    NSData *wav_data = [NSData dataWithBytes:data + offset length:length];
-    
-    munmap(data, length);
-    
-    fclose(file);
-    
-    return wav_data;
+    return [self mappedDataWithStart:self.correct_wav_start.longValue length:self.correct_wav_length.intValue description:@"image set while loading 'correct button' audio file"];
 }
 
 - (NSData *)incorrectWAVData
 {
     if (!self.incorrect_wav_start || !self.incorrect_wav_length) return nil;
     
-    FILE *file;
+    return [self mappedDataWithStart:self.incorrect_wav_start.longValue length:self.incorrect_wav_length.intValue description:@"image set while loading 'incorrect button' audio file"];
+}
+
+- (NSData *)onWAVData
+{
+    if (!self.on_wav_start || !self.on_wav_length) return nil;
     
-    file = fopen([self.absolutePath cStringUsingEncoding:NSASCIIStringEncoding], "rb");
+    return [self mappedDataWithStart:self.on_wav_start.longValue length:self.on_wav_length.intValue description:@"image set while loading 'on' audio file"];
+}
+
+- (NSData *)offWAVData
+{
+    if (!self.off_wav_start || !self.off_wav_length) return nil;
     
-    if (file == NULL)
-    {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to open image set while loading 'incorrect button' audio file" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
-        self.url = nil;
-        [DatabaseManager save];
-        return nil;
-    }
+    return [self mappedDataWithStart:self.off_wav_start.longValue length:self.off_wav_length.intValue description:@"image set while loading 'off' audio file"];
+}
+
+- (NSData *)timeoutWAVData
+{
+    if (!self.timeout_wav_start || !self.timeout_wav_length) return nil;
     
-    int fd = fileno(file);
-    
-    size_t length = (size_t)self.incorrect_wav_length.intValue;
-    long start = self.incorrect_wav_start.longValue;
-    
-    long page_start = start - (start % 4096);
-    long offset = start - page_start;
-    
-    void *data = mmap(NULL, offset + length, PROT_READ, MAP_SHARED, fd, page_start);
-    
-    NSData *wav_data = [NSData dataWithBytes:data + offset length:length];
-    
-    munmap(data, length);
-    
-    fclose(file);
-    
-    return wav_data;
+    return [self mappedDataWithStart:self.timeout_wav_start.longValue length:self.timeout_wav_length.intValue description:@"image set while loading 'timeout' audio file"];
 }
 
 @end

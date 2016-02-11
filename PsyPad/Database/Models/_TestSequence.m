@@ -11,7 +11,13 @@ const struct TestSequenceAttributes TestSequenceAttributes = {
 	.incorrect_wav_length = @"incorrect_wav_length",
 	.incorrect_wav_start = @"incorrect_wav_start",
 	.name = @"name",
+	.off_wav_length = @"off_wav_length",
+	.off_wav_start = @"off_wav_start",
+	.on_wav_length = @"on_wav_length",
+	.on_wav_start = @"on_wav_start",
 	.path = @"path",
+	.timeout_wav_length = @"timeout_wav_length",
+	.timeout_wav_start = @"timeout_wav_start",
 	.title_length = @"title_length",
 	.title_start = @"title_start",
 	.url = @"url",
@@ -75,6 +81,36 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 	}
 	if ([key isEqualToString:@"incorrect_wav_startValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"incorrect_wav_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"off_wav_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"off_wav_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"off_wav_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"off_wav_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"on_wav_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"on_wav_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"on_wav_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"on_wav_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"timeout_wav_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"timeout_wav_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"timeout_wav_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"timeout_wav_start"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -214,7 +250,127 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 
 @dynamic name;
 
+@dynamic off_wav_length;
+
+- (int32_t)off_wav_lengthValue {
+	NSNumber *result = [self off_wav_length];
+	return [result intValue];
+}
+
+- (void)setOff_wav_lengthValue:(int32_t)value_ {
+	[self setOff_wav_length:@(value_)];
+}
+
+- (int32_t)primitiveOff_wav_lengthValue {
+	NSNumber *result = [self primitiveOff_wav_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveOff_wav_lengthValue:(int32_t)value_ {
+	[self setPrimitiveOff_wav_length:@(value_)];
+}
+
+@dynamic off_wav_start;
+
+- (int64_t)off_wav_startValue {
+	NSNumber *result = [self off_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setOff_wav_startValue:(int64_t)value_ {
+	[self setOff_wav_start:@(value_)];
+}
+
+- (int64_t)primitiveOff_wav_startValue {
+	NSNumber *result = [self primitiveOff_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveOff_wav_startValue:(int64_t)value_ {
+	[self setPrimitiveOff_wav_start:@(value_)];
+}
+
+@dynamic on_wav_length;
+
+- (int32_t)on_wav_lengthValue {
+	NSNumber *result = [self on_wav_length];
+	return [result intValue];
+}
+
+- (void)setOn_wav_lengthValue:(int32_t)value_ {
+	[self setOn_wav_length:@(value_)];
+}
+
+- (int32_t)primitiveOn_wav_lengthValue {
+	NSNumber *result = [self primitiveOn_wav_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveOn_wav_lengthValue:(int32_t)value_ {
+	[self setPrimitiveOn_wav_length:@(value_)];
+}
+
+@dynamic on_wav_start;
+
+- (int64_t)on_wav_startValue {
+	NSNumber *result = [self on_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setOn_wav_startValue:(int64_t)value_ {
+	[self setOn_wav_start:@(value_)];
+}
+
+- (int64_t)primitiveOn_wav_startValue {
+	NSNumber *result = [self primitiveOn_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveOn_wav_startValue:(int64_t)value_ {
+	[self setPrimitiveOn_wav_start:@(value_)];
+}
+
 @dynamic path;
+
+@dynamic timeout_wav_length;
+
+- (int32_t)timeout_wav_lengthValue {
+	NSNumber *result = [self timeout_wav_length];
+	return [result intValue];
+}
+
+- (void)setTimeout_wav_lengthValue:(int32_t)value_ {
+	[self setTimeout_wav_length:@(value_)];
+}
+
+- (int32_t)primitiveTimeout_wav_lengthValue {
+	NSNumber *result = [self primitiveTimeout_wav_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveTimeout_wav_lengthValue:(int32_t)value_ {
+	[self setPrimitiveTimeout_wav_length:@(value_)];
+}
+
+@dynamic timeout_wav_start;
+
+- (int64_t)timeout_wav_startValue {
+	NSNumber *result = [self timeout_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setTimeout_wav_startValue:(int64_t)value_ {
+	[self setTimeout_wav_start:@(value_)];
+}
+
+- (int64_t)primitiveTimeout_wav_startValue {
+	NSNumber *result = [self primitiveTimeout_wav_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveTimeout_wav_startValue:(int64_t)value_ {
+	[self setPrimitiveTimeout_wav_start:@(value_)];
+}
 
 @dynamic title_length;
 

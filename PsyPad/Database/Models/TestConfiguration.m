@@ -185,6 +185,33 @@
         incorrect_wav_start = data[@"i_s"];
     }
     
+    NSNumber *on_wav_length = nil;
+    NSNumber *on_wav_start = nil;
+    
+    if (data[@"on_l"] && data[@"on_s"])
+    {
+        on_wav_length = data[@"on_l"];
+        on_wav_start = data[@"on_s"];
+    }
+    
+    NSNumber *off_wav_length = nil;
+    NSNumber *off_wav_start = nil;
+    
+    if (data[@"off_l"] && data[@"off_s"])
+    {
+        off_wav_length = data[@"off_l"];
+        off_wav_start = data[@"off_s"];
+    }
+    
+    NSNumber *timeout_wav_length = nil;
+    NSNumber *timeout_wav_start = nil;
+    
+    if (data[@"to_l"] && data[@"to_s"])
+    {
+        timeout_wav_length = data[@"to_l"];
+        timeout_wav_start = data[@"to_s"];
+    }
+    
     NSArray *folders = data[@"g"];
     for (NSDictionary *group in [folders sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b)
     {
@@ -247,6 +274,12 @@
     newSequence.correct_wav_start = correct_wav_start;
     newSequence.incorrect_wav_length = incorrect_wav_length;
     newSequence.incorrect_wav_start = incorrect_wav_start;
+    newSequence.on_wav_length = on_wav_length;
+    newSequence.on_wav_start = on_wav_start;
+    newSequence.off_wav_length = off_wav_length;
+    newSequence.off_wav_start = off_wav_start;
+    newSequence.timeout_wav_length = timeout_wav_length;
+    newSequence.timeout_wav_start = timeout_wav_start;
     [newSequence addFolders:createdFolders];
 
     if (self.sequence)

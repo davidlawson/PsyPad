@@ -11,7 +11,13 @@ extern const struct TestSequenceAttributes {
 	__unsafe_unretained NSString *incorrect_wav_length;
 	__unsafe_unretained NSString *incorrect_wav_start;
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *off_wav_length;
+	__unsafe_unretained NSString *off_wav_start;
+	__unsafe_unretained NSString *on_wav_length;
+	__unsafe_unretained NSString *on_wav_start;
 	__unsafe_unretained NSString *path;
+	__unsafe_unretained NSString *timeout_wav_length;
+	__unsafe_unretained NSString *timeout_wav_start;
 	__unsafe_unretained NSString *title_length;
 	__unsafe_unretained NSString *title_start;
 	__unsafe_unretained NSString *url;
@@ -86,9 +92,57 @@ extern const struct TestSequenceRelationships {
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* off_wav_length;
+
+@property (atomic) int32_t off_wav_lengthValue;
+- (int32_t)off_wav_lengthValue;
+- (void)setOff_wav_lengthValue:(int32_t)value_;
+
+//- (BOOL)validateOff_wav_length:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* off_wav_start;
+
+@property (atomic) int64_t off_wav_startValue;
+- (int64_t)off_wav_startValue;
+- (void)setOff_wav_startValue:(int64_t)value_;
+
+//- (BOOL)validateOff_wav_start:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* on_wav_length;
+
+@property (atomic) int32_t on_wav_lengthValue;
+- (int32_t)on_wav_lengthValue;
+- (void)setOn_wav_lengthValue:(int32_t)value_;
+
+//- (BOOL)validateOn_wav_length:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* on_wav_start;
+
+@property (atomic) int64_t on_wav_startValue;
+- (int64_t)on_wav_startValue;
+- (void)setOn_wav_startValue:(int64_t)value_;
+
+//- (BOOL)validateOn_wav_start:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* path;
 
 //- (BOOL)validatePath:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* timeout_wav_length;
+
+@property (atomic) int32_t timeout_wav_lengthValue;
+- (int32_t)timeout_wav_lengthValue;
+- (void)setTimeout_wav_lengthValue:(int32_t)value_;
+
+//- (BOOL)validateTimeout_wav_length:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* timeout_wav_start;
+
+@property (atomic) int64_t timeout_wav_startValue;
+- (int64_t)timeout_wav_startValue;
+- (void)setTimeout_wav_startValue:(int64_t)value_;
+
+//- (BOOL)validateTimeout_wav_start:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* title_length;
 
@@ -184,8 +238,44 @@ extern const struct TestSequenceRelationships {
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
+- (NSNumber*)primitiveOff_wav_length;
+- (void)setPrimitiveOff_wav_length:(NSNumber*)value;
+
+- (int32_t)primitiveOff_wav_lengthValue;
+- (void)setPrimitiveOff_wav_lengthValue:(int32_t)value_;
+
+- (NSNumber*)primitiveOff_wav_start;
+- (void)setPrimitiveOff_wav_start:(NSNumber*)value;
+
+- (int64_t)primitiveOff_wav_startValue;
+- (void)setPrimitiveOff_wav_startValue:(int64_t)value_;
+
+- (NSNumber*)primitiveOn_wav_length;
+- (void)setPrimitiveOn_wav_length:(NSNumber*)value;
+
+- (int32_t)primitiveOn_wav_lengthValue;
+- (void)setPrimitiveOn_wav_lengthValue:(int32_t)value_;
+
+- (NSNumber*)primitiveOn_wav_start;
+- (void)setPrimitiveOn_wav_start:(NSNumber*)value;
+
+- (int64_t)primitiveOn_wav_startValue;
+- (void)setPrimitiveOn_wav_startValue:(int64_t)value_;
+
 - (NSString*)primitivePath;
 - (void)setPrimitivePath:(NSString*)value;
+
+- (NSNumber*)primitiveTimeout_wav_length;
+- (void)setPrimitiveTimeout_wav_length:(NSNumber*)value;
+
+- (int32_t)primitiveTimeout_wav_lengthValue;
+- (void)setPrimitiveTimeout_wav_lengthValue:(int32_t)value_;
+
+- (NSNumber*)primitiveTimeout_wav_start;
+- (void)setPrimitiveTimeout_wav_start:(NSNumber*)value;
+
+- (int64_t)primitiveTimeout_wav_startValue;
+- (void)setPrimitiveTimeout_wav_startValue:(int64_t)value_;
 
 - (NSNumber*)primitiveTitle_length;
 - (void)setPrimitiveTitle_length:(NSNumber*)value;

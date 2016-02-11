@@ -16,5 +16,8 @@
 
 - (NSData *)correctWAVData;
 - (NSData *)incorrectWAVData;
+- (NSData *)onWAVData;
+- (NSData *)offWAVData;
+- (NSData *)timeoutWAVData;
 
 @end

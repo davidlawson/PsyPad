@@ -172,49 +172,43 @@
     self.configurationNameLabel.hidden = NO;
     self.beginConfigurationButton.hidden = NO;
     
-    NSData *correctWAVData;
-    if ((correctWAVData = self.currentConfiguration.sequence.correctWAVData))
+    self.correctAudioPlayer = [self loadAudio:self.currentConfiguration.sequence.correctWAVData description:@"correct button"];
+    self.incorrectAudioPlayer = [self loadAudio:self.currentConfiguration.sequence.incorrectWAVData description:@"incorrect button"];
+    self.onAudioPlayer = [self loadAudio:self.currentConfiguration.sequence.onWAVData description:@"on"];
+    self.offAudioPlayer = [self loadAudio:self.currentConfiguration.sequence.offWAVData description:@"off"];
+    self.timeoutAudioPlayer = [self loadAudio:self.currentConfiguration.sequence.timeoutWAVData description:@"timeout"];
+}
+
+- (AVAudioPlayer *)loadAudio:(NSData *)data description:(NSString *)description
+{
+    if (!data) return nil;
+    
+    NSError *error = nil;
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:data fileTypeHint:AVFileTypeWAVE error:&error];
+    if (error)
     {
-        NSError *error = nil;
-        self.correctAudioPlayer = [[AVAudioPlayer alloc] initWithData:correctWAVData fileTypeHint:AVFileTypeWAVE error:&error];
-        if (error)
-        {
-            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load 'correct button' audio file" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
-            self.correctAudioPlayer = nil;
-        }
-        else
-        {
-            [self.correctAudioPlayer prepareToPlay];
-            self.correctAudioPlayer.volume = 0;
-            [self.correctAudioPlayer play];
-        }
-    }
-    else
-    {
-        self.correctAudioPlayer = nil;
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:[NSString stringWithFormat:@"Failed to load '%@' audio file", description]
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
+        return nil;
     }
     
-    NSData *incorrectWAVData;
-    if ((incorrectWAVData = self.currentConfiguration.sequence.incorrectWAVData))
-    {
-        NSError *error = nil;
-        self.incorrectAudioPlayer = [[AVAudioPlayer alloc] initWithData:incorrectWAVData fileTypeHint:AVFileTypeWAVE error:&error];
-        if (error)
-        {
-            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load 'incorrect button' audio file" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
-            self.incorrectAudioPlayer = nil;
-        }
-        else
-        {
-            [self.incorrectAudioPlayer prepareToPlay];
-            self.incorrectAudioPlayer.volume = 0;
-            [self.incorrectAudioPlayer play];
-        }
-    }
-    else
-    {
-        self.incorrectAudioPlayer = nil;
-    }
+    [player prepareToPlay];
+    player.volume = 0;
+    [player play];
+    
+    return player;
+}
+
+- (void)playAudio:(AVAudioPlayer *)player
+{
+    if (!player) return;
+    
+    player.currentTime = 0;
+    player.volume = 1;
+    [player play];
 }
 
 - (IBAction)beginConfiguration
@@ -335,6 +329,9 @@
 
 - (IBAction)pressExitButton:(id)sender
 {
+    // Time between each question
+    [UIView cancelPreviousPerformRequestsWithTarget:self];
+    
     self.questionLabel.hidden = YES;
 
     [self.image removeFromSuperview];
@@ -346,6 +343,8 @@
 
     if ((self.currentConfiguration = [self nextConfiguration]))
     {
+        [self log:@"pressed_exit_button" info:nil];
+        
         [self presentConfiguration];
     }
     else
@@ -353,9 +352,6 @@
         [self log:@"exit_test" info:nil];
 
         [self uploadData];
-
-        // Time between each question
-        [UIView cancelPreviousPerformRequestsWithTarget:self];
 
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         
@@ -414,12 +410,7 @@
             self.currentStaircase.numTimesCorrect++;
             self.currentStaircase.numTimesIncorrect = 0;
             
-            if (self.correctAudioPlayer)
-            {
-                self.correctAudioPlayer.currentTime = 0;
-                self.correctAudioPlayer.volume = 1;
-                [self.correctAudioPlayer play];
-            }
+            [self playAudio:self.correctAudioPlayer];
         }
         else
         {
@@ -428,12 +419,7 @@
             self.currentStaircase.numTimesIncorrect++;
             self.currentStaircase.numTimesCorrect = 0;
             
-            if (self.incorrectAudioPlayer)
-            {
-                self.incorrectAudioPlayer.currentTime = 0;
-                self.incorrectAudioPlayer.volume = 1;
-                [self.incorrectAudioPlayer play];
-            }
+            [self playAudio:self.incorrectAudioPlayer];
         }
         
         if (answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.minLevel)
@@ -498,8 +484,6 @@
             self.currentStaircase.numTimesIncorrect = 0;
             self.currentStaircase.numTimesCorrect = 0;
         }
-
-        //self.currentStaircase.lastAnswerCorrect = answerCorrect ? 1 : 0;
 
         if (self.currentStaircase.currentLevel < self.currentStaircase.minLevel)
         {
@@ -764,6 +748,7 @@
 
     [self.view addSubview:self.image];
     [self log:@"presented_image" info:@"%@/%@", self.image.dbImage.folder.name, self.image.dbImage.name];
+    [self playAudio:self.onAudioPlayer];
     
     [self.view bringSubviewToFront:self.exitButton];
 
@@ -796,6 +781,7 @@
         {
             [self log:@"image_hidden" info:nil];
             self.image.hidden = YES;
+            [self playAudio:self.offAudioPlayer];
         }
               afterDelay:self.currentConfiguration.finite_presentation_timeValue
         ];
@@ -831,6 +817,7 @@
 
     [self.view addSubview:self.image];
     [self log:@"presented_image" info:@"%@/%@", self.image.dbImage.folder.name, self.image.dbImage.name];
+    [self playAudio:self.offAudioPlayer];
     
     [self.view bringSubviewToFront:self.exitButton];
 
@@ -863,6 +850,7 @@
         {
             [self log:@"image_hidden" info:nil];
             self.image.hidden = YES;
+            [self playAudio:self.offAudioPlayer];
         }
               afterDelay:self.currentConfiguration.finite_presentation_timeValue
         ];
@@ -884,6 +872,8 @@
     [self log:@"response_window_timeout" info:nil];
 
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    [self playAudio:self.timeoutAudioPlayer];
 
     if (self.currentConfiguration.use_staircase_methodValue)
     {
@@ -891,17 +881,12 @@
         self.currentStaircase.numTimesIncorrect++;
         self.currentStaircase.numTimesCorrect = 0;
 
-        if (answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.minLevel)
-        {
-            self.currentStaircase.numHitsFloor++;
-        }
-        else if (!answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.maxLevel)
+        if (self.currentStaircase.currentLevel == self.currentStaircase.maxLevel)
         {
             self.currentStaircase.numHitsCeiling++;
         }
         
-        if (self.currentStaircase.numHitsFloor == self.currentStaircase.floorCeilingHits
-            || self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
+        if (self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
         {
             [self.staircases removeObject:self.currentStaircase];
             self.currentStaircase = nil;
@@ -910,29 +895,7 @@
         }
         
         // same as in pressTestButton
-        if (answerCorrect && self.currentStaircase.numTimesCorrect >= self.currentStaircase.numTimesCorrectToGetHarder)
-        {
-            if (self.currentStaircase.lastReversalType == 0) // down
-            {
-                [self log:@"reversal" info:nil];
-                self.currentStaircase.currentReversal++;
-
-                if (self.currentStaircase.currentReversal >= self.currentStaircase.maxReversals)
-                {
-                    [self.staircases removeObject:self.currentStaircase];
-                    self.currentStaircase = nil;
-                    [self prepareNextQuestion];
-                    return;
-                }
-            }
-            self.currentStaircase.lastReversalType = 1;
-
-            int delta = [(NSNumber *)[self.currentStaircase.deltaValues objectAtIndex:(NSUInteger)self.currentStaircase.currentReversal] intValue];
-            self.currentStaircase.currentLevel -= delta;
-            self.currentStaircase.numTimesCorrect = 0;
-            self.currentStaircase.numTimesIncorrect = 0;
-        }
-        else if (!answerCorrect && self.currentStaircase.numTimesIncorrect >= self.currentStaircase.numTimesIncorrectToGetEasier)
+        if (self.currentStaircase.numTimesIncorrect >= self.currentStaircase.numTimesIncorrectToGetEasier)
         {
             if (self.currentStaircase.lastReversalType == 1) // up
             {
@@ -954,8 +917,6 @@
             self.currentStaircase.numTimesIncorrect = 0;
             self.currentStaircase.numTimesCorrect = 0;
         }
-
-        //self.currentStaircase.lastAnswerCorrect = answerCorrect ? 1 : 0;
 
         if (self.currentStaircase.currentLevel < self.currentStaircase.minLevel)
         {
