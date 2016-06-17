@@ -389,13 +389,34 @@
 
     TestButton *pressedButton = sender;
 
-    double reaction_time = [self.timer timeIntervalSinceNow] * -1000.0;
-    [self log:@"reaction_time" info:@"%.2fms", reaction_time];
+    if (!self.currentConfiguration.enable_secondary_stimuliValue)
+    {
+        double reaction_time = [self.timer timeIntervalSinceNow] * -1000.0;
+        [self log:@"reaction_time" info:@"%.2fms", reaction_time];
+    }
 
     [self log:@"button_press" info:@"%d (%@)", pressedButton.number, [pressedButton titleForState:UIControlStateNormal]];
 
     if (self.currentConfiguration.attempt_facial_recognitionValue)
         [self.distanceDetector takePhoto:self question:self.questionNumber];
+    
+    if (self.currentConfiguration.enable_secondary_stimuliValue && self.overlayIndex != self.secondaryPressedIndex)
+    {
+        [self log:@"ignored_response" info:nil];
+        
+        if (!self.currentConfiguration.use_staircase_methodValue)
+        {
+            // move this question to the end
+            TestSequenceImage *current = [self.imageCollection objectAtIndex:(NSUInteger)self.questionNumber-1];
+            [self.imageCollection removeObjectAtIndex:self.questionNumber - 1];
+            [self.imageCollection addObject:current];
+        }
+        
+        self.questionNumber--;
+        [self prepareNextQuestion];
+        
+        return;
+    }
 
     if (self.currentConfiguration.use_staircase_methodValue)
     {
@@ -494,8 +515,32 @@
             self.currentStaircase.currentLevel = self.currentStaircase.maxLevel;
         }
     }
+    else
+    {
+        TestImageButton *imageButton = self.image;
+        if ([[imageButton.dbImage.name substringToIndex:2] isEqualToString:[NSString stringWithFormat:@"%d_", pressedButton.number]])
+        {
+            [self playAudio:self.correctAudioPlayer];
+        }
+        else
+        {
+            [self playAudio:self.incorrectAudioPlayer];
+        }
+    }
 
     [self prepareNextQuestion];
+}
+
+- (void)pressSecondaryTestButton:(id)sender
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    TestButton *pressedButton = sender;
+    
+    [self log:@"secondary_button_press" info:@"%d (%@)", pressedButton.number, [pressedButton titleForState:UIControlStateNormal]];
+    self.secondaryPressedIndex = pressedButton.number - 1;
+    
+    [self presentSecondSetOfButtons];
 }
 
 #pragma mark - Test preparation
@@ -541,12 +586,45 @@
     return imageButton;
 }
 
+- (void)showSecondaryStimuli
+{
+    if (self.currentConfiguration.enable_secondary_stimuliValue)
+    {
+        self.overlayIndex = arc4random_uniform(self.currentConfiguration.num_secondary_buttonsValue);
+        switch (self.overlayIndex)
+        {
+            case 0:
+                self.overlayImageView.image = self.currentConfiguration.sequence.secondaryImage1;
+                break;
+                
+            case 1:
+                self.overlayImageView.image = self.currentConfiguration.sequence.secondaryImage2;
+                break;
+                
+            case 2:
+                self.overlayImageView.image = self.currentConfiguration.sequence.secondaryImage3;
+                break;
+                
+            case 3:
+                self.overlayImageView.image = self.currentConfiguration.sequence.secondaryImage4;
+                break;
+        }
+        [self.view bringSubviewToFront:self.overlayImageView];
+        [self log:@"presented_secondary_image" info:@"%d", self.overlayIndex];
+    }
+}
+
+- (void)hideSecondaryStimuli
+{
+    self.overlayImageView.image = nil;
+}
+
 - (NSMutableArray *)getButtonSet
 {
     NSMutableArray *buttons = [NSMutableArray array];
     for (int i = 0; i < self.currentConfiguration.num_buttonsValue; i++)
     {
-        NSString *buttonText; UIColor *bg_colour, *fg_colour; int width = 0, height = 0, x = 0, y = 0;
+        NSString *buttonText; UIColor *bg_colour, *fg_colour; int width = 0, height = 0, x = 0, y = 0; UIImage *img;
         if (i == 0)
         {
             buttonText = self.currentConfiguration.button1_text;
@@ -556,6 +634,7 @@
             y = self.currentConfiguration.button1_y.intValue;
             width = self.currentConfiguration.button1_w.intValue;
             height = self.currentConfiguration.button1_h.intValue;
+            img = self.currentConfiguration.sequence.button1Image;
         }
         else if (i == 1)
         {
@@ -566,6 +645,7 @@
             y = self.currentConfiguration.button2_y.intValue;
             width = self.currentConfiguration.button2_w.intValue;
             height = self.currentConfiguration.button2_h.intValue;
+            img = self.currentConfiguration.sequence.button2Image;
         }
         else if (i == 2)
         {
@@ -576,6 +656,7 @@
             y = self.currentConfiguration.button3_y.intValue;
             width = self.currentConfiguration.button3_w.intValue;
             height = self.currentConfiguration.button3_h.intValue;
+            img = self.currentConfiguration.sequence.button3Image;
         }
         else if (i == 3)
         {
@@ -586,6 +667,7 @@
             y = self.currentConfiguration.button4_y.intValue;
             width = self.currentConfiguration.button4_w.intValue;
             height = self.currentConfiguration.button4_h.intValue;
+            img = self.currentConfiguration.sequence.button4Image;
         }
 
         TestButton *button = [[TestButton alloc] initWithNumber:i+1
@@ -595,13 +677,83 @@
                                                               x:x
                                                               y:y
                                                           width:width
-                                                         height:height];
+                                                         height:height
+                                                            img:img];
 
         [button addTarget:self action:@selector(pressTestButton:) forControlEvents:UIControlEventTouchUpInside];
 
         [buttons addObject:button];
     }
 
+    return buttons;
+}
+
+- (NSMutableArray *)getSecondaryButtonSet
+{
+    NSMutableArray *buttons = [NSMutableArray array];
+    for (int i = 0; i < self.currentConfiguration.num_secondary_buttonsValue; i++)
+    {
+        NSString *buttonText; UIColor *bg_colour, *fg_colour; int width = 0, height = 0, x = 0, y = 0; UIImage *img;
+        if (i == 0)
+        {
+            buttonText = self.currentConfiguration.secondary_button1_text;
+            bg_colour = [UIColor colorWithHexString:self.currentConfiguration.secondary_button1_bg];
+            fg_colour = [UIColor colorWithHexString:self.currentConfiguration.secondary_button1_fg];
+            x = self.currentConfiguration.secondary_button1_x.intValue;
+            y = self.currentConfiguration.secondary_button1_y.intValue;
+            width = self.currentConfiguration.secondary_button1_w.intValue;
+            height = self.currentConfiguration.secondary_button1_h.intValue;
+            img = self.currentConfiguration.sequence.secondaryButton1Image;
+        }
+        else if (i == 1)
+        {
+            buttonText = self.currentConfiguration.secondary_button2_text;
+            bg_colour = [UIColor colorWithHexString:self.currentConfiguration.secondary_button2_bg];
+            fg_colour = [UIColor colorWithHexString:self.currentConfiguration.secondary_button2_fg];
+            x = self.currentConfiguration.secondary_button2_x.intValue;
+            y = self.currentConfiguration.secondary_button2_y.intValue;
+            width = self.currentConfiguration.secondary_button2_w.intValue;
+            height = self.currentConfiguration.secondary_button2_h.intValue;
+            img = self.currentConfiguration.sequence.secondaryButton2Image;
+        }
+        else if (i == 2)
+        {
+            buttonText = self.currentConfiguration.secondary_button3_text;
+            bg_colour = [UIColor colorWithHexString:self.currentConfiguration.secondary_button3_bg];
+            fg_colour = [UIColor colorWithHexString:self.currentConfiguration.secondary_button3_fg];
+            x = self.currentConfiguration.secondary_button3_x.intValue;
+            y = self.currentConfiguration.secondary_button3_y.intValue;
+            width = self.currentConfiguration.secondary_button3_w.intValue;
+            height = self.currentConfiguration.secondary_button3_h.intValue;
+            img = self.currentConfiguration.sequence.secondaryButton3Image;
+        }
+        else if (i == 3)
+        {
+            buttonText = self.currentConfiguration.secondary_button4_text;
+            bg_colour = [UIColor colorWithHexString:self.currentConfiguration.secondary_button4_bg];
+            fg_colour = [UIColor colorWithHexString:self.currentConfiguration.secondary_button4_fg];
+            x = self.currentConfiguration.secondary_button4_x.intValue;
+            y = self.currentConfiguration.secondary_button4_y.intValue;
+            width = self.currentConfiguration.secondary_button4_w.intValue;
+            height = self.currentConfiguration.secondary_button4_h.intValue;
+            img = self.currentConfiguration.sequence.secondaryButton4Image;
+        }
+        
+        TestButton *button = [[TestButton alloc] initWithNumber:i+1
+                                                           text:buttonText
+                                                             bg:bg_colour
+                                                             fg:fg_colour
+                                                              x:x
+                                                              y:y
+                                                          width:width
+                                                         height:height
+                                                            img:img];
+        
+        [button addTarget:self action:@selector(pressSecondaryTestButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [buttons addObject:button];
+    }
+    
     return buttons;
 }
 
@@ -749,26 +901,30 @@
     [self.view addSubview:self.image];
     [self log:@"presented_image" info:@"%@/%@", self.image.dbImage.folder.name, self.image.dbImage.name];
     [self playAudio:self.onAudioPlayer];
+    [self showSecondaryStimuli];
     
     [self.view bringSubviewToFront:self.exitButton];
 
-    self.buttons = [self getButtonSet];
-
-    [self performBlock:^{
-
-        for (TestButton *button in self.buttons)
-        {
-            [self.view addSubview:button];
-        }
-
-        NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
-        for (TestButton *button in self.buttons)
-        {
-            [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
-        }
-        [self log:@"presented_buttons" info:@"%@", presentedButtons];
-
-    } afterDelay:self.currentConfiguration.button_presentation_delay.floatValue];
+    if (!self.currentConfiguration.enable_secondary_stimuliValue)
+    {
+        self.buttons = [self getButtonSet];
+        
+        [self performBlock:^{
+            
+            for (TestButton *button in self.buttons)
+            {
+                [self.view addSubview:button];
+            }
+            
+            NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
+            for (TestButton *button in self.buttons)
+            {
+                [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
+            }
+            [self log:@"presented_buttons" info:@"%@", presentedButtons];
+            
+        } afterDelay:self.currentConfiguration.button_presentation_delay.floatValue];
+    }
 
     self.timer = [NSDate date];
 
@@ -782,6 +938,16 @@
             [self log:@"image_hidden" info:nil];
             self.image.hidden = YES;
             [self playAudio:self.offAudioPlayer];
+            [self hideSecondaryStimuli];
+            
+            if (self.currentConfiguration.enable_secondary_stimuliValue)
+            {
+                [self performBlock:^{
+                    
+                    [self presentFirstSetOfButtons];
+                    
+                } afterDelay:0.5f];
+            }
         }
               afterDelay:self.currentConfiguration.finite_presentation_timeValue
         ];
@@ -796,6 +962,45 @@
                 afterDelay:self.currentConfiguration.finite_response_windowValue
         ];
     }
+}
+
+- (void)presentFirstSetOfButtons
+{
+    self.buttons = [self getSecondaryButtonSet];
+    
+    for (TestButton *button in self.buttons)
+    {
+        [self.view addSubview:button];
+    }
+    
+    NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
+    for (TestButton *button in self.buttons)
+    {
+        [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
+    }
+    [self log:@"presented_secondary_buttons" info:@"%@", presentedButtons];
+}
+
+- (void)presentSecondSetOfButtons
+{
+    for (TestButton *button in self.buttons)
+    {
+        [button removeFromSuperview];
+    }
+    
+    self.buttons = [self getButtonSet];
+    
+    for (TestButton *button in self.buttons)
+    {
+        [self.view addSubview:button];
+    }
+    
+    NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
+    for (TestButton *button in self.buttons)
+    {
+        [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
+    }
+    [self log:@"presented_buttons" info:@"%@", presentedButtons];
 }
 
 - (void)presentNextQuestion
@@ -817,27 +1022,31 @@
 
     [self.view addSubview:self.image];
     [self log:@"presented_image" info:@"%@/%@", self.image.dbImage.folder.name, self.image.dbImage.name];
-    [self playAudio:self.offAudioPlayer];
+    [self playAudio:self.onAudioPlayer];
+    [self showSecondaryStimuli];
     
     [self.view bringSubviewToFront:self.exitButton];
 
-    self.buttons = [self getButtonSet];
-
-    [self performBlock:^{
-
-        for (TestButton *button in self.buttons)
-        {
-            [self.view addSubview:button];
-        }
-
-        NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
-        for (TestButton *button in self.buttons)
-        {
-            [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
-        }
-        [self log:@"presented_buttons" info:@"%@", presentedButtons];
-
-    } afterDelay:self.currentConfiguration.button_presentation_delay.floatValue];
+    if (!self.currentConfiguration.enable_secondary_stimuliValue)
+    {
+        self.buttons = [self getButtonSet];
+        
+        [self performBlock:^{
+            
+            for (TestButton *button in self.buttons)
+            {
+                [self.view addSubview:button];
+            }
+            
+            NSMutableString *presentedButtons = [NSMutableString stringWithFormat:@""];
+            for (TestButton *button in self.buttons)
+            {
+                [presentedButtons appendFormat:@"%@ ", [button titleForState:UIControlStateNormal]];
+            }
+            [self log:@"presented_buttons" info:@"%@", presentedButtons];
+            
+        } afterDelay:self.currentConfiguration.button_presentation_delay.floatValue];
+    }
 
     self.timer = [NSDate date];
 
@@ -851,6 +1060,16 @@
             [self log:@"image_hidden" info:nil];
             self.image.hidden = YES;
             [self playAudio:self.offAudioPlayer];
+            [self hideSecondaryStimuli];
+            
+            if (self.currentConfiguration.enable_secondary_stimuliValue)
+            {
+                [self performBlock:^{
+                    
+                    [self presentFirstSetOfButtons];
+                    
+                } afterDelay:0.5f];
+            }
         }
               afterDelay:self.currentConfiguration.finite_presentation_timeValue
         ];

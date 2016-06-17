@@ -3,22 +3,12 @@
 
 #import "_TestLogItem.h"
 
-const struct TestLogItemAttributes TestLogItemAttributes = {
-	.info = @"info",
-	.timestamp = @"timestamp",
-	.type = @"type",
-};
-
-const struct TestLogItemRelationships TestLogItemRelationships = {
-	.log = @"log",
-};
-
 @implementation TestLogItemID
 @end
 
 @implementation _TestLogItem
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"TestLogItem" inManagedObjectContext:moc_];
 }
@@ -50,5 +40,23 @@ const struct TestLogItemRelationships TestLogItemRelationships = {
 
 @dynamic log;
 
+@end
+
+@implementation TestLogItemAttributes 
++ (NSString *)info {
+	return @"info";
+}
++ (NSString *)timestamp {
+	return @"timestamp";
+}
++ (NSString *)type {
+	return @"type";
+}
+@end
+
+@implementation TestLogItemRelationships 
++ (NSString *)log {
+	return @"log";
+}
 @end
 

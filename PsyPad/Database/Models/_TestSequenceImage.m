@@ -3,24 +3,12 @@
 
 #import "_TestSequenceImage.h"
 
-const struct TestSequenceImageAttributes TestSequenceImageAttributes = {
-	.animated_images = @"animated_images",
-	.is_animated = @"is_animated",
-	.length = @"length",
-	.name = @"name",
-	.start = @"start",
-};
-
-const struct TestSequenceImageRelationships TestSequenceImageRelationships = {
-	.folder = @"folder",
-};
-
 @implementation TestSequenceImageID
 @end
 
 @implementation _TestSequenceImage
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceImage" inManagedObjectContext:moc_];
 }
@@ -126,5 +114,29 @@ const struct TestSequenceImageRelationships TestSequenceImageRelationships = {
 
 @dynamic folder;
 
+@end
+
+@implementation TestSequenceImageAttributes 
++ (NSString *)animated_images {
+	return @"animated_images";
+}
++ (NSString *)is_animated {
+	return @"is_animated";
+}
++ (NSString *)length {
+	return @"length";
+}
++ (NSString *)name {
+	return @"name";
+}
++ (NSString *)start {
+	return @"start";
+}
+@end
+
+@implementation TestSequenceImageRelationships 
++ (NSString *)folder {
+	return @"folder";
+}
 @end
 

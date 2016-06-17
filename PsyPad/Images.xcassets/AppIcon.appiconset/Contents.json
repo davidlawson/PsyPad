@@ -31,6 +31,12 @@
       "idiom" : "ipad",
       "filename" : "grating-ios7@2x.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "grating-iPadPro@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

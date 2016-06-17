@@ -1,16 +1,15 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to User.h instead.
 
-@import CoreData;
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct UserAttributes {
-	__unsafe_unretained NSString *id;
-} UserAttributes;
-
-extern const struct UserRelationships {
-	__unsafe_unretained NSString *configurations;
-	__unsafe_unretained NSString *logs;
-} UserRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class TestConfiguration;
 @class TestLog;
@@ -18,29 +17,25 @@ extern const struct UserRelationships {
 @interface UserID : NSManagedObjectID {}
 @end
 
-@interface _User : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _User : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) UserID* objectID;
+@property (nonatomic, readonly, strong) UserID *objectID;
 
 @property (nonatomic, strong) NSString* id;
 
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSOrderedSet<TestConfiguration*> *configurations;
+- (nullable NSMutableOrderedSet<TestConfiguration*>*)configurationsSet;
 
-@property (nonatomic, strong) NSOrderedSet *configurations;
-
-- (NSMutableOrderedSet*)configurationsSet;
-
-@property (nonatomic, strong) NSOrderedSet *logs;
-
-- (NSMutableOrderedSet*)logsSet;
+@property (nonatomic, strong, nullable) NSOrderedSet<TestLog*> *logs;
+- (nullable NSMutableOrderedSet<TestLog*>*)logsSet;
 
 @end
 
 @interface _User (ConfigurationsCoreDataGeneratedAccessors)
-- (void)addConfigurations:(NSOrderedSet*)value_;
-- (void)removeConfigurations:(NSOrderedSet*)value_;
+- (void)addConfigurations:(NSOrderedSet<TestConfiguration*>*)value_;
+- (void)removeConfigurations:(NSOrderedSet<TestConfiguration*>*)value_;
 - (void)addConfigurationsObject:(TestConfiguration*)value_;
 - (void)removeConfigurationsObject:(TestConfiguration*)value_;
 
@@ -54,8 +49,8 @@ extern const struct UserRelationships {
 @end
 
 @interface _User (LogsCoreDataGeneratedAccessors)
-- (void)addLogs:(NSOrderedSet*)value_;
-- (void)removeLogs:(NSOrderedSet*)value_;
+- (void)addLogs:(NSOrderedSet<TestLog*>*)value_;
+- (void)removeLogs:(NSOrderedSet<TestLog*>*)value_;
 - (void)addLogsObject:(TestLog*)value_;
 - (void)removeLogsObject:(TestLog*)value_;
 
@@ -73,10 +68,21 @@ extern const struct UserRelationships {
 - (NSString*)primitiveId;
 - (void)setPrimitiveId:(NSString*)value;
 
-- (NSMutableOrderedSet*)primitiveConfigurations;
-- (void)setPrimitiveConfigurations:(NSMutableOrderedSet*)value;
+- (NSMutableOrderedSet<TestConfiguration*>*)primitiveConfigurations;
+- (void)setPrimitiveConfigurations:(NSMutableOrderedSet<TestConfiguration*>*)value;
 
-- (NSMutableOrderedSet*)primitiveLogs;
-- (void)setPrimitiveLogs:(NSMutableOrderedSet*)value;
+- (NSMutableOrderedSet<TestLog*>*)primitiveLogs;
+- (void)setPrimitiveLogs:(NSMutableOrderedSet<TestLog*>*)value;
 
 @end
+
+@interface UserAttributes: NSObject 
++ (NSString *)id;
+@end
+
+@interface UserRelationships: NSObject
++ (NSString *)configurations;
++ (NSString *)logs;
+@end
+
+NS_ASSUME_NONNULL_END

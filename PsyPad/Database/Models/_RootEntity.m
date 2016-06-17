@@ -3,20 +3,12 @@
 
 #import "_RootEntity.h"
 
-const struct RootEntityAttributes RootEntityAttributes = {
-	.admin_password = @"admin_password",
-	.authToken = @"authToken",
-	.demoMode = @"demoMode",
-	.email = @"email",
-	.server_url = @"server_url",
-};
-
 @implementation RootEntityID
 @end
 
 @implementation _RootEntity
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"RootEntity" inManagedObjectContext:moc_];
 }
@@ -74,5 +66,23 @@ const struct RootEntityAttributes RootEntityAttributes = {
 
 @dynamic server_url;
 
+@end
+
+@implementation RootEntityAttributes 
++ (NSString *)admin_password {
+	return @"admin_password";
+}
++ (NSString *)authToken {
+	return @"authToken";
+}
++ (NSString *)demoMode {
+	return @"demoMode";
+}
++ (NSString *)email {
+	return @"email";
+}
++ (NSString *)server_url {
+	return @"server_url";
+}
 @end
 

@@ -1,32 +1,28 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to RootEntity.h instead.
 
-@import CoreData;
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct RootEntityAttributes {
-	__unsafe_unretained NSString *admin_password;
-	__unsafe_unretained NSString *authToken;
-	__unsafe_unretained NSString *demoMode;
-	__unsafe_unretained NSString *email;
-	__unsafe_unretained NSString *server_url;
-} RootEntityAttributes;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface RootEntityID : NSManagedObjectID {}
 @end
 
-@interface _RootEntity : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _RootEntity : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) RootEntityID* objectID;
+@property (nonatomic, readonly, strong) RootEntityID *objectID;
 
-@property (nonatomic, strong) NSString* admin_password;
+@property (nonatomic, strong, nullable) NSString* admin_password;
 
-//- (BOOL)validateAdmin_password:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* authToken;
-
-//- (BOOL)validateAuthToken:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* authToken;
 
 @property (nonatomic, strong) NSNumber* demoMode;
 
@@ -34,15 +30,9 @@ extern const struct RootEntityAttributes {
 - (BOOL)demoModeValue;
 - (void)setDemoModeValue:(BOOL)value_;
 
-//- (BOOL)validateDemoMode:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* email;
-
-//- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* email;
 
 @property (nonatomic, strong) NSString* server_url;
-
-//- (BOOL)validateServer_url:(id*)value_ error:(NSError**)error_;
 
 @end
 
@@ -67,3 +57,13 @@ extern const struct RootEntityAttributes {
 - (void)setPrimitiveServer_url:(NSString*)value;
 
 @end
+
+@interface RootEntityAttributes: NSObject 
++ (NSString *)admin_password;
++ (NSString *)authToken;
++ (NSString *)demoMode;
++ (NSString *)email;
++ (NSString *)server_url;
+@end
+
+NS_ASSUME_NONNULL_END

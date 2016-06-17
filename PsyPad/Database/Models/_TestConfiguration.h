@@ -1,91 +1,15 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to TestConfiguration.h instead.
 
-@import CoreData;
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct TestConfigurationAttributes {
-	__unsafe_unretained NSString *animation_frame_rate;
-	__unsafe_unretained NSString *attempt_facial_recognition;
-	__unsafe_unretained NSString *background_colour;
-	__unsafe_unretained NSString *button1_bg;
-	__unsafe_unretained NSString *button1_fg;
-	__unsafe_unretained NSString *button1_h;
-	__unsafe_unretained NSString *button1_text;
-	__unsafe_unretained NSString *button1_w;
-	__unsafe_unretained NSString *button1_x;
-	__unsafe_unretained NSString *button1_y;
-	__unsafe_unretained NSString *button2_bg;
-	__unsafe_unretained NSString *button2_fg;
-	__unsafe_unretained NSString *button2_h;
-	__unsafe_unretained NSString *button2_text;
-	__unsafe_unretained NSString *button2_w;
-	__unsafe_unretained NSString *button2_x;
-	__unsafe_unretained NSString *button2_y;
-	__unsafe_unretained NSString *button3_bg;
-	__unsafe_unretained NSString *button3_fg;
-	__unsafe_unretained NSString *button3_h;
-	__unsafe_unretained NSString *button3_text;
-	__unsafe_unretained NSString *button3_w;
-	__unsafe_unretained NSString *button3_x;
-	__unsafe_unretained NSString *button3_y;
-	__unsafe_unretained NSString *button4_bg;
-	__unsafe_unretained NSString *button4_fg;
-	__unsafe_unretained NSString *button4_h;
-	__unsafe_unretained NSString *button4_text;
-	__unsafe_unretained NSString *button4_w;
-	__unsafe_unretained NSString *button4_x;
-	__unsafe_unretained NSString *button4_y;
-	__unsafe_unretained NSString *button_presentation_delay;
-	__unsafe_unretained NSString *configuration_description;
-	__unsafe_unretained NSString *day_of_week_fri;
-	__unsafe_unretained NSString *day_of_week_mon;
-	__unsafe_unretained NSString *day_of_week_sat;
-	__unsafe_unretained NSString *day_of_week_sun;
-	__unsafe_unretained NSString *day_of_week_thu;
-	__unsafe_unretained NSString *day_of_week_tue;
-	__unsafe_unretained NSString *day_of_week_wed;
-	__unsafe_unretained NSString *delta_values;
-	__unsafe_unretained NSString *enabled;
-	__unsafe_unretained NSString *exit_button_bg;
-	__unsafe_unretained NSString *exit_button_fg;
-	__unsafe_unretained NSString *exit_button_h;
-	__unsafe_unretained NSString *exit_button_w;
-	__unsafe_unretained NSString *exit_button_x;
-	__unsafe_unretained NSString *exit_button_y;
-	__unsafe_unretained NSString *finite_presentation_time;
-	__unsafe_unretained NSString *finite_response_window;
-	__unsafe_unretained NSString *hits_to_finish;
-	__unsafe_unretained NSString *infinite_presentation_time;
-	__unsafe_unretained NSString *infinite_response_window;
-	__unsafe_unretained NSString *is_gallery_configuration;
-	__unsafe_unretained NSString *is_practice;
-	__unsafe_unretained NSString *loop_animations;
-	__unsafe_unretained NSString *maximum_level;
-	__unsafe_unretained NSString *minimum_level;
-	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *num_buttons;
-	__unsafe_unretained NSString *num_correct_to_get_harder;
-	__unsafe_unretained NSString *num_wrong_to_get_easier;
-	__unsafe_unretained NSString *number_of_reversals;
-	__unsafe_unretained NSString *number_of_staircases;
-	__unsafe_unretained NSString *questions_per_folder;
-	__unsafe_unretained NSString *require_next;
-	__unsafe_unretained NSString *server_id;
-	__unsafe_unretained NSString *server_url;
-	__unsafe_unretained NSString *show_exit_button;
-	__unsafe_unretained NSString *specified_seed;
-	__unsafe_unretained NSString *start_level;
-	__unsafe_unretained NSString *time_between_question_mean;
-	__unsafe_unretained NSString *time_between_question_plusminus;
-	__unsafe_unretained NSString *title;
-	__unsafe_unretained NSString *use_specified_seed;
-	__unsafe_unretained NSString *use_staircase_method;
-} TestConfigurationAttributes;
-
-extern const struct TestConfigurationRelationships {
-	__unsafe_unretained NSString *sequence;
-	__unsafe_unretained NSString *user;
-} TestConfigurationRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class TestSequence;
 @class User;
@@ -93,11 +17,11 @@ extern const struct TestConfigurationRelationships {
 @interface TestConfigurationID : NSManagedObjectID {}
 @end
 
-@interface _TestConfiguration : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _TestConfiguration : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) TestConfigurationID* objectID;
+@property (nonatomic, readonly, strong) TestConfigurationID *objectID;
 
 @property (nonatomic, strong) NSNumber* animation_frame_rate;
 
@@ -105,27 +29,17 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)animation_frame_rateValue;
 - (void)setAnimation_frame_rateValue:(int16_t)value_;
 
-//- (BOOL)validateAnimation_frame_rate:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* attempt_facial_recognition;
 
 @property (atomic) BOOL attempt_facial_recognitionValue;
 - (BOOL)attempt_facial_recognitionValue;
 - (void)setAttempt_facial_recognitionValue:(BOOL)value_;
 
-//- (BOOL)validateAttempt_facial_recognition:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* background_colour;
-
-//- (BOOL)validateBackground_colour:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* button1_bg;
 
-//- (BOOL)validateButton1_bg:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* button1_fg;
-
-//- (BOOL)validateButton1_fg:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* button1_h;
 
@@ -133,11 +47,7 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)button1_hValue;
 - (void)setButton1_hValue:(int16_t)value_;
 
-//- (BOOL)validateButton1_h:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* button1_text;
-
-//- (BOOL)validateButton1_text:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* button1_text;
 
 @property (nonatomic, strong) NSNumber* button1_w;
 
@@ -145,15 +55,11 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)button1_wValue;
 - (void)setButton1_wValue:(int16_t)value_;
 
-//- (BOOL)validateButton1_w:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* button1_x;
 
 @property (atomic) int16_t button1_xValue;
 - (int16_t)button1_xValue;
 - (void)setButton1_xValue:(int16_t)value_;
-
-//- (BOOL)validateButton1_x:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* button1_y;
 
@@ -161,139 +67,95 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)button1_yValue;
 - (void)setButton1_yValue:(int16_t)value_;
 
-//- (BOOL)validateButton1_y:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* button2_bg;
 
-@property (nonatomic, strong) NSString* button2_bg;
+@property (nonatomic, strong, nullable) NSString* button2_fg;
 
-//- (BOOL)validateButton2_bg:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* button2_fg;
-
-//- (BOOL)validateButton2_fg:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button2_h;
+@property (nonatomic, strong, nullable) NSNumber* button2_h;
 
 @property (atomic) int16_t button2_hValue;
 - (int16_t)button2_hValue;
 - (void)setButton2_hValue:(int16_t)value_;
 
-//- (BOOL)validateButton2_h:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* button2_text;
 
-@property (nonatomic, strong) NSString* button2_text;
-
-//- (BOOL)validateButton2_text:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button2_w;
+@property (nonatomic, strong, nullable) NSNumber* button2_w;
 
 @property (atomic) int16_t button2_wValue;
 - (int16_t)button2_wValue;
 - (void)setButton2_wValue:(int16_t)value_;
 
-//- (BOOL)validateButton2_w:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button2_x;
+@property (nonatomic, strong, nullable) NSNumber* button2_x;
 
 @property (atomic) int16_t button2_xValue;
 - (int16_t)button2_xValue;
 - (void)setButton2_xValue:(int16_t)value_;
 
-//- (BOOL)validateButton2_x:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button2_y;
+@property (nonatomic, strong, nullable) NSNumber* button2_y;
 
 @property (atomic) int16_t button2_yValue;
 - (int16_t)button2_yValue;
 - (void)setButton2_yValue:(int16_t)value_;
 
-//- (BOOL)validateButton2_y:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* button3_bg;
 
-@property (nonatomic, strong) NSString* button3_bg;
+@property (nonatomic, strong, nullable) NSString* button3_fg;
 
-//- (BOOL)validateButton3_bg:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* button3_fg;
-
-//- (BOOL)validateButton3_fg:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button3_h;
+@property (nonatomic, strong, nullable) NSNumber* button3_h;
 
 @property (atomic) int16_t button3_hValue;
 - (int16_t)button3_hValue;
 - (void)setButton3_hValue:(int16_t)value_;
 
-//- (BOOL)validateButton3_h:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* button3_text;
 
-@property (nonatomic, strong) NSString* button3_text;
-
-//- (BOOL)validateButton3_text:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button3_w;
+@property (nonatomic, strong, nullable) NSNumber* button3_w;
 
 @property (atomic) int16_t button3_wValue;
 - (int16_t)button3_wValue;
 - (void)setButton3_wValue:(int16_t)value_;
 
-//- (BOOL)validateButton3_w:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button3_x;
+@property (nonatomic, strong, nullable) NSNumber* button3_x;
 
 @property (atomic) int16_t button3_xValue;
 - (int16_t)button3_xValue;
 - (void)setButton3_xValue:(int16_t)value_;
 
-//- (BOOL)validateButton3_x:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button3_y;
+@property (nonatomic, strong, nullable) NSNumber* button3_y;
 
 @property (atomic) int16_t button3_yValue;
 - (int16_t)button3_yValue;
 - (void)setButton3_yValue:(int16_t)value_;
 
-//- (BOOL)validateButton3_y:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* button4_bg;
 
-@property (nonatomic, strong) NSString* button4_bg;
+@property (nonatomic, strong, nullable) NSString* button4_fg;
 
-//- (BOOL)validateButton4_bg:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* button4_fg;
-
-//- (BOOL)validateButton4_fg:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button4_h;
+@property (nonatomic, strong, nullable) NSNumber* button4_h;
 
 @property (atomic) int16_t button4_hValue;
 - (int16_t)button4_hValue;
 - (void)setButton4_hValue:(int16_t)value_;
 
-//- (BOOL)validateButton4_h:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* button4_text;
 
-@property (nonatomic, strong) NSString* button4_text;
-
-//- (BOOL)validateButton4_text:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button4_w;
+@property (nonatomic, strong, nullable) NSNumber* button4_w;
 
 @property (atomic) int16_t button4_wValue;
 - (int16_t)button4_wValue;
 - (void)setButton4_wValue:(int16_t)value_;
 
-//- (BOOL)validateButton4_w:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button4_x;
+@property (nonatomic, strong, nullable) NSNumber* button4_x;
 
 @property (atomic) int16_t button4_xValue;
 - (int16_t)button4_xValue;
 - (void)setButton4_xValue:(int16_t)value_;
 
-//- (BOOL)validateButton4_x:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* button4_y;
+@property (nonatomic, strong, nullable) NSNumber* button4_y;
 
 @property (atomic) int16_t button4_yValue;
 - (int16_t)button4_yValue;
 - (void)setButton4_yValue:(int16_t)value_;
-
-//- (BOOL)validateButton4_y:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* button_presentation_delay;
 
@@ -301,11 +163,7 @@ extern const struct TestConfigurationRelationships {
 - (float)button_presentation_delayValue;
 - (void)setButton_presentation_delayValue:(float)value_;
 
-//- (BOOL)validateButton_presentation_delay:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* configuration_description;
-
-//- (BOOL)validateConfiguration_description:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* configuration_description;
 
 @property (nonatomic, strong) NSNumber* day_of_week_fri;
 
@@ -313,15 +171,11 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)day_of_week_friValue;
 - (void)setDay_of_week_friValue:(BOOL)value_;
 
-//- (BOOL)validateDay_of_week_fri:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* day_of_week_mon;
 
 @property (atomic) BOOL day_of_week_monValue;
 - (BOOL)day_of_week_monValue;
 - (void)setDay_of_week_monValue:(BOOL)value_;
-
-//- (BOOL)validateDay_of_week_mon:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* day_of_week_sat;
 
@@ -329,15 +183,11 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)day_of_week_satValue;
 - (void)setDay_of_week_satValue:(BOOL)value_;
 
-//- (BOOL)validateDay_of_week_sat:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* day_of_week_sun;
 
 @property (atomic) BOOL day_of_week_sunValue;
 - (BOOL)day_of_week_sunValue;
 - (void)setDay_of_week_sunValue:(BOOL)value_;
-
-//- (BOOL)validateDay_of_week_sun:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* day_of_week_thu;
 
@@ -345,15 +195,11 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)day_of_week_thuValue;
 - (void)setDay_of_week_thuValue:(BOOL)value_;
 
-//- (BOOL)validateDay_of_week_thu:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* day_of_week_tue;
 
 @property (atomic) BOOL day_of_week_tueValue;
 - (BOOL)day_of_week_tueValue;
 - (void)setDay_of_week_tueValue:(BOOL)value_;
-
-//- (BOOL)validateDay_of_week_tue:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* day_of_week_wed;
 
@@ -361,11 +207,13 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)day_of_week_wedValue;
 - (void)setDay_of_week_wedValue:(BOOL)value_;
 
-//- (BOOL)validateDay_of_week_wed:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* delta_values;
 
-@property (nonatomic, strong) NSString* delta_values;
+@property (nonatomic, strong) NSNumber* enable_secondary_stimuli;
 
-//- (BOOL)validateDelta_values:(id*)value_ error:(NSError**)error_;
+@property (atomic) BOOL enable_secondary_stimuliValue;
+- (BOOL)enable_secondary_stimuliValue;
+- (void)setEnable_secondary_stimuliValue:(BOOL)value_;
 
 @property (nonatomic, strong) NSNumber* enabled;
 
@@ -373,67 +221,47 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)enabledValue;
 - (void)setEnabledValue:(BOOL)value_;
 
-//- (BOOL)validateEnabled:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* exit_button_bg;
 
-@property (nonatomic, strong) NSString* exit_button_bg;
+@property (nonatomic, strong, nullable) NSString* exit_button_fg;
 
-//- (BOOL)validateExit_button_bg:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* exit_button_fg;
-
-//- (BOOL)validateExit_button_fg:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* exit_button_h;
+@property (nonatomic, strong, nullable) NSNumber* exit_button_h;
 
 @property (atomic) int16_t exit_button_hValue;
 - (int16_t)exit_button_hValue;
 - (void)setExit_button_hValue:(int16_t)value_;
 
-//- (BOOL)validateExit_button_h:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* exit_button_w;
+@property (nonatomic, strong, nullable) NSNumber* exit_button_w;
 
 @property (atomic) int16_t exit_button_wValue;
 - (int16_t)exit_button_wValue;
 - (void)setExit_button_wValue:(int16_t)value_;
 
-//- (BOOL)validateExit_button_w:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* exit_button_x;
+@property (nonatomic, strong, nullable) NSNumber* exit_button_x;
 
 @property (atomic) int16_t exit_button_xValue;
 - (int16_t)exit_button_xValue;
 - (void)setExit_button_xValue:(int16_t)value_;
 
-//- (BOOL)validateExit_button_x:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* exit_button_y;
+@property (nonatomic, strong, nullable) NSNumber* exit_button_y;
 
 @property (atomic) int16_t exit_button_yValue;
 - (int16_t)exit_button_yValue;
 - (void)setExit_button_yValue:(int16_t)value_;
 
-//- (BOOL)validateExit_button_y:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* finite_presentation_time;
+@property (nonatomic, strong, nullable) NSNumber* finite_presentation_time;
 
 @property (atomic) float finite_presentation_timeValue;
 - (float)finite_presentation_timeValue;
 - (void)setFinite_presentation_timeValue:(float)value_;
 
-//- (BOOL)validateFinite_presentation_time:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* finite_response_window;
+@property (nonatomic, strong, nullable) NSNumber* finite_response_window;
 
 @property (atomic) float finite_response_windowValue;
 - (float)finite_response_windowValue;
 - (void)setFinite_response_windowValue:(float)value_;
 
-//- (BOOL)validateFinite_response_window:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* hits_to_finish;
-
-//- (BOOL)validateHits_to_finish:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* hits_to_finish;
 
 @property (nonatomic, strong) NSNumber* infinite_presentation_time;
 
@@ -441,15 +269,11 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)infinite_presentation_timeValue;
 - (void)setInfinite_presentation_timeValue:(BOOL)value_;
 
-//- (BOOL)validateInfinite_presentation_time:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* infinite_response_window;
 
 @property (atomic) BOOL infinite_response_windowValue;
 - (BOOL)infinite_response_windowValue;
 - (void)setInfinite_response_windowValue:(BOOL)value_;
-
-//- (BOOL)validateInfinite_response_window:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* is_gallery_configuration;
 
@@ -457,15 +281,11 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)is_gallery_configurationValue;
 - (void)setIs_gallery_configurationValue:(BOOL)value_;
 
-//- (BOOL)validateIs_gallery_configuration:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* is_practice;
 
 @property (atomic) BOOL is_practiceValue;
 - (BOOL)is_practiceValue;
 - (void)setIs_practiceValue:(BOOL)value_;
-
-//- (BOOL)validateIs_practice:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* loop_animations;
 
@@ -473,19 +293,11 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)loop_animationsValue;
 - (void)setLoop_animationsValue:(BOOL)value_;
 
-//- (BOOL)validateLoop_animations:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* maximum_level;
 
-@property (nonatomic, strong) NSString* maximum_level;
-
-//- (BOOL)validateMaximum_level:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* minimum_level;
-
-//- (BOOL)validateMinimum_level:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* minimum_level;
 
 @property (nonatomic, strong) NSString* name;
-
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* num_buttons;
 
@@ -493,31 +305,25 @@ extern const struct TestConfigurationRelationships {
 - (int16_t)num_buttonsValue;
 - (void)setNum_buttonsValue:(int16_t)value_;
 
-//- (BOOL)validateNum_buttons:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* num_correct_to_get_harder;
 
-@property (nonatomic, strong) NSString* num_correct_to_get_harder;
+@property (nonatomic, strong) NSNumber* num_secondary_buttons;
 
-//- (BOOL)validateNum_correct_to_get_harder:(id*)value_ error:(NSError**)error_;
+@property (atomic) int16_t num_secondary_buttonsValue;
+- (int16_t)num_secondary_buttonsValue;
+- (void)setNum_secondary_buttonsValue:(int16_t)value_;
 
-@property (nonatomic, strong) NSString* num_wrong_to_get_easier;
-
-//- (BOOL)validateNum_wrong_to_get_easier:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* num_wrong_to_get_easier;
 
 @property (nonatomic, strong) NSString* number_of_reversals;
 
-//- (BOOL)validateNumber_of_reversals:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* number_of_staircases;
+@property (nonatomic, strong, nullable) NSNumber* number_of_staircases;
 
 @property (atomic) int16_t number_of_staircasesValue;
 - (int16_t)number_of_staircasesValue;
 - (void)setNumber_of_staircasesValue:(int16_t)value_;
 
-//- (BOOL)validateNumber_of_staircases:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* questions_per_folder;
-
-//- (BOOL)validateQuestions_per_folder:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* questions_per_folder;
 
 @property (nonatomic, strong) NSNumber* require_next;
 
@@ -525,15 +331,129 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)require_nextValue;
 - (void)setRequire_nextValue:(BOOL)value_;
 
-//- (BOOL)validateRequire_next:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong) NSString* secondary_button1_bg;
 
-@property (nonatomic, strong) NSString* server_id;
+@property (nonatomic, strong) NSString* secondary_button1_fg;
 
-//- (BOOL)validateServer_id:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong) NSNumber* secondary_button1_h;
 
-@property (nonatomic, strong) NSString* server_url;
+@property (atomic) int16_t secondary_button1_hValue;
+- (int16_t)secondary_button1_hValue;
+- (void)setSecondary_button1_hValue:(int16_t)value_;
 
-//- (BOOL)validateServer_url:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* secondary_button1_text;
+
+@property (nonatomic, strong) NSNumber* secondary_button1_w;
+
+@property (atomic) int16_t secondary_button1_wValue;
+- (int16_t)secondary_button1_wValue;
+- (void)setSecondary_button1_wValue:(int16_t)value_;
+
+@property (nonatomic, strong) NSNumber* secondary_button1_x;
+
+@property (atomic) int16_t secondary_button1_xValue;
+- (int16_t)secondary_button1_xValue;
+- (void)setSecondary_button1_xValue:(int16_t)value_;
+
+@property (nonatomic, strong) NSNumber* secondary_button1_y;
+
+@property (atomic) int16_t secondary_button1_yValue;
+- (int16_t)secondary_button1_yValue;
+- (void)setSecondary_button1_yValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button2_bg;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button2_fg;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button2_h;
+
+@property (atomic) int16_t secondary_button2_hValue;
+- (int16_t)secondary_button2_hValue;
+- (void)setSecondary_button2_hValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button2_text;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button2_w;
+
+@property (atomic) int16_t secondary_button2_wValue;
+- (int16_t)secondary_button2_wValue;
+- (void)setSecondary_button2_wValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button2_x;
+
+@property (atomic) int16_t secondary_button2_xValue;
+- (int16_t)secondary_button2_xValue;
+- (void)setSecondary_button2_xValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button2_y;
+
+@property (atomic) int16_t secondary_button2_yValue;
+- (int16_t)secondary_button2_yValue;
+- (void)setSecondary_button2_yValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button3_bg;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button3_fg;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button3_h;
+
+@property (atomic) int16_t secondary_button3_hValue;
+- (int16_t)secondary_button3_hValue;
+- (void)setSecondary_button3_hValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button3_text;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button3_w;
+
+@property (atomic) int16_t secondary_button3_wValue;
+- (int16_t)secondary_button3_wValue;
+- (void)setSecondary_button3_wValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button3_x;
+
+@property (atomic) int16_t secondary_button3_xValue;
+- (int16_t)secondary_button3_xValue;
+- (void)setSecondary_button3_xValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button3_y;
+
+@property (atomic) int16_t secondary_button3_yValue;
+- (int16_t)secondary_button3_yValue;
+- (void)setSecondary_button3_yValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button4_bg;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button4_fg;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button4_h;
+
+@property (atomic) int16_t secondary_button4_hValue;
+- (int16_t)secondary_button4_hValue;
+- (void)setSecondary_button4_hValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* secondary_button4_text;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button4_w;
+
+@property (atomic) int16_t secondary_button4_wValue;
+- (int16_t)secondary_button4_wValue;
+- (void)setSecondary_button4_wValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button4_x;
+
+@property (atomic) int16_t secondary_button4_xValue;
+- (int16_t)secondary_button4_xValue;
+- (void)setSecondary_button4_xValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSNumber* secondary_button4_y;
+
+@property (atomic) int16_t secondary_button4_yValue;
+- (int16_t)secondary_button4_yValue;
+- (void)setSecondary_button4_yValue:(int16_t)value_;
+
+@property (nonatomic, strong, nullable) NSString* server_id;
+
+@property (nonatomic, strong, nullable) NSString* server_url;
 
 @property (nonatomic, strong) NSNumber* show_exit_button;
 
@@ -541,19 +461,13 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)show_exit_buttonValue;
 - (void)setShow_exit_buttonValue:(BOOL)value_;
 
-//- (BOOL)validateShow_exit_button:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* specified_seed;
+@property (nonatomic, strong, nullable) NSNumber* specified_seed;
 
 @property (atomic) int32_t specified_seedValue;
 - (int32_t)specified_seedValue;
 - (void)setSpecified_seedValue:(int32_t)value_;
 
-//- (BOOL)validateSpecified_seed:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* start_level;
-
-//- (BOOL)validateStart_level:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* start_level;
 
 @property (nonatomic, strong) NSNumber* time_between_question_mean;
 
@@ -561,19 +475,13 @@ extern const struct TestConfigurationRelationships {
 - (float)time_between_question_meanValue;
 - (void)setTime_between_question_meanValue:(float)value_;
 
-//- (BOOL)validateTime_between_question_mean:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* time_between_question_plusminus;
 
 @property (atomic) float time_between_question_plusminusValue;
 - (float)time_between_question_plusminusValue;
 - (void)setTime_between_question_plusminusValue:(float)value_;
 
-//- (BOOL)validateTime_between_question_plusminus:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* title;
-
-//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* title;
 
 @property (nonatomic, strong) NSNumber* use_specified_seed;
 
@@ -581,23 +489,15 @@ extern const struct TestConfigurationRelationships {
 - (BOOL)use_specified_seedValue;
 - (void)setUse_specified_seedValue:(BOOL)value_;
 
-//- (BOOL)validateUse_specified_seed:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSNumber* use_staircase_method;
 
 @property (atomic) BOOL use_staircase_methodValue;
 - (BOOL)use_staircase_methodValue;
 - (void)setUse_staircase_methodValue:(BOOL)value_;
 
-//- (BOOL)validateUse_staircase_method:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) TestSequence *sequence;
 
-//- (BOOL)validateSequence:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) User *user;
-
-//- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) User *user;
 
 @end
 
@@ -804,6 +704,12 @@ extern const struct TestConfigurationRelationships {
 - (NSString*)primitiveDelta_values;
 - (void)setPrimitiveDelta_values:(NSString*)value;
 
+- (NSNumber*)primitiveEnable_secondary_stimuli;
+- (void)setPrimitiveEnable_secondary_stimuli:(NSNumber*)value;
+
+- (BOOL)primitiveEnable_secondary_stimuliValue;
+- (void)setPrimitiveEnable_secondary_stimuliValue:(BOOL)value_;
+
 - (NSNumber*)primitiveEnabled;
 - (void)setPrimitiveEnabled:(NSNumber*)value;
 
@@ -903,6 +809,12 @@ extern const struct TestConfigurationRelationships {
 - (NSString*)primitiveNum_correct_to_get_harder;
 - (void)setPrimitiveNum_correct_to_get_harder:(NSString*)value;
 
+- (NSNumber*)primitiveNum_secondary_buttons;
+- (void)setPrimitiveNum_secondary_buttons:(NSNumber*)value;
+
+- (int16_t)primitiveNum_secondary_buttonsValue;
+- (void)setPrimitiveNum_secondary_buttonsValue:(int16_t)value_;
+
 - (NSString*)primitiveNum_wrong_to_get_easier;
 - (void)setPrimitiveNum_wrong_to_get_easier:(NSString*)value;
 
@@ -923,6 +835,138 @@ extern const struct TestConfigurationRelationships {
 
 - (BOOL)primitiveRequire_nextValue;
 - (void)setPrimitiveRequire_nextValue:(BOOL)value_;
+
+- (NSString*)primitiveSecondary_button1_bg;
+- (void)setPrimitiveSecondary_button1_bg:(NSString*)value;
+
+- (NSString*)primitiveSecondary_button1_fg;
+- (void)setPrimitiveSecondary_button1_fg:(NSString*)value;
+
+- (NSNumber*)primitiveSecondary_button1_h;
+- (void)setPrimitiveSecondary_button1_h:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button1_hValue;
+- (void)setPrimitiveSecondary_button1_hValue:(int16_t)value_;
+
+- (NSString*)primitiveSecondary_button1_text;
+- (void)setPrimitiveSecondary_button1_text:(NSString*)value;
+
+- (NSNumber*)primitiveSecondary_button1_w;
+- (void)setPrimitiveSecondary_button1_w:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button1_wValue;
+- (void)setPrimitiveSecondary_button1_wValue:(int16_t)value_;
+
+- (NSNumber*)primitiveSecondary_button1_x;
+- (void)setPrimitiveSecondary_button1_x:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button1_xValue;
+- (void)setPrimitiveSecondary_button1_xValue:(int16_t)value_;
+
+- (NSNumber*)primitiveSecondary_button1_y;
+- (void)setPrimitiveSecondary_button1_y:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button1_yValue;
+- (void)setPrimitiveSecondary_button1_yValue:(int16_t)value_;
+
+- (NSString*)primitiveSecondary_button2_bg;
+- (void)setPrimitiveSecondary_button2_bg:(NSString*)value;
+
+- (NSString*)primitiveSecondary_button2_fg;
+- (void)setPrimitiveSecondary_button2_fg:(NSString*)value;
+
+- (NSNumber*)primitiveSecondary_button2_h;
+- (void)setPrimitiveSecondary_button2_h:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button2_hValue;
+- (void)setPrimitiveSecondary_button2_hValue:(int16_t)value_;
+
+- (NSString*)primitiveSecondary_button2_text;
+- (void)setPrimitiveSecondary_button2_text:(NSString*)value;
+
+- (NSNumber*)primitiveSecondary_button2_w;
+- (void)setPrimitiveSecondary_button2_w:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button2_wValue;
+- (void)setPrimitiveSecondary_button2_wValue:(int16_t)value_;
+
+- (NSNumber*)primitiveSecondary_button2_x;
+- (void)setPrimitiveSecondary_button2_x:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button2_xValue;
+- (void)setPrimitiveSecondary_button2_xValue:(int16_t)value_;
+
+- (NSNumber*)primitiveSecondary_button2_y;
+- (void)setPrimitiveSecondary_button2_y:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button2_yValue;
+- (void)setPrimitiveSecondary_button2_yValue:(int16_t)value_;
+
+- (NSString*)primitiveSecondary_button3_bg;
+- (void)setPrimitiveSecondary_button3_bg:(NSString*)value;
+
+- (NSString*)primitiveSecondary_button3_fg;
+- (void)setPrimitiveSecondary_button3_fg:(NSString*)value;
+
+- (NSNumber*)primitiveSecondary_button3_h;
+- (void)setPrimitiveSecondary_button3_h:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button3_hValue;
+- (void)setPrimitiveSecondary_button3_hValue:(int16_t)value_;
+
+- (NSString*)primitiveSecondary_button3_text;
+- (void)setPrimitiveSecondary_button3_text:(NSString*)value;
+
+- (NSNumber*)primitiveSecondary_button3_w;
+- (void)setPrimitiveSecondary_button3_w:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button3_wValue;
+- (void)setPrimitiveSecondary_button3_wValue:(int16_t)value_;
+
+- (NSNumber*)primitiveSecondary_button3_x;
+- (void)setPrimitiveSecondary_button3_x:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button3_xValue;
+- (void)setPrimitiveSecondary_button3_xValue:(int16_t)value_;
+
+- (NSNumber*)primitiveSecondary_button3_y;
+- (void)setPrimitiveSecondary_button3_y:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button3_yValue;
+- (void)setPrimitiveSecondary_button3_yValue:(int16_t)value_;
+
+- (NSString*)primitiveSecondary_button4_bg;
+- (void)setPrimitiveSecondary_button4_bg:(NSString*)value;
+
+- (NSString*)primitiveSecondary_button4_fg;
+- (void)setPrimitiveSecondary_button4_fg:(NSString*)value;
+
+- (NSNumber*)primitiveSecondary_button4_h;
+- (void)setPrimitiveSecondary_button4_h:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button4_hValue;
+- (void)setPrimitiveSecondary_button4_hValue:(int16_t)value_;
+
+- (NSString*)primitiveSecondary_button4_text;
+- (void)setPrimitiveSecondary_button4_text:(NSString*)value;
+
+- (NSNumber*)primitiveSecondary_button4_w;
+- (void)setPrimitiveSecondary_button4_w:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button4_wValue;
+- (void)setPrimitiveSecondary_button4_wValue:(int16_t)value_;
+
+- (NSNumber*)primitiveSecondary_button4_x;
+- (void)setPrimitiveSecondary_button4_x:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button4_xValue;
+- (void)setPrimitiveSecondary_button4_xValue:(int16_t)value_;
+
+- (NSNumber*)primitiveSecondary_button4_y;
+- (void)setPrimitiveSecondary_button4_y:(NSNumber*)value;
+
+- (int16_t)primitiveSecondary_button4_yValue;
+- (void)setPrimitiveSecondary_button4_yValue:(int16_t)value_;
 
 - (NSString*)primitiveServer_id;
 - (void)setPrimitiveServer_id:(NSString*)value;
@@ -979,3 +1023,119 @@ extern const struct TestConfigurationRelationships {
 - (void)setPrimitiveUser:(User*)value;
 
 @end
+
+@interface TestConfigurationAttributes: NSObject 
++ (NSString *)animation_frame_rate;
++ (NSString *)attempt_facial_recognition;
++ (NSString *)background_colour;
++ (NSString *)button1_bg;
++ (NSString *)button1_fg;
++ (NSString *)button1_h;
++ (NSString *)button1_text;
++ (NSString *)button1_w;
++ (NSString *)button1_x;
++ (NSString *)button1_y;
++ (NSString *)button2_bg;
++ (NSString *)button2_fg;
++ (NSString *)button2_h;
++ (NSString *)button2_text;
++ (NSString *)button2_w;
++ (NSString *)button2_x;
++ (NSString *)button2_y;
++ (NSString *)button3_bg;
++ (NSString *)button3_fg;
++ (NSString *)button3_h;
++ (NSString *)button3_text;
++ (NSString *)button3_w;
++ (NSString *)button3_x;
++ (NSString *)button3_y;
++ (NSString *)button4_bg;
++ (NSString *)button4_fg;
++ (NSString *)button4_h;
++ (NSString *)button4_text;
++ (NSString *)button4_w;
++ (NSString *)button4_x;
++ (NSString *)button4_y;
++ (NSString *)button_presentation_delay;
++ (NSString *)configuration_description;
++ (NSString *)day_of_week_fri;
++ (NSString *)day_of_week_mon;
++ (NSString *)day_of_week_sat;
++ (NSString *)day_of_week_sun;
++ (NSString *)day_of_week_thu;
++ (NSString *)day_of_week_tue;
++ (NSString *)day_of_week_wed;
++ (NSString *)delta_values;
++ (NSString *)enable_secondary_stimuli;
++ (NSString *)enabled;
++ (NSString *)exit_button_bg;
++ (NSString *)exit_button_fg;
++ (NSString *)exit_button_h;
++ (NSString *)exit_button_w;
++ (NSString *)exit_button_x;
++ (NSString *)exit_button_y;
++ (NSString *)finite_presentation_time;
++ (NSString *)finite_response_window;
++ (NSString *)hits_to_finish;
++ (NSString *)infinite_presentation_time;
++ (NSString *)infinite_response_window;
++ (NSString *)is_gallery_configuration;
++ (NSString *)is_practice;
++ (NSString *)loop_animations;
++ (NSString *)maximum_level;
++ (NSString *)minimum_level;
++ (NSString *)name;
++ (NSString *)num_buttons;
++ (NSString *)num_correct_to_get_harder;
++ (NSString *)num_secondary_buttons;
++ (NSString *)num_wrong_to_get_easier;
++ (NSString *)number_of_reversals;
++ (NSString *)number_of_staircases;
++ (NSString *)questions_per_folder;
++ (NSString *)require_next;
++ (NSString *)secondary_button1_bg;
++ (NSString *)secondary_button1_fg;
++ (NSString *)secondary_button1_h;
++ (NSString *)secondary_button1_text;
++ (NSString *)secondary_button1_w;
++ (NSString *)secondary_button1_x;
++ (NSString *)secondary_button1_y;
++ (NSString *)secondary_button2_bg;
++ (NSString *)secondary_button2_fg;
++ (NSString *)secondary_button2_h;
++ (NSString *)secondary_button2_text;
++ (NSString *)secondary_button2_w;
++ (NSString *)secondary_button2_x;
++ (NSString *)secondary_button2_y;
++ (NSString *)secondary_button3_bg;
++ (NSString *)secondary_button3_fg;
++ (NSString *)secondary_button3_h;
++ (NSString *)secondary_button3_text;
++ (NSString *)secondary_button3_w;
++ (NSString *)secondary_button3_x;
++ (NSString *)secondary_button3_y;
++ (NSString *)secondary_button4_bg;
++ (NSString *)secondary_button4_fg;
++ (NSString *)secondary_button4_h;
++ (NSString *)secondary_button4_text;
++ (NSString *)secondary_button4_w;
++ (NSString *)secondary_button4_x;
++ (NSString *)secondary_button4_y;
++ (NSString *)server_id;
++ (NSString *)server_url;
++ (NSString *)show_exit_button;
++ (NSString *)specified_seed;
++ (NSString *)start_level;
++ (NSString *)time_between_question_mean;
++ (NSString *)time_between_question_plusminus;
++ (NSString *)title;
++ (NSString *)use_specified_seed;
++ (NSString *)use_staircase_method;
+@end
+
+@interface TestConfigurationRelationships: NSObject
++ (NSString *)sequence;
++ (NSString *)user;
+@end
+
+NS_ASSUME_NONNULL_END

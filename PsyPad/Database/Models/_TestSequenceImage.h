@@ -1,34 +1,28 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to TestSequenceImage.h instead.
 
-@import CoreData;
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct TestSequenceImageAttributes {
-	__unsafe_unretained NSString *animated_images;
-	__unsafe_unretained NSString *is_animated;
-	__unsafe_unretained NSString *length;
-	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *start;
-} TestSequenceImageAttributes;
-
-extern const struct TestSequenceImageRelationships {
-	__unsafe_unretained NSString *folder;
-} TestSequenceImageRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class TestSequenceFolder;
 
 @interface TestSequenceImageID : NSManagedObjectID {}
 @end
 
-@interface _TestSequenceImage : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _TestSequenceImage : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) TestSequenceImageID* objectID;
+@property (nonatomic, readonly, strong) TestSequenceImageID *objectID;
 
-@property (nonatomic, strong) NSString* animated_images;
-
-//- (BOOL)validateAnimated_images:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* animated_images;
 
 @property (nonatomic, strong) NSNumber* is_animated;
 
@@ -36,31 +30,21 @@ extern const struct TestSequenceImageRelationships {
 - (BOOL)is_animatedValue;
 - (void)setIs_animatedValue:(BOOL)value_;
 
-//- (BOOL)validateIs_animated:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* length;
+@property (nonatomic, strong, nullable) NSNumber* length;
 
 @property (atomic) int32_t lengthValue;
 - (int32_t)lengthValue;
 - (void)setLengthValue:(int32_t)value_;
 
-//- (BOOL)validateLength:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* name;
 
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* start;
+@property (nonatomic, strong, nullable) NSNumber* start;
 
 @property (atomic) int64_t startValue;
 - (int64_t)startValue;
 - (void)setStartValue:(int64_t)value_;
 
-//- (BOOL)validateStart:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) TestSequenceFolder *folder;
-
-//- (BOOL)validateFolder:(id*)value_ error:(NSError**)error_;
 
 @end
 
@@ -94,3 +78,17 @@ extern const struct TestSequenceImageRelationships {
 - (void)setPrimitiveFolder:(TestSequenceFolder*)value;
 
 @end
+
+@interface TestSequenceImageAttributes: NSObject 
++ (NSString *)animated_images;
++ (NSString *)is_animated;
++ (NSString *)length;
++ (NSString *)name;
++ (NSString *)start;
+@end
+
+@interface TestSequenceImageRelationships: NSObject
++ (NSString *)folder;
+@end
+
+NS_ASSUME_NONNULL_END

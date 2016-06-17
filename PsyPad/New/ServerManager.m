@@ -150,7 +150,8 @@
          }
                           completion:^(BOOL contextDidSave, NSError *error)
          {
-             success((TestConfiguration *)[[NSManagedObjectContext MR_defaultContext] objectWithID:newConfiguration.objectID]);
+             if (error) failure(error.localizedDescription);
+             else success((TestConfiguration *)[[NSManagedObjectContext MR_defaultContext] objectWithID:newConfiguration.objectID]);
          }];
     };
     

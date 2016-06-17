@@ -141,6 +141,7 @@
 		5AF0EFA8B7B6B5B809106B50 /* UIImage+Picker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Picker.h"; sourceTree = "<group>"; };
 		5AF0EFA92E79365204688816 /* NSArray+GetRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GetRandom.h"; sourceTree = "<group>"; };
 		5AF0EFE89B4C637A29351647 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		63075B721D13CD610061C684 /* Model4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model4.xcdatamodel; sourceTree = "<group>"; };
 		631CB31A1698F46C007A0534 /* TestLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLogTableViewController.h; sourceTree = "<group>"; };
 		631CB31B1698F46C007A0534 /* TestLogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLogTableViewController.m; sourceTree = "<group>"; };
 		631CB31C1698F46C007A0534 /* TestLogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLogTableViewCell.h; sourceTree = "<group>"; };
@@ -880,7 +881,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Turpin (VLDWUKP35J)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -899,7 +900,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7a5edae8-863b-4f97-8169-d8e7b0819781";
+				PROVISIONING_PROFILE = "0d7e7305-3032-443d-9dae-4f3ed6ab0564";
 				STRIP_STYLE = debugging;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -984,7 +985,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7a5edae8-863b-4f97-8169-d8e7b0819781";
+				PROVISIONING_PROFILE = "";
 				STRIP_STYLE = debugging;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -998,7 +999,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1017,7 +1018,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7a5edae8-863b-4f97-8169-d8e7b0819781";
+				PROVISIONING_PROFILE = "";
 				STRIP_STYLE = debugging;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -1085,11 +1086,12 @@
 		63BF7A8F1ABEB62E00825F70 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				63075B721D13CD610061C684 /* Model4.xcdatamodel */,
 				63DB704F1C43AF7300A1F92B /* Model3.xcdatamodel */,
 				63C75B961BC0F5260071814B /* Model2.xcdatamodel */,
 				63BF7A901ABEB62E00825F70 /* Model1.xcdatamodel */,
 			);
-			currentVersion = 63DB704F1C43AF7300A1F92B /* Model3.xcdatamodel */;
+			currentVersion = 63075B721D13CD610061C684 /* Model4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

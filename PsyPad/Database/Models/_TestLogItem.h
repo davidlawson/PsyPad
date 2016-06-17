@@ -1,44 +1,34 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to TestLogItem.h instead.
 
-@import CoreData;
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct TestLogItemAttributes {
-	__unsafe_unretained NSString *info;
-	__unsafe_unretained NSString *timestamp;
-	__unsafe_unretained NSString *type;
-} TestLogItemAttributes;
-
-extern const struct TestLogItemRelationships {
-	__unsafe_unretained NSString *log;
-} TestLogItemRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class TestLog;
 
 @interface TestLogItemID : NSManagedObjectID {}
 @end
 
-@interface _TestLogItem : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _TestLogItem : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) TestLogItemID* objectID;
+@property (nonatomic, readonly, strong) TestLogItemID *objectID;
 
-@property (nonatomic, strong) NSString* info;
-
-//- (BOOL)validateInfo:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* info;
 
 @property (nonatomic, strong) NSDate* timestamp;
 
-//- (BOOL)validateTimestamp:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* type;
 
-//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) TestLog *log;
-
-//- (BOOL)validateLog:(id*)value_ error:(NSError**)error_;
 
 @end
 
@@ -54,3 +44,15 @@ extern const struct TestLogItemRelationships {
 - (void)setPrimitiveLog:(TestLog*)value;
 
 @end
+
+@interface TestLogItemAttributes: NSObject 
++ (NSString *)info;
++ (NSString *)timestamp;
++ (NSString *)type;
+@end
+
+@interface TestLogItemRelationships: NSObject
++ (NSString *)log;
+@end
+
+NS_ASSUME_NONNULL_END

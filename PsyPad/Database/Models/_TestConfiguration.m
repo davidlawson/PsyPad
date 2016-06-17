@@ -3,96 +3,12 @@
 
 #import "_TestConfiguration.h"
 
-const struct TestConfigurationAttributes TestConfigurationAttributes = {
-	.animation_frame_rate = @"animation_frame_rate",
-	.attempt_facial_recognition = @"attempt_facial_recognition",
-	.background_colour = @"background_colour",
-	.button1_bg = @"button1_bg",
-	.button1_fg = @"button1_fg",
-	.button1_h = @"button1_h",
-	.button1_text = @"button1_text",
-	.button1_w = @"button1_w",
-	.button1_x = @"button1_x",
-	.button1_y = @"button1_y",
-	.button2_bg = @"button2_bg",
-	.button2_fg = @"button2_fg",
-	.button2_h = @"button2_h",
-	.button2_text = @"button2_text",
-	.button2_w = @"button2_w",
-	.button2_x = @"button2_x",
-	.button2_y = @"button2_y",
-	.button3_bg = @"button3_bg",
-	.button3_fg = @"button3_fg",
-	.button3_h = @"button3_h",
-	.button3_text = @"button3_text",
-	.button3_w = @"button3_w",
-	.button3_x = @"button3_x",
-	.button3_y = @"button3_y",
-	.button4_bg = @"button4_bg",
-	.button4_fg = @"button4_fg",
-	.button4_h = @"button4_h",
-	.button4_text = @"button4_text",
-	.button4_w = @"button4_w",
-	.button4_x = @"button4_x",
-	.button4_y = @"button4_y",
-	.button_presentation_delay = @"button_presentation_delay",
-	.configuration_description = @"configuration_description",
-	.day_of_week_fri = @"day_of_week_fri",
-	.day_of_week_mon = @"day_of_week_mon",
-	.day_of_week_sat = @"day_of_week_sat",
-	.day_of_week_sun = @"day_of_week_sun",
-	.day_of_week_thu = @"day_of_week_thu",
-	.day_of_week_tue = @"day_of_week_tue",
-	.day_of_week_wed = @"day_of_week_wed",
-	.delta_values = @"delta_values",
-	.enabled = @"enabled",
-	.exit_button_bg = @"exit_button_bg",
-	.exit_button_fg = @"exit_button_fg",
-	.exit_button_h = @"exit_button_h",
-	.exit_button_w = @"exit_button_w",
-	.exit_button_x = @"exit_button_x",
-	.exit_button_y = @"exit_button_y",
-	.finite_presentation_time = @"finite_presentation_time",
-	.finite_response_window = @"finite_response_window",
-	.hits_to_finish = @"hits_to_finish",
-	.infinite_presentation_time = @"infinite_presentation_time",
-	.infinite_response_window = @"infinite_response_window",
-	.is_gallery_configuration = @"is_gallery_configuration",
-	.is_practice = @"is_practice",
-	.loop_animations = @"loop_animations",
-	.maximum_level = @"maximum_level",
-	.minimum_level = @"minimum_level",
-	.name = @"name",
-	.num_buttons = @"num_buttons",
-	.num_correct_to_get_harder = @"num_correct_to_get_harder",
-	.num_wrong_to_get_easier = @"num_wrong_to_get_easier",
-	.number_of_reversals = @"number_of_reversals",
-	.number_of_staircases = @"number_of_staircases",
-	.questions_per_folder = @"questions_per_folder",
-	.require_next = @"require_next",
-	.server_id = @"server_id",
-	.server_url = @"server_url",
-	.show_exit_button = @"show_exit_button",
-	.specified_seed = @"specified_seed",
-	.start_level = @"start_level",
-	.time_between_question_mean = @"time_between_question_mean",
-	.time_between_question_plusminus = @"time_between_question_plusminus",
-	.title = @"title",
-	.use_specified_seed = @"use_specified_seed",
-	.use_staircase_method = @"use_staircase_method",
-};
-
-const struct TestConfigurationRelationships TestConfigurationRelationships = {
-	.sequence = @"sequence",
-	.user = @"user",
-};
-
 @implementation TestConfigurationID
 @end
 
 @implementation _TestConfiguration
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"TestConfiguration" inManagedObjectContext:moc_];
 }
@@ -243,6 +159,11 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"enable_secondary_stimuliValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"enable_secondary_stimuli"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"enabledValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"enabled"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -308,6 +229,11 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"num_secondary_buttonsValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"num_secondary_buttons"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"number_of_staircasesValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"number_of_staircases"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -315,6 +241,86 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 	}
 	if ([key isEqualToString:@"require_nextValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"require_next"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button1_hValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button1_h"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button1_wValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button1_w"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button1_xValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button1_x"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button1_yValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button1_y"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button2_hValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button2_h"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button2_wValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button2_w"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button2_xValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button2_x"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button2_yValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button2_y"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button3_hValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button3_h"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button3_wValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button3_w"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button3_xValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button3_x"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button3_yValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button3_y"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button4_hValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button4_h"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button4_wValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button4_w"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button4_xValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button4_x"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button4_yValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button4_y"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -902,6 +908,26 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 
 @dynamic delta_values;
 
+@dynamic enable_secondary_stimuli;
+
+- (BOOL)enable_secondary_stimuliValue {
+	NSNumber *result = [self enable_secondary_stimuli];
+	return [result boolValue];
+}
+
+- (void)setEnable_secondary_stimuliValue:(BOOL)value_ {
+	[self setEnable_secondary_stimuli:@(value_)];
+}
+
+- (BOOL)primitiveEnable_secondary_stimuliValue {
+	NSNumber *result = [self primitiveEnable_secondary_stimuli];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveEnable_secondary_stimuliValue:(BOOL)value_ {
+	[self setPrimitiveEnable_secondary_stimuli:@(value_)];
+}
+
 @dynamic enabled;
 
 - (BOOL)enabledValue {
@@ -1176,6 +1202,26 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 
 @dynamic num_correct_to_get_harder;
 
+@dynamic num_secondary_buttons;
+
+- (int16_t)num_secondary_buttonsValue {
+	NSNumber *result = [self num_secondary_buttons];
+	return [result shortValue];
+}
+
+- (void)setNum_secondary_buttonsValue:(int16_t)value_ {
+	[self setNum_secondary_buttons:@(value_)];
+}
+
+- (int16_t)primitiveNum_secondary_buttonsValue {
+	NSNumber *result = [self primitiveNum_secondary_buttons];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveNum_secondary_buttonsValue:(int16_t)value_ {
+	[self setPrimitiveNum_secondary_buttons:@(value_)];
+}
+
 @dynamic num_wrong_to_get_easier;
 
 @dynamic number_of_reversals;
@@ -1220,6 +1266,350 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 
 - (void)setPrimitiveRequire_nextValue:(BOOL)value_ {
 	[self setPrimitiveRequire_next:@(value_)];
+}
+
+@dynamic secondary_button1_bg;
+
+@dynamic secondary_button1_fg;
+
+@dynamic secondary_button1_h;
+
+- (int16_t)secondary_button1_hValue {
+	NSNumber *result = [self secondary_button1_h];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button1_hValue:(int16_t)value_ {
+	[self setSecondary_button1_h:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button1_hValue {
+	NSNumber *result = [self primitiveSecondary_button1_h];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button1_hValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button1_h:@(value_)];
+}
+
+@dynamic secondary_button1_text;
+
+@dynamic secondary_button1_w;
+
+- (int16_t)secondary_button1_wValue {
+	NSNumber *result = [self secondary_button1_w];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button1_wValue:(int16_t)value_ {
+	[self setSecondary_button1_w:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button1_wValue {
+	NSNumber *result = [self primitiveSecondary_button1_w];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button1_wValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button1_w:@(value_)];
+}
+
+@dynamic secondary_button1_x;
+
+- (int16_t)secondary_button1_xValue {
+	NSNumber *result = [self secondary_button1_x];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button1_xValue:(int16_t)value_ {
+	[self setSecondary_button1_x:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button1_xValue {
+	NSNumber *result = [self primitiveSecondary_button1_x];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button1_xValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button1_x:@(value_)];
+}
+
+@dynamic secondary_button1_y;
+
+- (int16_t)secondary_button1_yValue {
+	NSNumber *result = [self secondary_button1_y];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button1_yValue:(int16_t)value_ {
+	[self setSecondary_button1_y:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button1_yValue {
+	NSNumber *result = [self primitiveSecondary_button1_y];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button1_yValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button1_y:@(value_)];
+}
+
+@dynamic secondary_button2_bg;
+
+@dynamic secondary_button2_fg;
+
+@dynamic secondary_button2_h;
+
+- (int16_t)secondary_button2_hValue {
+	NSNumber *result = [self secondary_button2_h];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button2_hValue:(int16_t)value_ {
+	[self setSecondary_button2_h:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button2_hValue {
+	NSNumber *result = [self primitiveSecondary_button2_h];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button2_hValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button2_h:@(value_)];
+}
+
+@dynamic secondary_button2_text;
+
+@dynamic secondary_button2_w;
+
+- (int16_t)secondary_button2_wValue {
+	NSNumber *result = [self secondary_button2_w];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button2_wValue:(int16_t)value_ {
+	[self setSecondary_button2_w:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button2_wValue {
+	NSNumber *result = [self primitiveSecondary_button2_w];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button2_wValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button2_w:@(value_)];
+}
+
+@dynamic secondary_button2_x;
+
+- (int16_t)secondary_button2_xValue {
+	NSNumber *result = [self secondary_button2_x];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button2_xValue:(int16_t)value_ {
+	[self setSecondary_button2_x:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button2_xValue {
+	NSNumber *result = [self primitiveSecondary_button2_x];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button2_xValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button2_x:@(value_)];
+}
+
+@dynamic secondary_button2_y;
+
+- (int16_t)secondary_button2_yValue {
+	NSNumber *result = [self secondary_button2_y];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button2_yValue:(int16_t)value_ {
+	[self setSecondary_button2_y:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button2_yValue {
+	NSNumber *result = [self primitiveSecondary_button2_y];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button2_yValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button2_y:@(value_)];
+}
+
+@dynamic secondary_button3_bg;
+
+@dynamic secondary_button3_fg;
+
+@dynamic secondary_button3_h;
+
+- (int16_t)secondary_button3_hValue {
+	NSNumber *result = [self secondary_button3_h];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button3_hValue:(int16_t)value_ {
+	[self setSecondary_button3_h:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button3_hValue {
+	NSNumber *result = [self primitiveSecondary_button3_h];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button3_hValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button3_h:@(value_)];
+}
+
+@dynamic secondary_button3_text;
+
+@dynamic secondary_button3_w;
+
+- (int16_t)secondary_button3_wValue {
+	NSNumber *result = [self secondary_button3_w];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button3_wValue:(int16_t)value_ {
+	[self setSecondary_button3_w:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button3_wValue {
+	NSNumber *result = [self primitiveSecondary_button3_w];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button3_wValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button3_w:@(value_)];
+}
+
+@dynamic secondary_button3_x;
+
+- (int16_t)secondary_button3_xValue {
+	NSNumber *result = [self secondary_button3_x];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button3_xValue:(int16_t)value_ {
+	[self setSecondary_button3_x:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button3_xValue {
+	NSNumber *result = [self primitiveSecondary_button3_x];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button3_xValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button3_x:@(value_)];
+}
+
+@dynamic secondary_button3_y;
+
+- (int16_t)secondary_button3_yValue {
+	NSNumber *result = [self secondary_button3_y];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button3_yValue:(int16_t)value_ {
+	[self setSecondary_button3_y:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button3_yValue {
+	NSNumber *result = [self primitiveSecondary_button3_y];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button3_yValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button3_y:@(value_)];
+}
+
+@dynamic secondary_button4_bg;
+
+@dynamic secondary_button4_fg;
+
+@dynamic secondary_button4_h;
+
+- (int16_t)secondary_button4_hValue {
+	NSNumber *result = [self secondary_button4_h];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button4_hValue:(int16_t)value_ {
+	[self setSecondary_button4_h:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button4_hValue {
+	NSNumber *result = [self primitiveSecondary_button4_h];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button4_hValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button4_h:@(value_)];
+}
+
+@dynamic secondary_button4_text;
+
+@dynamic secondary_button4_w;
+
+- (int16_t)secondary_button4_wValue {
+	NSNumber *result = [self secondary_button4_w];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button4_wValue:(int16_t)value_ {
+	[self setSecondary_button4_w:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button4_wValue {
+	NSNumber *result = [self primitiveSecondary_button4_w];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button4_wValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button4_w:@(value_)];
+}
+
+@dynamic secondary_button4_x;
+
+- (int16_t)secondary_button4_xValue {
+	NSNumber *result = [self secondary_button4_x];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button4_xValue:(int16_t)value_ {
+	[self setSecondary_button4_x:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button4_xValue {
+	NSNumber *result = [self primitiveSecondary_button4_x];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button4_xValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button4_x:@(value_)];
+}
+
+@dynamic secondary_button4_y;
+
+- (int16_t)secondary_button4_yValue {
+	NSNumber *result = [self secondary_button4_y];
+	return [result shortValue];
+}
+
+- (void)setSecondary_button4_yValue:(int16_t)value_ {
+	[self setSecondary_button4_y:@(value_)];
+}
+
+- (int16_t)primitiveSecondary_button4_yValue {
+	NSNumber *result = [self primitiveSecondary_button4_y];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveSecondary_button4_yValue:(int16_t)value_ {
+	[self setPrimitiveSecondary_button4_y:@(value_)];
 }
 
 @dynamic server_id;
@@ -1354,5 +1744,335 @@ const struct TestConfigurationRelationships TestConfigurationRelationships = {
 
 @dynamic user;
 
+@end
+
+@implementation TestConfigurationAttributes 
++ (NSString *)animation_frame_rate {
+	return @"animation_frame_rate";
+}
++ (NSString *)attempt_facial_recognition {
+	return @"attempt_facial_recognition";
+}
++ (NSString *)background_colour {
+	return @"background_colour";
+}
++ (NSString *)button1_bg {
+	return @"button1_bg";
+}
++ (NSString *)button1_fg {
+	return @"button1_fg";
+}
++ (NSString *)button1_h {
+	return @"button1_h";
+}
++ (NSString *)button1_text {
+	return @"button1_text";
+}
++ (NSString *)button1_w {
+	return @"button1_w";
+}
++ (NSString *)button1_x {
+	return @"button1_x";
+}
++ (NSString *)button1_y {
+	return @"button1_y";
+}
++ (NSString *)button2_bg {
+	return @"button2_bg";
+}
++ (NSString *)button2_fg {
+	return @"button2_fg";
+}
++ (NSString *)button2_h {
+	return @"button2_h";
+}
++ (NSString *)button2_text {
+	return @"button2_text";
+}
++ (NSString *)button2_w {
+	return @"button2_w";
+}
++ (NSString *)button2_x {
+	return @"button2_x";
+}
++ (NSString *)button2_y {
+	return @"button2_y";
+}
++ (NSString *)button3_bg {
+	return @"button3_bg";
+}
++ (NSString *)button3_fg {
+	return @"button3_fg";
+}
++ (NSString *)button3_h {
+	return @"button3_h";
+}
++ (NSString *)button3_text {
+	return @"button3_text";
+}
++ (NSString *)button3_w {
+	return @"button3_w";
+}
++ (NSString *)button3_x {
+	return @"button3_x";
+}
++ (NSString *)button3_y {
+	return @"button3_y";
+}
++ (NSString *)button4_bg {
+	return @"button4_bg";
+}
++ (NSString *)button4_fg {
+	return @"button4_fg";
+}
++ (NSString *)button4_h {
+	return @"button4_h";
+}
++ (NSString *)button4_text {
+	return @"button4_text";
+}
++ (NSString *)button4_w {
+	return @"button4_w";
+}
++ (NSString *)button4_x {
+	return @"button4_x";
+}
++ (NSString *)button4_y {
+	return @"button4_y";
+}
++ (NSString *)button_presentation_delay {
+	return @"button_presentation_delay";
+}
++ (NSString *)configuration_description {
+	return @"configuration_description";
+}
++ (NSString *)day_of_week_fri {
+	return @"day_of_week_fri";
+}
++ (NSString *)day_of_week_mon {
+	return @"day_of_week_mon";
+}
++ (NSString *)day_of_week_sat {
+	return @"day_of_week_sat";
+}
++ (NSString *)day_of_week_sun {
+	return @"day_of_week_sun";
+}
++ (NSString *)day_of_week_thu {
+	return @"day_of_week_thu";
+}
++ (NSString *)day_of_week_tue {
+	return @"day_of_week_tue";
+}
++ (NSString *)day_of_week_wed {
+	return @"day_of_week_wed";
+}
++ (NSString *)delta_values {
+	return @"delta_values";
+}
++ (NSString *)enable_secondary_stimuli {
+	return @"enable_secondary_stimuli";
+}
++ (NSString *)enabled {
+	return @"enabled";
+}
++ (NSString *)exit_button_bg {
+	return @"exit_button_bg";
+}
++ (NSString *)exit_button_fg {
+	return @"exit_button_fg";
+}
++ (NSString *)exit_button_h {
+	return @"exit_button_h";
+}
++ (NSString *)exit_button_w {
+	return @"exit_button_w";
+}
++ (NSString *)exit_button_x {
+	return @"exit_button_x";
+}
++ (NSString *)exit_button_y {
+	return @"exit_button_y";
+}
++ (NSString *)finite_presentation_time {
+	return @"finite_presentation_time";
+}
++ (NSString *)finite_response_window {
+	return @"finite_response_window";
+}
++ (NSString *)hits_to_finish {
+	return @"hits_to_finish";
+}
++ (NSString *)infinite_presentation_time {
+	return @"infinite_presentation_time";
+}
++ (NSString *)infinite_response_window {
+	return @"infinite_response_window";
+}
++ (NSString *)is_gallery_configuration {
+	return @"is_gallery_configuration";
+}
++ (NSString *)is_practice {
+	return @"is_practice";
+}
++ (NSString *)loop_animations {
+	return @"loop_animations";
+}
++ (NSString *)maximum_level {
+	return @"maximum_level";
+}
++ (NSString *)minimum_level {
+	return @"minimum_level";
+}
++ (NSString *)name {
+	return @"name";
+}
++ (NSString *)num_buttons {
+	return @"num_buttons";
+}
++ (NSString *)num_correct_to_get_harder {
+	return @"num_correct_to_get_harder";
+}
++ (NSString *)num_secondary_buttons {
+	return @"num_secondary_buttons";
+}
++ (NSString *)num_wrong_to_get_easier {
+	return @"num_wrong_to_get_easier";
+}
++ (NSString *)number_of_reversals {
+	return @"number_of_reversals";
+}
++ (NSString *)number_of_staircases {
+	return @"number_of_staircases";
+}
++ (NSString *)questions_per_folder {
+	return @"questions_per_folder";
+}
++ (NSString *)require_next {
+	return @"require_next";
+}
++ (NSString *)secondary_button1_bg {
+	return @"secondary_button1_bg";
+}
++ (NSString *)secondary_button1_fg {
+	return @"secondary_button1_fg";
+}
++ (NSString *)secondary_button1_h {
+	return @"secondary_button1_h";
+}
++ (NSString *)secondary_button1_text {
+	return @"secondary_button1_text";
+}
++ (NSString *)secondary_button1_w {
+	return @"secondary_button1_w";
+}
++ (NSString *)secondary_button1_x {
+	return @"secondary_button1_x";
+}
++ (NSString *)secondary_button1_y {
+	return @"secondary_button1_y";
+}
++ (NSString *)secondary_button2_bg {
+	return @"secondary_button2_bg";
+}
++ (NSString *)secondary_button2_fg {
+	return @"secondary_button2_fg";
+}
++ (NSString *)secondary_button2_h {
+	return @"secondary_button2_h";
+}
++ (NSString *)secondary_button2_text {
+	return @"secondary_button2_text";
+}
++ (NSString *)secondary_button2_w {
+	return @"secondary_button2_w";
+}
++ (NSString *)secondary_button2_x {
+	return @"secondary_button2_x";
+}
++ (NSString *)secondary_button2_y {
+	return @"secondary_button2_y";
+}
++ (NSString *)secondary_button3_bg {
+	return @"secondary_button3_bg";
+}
++ (NSString *)secondary_button3_fg {
+	return @"secondary_button3_fg";
+}
++ (NSString *)secondary_button3_h {
+	return @"secondary_button3_h";
+}
++ (NSString *)secondary_button3_text {
+	return @"secondary_button3_text";
+}
++ (NSString *)secondary_button3_w {
+	return @"secondary_button3_w";
+}
++ (NSString *)secondary_button3_x {
+	return @"secondary_button3_x";
+}
++ (NSString *)secondary_button3_y {
+	return @"secondary_button3_y";
+}
++ (NSString *)secondary_button4_bg {
+	return @"secondary_button4_bg";
+}
++ (NSString *)secondary_button4_fg {
+	return @"secondary_button4_fg";
+}
++ (NSString *)secondary_button4_h {
+	return @"secondary_button4_h";
+}
++ (NSString *)secondary_button4_text {
+	return @"secondary_button4_text";
+}
++ (NSString *)secondary_button4_w {
+	return @"secondary_button4_w";
+}
++ (NSString *)secondary_button4_x {
+	return @"secondary_button4_x";
+}
++ (NSString *)secondary_button4_y {
+	return @"secondary_button4_y";
+}
++ (NSString *)server_id {
+	return @"server_id";
+}
++ (NSString *)server_url {
+	return @"server_url";
+}
++ (NSString *)show_exit_button {
+	return @"show_exit_button";
+}
++ (NSString *)specified_seed {
+	return @"specified_seed";
+}
++ (NSString *)start_level {
+	return @"start_level";
+}
++ (NSString *)time_between_question_mean {
+	return @"time_between_question_mean";
+}
++ (NSString *)time_between_question_plusminus {
+	return @"time_between_question_plusminus";
+}
++ (NSString *)title {
+	return @"title";
+}
++ (NSString *)use_specified_seed {
+	return @"use_specified_seed";
+}
++ (NSString *)use_staircase_method {
+	return @"use_staircase_method";
+}
+@end
+
+@implementation TestConfigurationRelationships 
++ (NSString *)sequence {
+	return @"sequence";
+}
++ (NSString *)user {
+	return @"user";
+}
 @end
 

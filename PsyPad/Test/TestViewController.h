@@ -52,6 +52,10 @@
 
 @property (strong, nonatomic) MBProgressHUD *hud;
 
+@property (weak, nonatomic) IBOutlet UIImageView *overlayImageView;
+@property (nonatomic) int overlayIndex;
+@property (nonatomic) int secondaryPressedIndex;
+
 - (IBAction)beginConfiguration;
 - (IBAction)pressExitButton:(id)sender;
 

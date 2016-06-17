@@ -3,21 +3,12 @@
 
 #import "_TestSequenceFolder.h"
 
-const struct TestSequenceFolderAttributes TestSequenceFolderAttributes = {
-	.name = @"name",
-};
-
-const struct TestSequenceFolderRelationships TestSequenceFolderRelationships = {
-	.images = @"images",
-	.sequence = @"sequence",
-};
-
 @implementation TestSequenceFolderID
 @end
 
 @implementation _TestSequenceFolder
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"TestSequenceFolder" inManagedObjectContext:moc_];
 }
@@ -45,10 +36,10 @@ const struct TestSequenceFolderRelationships TestSequenceFolderRelationships = {
 
 @dynamic images;
 
-- (NSMutableOrderedSet*)imagesSet {
+- (NSMutableOrderedSet<TestSequenceImage*>*)imagesSet {
 	[self willAccessValueForKey:@"images"];
 
-	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"images"];
+	NSMutableOrderedSet<TestSequenceImage*> *result = (NSMutableOrderedSet<TestSequenceImage*>*)[self mutableOrderedSetValueForKey:@"images"];
 
 	[self didAccessValueForKey:@"images"];
 	return result;
@@ -59,10 +50,10 @@ const struct TestSequenceFolderRelationships TestSequenceFolderRelationships = {
 @end
 
 @implementation _TestSequenceFolder (ImagesCoreDataGeneratedAccessors)
-- (void)addImages:(NSOrderedSet*)value_ {
+- (void)addImages:(NSOrderedSet<TestSequenceImage*>*)value_ {
 	[self.imagesSet unionOrderedSet:value_];
 }
-- (void)removeImages:(NSOrderedSet*)value_ {
+- (void)removeImages:(NSOrderedSet<TestSequenceImage*>*)value_ {
 	[self.imagesSet minusOrderedSet:value_];
 }
 - (void)addImagesObject:(TestSequenceImage*)value_ {
@@ -115,6 +106,21 @@ const struct TestSequenceFolderRelationships TestSequenceFolderRelationships = {
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"images"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"images"];
+}
+@end
+
+@implementation TestSequenceFolderAttributes 
++ (NSString *)name {
+	return @"name";
+}
+@end
+
+@implementation TestSequenceFolderRelationships 
++ (NSString *)images {
+	return @"images";
+}
++ (NSString *)sequence {
+	return @"sequence";
 }
 @end
 

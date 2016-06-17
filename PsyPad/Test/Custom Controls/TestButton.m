@@ -28,13 +28,14 @@
     return self;
 }
 
-- (id)initWithNumber:(int)number text:(NSString *)text bg:(UIColor *)bg fg:(UIColor *)fg x:(int)x y:(int)y width:(int)width height:(int)height
+- (id)initWithNumber:(int)number text:(NSString *)text bg:(UIColor *)bg fg:(UIColor *)fg x:(int)x y:(int)y width:(int)width height:(int)height img:(UIImage *)img
 {
     if (self = [self initWithText:text])
     {
         self.number = number;
         self.backgroundColor = bg;
         [self setTitleColor:fg forState:UIControlStateNormal];
+        [self setBackgroundImage:img forState:UIControlStateNormal];
         [self setWidth:width height:height];
         [self moveToX:x y:y];
     }

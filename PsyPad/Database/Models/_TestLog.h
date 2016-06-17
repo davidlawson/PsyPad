@@ -1,17 +1,15 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to TestLog.h instead.
 
-@import CoreData;
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct TestLogAttributes {
-	__unsafe_unretained NSString *timestamp;
-	__unsafe_unretained NSString *uploaded;
-} TestLogAttributes;
-
-extern const struct TestLogRelationships {
-	__unsafe_unretained NSString *logitems;
-	__unsafe_unretained NSString *user;
-} TestLogRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class TestLogItem;
 @class User;
@@ -19,15 +17,13 @@ extern const struct TestLogRelationships {
 @interface TestLogID : NSManagedObjectID {}
 @end
 
-@interface _TestLog : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _TestLog : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) TestLogID* objectID;
+@property (nonatomic, readonly, strong) TestLogID *objectID;
 
 @property (nonatomic, strong) NSDate* timestamp;
-
-//- (BOOL)validateTimestamp:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* uploaded;
 
@@ -35,21 +31,16 @@ extern const struct TestLogRelationships {
 - (BOOL)uploadedValue;
 - (void)setUploadedValue:(BOOL)value_;
 
-//- (BOOL)validateUploaded:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSOrderedSet<TestLogItem*> *logitems;
+- (nullable NSMutableOrderedSet<TestLogItem*>*)logitemsSet;
 
-@property (nonatomic, strong) NSOrderedSet *logitems;
-
-- (NSMutableOrderedSet*)logitemsSet;
-
-@property (nonatomic, strong) User *user;
-
-//- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) User *user;
 
 @end
 
 @interface _TestLog (LogitemsCoreDataGeneratedAccessors)
-- (void)addLogitems:(NSOrderedSet*)value_;
-- (void)removeLogitems:(NSOrderedSet*)value_;
+- (void)addLogitems:(NSOrderedSet<TestLogItem*>*)value_;
+- (void)removeLogitems:(NSOrderedSet<TestLogItem*>*)value_;
 - (void)addLogitemsObject:(TestLogItem*)value_;
 - (void)removeLogitemsObject:(TestLogItem*)value_;
 
@@ -73,10 +64,22 @@ extern const struct TestLogRelationships {
 - (BOOL)primitiveUploadedValue;
 - (void)setPrimitiveUploadedValue:(BOOL)value_;
 
-- (NSMutableOrderedSet*)primitiveLogitems;
-- (void)setPrimitiveLogitems:(NSMutableOrderedSet*)value;
+- (NSMutableOrderedSet<TestLogItem*>*)primitiveLogitems;
+- (void)setPrimitiveLogitems:(NSMutableOrderedSet<TestLogItem*>*)value;
 
 - (User*)primitiveUser;
 - (void)setPrimitiveUser:(User*)value;
 
 @end
+
+@interface TestLogAttributes: NSObject 
++ (NSString *)timestamp;
++ (NSString *)uploaded;
+@end
+
+@interface TestLogRelationships: NSObject
++ (NSString *)logitems;
++ (NSString *)user;
+@end
+
+NS_ASSUME_NONNULL_END

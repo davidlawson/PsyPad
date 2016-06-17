@@ -3,22 +3,12 @@
 
 #import "_TestLog.h"
 
-const struct TestLogAttributes TestLogAttributes = {
-	.timestamp = @"timestamp",
-	.uploaded = @"uploaded",
-};
-
-const struct TestLogRelationships TestLogRelationships = {
-	.logitems = @"logitems",
-	.user = @"user",
-};
-
 @implementation TestLogID
 @end
 
 @implementation _TestLog
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"TestLog" inManagedObjectContext:moc_];
 }
@@ -72,10 +62,10 @@ const struct TestLogRelationships TestLogRelationships = {
 
 @dynamic logitems;
 
-- (NSMutableOrderedSet*)logitemsSet {
+- (NSMutableOrderedSet<TestLogItem*>*)logitemsSet {
 	[self willAccessValueForKey:@"logitems"];
 
-	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"logitems"];
+	NSMutableOrderedSet<TestLogItem*> *result = (NSMutableOrderedSet<TestLogItem*>*)[self mutableOrderedSetValueForKey:@"logitems"];
 
 	[self didAccessValueForKey:@"logitems"];
 	return result;
@@ -86,10 +76,10 @@ const struct TestLogRelationships TestLogRelationships = {
 @end
 
 @implementation _TestLog (LogitemsCoreDataGeneratedAccessors)
-- (void)addLogitems:(NSOrderedSet*)value_ {
+- (void)addLogitems:(NSOrderedSet<TestLogItem*>*)value_ {
 	[self.logitemsSet unionOrderedSet:value_];
 }
-- (void)removeLogitems:(NSOrderedSet*)value_ {
+- (void)removeLogitems:(NSOrderedSet<TestLogItem*>*)value_ {
 	[self.logitemsSet minusOrderedSet:value_];
 }
 - (void)addLogitemsObject:(TestLogItem*)value_ {
@@ -142,6 +132,24 @@ const struct TestLogRelationships TestLogRelationships = {
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logitems"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logitems"];
+}
+@end
+
+@implementation TestLogAttributes 
++ (NSString *)timestamp {
+	return @"timestamp";
+}
++ (NSString *)uploaded {
+	return @"uploaded";
+}
+@end
+
+@implementation TestLogRelationships 
++ (NSString *)logitems {
+	return @"logitems";
+}
++ (NSString *)user {
+	return @"user";
 }
 @end
 

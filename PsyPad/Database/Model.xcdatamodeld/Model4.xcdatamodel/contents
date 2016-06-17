@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="2" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
+    <entity name="RootEntity" representedClassName="RootEntity" syncable="YES">
+        <attribute name="admin_password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="demoMode" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="server_url" attributeType="String" defaultValueString="https://server.psypad.net.au/" syncable="YES"/>
+    </entity>
+    <entity name="TestConfiguration" representedClassName="TestConfiguration" syncable="YES">
+        <attribute name="animation_frame_rate" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="attempt_facial_recognition" attributeType="Boolean" syncable="YES"/>
+        <attribute name="background_colour" attributeType="String" syncable="YES"/>
+        <attribute name="button_presentation_delay" attributeType="Float" syncable="YES"/>
+        <attribute name="button1_bg" attributeType="String" syncable="YES"/>
+        <attribute name="button1_fg" attributeType="String" syncable="YES"/>
+        <attribute name="button1_h" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button1_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button1_w" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button1_x" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button1_y" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button2_bg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button2_fg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button2_h" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button2_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button2_w" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button2_x" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button2_y" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button3_bg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button3_fg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button3_h" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button3_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button3_w" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button3_x" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button3_y" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button4_bg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button4_fg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button4_h" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button4_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="button4_w" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button4_x" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="button4_y" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="configuration_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="day_of_week_fri" attributeType="Boolean" syncable="YES"/>
+        <attribute name="day_of_week_mon" attributeType="Boolean" syncable="YES"/>
+        <attribute name="day_of_week_sat" attributeType="Boolean" syncable="YES"/>
+        <attribute name="day_of_week_sun" attributeType="Boolean" syncable="YES"/>
+        <attribute name="day_of_week_thu" attributeType="Boolean" syncable="YES"/>
+        <attribute name="day_of_week_tue" attributeType="Boolean" syncable="YES"/>
+        <attribute name="day_of_week_wed" attributeType="Boolean" syncable="YES"/>
+        <attribute name="delta_values" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enable_secondary_stimuli" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="enabled" attributeType="Boolean" syncable="YES"/>
+        <attribute name="exit_button_bg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exit_button_fg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exit_button_h" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="exit_button_w" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="exit_button_x" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="exit_button_y" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="finite_presentation_time" optional="YES" attributeType="Float" syncable="YES"/>
+        <attribute name="finite_response_window" optional="YES" attributeType="Float" syncable="YES"/>
+        <attribute name="hits_to_finish" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="infinite_presentation_time" attributeType="Boolean" syncable="YES"/>
+        <attribute name="infinite_response_window" attributeType="Boolean" syncable="YES"/>
+        <attribute name="is_gallery_configuration" attributeType="Boolean" syncable="YES"/>
+        <attribute name="is_practice" attributeType="Boolean" syncable="YES"/>
+        <attribute name="loop_animations" attributeType="Boolean" syncable="YES"/>
+        <attribute name="maximum_level" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="minimum_level" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="num_buttons" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="num_correct_to_get_harder" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="num_secondary_buttons" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="num_wrong_to_get_easier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number_of_reversals" attributeType="String" syncable="YES"/>
+        <attribute name="number_of_staircases" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="questions_per_folder" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="require_next" attributeType="Boolean" syncable="YES"/>
+        <attribute name="secondary_button1_bg" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button1_fg" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button1_h" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button1_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button1_w" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button1_x" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button1_y" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button2_bg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button2_fg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button2_h" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button2_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button2_w" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button2_x" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button2_y" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button3_bg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button3_fg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button3_h" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button3_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button3_w" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button3_x" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button3_y" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button4_bg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button4_fg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button4_h" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button4_text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button4_w" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button4_x" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="secondary_button4_y" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="server_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="server_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="show_exit_button" attributeType="Boolean" syncable="YES"/>
+        <attribute name="specified_seed" optional="YES" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="start_level" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time_between_question_mean" attributeType="Float" syncable="YES"/>
+        <attribute name="time_between_question_plusminus" attributeType="Float" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="use_specified_seed" attributeType="Boolean" syncable="YES"/>
+        <attribute name="use_staircase_method" attributeType="Boolean" syncable="YES"/>
+        <relationship name="sequence" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TestSequence" inverseName="testConfigurations" inverseEntity="TestSequence" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="configurations" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="TestLog" representedClassName="TestLog" syncable="YES">
+        <attribute name="timestamp" attributeType="Date" syncable="YES"/>
+        <attribute name="uploaded" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="logitems" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TestLogItem" inverseName="log" inverseEntity="TestLogItem" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="logs" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="TestLogItem" representedClassName="TestLogItem" syncable="YES">
+        <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <relationship name="log" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TestLog" inverseName="logitems" inverseEntity="TestLog" syncable="YES"/>
+    </entity>
+    <entity name="TestSequence" representedClassName="TestSequence" syncable="YES">
+        <attribute name="background_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="background_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="button1_image_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="button1_image_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="button2_image_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="button2_image_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="button3_image_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="button3_image_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="button4_image_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="button4_image_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="correct_wav_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="correct_wav_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="incorrect_wav_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="incorrect_wav_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="off_wav_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="off_wav_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="on_wav_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="on_wav_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="path" attributeType="String" syncable="YES"/>
+        <attribute name="secondary_button1_image_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_button1_image_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_button2_image_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_button2_image_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_button3_image_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_button3_image_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_button4_image_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_button4_image_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_image1_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_image1_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_image2_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_image2_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_image3_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_image3_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_image4_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="secondary_image4_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeout_wav_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeout_wav_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="title_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title_start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="folders" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TestSequenceFolder" inverseName="sequence" inverseEntity="TestSequenceFolder" syncable="YES"/>
+        <relationship name="testConfigurations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TestConfiguration" inverseName="sequence" inverseEntity="TestConfiguration" syncable="YES"/>
+    </entity>
+    <entity name="TestSequenceFolder" representedClassName="TestSequenceFolder" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TestSequenceImage" inverseName="folder" inverseEntity="TestSequenceImage" syncable="YES"/>
+        <relationship name="sequence" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TestSequence" inverseName="folders" inverseEntity="TestSequence" syncable="YES"/>
+    </entity>
+    <entity name="TestSequenceImage" representedClassName="TestSequenceImage" syncable="YES">
+        <attribute name="animated_images" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="is_animated" attributeType="Boolean" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="start" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="folder" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TestSequenceFolder" inverseName="images" inverseEntity="TestSequenceFolder" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <relationship name="configurations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TestConfiguration" inverseName="user" inverseEntity="TestConfiguration" syncable="YES"/>
+        <relationship name="logs" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TestLog" inverseName="user" inverseEntity="TestLog" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="RootEntity" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="TestConfiguration" positionX="0" positionY="0" width="128" height="1665"/>
+        <element name="TestLog" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="TestLogItem" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="TestSequence" positionX="0" positionY="0" width="128" height="690"/>
+        <element name="TestSequenceFolder" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="TestSequenceImage" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="User" positionX="0" positionY="0" width="128" height="90"/>
+    </elements>
+</model>

@@ -3,37 +3,12 @@
 
 #import "_TestSequence.h"
 
-const struct TestSequenceAttributes TestSequenceAttributes = {
-	.background_length = @"background_length",
-	.background_start = @"background_start",
-	.correct_wav_length = @"correct_wav_length",
-	.correct_wav_start = @"correct_wav_start",
-	.incorrect_wav_length = @"incorrect_wav_length",
-	.incorrect_wav_start = @"incorrect_wav_start",
-	.name = @"name",
-	.off_wav_length = @"off_wav_length",
-	.off_wav_start = @"off_wav_start",
-	.on_wav_length = @"on_wav_length",
-	.on_wav_start = @"on_wav_start",
-	.path = @"path",
-	.timeout_wav_length = @"timeout_wav_length",
-	.timeout_wav_start = @"timeout_wav_start",
-	.title_length = @"title_length",
-	.title_start = @"title_start",
-	.url = @"url",
-};
-
-const struct TestSequenceRelationships TestSequenceRelationships = {
-	.folders = @"folders",
-	.testConfigurations = @"testConfigurations",
-};
-
 @implementation TestSequenceID
 @end
 
 @implementation _TestSequence
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"TestSequence" inManagedObjectContext:moc_];
 }
@@ -61,6 +36,46 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 	}
 	if ([key isEqualToString:@"background_startValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"background_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"button1_image_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"button1_image_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"button1_image_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"button1_image_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"button2_image_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"button2_image_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"button2_image_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"button2_image_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"button3_image_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"button3_image_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"button3_image_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"button3_image_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"button4_image_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"button4_image_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"button4_image_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"button4_image_start"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -101,6 +116,86 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 	}
 	if ([key isEqualToString:@"on_wav_startValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"on_wav_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button1_image_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button1_image_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button1_image_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button1_image_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button2_image_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button2_image_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button2_image_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button2_image_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button3_image_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button3_image_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button3_image_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button3_image_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button4_image_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button4_image_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_button4_image_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_button4_image_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_image1_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_image1_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_image1_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_image1_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_image2_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_image2_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_image2_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_image2_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_image3_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_image3_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_image3_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_image3_start"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_image4_lengthValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_image4_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"secondary_image4_startValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"secondary_image4_start"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -166,6 +261,166 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 
 - (void)setPrimitiveBackground_startValue:(int64_t)value_ {
 	[self setPrimitiveBackground_start:@(value_)];
+}
+
+@dynamic button1_image_length;
+
+- (int32_t)button1_image_lengthValue {
+	NSNumber *result = [self button1_image_length];
+	return [result intValue];
+}
+
+- (void)setButton1_image_lengthValue:(int32_t)value_ {
+	[self setButton1_image_length:@(value_)];
+}
+
+- (int32_t)primitiveButton1_image_lengthValue {
+	NSNumber *result = [self primitiveButton1_image_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveButton1_image_lengthValue:(int32_t)value_ {
+	[self setPrimitiveButton1_image_length:@(value_)];
+}
+
+@dynamic button1_image_start;
+
+- (int64_t)button1_image_startValue {
+	NSNumber *result = [self button1_image_start];
+	return [result longLongValue];
+}
+
+- (void)setButton1_image_startValue:(int64_t)value_ {
+	[self setButton1_image_start:@(value_)];
+}
+
+- (int64_t)primitiveButton1_image_startValue {
+	NSNumber *result = [self primitiveButton1_image_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveButton1_image_startValue:(int64_t)value_ {
+	[self setPrimitiveButton1_image_start:@(value_)];
+}
+
+@dynamic button2_image_length;
+
+- (int32_t)button2_image_lengthValue {
+	NSNumber *result = [self button2_image_length];
+	return [result intValue];
+}
+
+- (void)setButton2_image_lengthValue:(int32_t)value_ {
+	[self setButton2_image_length:@(value_)];
+}
+
+- (int32_t)primitiveButton2_image_lengthValue {
+	NSNumber *result = [self primitiveButton2_image_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveButton2_image_lengthValue:(int32_t)value_ {
+	[self setPrimitiveButton2_image_length:@(value_)];
+}
+
+@dynamic button2_image_start;
+
+- (int64_t)button2_image_startValue {
+	NSNumber *result = [self button2_image_start];
+	return [result longLongValue];
+}
+
+- (void)setButton2_image_startValue:(int64_t)value_ {
+	[self setButton2_image_start:@(value_)];
+}
+
+- (int64_t)primitiveButton2_image_startValue {
+	NSNumber *result = [self primitiveButton2_image_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveButton2_image_startValue:(int64_t)value_ {
+	[self setPrimitiveButton2_image_start:@(value_)];
+}
+
+@dynamic button3_image_length;
+
+- (int32_t)button3_image_lengthValue {
+	NSNumber *result = [self button3_image_length];
+	return [result intValue];
+}
+
+- (void)setButton3_image_lengthValue:(int32_t)value_ {
+	[self setButton3_image_length:@(value_)];
+}
+
+- (int32_t)primitiveButton3_image_lengthValue {
+	NSNumber *result = [self primitiveButton3_image_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveButton3_image_lengthValue:(int32_t)value_ {
+	[self setPrimitiveButton3_image_length:@(value_)];
+}
+
+@dynamic button3_image_start;
+
+- (int64_t)button3_image_startValue {
+	NSNumber *result = [self button3_image_start];
+	return [result longLongValue];
+}
+
+- (void)setButton3_image_startValue:(int64_t)value_ {
+	[self setButton3_image_start:@(value_)];
+}
+
+- (int64_t)primitiveButton3_image_startValue {
+	NSNumber *result = [self primitiveButton3_image_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveButton3_image_startValue:(int64_t)value_ {
+	[self setPrimitiveButton3_image_start:@(value_)];
+}
+
+@dynamic button4_image_length;
+
+- (int32_t)button4_image_lengthValue {
+	NSNumber *result = [self button4_image_length];
+	return [result intValue];
+}
+
+- (void)setButton4_image_lengthValue:(int32_t)value_ {
+	[self setButton4_image_length:@(value_)];
+}
+
+- (int32_t)primitiveButton4_image_lengthValue {
+	NSNumber *result = [self primitiveButton4_image_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveButton4_image_lengthValue:(int32_t)value_ {
+	[self setPrimitiveButton4_image_length:@(value_)];
+}
+
+@dynamic button4_image_start;
+
+- (int64_t)button4_image_startValue {
+	NSNumber *result = [self button4_image_start];
+	return [result longLongValue];
+}
+
+- (void)setButton4_image_startValue:(int64_t)value_ {
+	[self setButton4_image_start:@(value_)];
+}
+
+- (int64_t)primitiveButton4_image_startValue {
+	NSNumber *result = [self primitiveButton4_image_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveButton4_image_startValue:(int64_t)value_ {
+	[self setPrimitiveButton4_image_start:@(value_)];
 }
 
 @dynamic correct_wav_length;
@@ -332,6 +587,326 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 
 @dynamic path;
 
+@dynamic secondary_button1_image_length;
+
+- (int32_t)secondary_button1_image_lengthValue {
+	NSNumber *result = [self secondary_button1_image_length];
+	return [result intValue];
+}
+
+- (void)setSecondary_button1_image_lengthValue:(int32_t)value_ {
+	[self setSecondary_button1_image_length:@(value_)];
+}
+
+- (int32_t)primitiveSecondary_button1_image_lengthValue {
+	NSNumber *result = [self primitiveSecondary_button1_image_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSecondary_button1_image_lengthValue:(int32_t)value_ {
+	[self setPrimitiveSecondary_button1_image_length:@(value_)];
+}
+
+@dynamic secondary_button1_image_start;
+
+- (int64_t)secondary_button1_image_startValue {
+	NSNumber *result = [self secondary_button1_image_start];
+	return [result longLongValue];
+}
+
+- (void)setSecondary_button1_image_startValue:(int64_t)value_ {
+	[self setSecondary_button1_image_start:@(value_)];
+}
+
+- (int64_t)primitiveSecondary_button1_image_startValue {
+	NSNumber *result = [self primitiveSecondary_button1_image_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSecondary_button1_image_startValue:(int64_t)value_ {
+	[self setPrimitiveSecondary_button1_image_start:@(value_)];
+}
+
+@dynamic secondary_button2_image_length;
+
+- (int32_t)secondary_button2_image_lengthValue {
+	NSNumber *result = [self secondary_button2_image_length];
+	return [result intValue];
+}
+
+- (void)setSecondary_button2_image_lengthValue:(int32_t)value_ {
+	[self setSecondary_button2_image_length:@(value_)];
+}
+
+- (int32_t)primitiveSecondary_button2_image_lengthValue {
+	NSNumber *result = [self primitiveSecondary_button2_image_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSecondary_button2_image_lengthValue:(int32_t)value_ {
+	[self setPrimitiveSecondary_button2_image_length:@(value_)];
+}
+
+@dynamic secondary_button2_image_start;
+
+- (int64_t)secondary_button2_image_startValue {
+	NSNumber *result = [self secondary_button2_image_start];
+	return [result longLongValue];
+}
+
+- (void)setSecondary_button2_image_startValue:(int64_t)value_ {
+	[self setSecondary_button2_image_start:@(value_)];
+}
+
+- (int64_t)primitiveSecondary_button2_image_startValue {
+	NSNumber *result = [self primitiveSecondary_button2_image_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSecondary_button2_image_startValue:(int64_t)value_ {
+	[self setPrimitiveSecondary_button2_image_start:@(value_)];
+}
+
+@dynamic secondary_button3_image_length;
+
+- (int32_t)secondary_button3_image_lengthValue {
+	NSNumber *result = [self secondary_button3_image_length];
+	return [result intValue];
+}
+
+- (void)setSecondary_button3_image_lengthValue:(int32_t)value_ {
+	[self setSecondary_button3_image_length:@(value_)];
+}
+
+- (int32_t)primitiveSecondary_button3_image_lengthValue {
+	NSNumber *result = [self primitiveSecondary_button3_image_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSecondary_button3_image_lengthValue:(int32_t)value_ {
+	[self setPrimitiveSecondary_button3_image_length:@(value_)];
+}
+
+@dynamic secondary_button3_image_start;
+
+- (int64_t)secondary_button3_image_startValue {
+	NSNumber *result = [self secondary_button3_image_start];
+	return [result longLongValue];
+}
+
+- (void)setSecondary_button3_image_startValue:(int64_t)value_ {
+	[self setSecondary_button3_image_start:@(value_)];
+}
+
+- (int64_t)primitiveSecondary_button3_image_startValue {
+	NSNumber *result = [self primitiveSecondary_button3_image_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSecondary_button3_image_startValue:(int64_t)value_ {
+	[self setPrimitiveSecondary_button3_image_start:@(value_)];
+}
+
+@dynamic secondary_button4_image_length;
+
+- (int32_t)secondary_button4_image_lengthValue {
+	NSNumber *result = [self secondary_button4_image_length];
+	return [result intValue];
+}
+
+- (void)setSecondary_button4_image_lengthValue:(int32_t)value_ {
+	[self setSecondary_button4_image_length:@(value_)];
+}
+
+- (int32_t)primitiveSecondary_button4_image_lengthValue {
+	NSNumber *result = [self primitiveSecondary_button4_image_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSecondary_button4_image_lengthValue:(int32_t)value_ {
+	[self setPrimitiveSecondary_button4_image_length:@(value_)];
+}
+
+@dynamic secondary_button4_image_start;
+
+- (int64_t)secondary_button4_image_startValue {
+	NSNumber *result = [self secondary_button4_image_start];
+	return [result longLongValue];
+}
+
+- (void)setSecondary_button4_image_startValue:(int64_t)value_ {
+	[self setSecondary_button4_image_start:@(value_)];
+}
+
+- (int64_t)primitiveSecondary_button4_image_startValue {
+	NSNumber *result = [self primitiveSecondary_button4_image_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSecondary_button4_image_startValue:(int64_t)value_ {
+	[self setPrimitiveSecondary_button4_image_start:@(value_)];
+}
+
+@dynamic secondary_image1_length;
+
+- (int32_t)secondary_image1_lengthValue {
+	NSNumber *result = [self secondary_image1_length];
+	return [result intValue];
+}
+
+- (void)setSecondary_image1_lengthValue:(int32_t)value_ {
+	[self setSecondary_image1_length:@(value_)];
+}
+
+- (int32_t)primitiveSecondary_image1_lengthValue {
+	NSNumber *result = [self primitiveSecondary_image1_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSecondary_image1_lengthValue:(int32_t)value_ {
+	[self setPrimitiveSecondary_image1_length:@(value_)];
+}
+
+@dynamic secondary_image1_start;
+
+- (int64_t)secondary_image1_startValue {
+	NSNumber *result = [self secondary_image1_start];
+	return [result longLongValue];
+}
+
+- (void)setSecondary_image1_startValue:(int64_t)value_ {
+	[self setSecondary_image1_start:@(value_)];
+}
+
+- (int64_t)primitiveSecondary_image1_startValue {
+	NSNumber *result = [self primitiveSecondary_image1_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSecondary_image1_startValue:(int64_t)value_ {
+	[self setPrimitiveSecondary_image1_start:@(value_)];
+}
+
+@dynamic secondary_image2_length;
+
+- (int32_t)secondary_image2_lengthValue {
+	NSNumber *result = [self secondary_image2_length];
+	return [result intValue];
+}
+
+- (void)setSecondary_image2_lengthValue:(int32_t)value_ {
+	[self setSecondary_image2_length:@(value_)];
+}
+
+- (int32_t)primitiveSecondary_image2_lengthValue {
+	NSNumber *result = [self primitiveSecondary_image2_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSecondary_image2_lengthValue:(int32_t)value_ {
+	[self setPrimitiveSecondary_image2_length:@(value_)];
+}
+
+@dynamic secondary_image2_start;
+
+- (int64_t)secondary_image2_startValue {
+	NSNumber *result = [self secondary_image2_start];
+	return [result longLongValue];
+}
+
+- (void)setSecondary_image2_startValue:(int64_t)value_ {
+	[self setSecondary_image2_start:@(value_)];
+}
+
+- (int64_t)primitiveSecondary_image2_startValue {
+	NSNumber *result = [self primitiveSecondary_image2_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSecondary_image2_startValue:(int64_t)value_ {
+	[self setPrimitiveSecondary_image2_start:@(value_)];
+}
+
+@dynamic secondary_image3_length;
+
+- (int32_t)secondary_image3_lengthValue {
+	NSNumber *result = [self secondary_image3_length];
+	return [result intValue];
+}
+
+- (void)setSecondary_image3_lengthValue:(int32_t)value_ {
+	[self setSecondary_image3_length:@(value_)];
+}
+
+- (int32_t)primitiveSecondary_image3_lengthValue {
+	NSNumber *result = [self primitiveSecondary_image3_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSecondary_image3_lengthValue:(int32_t)value_ {
+	[self setPrimitiveSecondary_image3_length:@(value_)];
+}
+
+@dynamic secondary_image3_start;
+
+- (int64_t)secondary_image3_startValue {
+	NSNumber *result = [self secondary_image3_start];
+	return [result longLongValue];
+}
+
+- (void)setSecondary_image3_startValue:(int64_t)value_ {
+	[self setSecondary_image3_start:@(value_)];
+}
+
+- (int64_t)primitiveSecondary_image3_startValue {
+	NSNumber *result = [self primitiveSecondary_image3_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSecondary_image3_startValue:(int64_t)value_ {
+	[self setPrimitiveSecondary_image3_start:@(value_)];
+}
+
+@dynamic secondary_image4_length;
+
+- (int32_t)secondary_image4_lengthValue {
+	NSNumber *result = [self secondary_image4_length];
+	return [result intValue];
+}
+
+- (void)setSecondary_image4_lengthValue:(int32_t)value_ {
+	[self setSecondary_image4_length:@(value_)];
+}
+
+- (int32_t)primitiveSecondary_image4_lengthValue {
+	NSNumber *result = [self primitiveSecondary_image4_length];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSecondary_image4_lengthValue:(int32_t)value_ {
+	[self setPrimitiveSecondary_image4_length:@(value_)];
+}
+
+@dynamic secondary_image4_start;
+
+- (int64_t)secondary_image4_startValue {
+	NSNumber *result = [self secondary_image4_start];
+	return [result longLongValue];
+}
+
+- (void)setSecondary_image4_startValue:(int64_t)value_ {
+	[self setSecondary_image4_start:@(value_)];
+}
+
+- (int64_t)primitiveSecondary_image4_startValue {
+	NSNumber *result = [self primitiveSecondary_image4_start];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSecondary_image4_startValue:(int64_t)value_ {
+	[self setPrimitiveSecondary_image4_start:@(value_)];
+}
+
 @dynamic timeout_wav_length;
 
 - (int32_t)timeout_wav_lengthValue {
@@ -416,10 +991,10 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 
 @dynamic folders;
 
-- (NSMutableOrderedSet*)foldersSet {
+- (NSMutableOrderedSet<TestSequenceFolder*>*)foldersSet {
 	[self willAccessValueForKey:@"folders"];
 
-	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"folders"];
+	NSMutableOrderedSet<TestSequenceFolder*> *result = (NSMutableOrderedSet<TestSequenceFolder*>*)[self mutableOrderedSetValueForKey:@"folders"];
 
 	[self didAccessValueForKey:@"folders"];
 	return result;
@@ -427,10 +1002,10 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 
 @dynamic testConfigurations;
 
-- (NSMutableSet*)testConfigurationsSet {
+- (NSMutableSet<TestConfiguration*>*)testConfigurationsSet {
 	[self willAccessValueForKey:@"testConfigurations"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"testConfigurations"];
+	NSMutableSet<TestConfiguration*> *result = (NSMutableSet<TestConfiguration*>*)[self mutableSetValueForKey:@"testConfigurations"];
 
 	[self didAccessValueForKey:@"testConfigurations"];
 	return result;
@@ -439,10 +1014,10 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
 @end
 
 @implementation _TestSequence (FoldersCoreDataGeneratedAccessors)
-- (void)addFolders:(NSOrderedSet*)value_ {
+- (void)addFolders:(NSOrderedSet<TestSequenceFolder*>*)value_ {
 	[self.foldersSet unionOrderedSet:value_];
 }
-- (void)removeFolders:(NSOrderedSet*)value_ {
+- (void)removeFolders:(NSOrderedSet<TestSequenceFolder*>*)value_ {
 	[self.foldersSet minusOrderedSet:value_];
 }
 - (void)addFoldersObject:(TestSequenceFolder*)value_ {
@@ -495,6 +1070,141 @@ const struct TestSequenceRelationships TestSequenceRelationships = {
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"folders"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"folders"];
+}
+@end
+
+@implementation TestSequenceAttributes 
++ (NSString *)background_length {
+	return @"background_length";
+}
++ (NSString *)background_start {
+	return @"background_start";
+}
++ (NSString *)button1_image_length {
+	return @"button1_image_length";
+}
++ (NSString *)button1_image_start {
+	return @"button1_image_start";
+}
++ (NSString *)button2_image_length {
+	return @"button2_image_length";
+}
++ (NSString *)button2_image_start {
+	return @"button2_image_start";
+}
++ (NSString *)button3_image_length {
+	return @"button3_image_length";
+}
++ (NSString *)button3_image_start {
+	return @"button3_image_start";
+}
++ (NSString *)button4_image_length {
+	return @"button4_image_length";
+}
++ (NSString *)button4_image_start {
+	return @"button4_image_start";
+}
++ (NSString *)correct_wav_length {
+	return @"correct_wav_length";
+}
++ (NSString *)correct_wav_start {
+	return @"correct_wav_start";
+}
++ (NSString *)incorrect_wav_length {
+	return @"incorrect_wav_length";
+}
++ (NSString *)incorrect_wav_start {
+	return @"incorrect_wav_start";
+}
++ (NSString *)name {
+	return @"name";
+}
++ (NSString *)off_wav_length {
+	return @"off_wav_length";
+}
++ (NSString *)off_wav_start {
+	return @"off_wav_start";
+}
++ (NSString *)on_wav_length {
+	return @"on_wav_length";
+}
++ (NSString *)on_wav_start {
+	return @"on_wav_start";
+}
++ (NSString *)path {
+	return @"path";
+}
++ (NSString *)secondary_button1_image_length {
+	return @"secondary_button1_image_length";
+}
++ (NSString *)secondary_button1_image_start {
+	return @"secondary_button1_image_start";
+}
++ (NSString *)secondary_button2_image_length {
+	return @"secondary_button2_image_length";
+}
++ (NSString *)secondary_button2_image_start {
+	return @"secondary_button2_image_start";
+}
++ (NSString *)secondary_button3_image_length {
+	return @"secondary_button3_image_length";
+}
++ (NSString *)secondary_button3_image_start {
+	return @"secondary_button3_image_start";
+}
++ (NSString *)secondary_button4_image_length {
+	return @"secondary_button4_image_length";
+}
++ (NSString *)secondary_button4_image_start {
+	return @"secondary_button4_image_start";
+}
++ (NSString *)secondary_image1_length {
+	return @"secondary_image1_length";
+}
++ (NSString *)secondary_image1_start {
+	return @"secondary_image1_start";
+}
++ (NSString *)secondary_image2_length {
+	return @"secondary_image2_length";
+}
++ (NSString *)secondary_image2_start {
+	return @"secondary_image2_start";
+}
++ (NSString *)secondary_image3_length {
+	return @"secondary_image3_length";
+}
++ (NSString *)secondary_image3_start {
+	return @"secondary_image3_start";
+}
++ (NSString *)secondary_image4_length {
+	return @"secondary_image4_length";
+}
++ (NSString *)secondary_image4_start {
+	return @"secondary_image4_start";
+}
++ (NSString *)timeout_wav_length {
+	return @"timeout_wav_length";
+}
++ (NSString *)timeout_wav_start {
+	return @"timeout_wav_start";
+}
++ (NSString *)title_length {
+	return @"title_length";
+}
++ (NSString *)title_start {
+	return @"title_start";
+}
++ (NSString *)url {
+	return @"url";
+}
+@end
+
+@implementation TestSequenceRelationships 
++ (NSString *)folders {
+	return @"folders";
+}
++ (NSString *)testConfigurations {
+	return @"testConfigurations";
 }
 @end
 

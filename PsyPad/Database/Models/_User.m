@@ -3,21 +3,12 @@
 
 #import "_User.h"
 
-const struct UserAttributes UserAttributes = {
-	.id = @"id",
-};
-
-const struct UserRelationships UserRelationships = {
-	.configurations = @"configurations",
-	.logs = @"logs",
-};
-
 @implementation UserID
 @end
 
 @implementation _User
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:moc_];
 }
@@ -45,10 +36,10 @@ const struct UserRelationships UserRelationships = {
 
 @dynamic configurations;
 
-- (NSMutableOrderedSet*)configurationsSet {
+- (NSMutableOrderedSet<TestConfiguration*>*)configurationsSet {
 	[self willAccessValueForKey:@"configurations"];
 
-	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"configurations"];
+	NSMutableOrderedSet<TestConfiguration*> *result = (NSMutableOrderedSet<TestConfiguration*>*)[self mutableOrderedSetValueForKey:@"configurations"];
 
 	[self didAccessValueForKey:@"configurations"];
 	return result;
@@ -56,10 +47,10 @@ const struct UserRelationships UserRelationships = {
 
 @dynamic logs;
 
-- (NSMutableOrderedSet*)logsSet {
+- (NSMutableOrderedSet<TestLog*>*)logsSet {
 	[self willAccessValueForKey:@"logs"];
 
-	NSMutableOrderedSet *result = (NSMutableOrderedSet*)[self mutableOrderedSetValueForKey:@"logs"];
+	NSMutableOrderedSet<TestLog*> *result = (NSMutableOrderedSet<TestLog*>*)[self mutableOrderedSetValueForKey:@"logs"];
 
 	[self didAccessValueForKey:@"logs"];
 	return result;
@@ -68,10 +59,10 @@ const struct UserRelationships UserRelationships = {
 @end
 
 @implementation _User (ConfigurationsCoreDataGeneratedAccessors)
-- (void)addConfigurations:(NSOrderedSet*)value_ {
+- (void)addConfigurations:(NSOrderedSet<TestConfiguration*>*)value_ {
 	[self.configurationsSet unionOrderedSet:value_];
 }
-- (void)removeConfigurations:(NSOrderedSet*)value_ {
+- (void)removeConfigurations:(NSOrderedSet<TestConfiguration*>*)value_ {
 	[self.configurationsSet minusOrderedSet:value_];
 }
 - (void)addConfigurationsObject:(TestConfiguration*)value_ {
@@ -128,10 +119,10 @@ const struct UserRelationships UserRelationships = {
 @end
 
 @implementation _User (LogsCoreDataGeneratedAccessors)
-- (void)addLogs:(NSOrderedSet*)value_ {
+- (void)addLogs:(NSOrderedSet<TestLog*>*)value_ {
 	[self.logsSet unionOrderedSet:value_];
 }
-- (void)removeLogs:(NSOrderedSet*)value_ {
+- (void)removeLogs:(NSOrderedSet<TestLog*>*)value_ {
 	[self.logsSet minusOrderedSet:value_];
 }
 - (void)addLogsObject:(TestLog*)value_ {
@@ -184,6 +175,21 @@ const struct UserRelationships UserRelationships = {
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logs"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logs"];
+}
+@end
+
+@implementation UserAttributes 
++ (NSString *)id {
+	return @"id";
+}
+@end
+
+@implementation UserRelationships 
++ (NSString *)configurations {
+	return @"configurations";
+}
++ (NSString *)logs {
+	return @"logs";
 }
 @end
 

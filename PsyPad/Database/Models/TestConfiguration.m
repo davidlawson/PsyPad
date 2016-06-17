@@ -212,6 +212,114 @@
         timeout_wav_start = data[@"to_s"];
     }
     
+    NSNumber *button1_image_length = nil;
+    NSNumber *button1_image_start = nil;
+    
+    if (data[@"b1_l"] && data[@"b1_s"])
+    {
+        button1_image_length = data[@"b1_l"];
+        button1_image_start = data[@"b1_s"];
+    }
+    
+    NSNumber *button2_image_length = nil;
+    NSNumber *button2_image_start = nil;
+    
+    if (data[@"b2_l"] && data[@"b2_s"])
+    {
+        button2_image_length = data[@"b2_l"];
+        button2_image_start = data[@"b2_s"];
+    }
+    
+    NSNumber *button3_image_length = nil;
+    NSNumber *button3_image_start = nil;
+    
+    if (data[@"b3_l"] && data[@"b3_s"])
+    {
+        button3_image_length = data[@"b3_l"];
+        button3_image_start = data[@"b3_s"];
+    }
+    
+    NSNumber *button4_image_length = nil;
+    NSNumber *button4_image_start = nil;
+    
+    if (data[@"b4_l"] && data[@"b4_s"])
+    {
+        button4_image_length = data[@"b4_l"];
+        button4_image_start = data[@"b4_s"];
+    }
+    
+    NSNumber *secondary_button1_image_length = nil;
+    NSNumber *secondary_button1_image_start = nil;
+    
+    if (data[@"sb1_l"] && data[@"sb1_s"])
+    {
+        secondary_button1_image_length = data[@"sb1_l"];
+        secondary_button1_image_start = data[@"sb1_s"];
+    }
+    
+    NSNumber *secondary_button2_image_length = nil;
+    NSNumber *secondary_button2_image_start = nil;
+    
+    if (data[@"sb2_l"] && data[@"sb2_s"])
+    {
+        secondary_button2_image_length = data[@"sb2_l"];
+        secondary_button2_image_start = data[@"sb2_s"];
+    }
+    
+    NSNumber *secondary_button3_image_length = nil;
+    NSNumber *secondary_button3_image_start = nil;
+    
+    if (data[@"sb3_l"] && data[@"sb3_s"])
+    {
+        secondary_button3_image_length = data[@"sb3_l"];
+        secondary_button3_image_start = data[@"sb3_s"];
+    }
+    
+    NSNumber *secondary_button4_image_length = nil;
+    NSNumber *secondary_button4_image_start = nil;
+    
+    if (data[@"sb4_l"] && data[@"sb4_s"])
+    {
+        secondary_button4_image_length = data[@"sb4_l"];
+        secondary_button4_image_start = data[@"sb4_s"];
+    }
+    
+    NSNumber *secondary_image1_length = nil;
+    NSNumber *secondary_image1_start = nil;
+    
+    if (data[@"si1_l"] && data[@"si1_s"])
+    {
+        secondary_image1_length = data[@"si1_l"];
+        secondary_image1_start = data[@"si1_s"];
+    }
+    
+    NSNumber *secondary_image2_length = nil;
+    NSNumber *secondary_image2_start = nil;
+    
+    if (data[@"si2_l"] && data[@"si2_s"])
+    {
+        secondary_image2_length = data[@"si2_l"];
+        secondary_image2_start = data[@"si2_s"];
+    }
+    
+    NSNumber *secondary_image3_length = nil;
+    NSNumber *secondary_image3_start = nil;
+    
+    if (data[@"si3_l"] && data[@"si3_s"])
+    {
+        secondary_image3_length = data[@"si3_l"];
+        secondary_image3_start = data[@"si3_s"];
+    }
+    
+    NSNumber *secondary_image4_length = nil;
+    NSNumber *secondary_image4_start = nil;
+    
+    if (data[@"si4_l"] && data[@"si4_s"])
+    {
+        secondary_image4_length = data[@"si4_l"];
+        secondary_image4_start = data[@"si4_s"];
+    }
+    
     NSArray *folders = data[@"g"];
     for (NSDictionary *group in [folders sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b)
     {
@@ -280,6 +388,34 @@
     newSequence.off_wav_start = off_wav_start;
     newSequence.timeout_wav_length = timeout_wav_length;
     newSequence.timeout_wav_start = timeout_wav_start;
+    
+    newSequence.button1_image_start = button1_image_start;
+    newSequence.button1_image_length = button1_image_length;
+    newSequence.button2_image_start = button2_image_start;
+    newSequence.button2_image_length = button2_image_length;
+    newSequence.button3_image_start = button3_image_start;
+    newSequence.button3_image_length = button3_image_length;
+    newSequence.button4_image_start = button4_image_start;
+    newSequence.button4_image_length = button4_image_length;
+    
+    newSequence.secondary_button1_image_start = secondary_button1_image_start;
+    newSequence.secondary_button1_image_length = secondary_button1_image_length;
+    newSequence.secondary_button2_image_start = secondary_button2_image_start;
+    newSequence.secondary_button2_image_length = secondary_button2_image_length;
+    newSequence.secondary_button3_image_start = secondary_button3_image_start;
+    newSequence.secondary_button3_image_length = secondary_button3_image_length;
+    newSequence.secondary_button4_image_start = secondary_button4_image_start;
+    newSequence.secondary_button4_image_length = secondary_button4_image_length;
+    
+    newSequence.secondary_image1_start = secondary_image1_start;
+    newSequence.secondary_image1_length = secondary_image1_length;
+    newSequence.secondary_image2_start = secondary_image2_start;
+    newSequence.secondary_image2_length = secondary_image2_length;
+    newSequence.secondary_image3_start = secondary_image3_start;
+    newSequence.secondary_image3_length = secondary_image3_length;
+    newSequence.secondary_image4_start = secondary_image4_start;
+    newSequence.secondary_image4_length = secondary_image4_length;
+    
     [newSequence addFolders:createdFolders];
 
     if (self.sequence)
@@ -343,6 +479,7 @@
         @"exit_button_x",
         @"exit_button_y",
         @"num_buttons",
+        @"num_secondary_buttons",
         @"button_presentation_delay",
         @"button1_bg",
         @"button1_fg",
@@ -372,6 +509,34 @@
         @"button4_w",
         @"button4_x",
         @"button4_y",
+        @"secondary_button1_bg",
+        @"secondary_button1_fg",
+        @"secondary_button1_h",
+        @"secondary_button1_text",
+        @"secondary_button1_w",
+        @"secondary_button1_x",
+        @"secondary_button1_y",
+        @"secondary_button2_bg",
+        @"secondary_button2_fg",
+        @"secondary_button2_h",
+        @"secondary_button2_text",
+        @"secondary_button2_w",
+        @"secondary_button2_x",
+        @"secondary_button2_y",
+        @"secondary_button3_bg",
+        @"secondary_button3_fg",
+        @"secondary_button3_h",
+        @"secondary_button3_text",
+        @"secondary_button3_w",
+        @"secondary_button3_x",
+        @"secondary_button3_y",
+        @"secondary_button4_bg",
+        @"secondary_button4_fg",
+        @"secondary_button4_h",
+        @"secondary_button4_text",
+        @"secondary_button4_w",
+        @"secondary_button4_x",
+        @"secondary_button4_y",
         @"require_next",
         @"time_between_question_mean",
         @"time_between_question_plusminus",
@@ -381,7 +546,8 @@
         @"finite_response_window",
         @"use_specified_seed",
         @"specified_seed",
-        @"attempt_facial_recognition"
+        @"attempt_facial_recognition",
+        @"enable_secondary_stimuli"
     ];
     
     for (NSString *key in keys)
@@ -456,6 +622,7 @@
         @"exit_button_x",
         @"exit_button_y",
         @"num_buttons",
+        @"num_secondary_buttons",
         @"button_presentation_delay",
         @"button1_bg",
         @"button1_fg",
@@ -485,6 +652,34 @@
         @"button4_w",
         @"button4_x",
         @"button4_y",
+        @"secondary_button1_bg",
+        @"secondary_button1_fg",
+        @"secondary_button1_h",
+        @"secondary_button1_text",
+        @"secondary_button1_w",
+        @"secondary_button1_x",
+        @"secondary_button1_y",
+        @"secondary_button2_bg",
+        @"secondary_button2_fg",
+        @"secondary_button2_h",
+        @"secondary_button2_text",
+        @"secondary_button2_w",
+        @"secondary_button2_x",
+        @"secondary_button2_y",
+        @"secondary_button3_bg",
+        @"secondary_button3_fg",
+        @"secondary_button3_h",
+        @"secondary_button3_text",
+        @"secondary_button3_w",
+        @"secondary_button3_x",
+        @"secondary_button3_y",
+        @"secondary_button4_bg",
+        @"secondary_button4_fg",
+        @"secondary_button4_h",
+        @"secondary_button4_text",
+        @"secondary_button4_w",
+        @"secondary_button4_x",
+        @"secondary_button4_y",
         @"require_next",
         @"time_between_question_mean",
         @"time_between_question_plusminus",
@@ -494,7 +689,8 @@
         @"finite_response_window",
         @"use_specified_seed",
         @"specified_seed",
-        @"attempt_facial_recognition"
+        @"attempt_facial_recognition",
+        @"enable_secondary_stimuli"
     ];
     
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
