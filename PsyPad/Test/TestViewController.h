@@ -55,6 +55,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *overlayImageView;
 @property (nonatomic) int overlayIndex;
 @property (nonatomic) int secondaryPressedIndex;
+@property (nonatomic) int ignoredCount;
 
 - (IBAction)beginConfiguration;
 - (IBAction)pressExitButton:(id)sender;

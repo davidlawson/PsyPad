@@ -238,6 +238,8 @@
     self.view.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.background_colour];
     UIImage *bgImage = self.currentConfiguration.sequence.backgroundImage;
     self.backgroundImageView.image = bgImage;
+    
+    self.ignoredCount = 0;
 
     if (self.currentConfiguration.show_exit_buttonValue)
     {
@@ -402,7 +404,8 @@
     
     if (self.currentConfiguration.enable_secondary_stimuliValue && self.overlayIndex != self.secondaryPressedIndex)
     {
-        [self log:@"ignored_response" info:nil];
+        self.ignoredCount++;
+        [self log:@"ignored_response" info:@"%d", self.ignoredCount];
         
         if (!self.currentConfiguration.use_staircase_methodValue)
         {
@@ -432,6 +435,8 @@
             self.currentStaircase.numTimesIncorrect = 0;
             
             [self playAudio:self.correctAudioPlayer];
+            
+            [self log:@"answer_correct" info:nil];
         }
         else
         {
@@ -441,20 +446,28 @@
             self.currentStaircase.numTimesCorrect = 0;
             
             [self playAudio:self.incorrectAudioPlayer];
+            
+            [self log:@"answer_incorrect" info:nil];
         }
         
         if (answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.minLevel)
         {
             self.currentStaircase.numHitsFloor++;
+            
+            [self log:@"hit_floor" info:nil];
         }
         else if (!answerCorrect && self.currentStaircase.currentLevel == self.currentStaircase.maxLevel)
         {
             self.currentStaircase.numHitsCeiling++;
+            
+            [self log:@"hit_ceiling" info:nil];
         }
         
         if (self.currentStaircase.numHitsFloor == self.currentStaircase.floorCeilingHits
             || self.currentStaircase.numHitsCeiling == self.currentStaircase.floorCeilingHits)
         {
+            [self log:@"reached_maximum_floor_ceiling_hits" info:nil];
+            
             [self.staircases removeObject:self.currentStaircase];
             self.currentStaircase = nil;
             [self prepareNextQuestion];
@@ -521,10 +534,14 @@
         if ([[imageButton.dbImage.name substringToIndex:2] isEqualToString:[NSString stringWithFormat:@"%d_", pressedButton.number]])
         {
             [self playAudio:self.correctAudioPlayer];
+            
+            [self log:@"answer_correct" info:nil];
         }
         else
         {
             [self playAudio:self.incorrectAudioPlayer];
+            
+            [self log:@"answer_incorrect" info:nil];
         }
     }
 
@@ -610,7 +627,7 @@
                 break;
         }
         [self.view bringSubviewToFront:self.overlayImageView];
-        [self log:@"presented_secondary_image" info:@"%d", self.overlayIndex];
+        [self log:@"presented_secondary_image" info:@"%d", self.overlayIndex + 1];
     }
 }
 
