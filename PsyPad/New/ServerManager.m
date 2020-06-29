@@ -47,7 +47,7 @@
 - (void)loadConfigurationsWithSuccess:(void(^)(NSArray *updatableConfigurations, NSArray *downloadableConfigurations))success
                               failure:(void(^)(NSString *error))failure
 {
-    void (^successBlock)(AFHTTPRequestOperation *, NSDictionary *) = ^(AFHTTPRequestOperation *operation, NSDictionary *response)
+    void (^successBlock)(NSURLSessionDataTask *, NSDictionary *) = ^(NSURLSessionDataTask *operation, NSDictionary *response)
     {
         if ([response isKindOfClass:[NSDictionary class]])
         {
@@ -100,9 +100,11 @@
         failure(@"Unknown error");
     };
     
-    [self.requestManager GET:@"api/configurations"
+   [self.requestManager GET:@"api/configurations"
                   parameters:@{ @"user_email": self.currentUser.email,
                                 @"user_token": self.currentUser.authToken }
+                    headers:nil
+                    progress:nil
                      success:successBlock
                      failure:[self failureBlock:failure]];
 }
@@ -113,7 +115,7 @@
                       success:(void (^)(TestConfiguration *configuration))success
                       failure:(void (^)(NSString *error))failure
 {
-    void (^successBlock)(AFHTTPRequestOperation *, NSDictionary *) = ^(AFHTTPRequestOperation *operation, NSDictionary *response)
+    void (^successBlock)(NSURLSessionDataTask *, NSDictionary *) = ^(NSURLSessionDataTask *operation, NSDictionary *response)
     {
         __block TestConfiguration *newConfiguration = nil;
         
@@ -158,6 +160,8 @@
     [self.requestManager GET:url
                   parameters:@{ @"user_email": self.currentUser.email,
                                 @"user_token": self.currentUser.authToken }
+                     headers:nil
+                    progress:nil
                      success:successBlock
                      failure:[self failureBlock:failure]];
 }
@@ -165,7 +169,7 @@
 - (void)loadServerParticipants:(void (^)(NSArray *participants))success
                        failure:(void (^)(NSString *error))failure
 {
-    void (^successBlock)(AFHTTPRequestOperation *, NSDictionary *) = ^(AFHTTPRequestOperation *operation, NSDictionary *response)
+    void (^successBlock)(NSURLSessionDataTask *, NSDictionary *) = ^(NSURLSessionDataTask *operation, NSDictionary *response)
     {
         if ([response isKindOfClass:[NSDictionary class]])
         {
@@ -190,6 +194,8 @@
     [self.requestManager GET:@"api/participants"
                   parameters:@{ @"user_email": self.currentUser.email,
                                 @"user_token": self.currentUser.authToken }
+                     headers:nil
+                    progress:nil
                      success:successBlock
                      failure:[self failureBlock:failure]];
 }
@@ -199,7 +205,8 @@
                     success:(void (^)(User *newUser))success
                     failure:(void (^)(NSString *error))failure
 {
-    void (^successBlock)(AFHTTPRequestOperation *, NSDictionary *) = ^(AFHTTPRequestOperation *operation, NSDictionary *response)
+    void (^successBlock)(NSURLSessionDataTask *, NSDictionary *) = ^(NSURLSessionDataTask *operation, NSDictionary *response)
+
     {
         __block User *newUser = nil;
         
@@ -273,6 +280,8 @@
     [self.requestManager GET:[NSString stringWithFormat:@"api/participants/%@", username]
                   parameters:@{ @"user_email": self.currentUser.email,
                                 @"user_token": self.currentUser.authToken }
+                     headers:nil
+                    progress:nil
                      success:successBlock
                      failure:[self failureBlock:failure]];
 }
@@ -335,7 +344,7 @@
 }
 
 - (void)uploadLogsWithProgress:(void (^)(NSString *status, float progress))progress
-                       success:(void (^)())success
+                       success:(void (^)(void))success
                        failure:(void (^)(NSString *error))failure
 {
     NSArray *logs = [TestLog MR_findByAttribute:TestLogAttributes.uploaded withValue:@NO];
@@ -369,7 +378,7 @@
         }
     }
     
-    void (^successBlock)(AFHTTPRequestOperation *, NSDictionary *) = ^(AFHTTPRequestOperation *operation, NSDictionary *response)
+    void (^successBlock)(NSURLSessionDataTask *, NSDictionary *) = ^(NSURLSessionDataTask *operation, NSDictionary *response)
     {
         for (TestLog *log in logs)
             log.uploaded = @YES;
@@ -379,17 +388,21 @@
         success();
     };
     
-    AFHTTPRequestOperation *operation = [self.requestManager POST:@"api/upload_logs"
-                                                       parameters:@{ @"user_email": self.currentUser.email,
-                                                                     @"user_token": self.currentUser.authToken,
-                                                                     @"logs": logData }
-                                                          success:successBlock
-                                                          failure:[self failureBlock:failure]];
+    [self.requestManager POST:@"api/upload_logs"
+                   parameters:@{ @"user_email": self.currentUser.email,
+                                 @"user_token": self.currentUser.authToken,
+                                 @"logs": logData }
+                      headers:nil
+                     progress:^(NSProgress *downloadProgress){
+                            progress(@"Uploading logs...", downloadProgress.fractionCompleted);
+                        }
+                      success:successBlock
+                      failure:[self failureBlock:failure]];
     
-    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)
+   /* [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)
      {
          progress(@"Uploading logs...", (float)totalBytesWritten/(float)totalBytesExpectedToWrite);
-     }];
+     }];*/
 }
 
 @end

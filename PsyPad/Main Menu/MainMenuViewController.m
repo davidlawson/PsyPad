@@ -76,12 +76,13 @@
     self.loginTextField.text = [self.loginTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (self.loginTextField.text.length == 0)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"You have not entered a participant username."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Okay"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Error"
+                                     message:@"You have not entered a participant username."
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+        
         return;
     }
 
@@ -104,17 +105,24 @@
         // http://stackoverflow.com/questions/29637443/nsinteralinconsistencyexception-uikeyboardlayoutalignmentview
         [self.loginTextField resignFirstResponder];
         
-        RIButtonItem *cancelButton = [RIButtonItem itemWithLabel:@"Cancel"];
-
-        RIButtonItem *loginButton = [RIButtonItem itemWithLabel:@"Login"];
-
-        self.passwordAlertView = [[UIAlertView alloc] initWithTitle:@"Authentication Required"
-                                                             message:@"Please enter admin password:"
-                                                    cancelButtonItem:cancelButton
-                                                    otherButtonItems:loginButton, nil];
-
-        loginButton.action = ^{
-            NSString *password = [self.passwordAlertView textFieldAtIndex:0].text;
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Authentication Required"
+                                     message:@"Please enter admin password:"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelButton = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action) {
+            [self.loginTextField resignFirstResponder];
+        }];
+        
+        UIAlertAction *loginButton = [UIAlertAction
+                                      actionWithTitle:@"Login"
+                                      style:UIAlertActionStyleDefault
+                                      handler:^(UIAlertAction * action) {
+        
+            NSString *password = alert.textFields[0].text;
             if ([password isEqualToString:[RootEntity rootEntity].admin_password])
             {
                 [self performSegueWithIdentifier:@"AdminPanel" sender:nil];
@@ -124,32 +132,36 @@
             else
             {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
-                {
-                    [[[UIAlertView alloc] initWithTitle:@"Access Denied"
-                                               message:@"Incorrect password entered."
-                                              delegate:nil
-                                     cancelButtonTitle:@"Okay"
-                                     otherButtonTitles:nil] show];
+                               {
+                    UIAlertController * alert = [UIAlertController
+                                                 alertControllerWithTitle:@"Access Denied"
+                                                 message:@"Incorrect password entered."
+                                                 preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil]];
+                    [self presentViewController:alert animated:YES completion:nil];
                 });
                 
                 [self.loginTextField resignFirstResponder];
             }
-        };
+        }];
 
-        cancelButton.action = ^ {
-            [self.loginTextField resignFirstResponder];
-        };
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"";
+            textField.textColor = [UIColor blueColor];
+            textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            textField.borderStyle = UITextBorderStyleRoundedRect;
+            textField.secureTextEntry = YES;
+        }];
+        [alert addAction:cancelButton];
+        [alert addAction:loginButton];
+        
+        [self presentViewController:alert animated:YES completion:nil];
 
-        self.passwordAlertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
-        [self.passwordAlertView textFieldAtIndex:0].delegate = self;
+        //UITextField *tf = [self.passwordAlertView textFieldAtIndex:0];
 
-        [self.passwordAlertView show];
-
-        UITextField *tf = [self.passwordAlertView textFieldAtIndex:0];
-
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [tf selectAll:nil];
-        });
+        //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //    [tf selectAll:nil];
+        //});
 
         return;
     }
@@ -210,13 +222,13 @@
     if (!user)
     {
         [self cancelLogin];
-
-        [[[UIAlertView alloc] initWithTitle:@"Unknown User"
-                                    message:@"User not found."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
-
+        
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Unknown User"
+                                     message:@"User not found."
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        
         return;
     }
     else
@@ -311,11 +323,12 @@
     }
     else
     {
-        [[[UIAlertView alloc] initWithTitle:@"No Test Configurations"
-                                    message:@"No tests are enabled/have been configured."
-                                   delegate:nil
-                          cancelButtonTitle:@"Ok"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                       alertControllerWithTitle:@"No Test Configurations"
+                                       message:@"No tests are enabled/have been configured."
+                                       preferredStyle:UIAlertControllerStyleAlert];
+          [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+          [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -338,11 +351,12 @@
 
 #pragma mark - Delegate Methods
 
+/*
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return UIDeviceOrientationIsLandscape(toInterfaceOrientation);
 }
-
+*/
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskLandscape;
@@ -358,7 +372,7 @@
     }
     else
     {
-        [self.passwordAlertView clickButtonAtIndex:1];
+        //[self.passwordAlertView clickButtonAtIndex:1];
     }
     return NO;
 }

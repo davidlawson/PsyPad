@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 David Lawson. All rights reserved.
 //
 
-#import <Boilerplate/DLServerManager.h>
+#import "DLServerManager.h"
 
 @class User, TestConfiguration;
 
@@ -34,7 +34,7 @@
                         failure:(void (^)(NSString *error))failure;
 
 - (void)uploadLogsWithProgress:(void (^)(NSString *status, float progress))progress
-                       success:(void (^)())success
+                       success:(void (^)(void))success
                        failure:(void (^)(NSString *error))failure;
 
 @end

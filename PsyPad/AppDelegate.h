@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Boilerplate/DLAppDelegate.h>
+#import "DLAppDelegate.h"
 
 @interface AppDelegate : DLAppDelegate
 

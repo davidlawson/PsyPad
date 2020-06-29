@@ -86,11 +86,29 @@
     
     if (file == NULL)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:[NSString stringWithFormat:@"Failed to open %@", description]
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Error"
+                                     message:[NSString stringWithFormat:@"Failed to open %@", description]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        
+        UIViewController *viewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+        if ( viewController.presentedViewController && !viewController.presentedViewController.isBeingDismissed ) {
+            viewController = viewController.presentedViewController;
+        }
+
+        NSLayoutConstraint *constraint = [NSLayoutConstraint
+            constraintWithItem:alert.view
+            attribute:NSLayoutAttributeHeight
+            relatedBy:NSLayoutRelationLessThanOrEqual
+            toItem:nil
+            attribute:NSLayoutAttributeNotAnAttribute
+            multiplier:1
+            constant:viewController.view.frame.size.height*2.0f];
+
+        [alert.view addConstraint:constraint];
+        [viewController presentViewController:alert animated:YES completion:^{}];
+        
         self.url = nil;
         [DatabaseManager save];
         return nil;

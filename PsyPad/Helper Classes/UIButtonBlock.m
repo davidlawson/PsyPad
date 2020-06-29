@@ -15,7 +15,7 @@ static char overviewKey;
 
 @dynamic actions;
 
-- (void) setAction:(NSString*)action withBlock:(void(^)())block {
+- (void) setAction:(NSString*)action withBlock:(void(^)(void))block {
     
     if ([self actions] == nil) {
         [self setActions:[[NSMutableDictionary alloc] init]];
@@ -37,7 +37,7 @@ static char overviewKey;
 }
 
 - (void)doTouchUpInside:(id)sender {
-    void(^block)();
+    void(^block)(void);
     block = [[self actions] objectForKey:kUIButtonBlockTouchUpInside];
     block();
 }

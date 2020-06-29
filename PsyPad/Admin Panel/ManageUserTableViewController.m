@@ -38,10 +38,5 @@
 }
 
 
-- (void)viewDidUnload
-{
-    [self setUserIDTextField:nil];
-    [super viewDidUnload];
-}
 
 @end

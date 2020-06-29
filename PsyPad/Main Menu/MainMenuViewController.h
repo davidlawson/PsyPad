@@ -28,8 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *beginPracticeTestButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
-@property (strong, nonatomic) UIAlertView *passwordAlertView;
-
 @property (strong, nonatomic) User *user;
 
 - (IBAction)loginPress;

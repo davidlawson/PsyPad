@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _RootEntity : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) RootEntityID *objectID;
 
 @property (nonatomic, strong, nullable) NSString* admin_password;
@@ -38,11 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _RootEntity (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveAdmin_password;
-- (void)setPrimitiveAdmin_password:(NSString*)value;
+- (nullable NSString*)primitiveAdmin_password;
+- (void)setPrimitiveAdmin_password:(nullable NSString*)value;
 
-- (NSString*)primitiveAuthToken;
-- (void)setPrimitiveAuthToken:(NSString*)value;
+- (nullable NSString*)primitiveAuthToken;
+- (void)setPrimitiveAuthToken:(nullable NSString*)value;
 
 - (NSNumber*)primitiveDemoMode;
 - (void)setPrimitiveDemoMode:(NSNumber*)value;
@@ -50,8 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)primitiveDemoModeValue;
 - (void)setPrimitiveDemoModeValue:(BOOL)value_;
 
-- (NSString*)primitiveEmail;
-- (void)setPrimitiveEmail:(NSString*)value;
+- (nullable NSString*)primitiveEmail;
+- (void)setPrimitiveEmail:(nullable NSString*)value;
 
 - (NSString*)primitiveServer_url;
 - (void)setPrimitiveServer_url:(NSString*)value;

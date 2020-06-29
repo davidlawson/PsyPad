@@ -95,10 +95,6 @@
         NSMutableURLRequest *_request = [[NSMutableURLRequest alloc] init];
         [_request setURL:[NSURL URLWithString:completeURL]];
         
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:_request];
-
-        operation.responseSerializer = [AFHTTPResponseSerializer serializer];
-
         NSURL *documentsDirectory = [NSURL documentsDirectory];
         NSString *templateString = [NSString stringWithFormat:@"%@/XXXXXX", [documentsDirectory path]];
 
@@ -109,15 +105,20 @@
         NSURL *newURL = [NSURL fileURLWithPath:[[NSString stringWithCString:filename encoding:NSASCIIStringEncoding] stringByAppendingString:@".set"]];
 
         [[NSFileManager defaultManager] createFileAtPath:newURL.path contents:nil attributes:nil];
-
-        operation.outputStream = [NSOutputStream outputStreamToFileAtPath:newURL.path append:NO];
-
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *_operation, id responseObject)
-        {
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        [manager setResponseSerializer:[AFHTTPResponseSerializer serializer]];
+        manager.responseSerializer.acceptableContentTypes=[NSSet setWithObject:@"application/octet-stream"];
+        NSLog(@"Completeurl: %@",completeURL);
+        [manager GET:completeURL
+          parameters:nil
+             headers:nil
+            progress:nil
+             success:^(NSURLSessionTask *task, id responseObject) {
             progress(@"Installing sequence...", 1);
             dispatch_semaphore_t sequence_sema = dispatch_semaphore_create(0);
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
-            {
+                           {
                 [self installSequence:[NSURL fileURLWithPath:newURL.path] name:@"sequence" data:data MOC:MOC];
                 dispatch_semaphore_signal(sequence_sema);
             });
@@ -125,23 +126,38 @@
             self.sequence.url = url;
 #warning can't do this at the moment!
             //[MOC MR_saveToPersistentStoreAndWait];
-
+            [[NSFileManager defaultManager] createFileAtPath:newURL.path contents:responseObject attributes:nil];
+            
             dispatch_semaphore_signal(sema);
-
-        } failure:^(AFHTTPRequestOperation *_operation, NSError *error)
-        {
+        }
+             failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
             dispatch_semaphore_signal(sema);
-
-            [[[UIAlertView alloc] initWithTitle:@"Download Error"
-                                        message:[NSString stringWithFormat:@"%@", error.description]
-                                       delegate:nil
-                              cancelButtonTitle:@"Close"
-                              otherButtonTitles:nil] show];
-
-            NSLog(@"%@", error.description);
+            
+            UIAlertController * alert = [UIAlertController
+                                         alertControllerWithTitle:@"Download Error"
+                                         message:[NSString stringWithFormat:@"%@", error.description]
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+            
+            UIViewController *viewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+            if ( viewController.presentedViewController && !viewController.presentedViewController.isBeingDismissed ) {
+                viewController = viewController.presentedViewController;
+            }
+            
+            NSLayoutConstraint *constraint = [NSLayoutConstraint
+                                              constraintWithItem:alert.view
+                                              attribute:NSLayoutAttributeHeight
+                                              relatedBy:NSLayoutRelationLessThanOrEqual
+                                              toItem:nil
+                                              attribute:NSLayoutAttributeNotAnAttribute
+                                              multiplier:1
+                                              constant:viewController.view.frame.size.height*2.0f];
+            
+            [alert.view addConstraint:constraint];
+            [viewController presentViewController:alert animated:YES completion:^{}];
+            
         }];
-
-        [operation start];
     }
 }
 
@@ -358,7 +374,7 @@
                 TestSequenceImage *createdImage = [TestSequenceImage MR_createEntityInContext:MOC];
                 createdImage.name = imageName;
                 createdImage.is_animated = @YES;
-                createdImage.animated_images = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:frames options:nil error:nil] encoding:NSUTF8StringEncoding];
+                createdImage.animated_images = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:frames options:0 error:nil] encoding:NSUTF8StringEncoding];
 
                 [createdImages addObject:createdImage];
             }

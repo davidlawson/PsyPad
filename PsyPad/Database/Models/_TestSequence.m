@@ -1029,7 +1029,7 @@
 - (void)insertObject:(TestSequenceFolder*)value inFoldersAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"folders"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObject:value atIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"folders"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"folders"];
@@ -1037,21 +1037,21 @@
 - (void)removeObjectFromFoldersAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"folders"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectAtIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"folders"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"folders"];
 }
 - (void)insertFolders:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"folders"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObjects:value atIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"folders"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"folders"];
 }
 - (void)removeFoldersAtIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"folders"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectsAtIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"folders"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"folders"];
@@ -1059,14 +1059,14 @@
 - (void)replaceObjectInFoldersAtIndex:(NSUInteger)idx withObject:(TestSequenceFolder*)value {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"folders"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"folders"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"folders"];
 }
 - (void)replaceFoldersAtIndexes:(NSIndexSet *)indexes withFolders:(NSArray *)value {
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"folders"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self folders] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"folders"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"folders"];

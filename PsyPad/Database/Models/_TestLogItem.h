@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _TestLogItem : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TestLogItemID *objectID;
 
 @property (nonatomic, strong, nullable) NSString* info;
@@ -34,8 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _TestLogItem (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveInfo;
-- (void)setPrimitiveInfo:(NSString*)value;
+- (nullable NSString*)primitiveInfo;
+- (void)setPrimitiveInfo:(nullable NSString*)value;
 
 - (NSDate*)primitiveTimestamp;
 - (void)setPrimitiveTimestamp:(NSDate*)value;

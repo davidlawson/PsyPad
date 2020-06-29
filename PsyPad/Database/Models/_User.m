@@ -74,7 +74,7 @@
 - (void)insertObject:(TestConfiguration*)value inConfigurationsAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"configurations"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObject:value atIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"configurations"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"configurations"];
@@ -82,21 +82,21 @@
 - (void)removeObjectFromConfigurationsAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"configurations"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectAtIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"configurations"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"configurations"];
 }
 - (void)insertConfigurations:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"configurations"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObjects:value atIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"configurations"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"configurations"];
 }
 - (void)removeConfigurationsAtIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"configurations"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectsAtIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"configurations"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"configurations"];
@@ -104,14 +104,14 @@
 - (void)replaceObjectInConfigurationsAtIndex:(NSUInteger)idx withObject:(TestConfiguration*)value {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"configurations"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"configurations"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"configurations"];
 }
 - (void)replaceConfigurationsAtIndexes:(NSIndexSet *)indexes withConfigurations:(NSArray *)value {
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"configurations"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self configurations] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"configurations"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"configurations"];
@@ -134,7 +134,7 @@
 - (void)insertObject:(TestLog*)value inLogsAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"logs"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObject:value atIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logs"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"logs"];
@@ -142,21 +142,21 @@
 - (void)removeObjectFromLogsAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"logs"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectAtIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logs"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"logs"];
 }
 - (void)insertLogs:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"logs"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObjects:value atIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logs"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"logs"];
 }
 - (void)removeLogsAtIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"logs"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectsAtIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logs"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"logs"];
@@ -164,14 +164,14 @@
 - (void)replaceObjectInLogsAtIndex:(NSUInteger)idx withObject:(TestLog*)value {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logs"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logs"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logs"];
 }
 - (void)replaceLogsAtIndexes:(NSIndexSet *)indexes withLogs:(NSArray *)value {
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logs"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logs] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logs"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logs"];

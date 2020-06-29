@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 David Lawson. All rights reserved.
 //
 
-#import <Boilerplate/DLLaunchViewController.h>
+#import "DLLaunchViewController.h"
 
 @interface LaunchViewController : DLLaunchViewController
 

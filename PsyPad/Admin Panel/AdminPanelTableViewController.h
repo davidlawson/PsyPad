@@ -14,8 +14,6 @@
 @property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) NSArray *serverUsers;
 
-@property (strong, nonatomic) UIAlertView *addUserAlertView;
-
 @property (strong, nonatomic) MBProgressHUD *hud;
 
 - (IBAction)saveChanges:(id)sender;

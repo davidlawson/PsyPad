@@ -67,11 +67,13 @@
     return [self.configurations objectAtIndex:0];
 }
 
+- (BOOL)prefersStatusBarHidden { return NO; }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    
+    self.modalPresentationStyle = UIModalPresentationFullScreen; /// added AHT June 2020
 
     self.questionLabel.hidden = YES;
     self.configurationNameLabel.hidden = YES;
@@ -113,12 +115,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return UIDeviceOrientationIsLandscape(toInterfaceOrientation);
 }
-
+*/
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskLandscape;
@@ -187,12 +189,15 @@
     AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:data fileTypeHint:AVFileTypeWAVE error:&error];
     if (error)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:[NSString stringWithFormat:@"Failed to load '%@' audio file", description]
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                       alertControllerWithTitle:@"Error"
+                                       message:[NSString stringWithFormat:@"Failed to load '%@' audio file", description]
+                                       preferredStyle:UIAlertControllerStyleAlert];
+          [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+          [self presentViewController:alert animated:YES completion:nil];
+
         return nil;
+        
     }
     
     [player prepareToPlay];
@@ -232,7 +237,7 @@
 
     //TestSequenceImage *image = [self.currentConfiguration.sequence nextImage:self.seedState];
     //UIImage *img = image.image;
-
+    
     self.configurationNameLabel.hidden = YES;
     self.beginConfigurationButton.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithHexString:self.currentConfiguration.background_colour];
@@ -324,7 +329,7 @@
 - (void)logConfiguration
 {
     NSDictionary *data = self.currentConfiguration.serialise;
-    NSData *jsonified = [NSJSONSerialization dataWithJSONObject:data options:nil error:nil];
+    NSData *jsonified = [NSJSONSerialization dataWithJSONObject:data options:0 error:nil];
     NSString *string = [[NSString alloc] initWithData:jsonified encoding:NSUTF8StringEncoding];
     [self log:@"test_begin" info:string];
 }
@@ -355,7 +360,8 @@
 
         [self uploadData];
 
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+        // TO DO!
+        //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         
         TestLog *log = self.log;
         UIViewController *parentVC = [(UINavigationController *)self.presentingViewController topViewController];
@@ -909,7 +915,13 @@
 
     if (self.image == nil)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Image not found" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Error"
+                                     message:@"Image not found"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+        
         [self log:@"error" info:@"image not found"];
         [self testFinished];
         return;
@@ -1031,7 +1043,13 @@
 
     if (self.image == nil)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Image not found" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Error"
+                                     message:@"Image not found"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+        
         [self log:@"error" info:@"image not found"];
         [self testFinished];
         return;
@@ -1113,7 +1131,6 @@
 
     if (self.currentConfiguration.use_staircase_methodValue)
     {
-        bool answerCorrect = NO;
         self.currentStaircase.numTimesIncorrect++;
         self.currentStaircase.numTimesCorrect = 0;
 
@@ -1207,14 +1224,7 @@
 
 #pragma mark - Cleanup
 
-- (void)viewDidUnload
-{
-    free(self.seedState);
 
-    [self.distanceDetector done];
-
-    [super viewDidUnload];
-}
 
 - (void)distanceDetectionPerformed:(NSString *)string
 {

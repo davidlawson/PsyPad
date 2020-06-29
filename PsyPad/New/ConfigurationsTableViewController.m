@@ -43,7 +43,7 @@ enum {
 
 - (void)refreshLocalConfigurations
 {
-    self.downloadedConfigurations = [TestConfiguration MR_findByAttribute:TestConfigurationAttributes.is_gallery_configuration withValue:@YES andOrderBy:TestConfigurationAttributes.name ascending:@YES];
+    self.downloadedConfigurations = [TestConfiguration MR_findByAttribute:TestConfigurationAttributes.is_gallery_configuration withValue:@YES andOrderBy:TestConfigurationAttributes.name ascending:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -56,25 +56,26 @@ enum {
 - (void)reloadConfigurations
 {
     self.hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    self.hud.labelText = @"Loading Configurations...";
+    self.hud.label.text = @"Loading Configurations...";
     
     __weak typeof (self) weakSelf = self;
     [[ServerManager sharedManager] loadConfigurationsWithSuccess:^(NSArray *updatableConfigurations, NSArray *downloadableConfigurations)
     {
         weakSelf.updatableConfigurations = updatableConfigurations;
         weakSelf.availableConfigurations = downloadableConfigurations;
-        [weakSelf.hud hide:YES];
+        [weakSelf.hud hideAnimated:YES];
         
         [weakSelf.tableView reloadData];
         
     } failure:^(NSString *error)
-    {
-        [weakSelf.hud hide:YES];
-        [[[UIAlertView alloc] initWithTitle:@"Failed to Load Configurations"
-                                   message:error
-                                  delegate:nil
-                         cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+     {
+        [weakSelf.hud hideAnimated:YES];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Failed to Load Configurations"
+                                     message:error
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
 }
 
@@ -215,7 +216,7 @@ enum {
     
     self.hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Downloading configuration...";
+    self.hud.label.text = @"Downloading configuration...";
     
     __weak typeof(self) weakSelf = self;
     
@@ -223,35 +224,37 @@ enum {
                                                    atURL:configuration.url
                                                 progress:^(NSString *status, float progress)
      {
-         weakSelf.hud.labelText = status;
+        weakSelf.hud.label.text = status;
          weakSelf.hud.progress = progress;
          
      } success:^(TestConfiguration *configuration)
      {
-         [weakSelf.hud hide:YES];
+         [weakSelf.hud hideAnimated:YES];
          [weakSelf.hud removeFromSuperview];
          
          [weakSelf refreshLocalConfigurations];
          [weakSelf.tableView reloadData];
          
          [weakSelf reloadConfigurations];
-         
-         [[[UIAlertView alloc] initWithTitle:@""
+        
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@""
                                      message:@"Configuration downloaded successfully."
-                                    delegate:nil
-                           cancelButtonTitle:@"Close"
-                           otherButtonTitles:nil] show];
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
          
      } failure:^(NSString *error)
      {
-         [weakSelf.hud hide:YES];
-         [weakSelf.hud removeFromSuperview];
-         
-         [[[UIAlertView alloc] initWithTitle:@"Failed to Download Configuration"
+         [weakSelf.hud hideAnimated:YES];
+        [weakSelf.hud removeFromSuperview];
+        
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Failed to Download Configuration."
                                      message:error
-                                    delegate:nil
-                           cancelButtonTitle:@"Close"
-                           otherButtonTitles:nil] show];
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
      }];
 }
 
@@ -261,7 +264,7 @@ enum {
     
     self.hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Updating configuration...";
+    self.hud.label.text = @"Updating configuration...";
     
     __weak typeof(self) weakSelf = self;
     
@@ -269,35 +272,37 @@ enum {
                                                    atURL:configuration.url
                                                 progress:^(NSString *status, float progress)
      {
-         weakSelf.hud.labelText = status;
+        weakSelf.hud.label.text = status;
          weakSelf.hud.progress = progress;
          
      } success:^(TestConfiguration *configuration)
      {
-         [weakSelf.hud hide:YES];
+         [weakSelf.hud hideAnimated:YES];
          [weakSelf.hud removeFromSuperview];
          
          [weakSelf refreshLocalConfigurations];
          [weakSelf.tableView reloadData];
          
          [weakSelf reloadConfigurations];
-         
-         [[[UIAlertView alloc] initWithTitle:@""
+
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@""
                                      message:@"Configuration updated successfully."
-                                    delegate:nil
-                           cancelButtonTitle:@"Close"
-                           otherButtonTitles:nil] show];
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
          
      } failure:^(NSString *error)
      {
-         [weakSelf.hud hide:YES];
-         [weakSelf.hud removeFromSuperview];
-         
-         [[[UIAlertView alloc] initWithTitle:@"Failed to Update Configuration"
-                                     message:error
-                                    delegate:nil
-                           cancelButtonTitle:@"Close"
-                           otherButtonTitles:nil] show];
+        [weakSelf.hud hideAnimated:YES];
+        [weakSelf.hud removeFromSuperview];
+        
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@""
+                                     message:@"Failed to updated configuration."
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
      }];
 }
 
@@ -312,9 +317,15 @@ enum {
     
     __weak typeof(self) weakSelf = self;
     
-    RIButtonItem *delete = [RIButtonItem itemWithLabel:@"Delete"];
-    delete.action = ^
-    {
+    UIAlertController * alert = [UIAlertController
+                                    alertControllerWithTitle:@""
+                                    message:@"Are you sure you want to delete the local copy of this configuration?"
+                                    preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* delButton = [UIAlertAction
+                                actionWithTitle:@"Delete"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
         [configuration MR_deleteEntity];
         [DatabaseManager save];
         
@@ -323,12 +334,10 @@ enum {
         
         if (weakSelf.updatableConfigurations || weakSelf.availableConfigurations)
             [weakSelf reloadConfigurations];
-    };
-    
-    [[[UIAlertView alloc] initWithTitle:@""
-                                message:@"Are you sure you want to delete the local copy of this configuration?"
-                       cancelButtonItem:[RIButtonItem itemWithLabel:@"Cancel"]
-                       otherButtonItems:delete, nil] show];
+    }];
+    [alert addAction:delButton];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

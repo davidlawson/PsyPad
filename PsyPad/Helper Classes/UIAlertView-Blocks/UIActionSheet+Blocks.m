@@ -5,7 +5,7 @@
 //  Created by Jiva DeVoe on 1/5/11.
 //  Copyright 2011 Random Ideas, LLC. All rights reserved.
 //
-
+/*
 #import "UIActionSheet+Blocks.h"
 #import <objc/runtime.h>
 
@@ -67,13 +67,13 @@ static NSString *RI_DISMISSAL_ACTION_KEY = @"com.random-ideas.DISMISSAL_ACTION";
 	return buttonIndex;
 }
 
-- (void)setDismissalAction:(void(^)())dismissalAction
+- (void)setDismissalAction:(void(^)(void))dismissalAction
 {
     objc_setAssociatedObject(self, (__bridge const void *)RI_DISMISSAL_ACTION_KEY, nil, OBJC_ASSOCIATION_COPY);
     objc_setAssociatedObject(self, (__bridge const void *)RI_DISMISSAL_ACTION_KEY, dismissalAction, OBJC_ASSOCIATION_COPY);
 }
 
-- (void(^)())dismissalAction
+- (void(^)(void))dismissalAction
 {
     return objc_getAssociatedObject(self, (__bridge const void *)RI_DISMISSAL_ACTION_KEY);
 }
@@ -98,3 +98,4 @@ static NSString *RI_DISMISSAL_ACTION_KEY = @"com.random-ideas.DISMISSAL_ACTION";
 
 @end
 
+*/

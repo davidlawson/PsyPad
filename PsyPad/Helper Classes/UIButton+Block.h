@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) NSMutableDictionary *actions;
 
-- (void) setAction:(NSString*)action withBlock:(void(^)())block;
+- (void) setAction:(NSString*)action withBlock:(void(^)(void))block;
 
 @end

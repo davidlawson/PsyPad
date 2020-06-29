@@ -7,12 +7,12 @@
 //
 
 #import "SignUpTableViewController.h"
-#import <Boilerplate/DLTextFieldToolbar.h>
+#import "DLTextFieldToolbar.h"
 #import "ServerManager.h"
 #import "RootEntity.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "LoginViewController.h"
-#import <Boilerplate/NSString+Email.h>
+#import "NSString+Email.h"
 #import "DatabaseManager.h"
 
 @interface SignUpTableViewController ()
@@ -69,50 +69,50 @@
 {
     if (![self.passwordField.text isEqualToString:self.confirmPasswordField.text])
     {
-        [[[UIAlertView alloc] initWithTitle:@"Password Mismatch"
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Password Mismatch"
                                     message:@"The two passwords you entered do not match."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+                                 preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
     if (![self.emailField.text isValidEmail])
     {
-        [[[UIAlertView alloc] initWithTitle:@"Invalid Email"
-                                    message:@"The email address you entered is invalid."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Invalid Email"
+                                    message:@"Invalid Email."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
     if (self.passwordField.text.length <= 0)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Misisng Password"
-                                    message:@"Please choose a password to sign up with."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Misisng Password"
+                                     message:@"Please choose a password to sign up with." preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
     if (self.affiliationField.text.length <= 0)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Misisng Affiliation"
-                                    message:@"Please enter your academic affiliation (or \"None\")."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                    alertControllerWithTitle:@"Misisng Affiliation"
+                                     message:@"Please enter your academic affiliation (or \"None\")."
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+
         return;
     }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
-    void (^success)() = ^
+    void (^success)(void) = ^
     {
-        [hud hide:YES];
+        [hud hideAnimated:YES];
         
         LoginViewController *lvc = (LoginViewController *)[(UINavigationController *)weakSelf.navigationController.presentingViewController topViewController];
         lvc.serverURLField.text = weakSelf.serverField.text;
@@ -127,13 +127,13 @@
     
     void (^failure)(NSString *error) = ^(NSString *error)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Sign Up Failed"
-                                    message:error
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                    alertControllerWithTitle:@"Sign Up Failed"
+                                     message:error
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
         
-        [hud hide:YES];
+        [hud hideAnimated:YES];
     };
     
     [RootEntity rootEntity].server_url = self.serverField.text;

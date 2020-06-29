@@ -15,7 +15,7 @@
     {
         if ([logItem.type isEqualToString:@"test_begin"])
         {
-            NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[logItem.info dataUsingEncoding:NSUTF8StringEncoding] options:nil error:nil];
+            NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[logItem.info dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
             if (data[@"name"])
                 return data[@"name"];
         }

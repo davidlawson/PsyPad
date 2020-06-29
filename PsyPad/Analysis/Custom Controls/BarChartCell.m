@@ -26,8 +26,7 @@
     self.barMiddleWidth.constant = percentage*width;
 
     self.barLabel.text = [NSString stringWithFormat:@"%.2f%%", percentage*100];
-    CGSize textSize = [self.barLabel.text sizeWithFont:self.barLabel.font];
-
+    CGSize textSize = [self.barLabel.text sizeWithAttributes:@{NSFontAttributeName: self.barLabel.font}];
     if (textSize.width > percentage*width)
     {
         self.barLabelWidth.constant = width;
@@ -46,7 +45,7 @@
     self.barMiddleWidth.constant = (float)number/max*width;
 
     self.barLabel.text = [NSString stringWithFormat:@"%d", number];
-    CGSize textSize = [self.barLabel.text sizeWithFont:self.barLabel.font];
+    CGSize textSize = [self.barLabel.text sizeWithAttributes:@{NSFontAttributeName: self.barLabel.font}];
 
     if (textSize.width > (float)number/max*width)
     {
@@ -66,7 +65,7 @@
     self.barMiddleWidth.constant = mean/max*width;
 
     self.barLabel.text = [NSString stringWithFormat:@"%.2f", mean];
-    CGSize textSize = [self.barLabel.text sizeWithFont:self.barLabel.font];
+    CGSize textSize = [self.barLabel.text sizeWithAttributes:@{NSFontAttributeName: self.barLabel.font}];
 
     if (textSize.width > mean/max*width)
     {
@@ -86,7 +85,7 @@
     self.barMiddleWidth.constant = mean/max*width;
 
     self.barLabel.text = [NSString stringWithFormat:@"%.2fms (σ=%.2f)", mean, stdev];
-    CGSize textSize = [self.barLabel.text sizeWithFont:self.barLabel.font];
+    CGSize textSize = [self.barLabel.text sizeWithAttributes:@{NSFontAttributeName: self.barLabel.font}];
 
     if (textSize.width > mean/max*width)
     {

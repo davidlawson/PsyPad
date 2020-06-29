@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _TestLog : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TestLogID *objectID;
 
 @property (nonatomic, strong) NSDate* timestamp;
@@ -67,8 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSMutableOrderedSet<TestLogItem*>*)primitiveLogitems;
 - (void)setPrimitiveLogitems:(NSMutableOrderedSet<TestLogItem*>*)value;
 
-- (User*)primitiveUser;
-- (void)setPrimitiveUser:(User*)value;
+- (nullable User*)primitiveUser;
+- (void)setPrimitiveUser:(nullable User*)value;
 
 @end
 

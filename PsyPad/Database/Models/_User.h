@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _User : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) UserID *objectID;
 
 @property (nonatomic, strong) NSString* id;

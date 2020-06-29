@@ -45,7 +45,7 @@
 
 - (IBAction)tappedVisitWebsite:(UIButton *)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.psypad.net.au/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.psypad.net.au/"] options: @{} completionHandler:nil];
 }
 
 @end

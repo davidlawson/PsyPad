@@ -91,7 +91,7 @@
 - (void)insertObject:(TestLogItem*)value inLogitemsAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"logitems"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObject:value atIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logitems"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"logitems"];
@@ -99,21 +99,21 @@
 - (void)removeObjectFromLogitemsAtIndex:(NSUInteger)idx {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"logitems"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectAtIndex:idx];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logitems"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"logitems"];
 }
 - (void)insertLogitems:(NSArray *)value atIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"logitems"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet insertObjects:value atIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logitems"];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"logitems"];
 }
 - (void)removeLogitemsAtIndexes:(NSIndexSet *)indexes {
     [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"logitems"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet removeObjectsAtIndexes:indexes];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logitems"];
     [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"logitems"];
@@ -121,14 +121,14 @@
 - (void)replaceObjectInLogitemsAtIndex:(NSUInteger)idx withObject:(TestLogItem*)value {
     NSIndexSet* indexes = [NSIndexSet indexSetWithIndex:idx];
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logitems"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectAtIndex:idx withObject:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logitems"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logitems"];
 }
 - (void)replaceLogitemsAtIndexes:(NSIndexSet *)indexes withLogitems:(NSArray *)value {
     [self willChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logitems"];
-    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems]];
+    NSMutableOrderedSet *tmpOrderedSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[self logitems] ?: [NSOrderedSet orderedSet]];
     [tmpOrderedSet replaceObjectsAtIndexes:indexes withObjects:value];
     [self setPrimitiveValue:tmpOrderedSet forKey:@"logitems"];
     [self didChange:NSKeyValueChangeReplacement valuesAtIndexes:indexes forKey:@"logitems"];

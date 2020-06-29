@@ -61,4 +61,5 @@
 - (IBAction)pressExitButton:(id)sender;
 
 - (void)distanceDetectionPerformed:(NSString *)string;
+
 @end

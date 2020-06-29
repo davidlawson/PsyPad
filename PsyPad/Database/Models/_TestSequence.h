@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _TestSequence : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TestSequenceID *objectID;
 
 @property (nonatomic, strong, nullable) NSNumber* background_length;
@@ -290,86 +290,86 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _TestSequence (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveBackground_length;
-- (void)setPrimitiveBackground_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveBackground_length;
+- (void)setPrimitiveBackground_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveBackground_lengthValue;
 - (void)setPrimitiveBackground_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveBackground_start;
-- (void)setPrimitiveBackground_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveBackground_start;
+- (void)setPrimitiveBackground_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveBackground_startValue;
 - (void)setPrimitiveBackground_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveButton1_image_length;
-- (void)setPrimitiveButton1_image_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton1_image_length;
+- (void)setPrimitiveButton1_image_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveButton1_image_lengthValue;
 - (void)setPrimitiveButton1_image_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveButton1_image_start;
-- (void)setPrimitiveButton1_image_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton1_image_start;
+- (void)setPrimitiveButton1_image_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveButton1_image_startValue;
 - (void)setPrimitiveButton1_image_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveButton2_image_length;
-- (void)setPrimitiveButton2_image_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton2_image_length;
+- (void)setPrimitiveButton2_image_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveButton2_image_lengthValue;
 - (void)setPrimitiveButton2_image_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveButton2_image_start;
-- (void)setPrimitiveButton2_image_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton2_image_start;
+- (void)setPrimitiveButton2_image_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveButton2_image_startValue;
 - (void)setPrimitiveButton2_image_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveButton3_image_length;
-- (void)setPrimitiveButton3_image_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton3_image_length;
+- (void)setPrimitiveButton3_image_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveButton3_image_lengthValue;
 - (void)setPrimitiveButton3_image_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveButton3_image_start;
-- (void)setPrimitiveButton3_image_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton3_image_start;
+- (void)setPrimitiveButton3_image_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveButton3_image_startValue;
 - (void)setPrimitiveButton3_image_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveButton4_image_length;
-- (void)setPrimitiveButton4_image_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton4_image_length;
+- (void)setPrimitiveButton4_image_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveButton4_image_lengthValue;
 - (void)setPrimitiveButton4_image_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveButton4_image_start;
-- (void)setPrimitiveButton4_image_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton4_image_start;
+- (void)setPrimitiveButton4_image_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveButton4_image_startValue;
 - (void)setPrimitiveButton4_image_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveCorrect_wav_length;
-- (void)setPrimitiveCorrect_wav_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveCorrect_wav_length;
+- (void)setPrimitiveCorrect_wav_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveCorrect_wav_lengthValue;
 - (void)setPrimitiveCorrect_wav_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveCorrect_wav_start;
-- (void)setPrimitiveCorrect_wav_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveCorrect_wav_start;
+- (void)setPrimitiveCorrect_wav_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveCorrect_wav_startValue;
 - (void)setPrimitiveCorrect_wav_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveIncorrect_wav_length;
-- (void)setPrimitiveIncorrect_wav_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveIncorrect_wav_length;
+- (void)setPrimitiveIncorrect_wav_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveIncorrect_wav_lengthValue;
 - (void)setPrimitiveIncorrect_wav_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveIncorrect_wav_start;
-- (void)setPrimitiveIncorrect_wav_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveIncorrect_wav_start;
+- (void)setPrimitiveIncorrect_wav_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveIncorrect_wav_startValue;
 - (void)setPrimitiveIncorrect_wav_startValue:(int64_t)value_;
@@ -377,26 +377,26 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
-- (NSNumber*)primitiveOff_wav_length;
-- (void)setPrimitiveOff_wav_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveOff_wav_length;
+- (void)setPrimitiveOff_wav_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveOff_wav_lengthValue;
 - (void)setPrimitiveOff_wav_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveOff_wav_start;
-- (void)setPrimitiveOff_wav_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveOff_wav_start;
+- (void)setPrimitiveOff_wav_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveOff_wav_startValue;
 - (void)setPrimitiveOff_wav_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveOn_wav_length;
-- (void)setPrimitiveOn_wav_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveOn_wav_length;
+- (void)setPrimitiveOn_wav_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveOn_wav_lengthValue;
 - (void)setPrimitiveOn_wav_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveOn_wav_start;
-- (void)setPrimitiveOn_wav_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveOn_wav_start;
+- (void)setPrimitiveOn_wav_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveOn_wav_startValue;
 - (void)setPrimitiveOn_wav_startValue:(int64_t)value_;
@@ -404,128 +404,128 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString*)primitivePath;
 - (void)setPrimitivePath:(NSString*)value;
 
-- (NSNumber*)primitiveSecondary_button1_image_length;
-- (void)setPrimitiveSecondary_button1_image_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button1_image_length;
+- (void)setPrimitiveSecondary_button1_image_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSecondary_button1_image_lengthValue;
 - (void)setPrimitiveSecondary_button1_image_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveSecondary_button1_image_start;
-- (void)setPrimitiveSecondary_button1_image_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button1_image_start;
+- (void)setPrimitiveSecondary_button1_image_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveSecondary_button1_image_startValue;
 - (void)setPrimitiveSecondary_button1_image_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveSecondary_button2_image_length;
-- (void)setPrimitiveSecondary_button2_image_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button2_image_length;
+- (void)setPrimitiveSecondary_button2_image_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSecondary_button2_image_lengthValue;
 - (void)setPrimitiveSecondary_button2_image_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveSecondary_button2_image_start;
-- (void)setPrimitiveSecondary_button2_image_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button2_image_start;
+- (void)setPrimitiveSecondary_button2_image_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveSecondary_button2_image_startValue;
 - (void)setPrimitiveSecondary_button2_image_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveSecondary_button3_image_length;
-- (void)setPrimitiveSecondary_button3_image_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button3_image_length;
+- (void)setPrimitiveSecondary_button3_image_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSecondary_button3_image_lengthValue;
 - (void)setPrimitiveSecondary_button3_image_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveSecondary_button3_image_start;
-- (void)setPrimitiveSecondary_button3_image_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button3_image_start;
+- (void)setPrimitiveSecondary_button3_image_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveSecondary_button3_image_startValue;
 - (void)setPrimitiveSecondary_button3_image_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveSecondary_button4_image_length;
-- (void)setPrimitiveSecondary_button4_image_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button4_image_length;
+- (void)setPrimitiveSecondary_button4_image_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSecondary_button4_image_lengthValue;
 - (void)setPrimitiveSecondary_button4_image_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveSecondary_button4_image_start;
-- (void)setPrimitiveSecondary_button4_image_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button4_image_start;
+- (void)setPrimitiveSecondary_button4_image_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveSecondary_button4_image_startValue;
 - (void)setPrimitiveSecondary_button4_image_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveSecondary_image1_length;
-- (void)setPrimitiveSecondary_image1_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_image1_length;
+- (void)setPrimitiveSecondary_image1_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSecondary_image1_lengthValue;
 - (void)setPrimitiveSecondary_image1_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveSecondary_image1_start;
-- (void)setPrimitiveSecondary_image1_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_image1_start;
+- (void)setPrimitiveSecondary_image1_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveSecondary_image1_startValue;
 - (void)setPrimitiveSecondary_image1_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveSecondary_image2_length;
-- (void)setPrimitiveSecondary_image2_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_image2_length;
+- (void)setPrimitiveSecondary_image2_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSecondary_image2_lengthValue;
 - (void)setPrimitiveSecondary_image2_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveSecondary_image2_start;
-- (void)setPrimitiveSecondary_image2_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_image2_start;
+- (void)setPrimitiveSecondary_image2_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveSecondary_image2_startValue;
 - (void)setPrimitiveSecondary_image2_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveSecondary_image3_length;
-- (void)setPrimitiveSecondary_image3_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_image3_length;
+- (void)setPrimitiveSecondary_image3_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSecondary_image3_lengthValue;
 - (void)setPrimitiveSecondary_image3_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveSecondary_image3_start;
-- (void)setPrimitiveSecondary_image3_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_image3_start;
+- (void)setPrimitiveSecondary_image3_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveSecondary_image3_startValue;
 - (void)setPrimitiveSecondary_image3_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveSecondary_image4_length;
-- (void)setPrimitiveSecondary_image4_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_image4_length;
+- (void)setPrimitiveSecondary_image4_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSecondary_image4_lengthValue;
 - (void)setPrimitiveSecondary_image4_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveSecondary_image4_start;
-- (void)setPrimitiveSecondary_image4_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_image4_start;
+- (void)setPrimitiveSecondary_image4_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveSecondary_image4_startValue;
 - (void)setPrimitiveSecondary_image4_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveTimeout_wav_length;
-- (void)setPrimitiveTimeout_wav_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveTimeout_wav_length;
+- (void)setPrimitiveTimeout_wav_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveTimeout_wav_lengthValue;
 - (void)setPrimitiveTimeout_wav_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveTimeout_wav_start;
-- (void)setPrimitiveTimeout_wav_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveTimeout_wav_start;
+- (void)setPrimitiveTimeout_wav_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveTimeout_wav_startValue;
 - (void)setPrimitiveTimeout_wav_startValue:(int64_t)value_;
 
-- (NSNumber*)primitiveTitle_length;
-- (void)setPrimitiveTitle_length:(NSNumber*)value;
+- (nullable NSNumber*)primitiveTitle_length;
+- (void)setPrimitiveTitle_length:(nullable NSNumber*)value;
 
 - (int32_t)primitiveTitle_lengthValue;
 - (void)setPrimitiveTitle_lengthValue:(int32_t)value_;
 
-- (NSNumber*)primitiveTitle_start;
-- (void)setPrimitiveTitle_start:(NSNumber*)value;
+- (nullable NSNumber*)primitiveTitle_start;
+- (void)setPrimitiveTitle_start:(nullable NSNumber*)value;
 
 - (int64_t)primitiveTitle_startValue;
 - (void)setPrimitiveTitle_startValue:(int64_t)value_;
 
-- (NSString*)primitiveUrl;
-- (void)setPrimitiveUrl:(NSString*)value;
+- (nullable NSString*)primitiveUrl;
+- (void)setPrimitiveUrl:(nullable NSString*)value;
 
 - (NSMutableOrderedSet<TestSequenceFolder*>*)primitiveFolders;
 - (void)setPrimitiveFolders:(NSMutableOrderedSet<TestSequenceFolder*>*)value;

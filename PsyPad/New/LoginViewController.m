@@ -7,9 +7,9 @@
 //
 
 #import "LoginViewController.h"
-#import <Boilerplate/DLKeyboardObserver.h>
+#import "DLKeyboardObserver.h"
 #import "SignUpTableViewController.h"
-#import <Boilerplate/DLTextFieldCollection.h>
+#import "DLTextFieldCollection.h"
 #import "NSString+Email.h"
 #import "MBProgressHUD.h"
 #import "RootEntity.h"
@@ -70,43 +70,44 @@
 {
     if (![self.emailField.text isValidEmail])
     {
-        [[[UIAlertView alloc] initWithTitle:@"Invalid Email"
-                                    message:@"The email address you entered is invalid."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Invalid Email"
+                                                message:@"The email address you entered is invalid."
+                                                preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+                              //     delegate:nil
+                        //  cancelButtonTitle:@"Close"
+                         // otherButtonTitles:nil] show];
         return;
     }
     
     if (self.passwordField.text.length <= 0)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Misisng Password"
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Misisng Password"
                                     message:@"Please enter your password to log in."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+
         return;
     }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     __weak typeof(self) weakSelf = self;
-    void (^success)() = ^
+    void (^success)(void) = ^
     {
-        [hud hide:YES];
+        [hud hideAnimated:YES];
         
         [weakSelf.navigationController setViewControllers:@[[DemoViewController loadFromMainStoryboard]] animated:YES];
     };
     
     void (^failure)(NSString *error) = ^(NSString *error)
     {
-        [[[UIAlertView alloc] initWithTitle:@"Log In Failed"
-                                    message:error
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Log In Failed"
+                                                        message:error
+                                            preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
         
-        [hud hide:YES];
+        [hud hideAnimated:YES];
     };
     
     [RootEntity rootEntity].server_url = self.serverURLField.text;
@@ -132,7 +133,7 @@
 
 - (IBAction)tappedVisitWebsite:(UIButton *)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.psypad.net.au/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.psypad.net.au/"] options: @{} completionHandler:nil];
 }
 
 @end

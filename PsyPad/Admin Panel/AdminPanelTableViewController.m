@@ -58,12 +58,6 @@ enum {
 
 #pragma mark - UIViewController delegate methods
 
-// Allow landscape orientation only
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return UIDeviceOrientationIsLandscape(toInterfaceOrientation);
-}
-
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskLandscape;
@@ -216,26 +210,26 @@ enum {
 {
     self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Loading users...";
+    self.hud.label.text = @"Loading users...";
 
     [[ServerManager sharedManager] loadServerParticipants:^(NSArray *participants)
     {
         self.serverUsers = participants;
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sServerUsers]
                       withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.hud hide:YES];
+        [self.hud hideAnimated:YES];
         [self.hud removeFromSuperview];
 
     } failure:^(NSString *error)
     {
-        [self.hud hide:YES];
+        [self.hud hideAnimated:YES];
         [self.hud removeFromSuperview];
         
-        [[[UIAlertView alloc] initWithTitle:@"Failed to Load Participants"
+        UIAlertController * alert = [UIAlertController
+                        alertControllerWithTitle:@"Failed to Load Participants"
                                     message:error
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
 
     return;
@@ -245,12 +239,12 @@ enum {
 {
     self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Downloading participant...";
+    self.hud.label.text = @"Downloading participant...";
 
     [[ServerManager sharedManager] downloadParticipant:username
                                               progress:^(NSString *status, float progress)
     {
-        self.hud.labelText = status;
+        self.hud.label.text = status;
         self.hud.progress = progress;
 
     } success:^(User *newUser)
@@ -258,26 +252,28 @@ enum {
         if (![self.users containsObject:newUser])
             [self.users addObject:newUser];
 
-        [[[UIAlertView alloc] initWithTitle:@""
-                                    message:@"User downloaded successfully."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@""
+                                     message:@"User downloaded successfully."
+                                     preferredStyle:UIAlertControllerStyleAlert];
+         
+        [self presentViewController:alert animated:YES completion:nil];
 
         [self.tableView reloadData];
-        [self.hud hide:YES];
+        [self.hud hideAnimated:YES];
         [self.hud removeFromSuperview];
 
     } failure:^(NSString *error)
     {
-        [self.hud hide:YES];
+        [self.hud hideAnimated:YES];
         [self.hud removeFromSuperview];
         
-        [[[UIAlertView alloc] initWithTitle:@"Failed to Download Participant"
-                                    message:error
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Failed to Download Participant"
+                                     message:error
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }];
 }
 
@@ -285,34 +281,38 @@ enum {
 {
     self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Uploading...";
+    self.hud.label.text = @"Uploading...";
 
-    [[ServerManager sharedManager] uploadLogsWithProgress:^(NSString *status, float progress)
+    [[ServerManager sharedManager]
+     uploadLogsWithProgress:^(NSString *status, float progress)
     {
-        self.hud.labelText = status;
+        self.hud.label.text = status;
         self.hud.progress = progress;
 
-    } success:^
+    }
+    success:^
     {
-        [self.hud hide:YES];
+        [self.hud hideAnimated:YES];
         [self.hud removeFromSuperview];
 
-        [[[UIAlertView alloc] initWithTitle:@""
-                                    message:[NSString stringWithFormat:@"Logs successfully uploaded"]
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
-
-    } failure:^(NSString *error)
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@""
+                                     message:[NSString stringWithFormat:@"Logs successfully uploaded"]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+     failure:^(NSString *error)
     {
-        [self.hud hide:YES];
+        [self.hud hideAnimated:YES];
         [self.hud removeFromSuperview];
         
-        [[[UIAlertView alloc] initWithTitle:@"Failed to Upload Logs"
-                                    message:error
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Failed to Upload Logs"
+                                     message:error
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }];
 }
 
@@ -320,11 +320,11 @@ enum {
 {
     self.hud = [self createHUD];
     self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.hud.labelText = @"Downloading participants...";
+    self.hud.label.text = @"Downloading participants...";
 
     [[ServerManager sharedManager] downloadAllParticipants:^(NSString *status, float progress)
     {
-        self.hud.labelText = status;
+        self.hud.label.text = status;
         self.hud.progress = progress;
 
     } success:^(NSMutableArray *newUsers)
@@ -335,25 +335,24 @@ enum {
                 [self.users addObject:user];
         }
 
-        [self.hud hide:YES];
+        [self.hud hideAnimated:YES];
         [self.hud removeFromSuperview];
 
-        [[[UIAlertView alloc] initWithTitle:@""
-                                    message:[NSString stringWithFormat:@"%lu participants downloaded", (unsigned long)newUsers.count]
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
-
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@""
+                                     message:[NSString stringWithFormat:@"%lu participants downloaded", (unsigned long)newUsers.count]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
     } failure:^(NSString *error)
     {
-        [self.hud hide:YES];
+        [self.hud hideAnimated:YES];
         [self.hud removeFromSuperview];
-        
-        [[[UIAlertView alloc] initWithTitle:@"Failed to Upload Logs"
-                                    message:error
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+ 
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Failed to Upload Logs"
+                                     message:error
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
     }];
 }
 
@@ -375,19 +374,22 @@ enum {
          }];
     };
     
-    [[[UIAlertView alloc] initWithTitle:@""
-                                message:@"Are you sure you want to\nlog out of PsyPad?"
-                       cancelButtonItem:[RIButtonItem itemWithLabel:@"Cancel"]
-                       otherButtonItems:logOut, nil] show];
+    UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@""
+                                     message:@"Are you sure you want to\nlog out of PsyPad?"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - TextField delegate
-
+/*
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.addUserAlertView clickButtonAtIndex:1];
     return NO;
 }
+*/
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -480,11 +482,12 @@ enum {
             message = @"Make sure you know the admin password (or set a new one) so you can return to the admin panel. Login as \"admin\" to open the admin panel.";
         }
         
-        [[[UIAlertView alloc] initWithTitle:@"Warning"
-                                    message:message
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"Warning"
+                                     message:message
+                                     preferredStyle:UIAlertControllerStyleAlert];
+         
+         [self presentViewController:alert animated:YES completion:nil];
     }
     
     [DatabaseManager save];

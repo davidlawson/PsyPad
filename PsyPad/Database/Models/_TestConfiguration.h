@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _TestConfiguration : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TestConfigurationID *objectID;
 
 @property (nonatomic, strong) NSNumber* animation_frame_rate;
@@ -530,8 +530,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (int16_t)primitiveButton1_hValue;
 - (void)setPrimitiveButton1_hValue:(int16_t)value_;
 
-- (NSString*)primitiveButton1_text;
-- (void)setPrimitiveButton1_text:(NSString*)value;
+- (nullable NSString*)primitiveButton1_text;
+- (void)setPrimitiveButton1_text:(nullable NSString*)value;
 
 - (NSNumber*)primitiveButton1_w;
 - (void)setPrimitiveButton1_w:(NSNumber*)value;
@@ -551,101 +551,101 @@ NS_ASSUME_NONNULL_BEGIN
 - (int16_t)primitiveButton1_yValue;
 - (void)setPrimitiveButton1_yValue:(int16_t)value_;
 
-- (NSString*)primitiveButton2_bg;
-- (void)setPrimitiveButton2_bg:(NSString*)value;
+- (nullable NSString*)primitiveButton2_bg;
+- (void)setPrimitiveButton2_bg:(nullable NSString*)value;
 
-- (NSString*)primitiveButton2_fg;
-- (void)setPrimitiveButton2_fg:(NSString*)value;
+- (nullable NSString*)primitiveButton2_fg;
+- (void)setPrimitiveButton2_fg:(nullable NSString*)value;
 
-- (NSNumber*)primitiveButton2_h;
-- (void)setPrimitiveButton2_h:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton2_h;
+- (void)setPrimitiveButton2_h:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton2_hValue;
 - (void)setPrimitiveButton2_hValue:(int16_t)value_;
 
-- (NSString*)primitiveButton2_text;
-- (void)setPrimitiveButton2_text:(NSString*)value;
+- (nullable NSString*)primitiveButton2_text;
+- (void)setPrimitiveButton2_text:(nullable NSString*)value;
 
-- (NSNumber*)primitiveButton2_w;
-- (void)setPrimitiveButton2_w:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton2_w;
+- (void)setPrimitiveButton2_w:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton2_wValue;
 - (void)setPrimitiveButton2_wValue:(int16_t)value_;
 
-- (NSNumber*)primitiveButton2_x;
-- (void)setPrimitiveButton2_x:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton2_x;
+- (void)setPrimitiveButton2_x:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton2_xValue;
 - (void)setPrimitiveButton2_xValue:(int16_t)value_;
 
-- (NSNumber*)primitiveButton2_y;
-- (void)setPrimitiveButton2_y:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton2_y;
+- (void)setPrimitiveButton2_y:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton2_yValue;
 - (void)setPrimitiveButton2_yValue:(int16_t)value_;
 
-- (NSString*)primitiveButton3_bg;
-- (void)setPrimitiveButton3_bg:(NSString*)value;
+- (nullable NSString*)primitiveButton3_bg;
+- (void)setPrimitiveButton3_bg:(nullable NSString*)value;
 
-- (NSString*)primitiveButton3_fg;
-- (void)setPrimitiveButton3_fg:(NSString*)value;
+- (nullable NSString*)primitiveButton3_fg;
+- (void)setPrimitiveButton3_fg:(nullable NSString*)value;
 
-- (NSNumber*)primitiveButton3_h;
-- (void)setPrimitiveButton3_h:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton3_h;
+- (void)setPrimitiveButton3_h:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton3_hValue;
 - (void)setPrimitiveButton3_hValue:(int16_t)value_;
 
-- (NSString*)primitiveButton3_text;
-- (void)setPrimitiveButton3_text:(NSString*)value;
+- (nullable NSString*)primitiveButton3_text;
+- (void)setPrimitiveButton3_text:(nullable NSString*)value;
 
-- (NSNumber*)primitiveButton3_w;
-- (void)setPrimitiveButton3_w:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton3_w;
+- (void)setPrimitiveButton3_w:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton3_wValue;
 - (void)setPrimitiveButton3_wValue:(int16_t)value_;
 
-- (NSNumber*)primitiveButton3_x;
-- (void)setPrimitiveButton3_x:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton3_x;
+- (void)setPrimitiveButton3_x:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton3_xValue;
 - (void)setPrimitiveButton3_xValue:(int16_t)value_;
 
-- (NSNumber*)primitiveButton3_y;
-- (void)setPrimitiveButton3_y:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton3_y;
+- (void)setPrimitiveButton3_y:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton3_yValue;
 - (void)setPrimitiveButton3_yValue:(int16_t)value_;
 
-- (NSString*)primitiveButton4_bg;
-- (void)setPrimitiveButton4_bg:(NSString*)value;
+- (nullable NSString*)primitiveButton4_bg;
+- (void)setPrimitiveButton4_bg:(nullable NSString*)value;
 
-- (NSString*)primitiveButton4_fg;
-- (void)setPrimitiveButton4_fg:(NSString*)value;
+- (nullable NSString*)primitiveButton4_fg;
+- (void)setPrimitiveButton4_fg:(nullable NSString*)value;
 
-- (NSNumber*)primitiveButton4_h;
-- (void)setPrimitiveButton4_h:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton4_h;
+- (void)setPrimitiveButton4_h:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton4_hValue;
 - (void)setPrimitiveButton4_hValue:(int16_t)value_;
 
-- (NSString*)primitiveButton4_text;
-- (void)setPrimitiveButton4_text:(NSString*)value;
+- (nullable NSString*)primitiveButton4_text;
+- (void)setPrimitiveButton4_text:(nullable NSString*)value;
 
-- (NSNumber*)primitiveButton4_w;
-- (void)setPrimitiveButton4_w:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton4_w;
+- (void)setPrimitiveButton4_w:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton4_wValue;
 - (void)setPrimitiveButton4_wValue:(int16_t)value_;
 
-- (NSNumber*)primitiveButton4_x;
-- (void)setPrimitiveButton4_x:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton4_x;
+- (void)setPrimitiveButton4_x:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton4_xValue;
 - (void)setPrimitiveButton4_xValue:(int16_t)value_;
 
-- (NSNumber*)primitiveButton4_y;
-- (void)setPrimitiveButton4_y:(NSNumber*)value;
+- (nullable NSNumber*)primitiveButton4_y;
+- (void)setPrimitiveButton4_y:(nullable NSNumber*)value;
 
 - (int16_t)primitiveButton4_yValue;
 - (void)setPrimitiveButton4_yValue:(int16_t)value_;
@@ -656,8 +656,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (float)primitiveButton_presentation_delayValue;
 - (void)setPrimitiveButton_presentation_delayValue:(float)value_;
 
-- (NSString*)primitiveConfiguration_description;
-- (void)setPrimitiveConfiguration_description:(NSString*)value;
+- (nullable NSString*)primitiveConfiguration_description;
+- (void)setPrimitiveConfiguration_description:(nullable NSString*)value;
 
 - (NSNumber*)primitiveDay_of_week_fri;
 - (void)setPrimitiveDay_of_week_fri:(NSNumber*)value;
@@ -701,8 +701,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)primitiveDay_of_week_wedValue;
 - (void)setPrimitiveDay_of_week_wedValue:(BOOL)value_;
 
-- (NSString*)primitiveDelta_values;
-- (void)setPrimitiveDelta_values:(NSString*)value;
+- (nullable NSString*)primitiveDelta_values;
+- (void)setPrimitiveDelta_values:(nullable NSString*)value;
 
 - (NSNumber*)primitiveEnable_secondary_stimuli;
 - (void)setPrimitiveEnable_secondary_stimuli:(NSNumber*)value;
@@ -716,50 +716,50 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)primitiveEnabledValue;
 - (void)setPrimitiveEnabledValue:(BOOL)value_;
 
-- (NSString*)primitiveExit_button_bg;
-- (void)setPrimitiveExit_button_bg:(NSString*)value;
+- (nullable NSString*)primitiveExit_button_bg;
+- (void)setPrimitiveExit_button_bg:(nullable NSString*)value;
 
-- (NSString*)primitiveExit_button_fg;
-- (void)setPrimitiveExit_button_fg:(NSString*)value;
+- (nullable NSString*)primitiveExit_button_fg;
+- (void)setPrimitiveExit_button_fg:(nullable NSString*)value;
 
-- (NSNumber*)primitiveExit_button_h;
-- (void)setPrimitiveExit_button_h:(NSNumber*)value;
+- (nullable NSNumber*)primitiveExit_button_h;
+- (void)setPrimitiveExit_button_h:(nullable NSNumber*)value;
 
 - (int16_t)primitiveExit_button_hValue;
 - (void)setPrimitiveExit_button_hValue:(int16_t)value_;
 
-- (NSNumber*)primitiveExit_button_w;
-- (void)setPrimitiveExit_button_w:(NSNumber*)value;
+- (nullable NSNumber*)primitiveExit_button_w;
+- (void)setPrimitiveExit_button_w:(nullable NSNumber*)value;
 
 - (int16_t)primitiveExit_button_wValue;
 - (void)setPrimitiveExit_button_wValue:(int16_t)value_;
 
-- (NSNumber*)primitiveExit_button_x;
-- (void)setPrimitiveExit_button_x:(NSNumber*)value;
+- (nullable NSNumber*)primitiveExit_button_x;
+- (void)setPrimitiveExit_button_x:(nullable NSNumber*)value;
 
 - (int16_t)primitiveExit_button_xValue;
 - (void)setPrimitiveExit_button_xValue:(int16_t)value_;
 
-- (NSNumber*)primitiveExit_button_y;
-- (void)setPrimitiveExit_button_y:(NSNumber*)value;
+- (nullable NSNumber*)primitiveExit_button_y;
+- (void)setPrimitiveExit_button_y:(nullable NSNumber*)value;
 
 - (int16_t)primitiveExit_button_yValue;
 - (void)setPrimitiveExit_button_yValue:(int16_t)value_;
 
-- (NSNumber*)primitiveFinite_presentation_time;
-- (void)setPrimitiveFinite_presentation_time:(NSNumber*)value;
+- (nullable NSNumber*)primitiveFinite_presentation_time;
+- (void)setPrimitiveFinite_presentation_time:(nullable NSNumber*)value;
 
 - (float)primitiveFinite_presentation_timeValue;
 - (void)setPrimitiveFinite_presentation_timeValue:(float)value_;
 
-- (NSNumber*)primitiveFinite_response_window;
-- (void)setPrimitiveFinite_response_window:(NSNumber*)value;
+- (nullable NSNumber*)primitiveFinite_response_window;
+- (void)setPrimitiveFinite_response_window:(nullable NSNumber*)value;
 
 - (float)primitiveFinite_response_windowValue;
 - (void)setPrimitiveFinite_response_windowValue:(float)value_;
 
-- (NSString*)primitiveHits_to_finish;
-- (void)setPrimitiveHits_to_finish:(NSString*)value;
+- (nullable NSString*)primitiveHits_to_finish;
+- (void)setPrimitiveHits_to_finish:(nullable NSString*)value;
 
 - (NSNumber*)primitiveInfinite_presentation_time;
 - (void)setPrimitiveInfinite_presentation_time:(NSNumber*)value;
@@ -791,11 +791,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)primitiveLoop_animationsValue;
 - (void)setPrimitiveLoop_animationsValue:(BOOL)value_;
 
-- (NSString*)primitiveMaximum_level;
-- (void)setPrimitiveMaximum_level:(NSString*)value;
+- (nullable NSString*)primitiveMaximum_level;
+- (void)setPrimitiveMaximum_level:(nullable NSString*)value;
 
-- (NSString*)primitiveMinimum_level;
-- (void)setPrimitiveMinimum_level:(NSString*)value;
+- (nullable NSString*)primitiveMinimum_level;
+- (void)setPrimitiveMinimum_level:(nullable NSString*)value;
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
@@ -806,8 +806,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (int16_t)primitiveNum_buttonsValue;
 - (void)setPrimitiveNum_buttonsValue:(int16_t)value_;
 
-- (NSString*)primitiveNum_correct_to_get_harder;
-- (void)setPrimitiveNum_correct_to_get_harder:(NSString*)value;
+- (nullable NSString*)primitiveNum_correct_to_get_harder;
+- (void)setPrimitiveNum_correct_to_get_harder:(nullable NSString*)value;
 
 - (NSNumber*)primitiveNum_secondary_buttons;
 - (void)setPrimitiveNum_secondary_buttons:(NSNumber*)value;
@@ -815,20 +815,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (int16_t)primitiveNum_secondary_buttonsValue;
 - (void)setPrimitiveNum_secondary_buttonsValue:(int16_t)value_;
 
-- (NSString*)primitiveNum_wrong_to_get_easier;
-- (void)setPrimitiveNum_wrong_to_get_easier:(NSString*)value;
+- (nullable NSString*)primitiveNum_wrong_to_get_easier;
+- (void)setPrimitiveNum_wrong_to_get_easier:(nullable NSString*)value;
 
 - (NSString*)primitiveNumber_of_reversals;
 - (void)setPrimitiveNumber_of_reversals:(NSString*)value;
 
-- (NSNumber*)primitiveNumber_of_staircases;
-- (void)setPrimitiveNumber_of_staircases:(NSNumber*)value;
+- (nullable NSNumber*)primitiveNumber_of_staircases;
+- (void)setPrimitiveNumber_of_staircases:(nullable NSNumber*)value;
 
 - (int16_t)primitiveNumber_of_staircasesValue;
 - (void)setPrimitiveNumber_of_staircasesValue:(int16_t)value_;
 
-- (NSString*)primitiveQuestions_per_folder;
-- (void)setPrimitiveQuestions_per_folder:(NSString*)value;
+- (nullable NSString*)primitiveQuestions_per_folder;
+- (void)setPrimitiveQuestions_per_folder:(nullable NSString*)value;
 
 - (NSNumber*)primitiveRequire_next;
 - (void)setPrimitiveRequire_next:(NSNumber*)value;
@@ -848,8 +848,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (int16_t)primitiveSecondary_button1_hValue;
 - (void)setPrimitiveSecondary_button1_hValue:(int16_t)value_;
 
-- (NSString*)primitiveSecondary_button1_text;
-- (void)setPrimitiveSecondary_button1_text:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button1_text;
+- (void)setPrimitiveSecondary_button1_text:(nullable NSString*)value;
 
 - (NSNumber*)primitiveSecondary_button1_w;
 - (void)setPrimitiveSecondary_button1_w:(NSNumber*)value;
@@ -869,110 +869,110 @@ NS_ASSUME_NONNULL_BEGIN
 - (int16_t)primitiveSecondary_button1_yValue;
 - (void)setPrimitiveSecondary_button1_yValue:(int16_t)value_;
 
-- (NSString*)primitiveSecondary_button2_bg;
-- (void)setPrimitiveSecondary_button2_bg:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button2_bg;
+- (void)setPrimitiveSecondary_button2_bg:(nullable NSString*)value;
 
-- (NSString*)primitiveSecondary_button2_fg;
-- (void)setPrimitiveSecondary_button2_fg:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button2_fg;
+- (void)setPrimitiveSecondary_button2_fg:(nullable NSString*)value;
 
-- (NSNumber*)primitiveSecondary_button2_h;
-- (void)setPrimitiveSecondary_button2_h:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button2_h;
+- (void)setPrimitiveSecondary_button2_h:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button2_hValue;
 - (void)setPrimitiveSecondary_button2_hValue:(int16_t)value_;
 
-- (NSString*)primitiveSecondary_button2_text;
-- (void)setPrimitiveSecondary_button2_text:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button2_text;
+- (void)setPrimitiveSecondary_button2_text:(nullable NSString*)value;
 
-- (NSNumber*)primitiveSecondary_button2_w;
-- (void)setPrimitiveSecondary_button2_w:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button2_w;
+- (void)setPrimitiveSecondary_button2_w:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button2_wValue;
 - (void)setPrimitiveSecondary_button2_wValue:(int16_t)value_;
 
-- (NSNumber*)primitiveSecondary_button2_x;
-- (void)setPrimitiveSecondary_button2_x:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button2_x;
+- (void)setPrimitiveSecondary_button2_x:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button2_xValue;
 - (void)setPrimitiveSecondary_button2_xValue:(int16_t)value_;
 
-- (NSNumber*)primitiveSecondary_button2_y;
-- (void)setPrimitiveSecondary_button2_y:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button2_y;
+- (void)setPrimitiveSecondary_button2_y:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button2_yValue;
 - (void)setPrimitiveSecondary_button2_yValue:(int16_t)value_;
 
-- (NSString*)primitiveSecondary_button3_bg;
-- (void)setPrimitiveSecondary_button3_bg:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button3_bg;
+- (void)setPrimitiveSecondary_button3_bg:(nullable NSString*)value;
 
-- (NSString*)primitiveSecondary_button3_fg;
-- (void)setPrimitiveSecondary_button3_fg:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button3_fg;
+- (void)setPrimitiveSecondary_button3_fg:(nullable NSString*)value;
 
-- (NSNumber*)primitiveSecondary_button3_h;
-- (void)setPrimitiveSecondary_button3_h:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button3_h;
+- (void)setPrimitiveSecondary_button3_h:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button3_hValue;
 - (void)setPrimitiveSecondary_button3_hValue:(int16_t)value_;
 
-- (NSString*)primitiveSecondary_button3_text;
-- (void)setPrimitiveSecondary_button3_text:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button3_text;
+- (void)setPrimitiveSecondary_button3_text:(nullable NSString*)value;
 
-- (NSNumber*)primitiveSecondary_button3_w;
-- (void)setPrimitiveSecondary_button3_w:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button3_w;
+- (void)setPrimitiveSecondary_button3_w:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button3_wValue;
 - (void)setPrimitiveSecondary_button3_wValue:(int16_t)value_;
 
-- (NSNumber*)primitiveSecondary_button3_x;
-- (void)setPrimitiveSecondary_button3_x:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button3_x;
+- (void)setPrimitiveSecondary_button3_x:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button3_xValue;
 - (void)setPrimitiveSecondary_button3_xValue:(int16_t)value_;
 
-- (NSNumber*)primitiveSecondary_button3_y;
-- (void)setPrimitiveSecondary_button3_y:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button3_y;
+- (void)setPrimitiveSecondary_button3_y:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button3_yValue;
 - (void)setPrimitiveSecondary_button3_yValue:(int16_t)value_;
 
-- (NSString*)primitiveSecondary_button4_bg;
-- (void)setPrimitiveSecondary_button4_bg:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button4_bg;
+- (void)setPrimitiveSecondary_button4_bg:(nullable NSString*)value;
 
-- (NSString*)primitiveSecondary_button4_fg;
-- (void)setPrimitiveSecondary_button4_fg:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button4_fg;
+- (void)setPrimitiveSecondary_button4_fg:(nullable NSString*)value;
 
-- (NSNumber*)primitiveSecondary_button4_h;
-- (void)setPrimitiveSecondary_button4_h:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button4_h;
+- (void)setPrimitiveSecondary_button4_h:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button4_hValue;
 - (void)setPrimitiveSecondary_button4_hValue:(int16_t)value_;
 
-- (NSString*)primitiveSecondary_button4_text;
-- (void)setPrimitiveSecondary_button4_text:(NSString*)value;
+- (nullable NSString*)primitiveSecondary_button4_text;
+- (void)setPrimitiveSecondary_button4_text:(nullable NSString*)value;
 
-- (NSNumber*)primitiveSecondary_button4_w;
-- (void)setPrimitiveSecondary_button4_w:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button4_w;
+- (void)setPrimitiveSecondary_button4_w:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button4_wValue;
 - (void)setPrimitiveSecondary_button4_wValue:(int16_t)value_;
 
-- (NSNumber*)primitiveSecondary_button4_x;
-- (void)setPrimitiveSecondary_button4_x:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button4_x;
+- (void)setPrimitiveSecondary_button4_x:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button4_xValue;
 - (void)setPrimitiveSecondary_button4_xValue:(int16_t)value_;
 
-- (NSNumber*)primitiveSecondary_button4_y;
-- (void)setPrimitiveSecondary_button4_y:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSecondary_button4_y;
+- (void)setPrimitiveSecondary_button4_y:(nullable NSNumber*)value;
 
 - (int16_t)primitiveSecondary_button4_yValue;
 - (void)setPrimitiveSecondary_button4_yValue:(int16_t)value_;
 
-- (NSString*)primitiveServer_id;
-- (void)setPrimitiveServer_id:(NSString*)value;
+- (nullable NSString*)primitiveServer_id;
+- (void)setPrimitiveServer_id:(nullable NSString*)value;
 
-- (NSString*)primitiveServer_url;
-- (void)setPrimitiveServer_url:(NSString*)value;
+- (nullable NSString*)primitiveServer_url;
+- (void)setPrimitiveServer_url:(nullable NSString*)value;
 
 - (NSNumber*)primitiveShow_exit_button;
 - (void)setPrimitiveShow_exit_button:(NSNumber*)value;
@@ -980,14 +980,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)primitiveShow_exit_buttonValue;
 - (void)setPrimitiveShow_exit_buttonValue:(BOOL)value_;
 
-- (NSNumber*)primitiveSpecified_seed;
-- (void)setPrimitiveSpecified_seed:(NSNumber*)value;
+- (nullable NSNumber*)primitiveSpecified_seed;
+- (void)setPrimitiveSpecified_seed:(nullable NSNumber*)value;
 
 - (int32_t)primitiveSpecified_seedValue;
 - (void)setPrimitiveSpecified_seedValue:(int32_t)value_;
 
-- (NSString*)primitiveStart_level;
-- (void)setPrimitiveStart_level:(NSString*)value;
+- (nullable NSString*)primitiveStart_level;
+- (void)setPrimitiveStart_level:(nullable NSString*)value;
 
 - (NSNumber*)primitiveTime_between_question_mean;
 - (void)setPrimitiveTime_between_question_mean:(NSNumber*)value;
@@ -1001,8 +1001,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (float)primitiveTime_between_question_plusminusValue;
 - (void)setPrimitiveTime_between_question_plusminusValue:(float)value_;
 
-- (NSString*)primitiveTitle;
-- (void)setPrimitiveTitle:(NSString*)value;
+- (nullable NSString*)primitiveTitle;
+- (void)setPrimitiveTitle:(nullable NSString*)value;
 
 - (NSNumber*)primitiveUse_specified_seed;
 - (void)setPrimitiveUse_specified_seed:(NSNumber*)value;
@@ -1019,8 +1019,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (TestSequence*)primitiveSequence;
 - (void)setPrimitiveSequence:(TestSequence*)value;
 
-- (User*)primitiveUser;
-- (void)setPrimitiveUser:(User*)value;
+- (nullable User*)primitiveUser;
+- (void)setPrimitiveUser:(nullable User*)value;
 
 @end
 

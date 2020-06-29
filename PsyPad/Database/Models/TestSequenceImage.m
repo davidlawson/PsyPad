@@ -24,7 +24,29 @@
 
         if (file == NULL)
         {
-            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+            UIAlertController * alert = [UIAlertController
+                                         alertControllerWithTitle:@"Error"
+                                         message:@"Failed to load image"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+            
+            UIViewController *viewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+            if ( viewController.presentedViewController && !viewController.presentedViewController.isBeingDismissed ) {
+                viewController = viewController.presentedViewController;
+            }
+
+            NSLayoutConstraint *constraint = [NSLayoutConstraint
+                constraintWithItem:alert.view
+                attribute:NSLayoutAttributeHeight
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                toItem:nil
+                attribute:NSLayoutAttributeNotAnAttribute
+                multiplier:1
+                constant:viewController.view.frame.size.height*2.0f];
+
+            [alert.view addConstraint:constraint];
+            [viewController presentViewController:alert animated:YES completion:^{}];
+
             self.folder.sequence.url = nil;
             [DatabaseManager save];
             return nil;
@@ -57,7 +79,7 @@
     }
     else
     {
-        NSArray *animImages = [NSJSONSerialization JSONObjectWithData:[self.animated_images dataUsingEncoding:NSUTF8StringEncoding] options:nil error:nil];
+        NSArray *animImages = [NSJSONSerialization JSONObjectWithData:[self.animated_images dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
 
         for (NSDictionary *animImage in [animImages sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b) {
             return [a[@"n"] compare:b[@"n"]];
@@ -72,7 +94,29 @@
 
             if (file == NULL)
             {
-                [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to load image" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+                UIAlertController * alert = [UIAlertController
+                                             alertControllerWithTitle:@"Error"
+                                             message:@"Failed to load image"
+                                             preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
+                
+                UIViewController *viewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+                if ( viewController.presentedViewController && !viewController.presentedViewController.isBeingDismissed ) {
+                    viewController = viewController.presentedViewController;
+                }
+
+                NSLayoutConstraint *constraint = [NSLayoutConstraint
+                    constraintWithItem:alert.view
+                    attribute:NSLayoutAttributeHeight
+                    relatedBy:NSLayoutRelationLessThanOrEqual
+                    toItem:nil
+                    attribute:NSLayoutAttributeNotAnAttribute
+                    multiplier:1
+                    constant:viewController.view.frame.size.height*2.0f];
+
+                [alert.view addConstraint:constraint];
+                [viewController presentViewController:alert animated:YES completion:^{}];
+
                 self.folder.sequence.url = nil;
                 [DatabaseManager save];
                 return nil;
@@ -106,7 +150,7 @@
 {
     NSMutableArray *allImages = [NSMutableArray array];
 
-    NSArray *animImages = [NSJSONSerialization JSONObjectWithData:[self.animated_images dataUsingEncoding:NSUTF8StringEncoding] options:nil error:nil];
+    NSArray *animImages = [NSJSONSerialization JSONObjectWithData:[self.animated_images dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
 
     for (NSDictionary *animImage in [animImages sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b) {
         return [a[@"n"] compare:b[@"n"]];

@@ -1,5 +1,5 @@
 // AFSecurityPolicy.h
-// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
+// Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,10 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
 
  Adding pinned SSL certificates to your app helps prevent man-in-the-middle attacks and other vulnerabilities. Applications dealing with sensitive customer data or financial information are strongly encouraged to route all communication over an HTTPS connection with SSL pinning configured and enabled.
  */
-@interface AFSecurityPolicy : NSObject
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface AFSecurityPolicy : NSObject <NSSecureCoding, NSCopying>
 
 /**
  The criteria by which server trust should be evaluated against the pinned SSL certificates. Defaults to `AFSSLPinningModeNone`.
@@ -41,14 +44,13 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
 @property (readonly, nonatomic, assign) AFSSLPinningMode SSLPinningMode;
 
 /**
- Whether to evaluate an entire SSL certificate chain, or just the leaf certificate. Defaults to `YES`.
- */
-@property (nonatomic, assign) BOOL validatesCertificateChain;
+ The certificates used to evaluate server trust according to the SSL pinning mode. 
+ 
+ Note that if pinning is enabled, `evaluateServerTrust:forDomain:` will return true if any pinned certificate matches.
 
-/**
- The certificates used to evaluate server trust according to the SSL pinning mode. By default, this property is set to any (`.cer`) certificates included in the app bundle.
+ @see policyWithPinningMode:withPinnedCertificates:
  */
-@property (nonatomic, strong) NSArray *pinnedCertificates;
+@property (nonatomic, strong, nullable) NSSet <NSData *> *pinnedCertificates;
 
 /**
  Whether or not to trust servers with an invalid or expired SSL certificates. Defaults to `NO`.
@@ -59,6 +61,17 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
  Whether or not to validate the domain name in the certificate's CN field. Defaults to `YES`.
  */
 @property (nonatomic, assign) BOOL validatesDomainName;
+
+///-----------------------------------------
+/// @name Getting Certificates from the Bundle
+///-----------------------------------------
+
+/**
+ Returns any certificates included in the bundle. If you are using AFNetworking as an embedded framework, you must use this method to find the certificates you have included in your app bundle, and use them when creating your security policy by calling `policyWithPinningMode:withPinnedCertificates`.
+
+ @return The certificates included in the given bundle.
+ */
++ (NSSet <NSData *> *)certificatesInBundle:(NSBundle *)bundle;
 
 ///-----------------------------------------
 /// @name Getting Specific Security Policies
@@ -77,29 +90,33 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
 
 /**
  Creates and returns a security policy with the specified pinning mode.
+ 
+ Certificates with the `.cer` extension found in the main bundle will be pinned. If you want more control over which certificates are pinned, please use `policyWithPinningMode:withPinnedCertificates:` instead.
 
  @param pinningMode The SSL pinning mode.
 
  @return A new security policy.
+
+ @see -policyWithPinningMode:withPinnedCertificates:
  */
 + (instancetype)policyWithPinningMode:(AFSSLPinningMode)pinningMode;
+
+/**
+ Creates and returns a security policy with the specified pinning mode.
+
+ @param pinningMode The SSL pinning mode.
+ @param pinnedCertificates The certificates to pin against.
+
+ @return A new security policy.
+
+ @see +certificatesInBundle:
+ @see -pinnedCertificates
+*/
++ (instancetype)policyWithPinningMode:(AFSSLPinningMode)pinningMode withPinnedCertificates:(NSSet <NSData *> *)pinnedCertificates;
 
 ///------------------------------
 /// @name Evaluating Server Trust
 ///------------------------------
-
-/**
- Whether or not the specified server trust should be accepted, based on the security policy.
-
- This method should be used when responding to an authentication challenge from a server.
-
- @param serverTrust The X.509 certificate trust of the server.
-
- @return Whether or not to trust the server.
-
- @warning This method has been deprecated in favor of `-evaluateServerTrust:forDomain:`.
- */
-- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust DEPRECATED_ATTRIBUTE;
 
 /**
  Whether or not the specified server trust should be accepted, based on the security policy.
@@ -112,9 +129,11 @@ typedef NS_ENUM(NSUInteger, AFSSLPinningMode) {
  @return Whether or not to trust the server.
  */
 - (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust
-                  forDomain:(NSString *)domain;
+                  forDomain:(nullable NSString *)domain;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 ///----------------
 /// @name Constants

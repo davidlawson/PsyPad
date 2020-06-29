@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface _TestSequenceImage : NSManagedObject
 + (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) TestSequenceImageID *objectID;
 
 @property (nonatomic, strong, nullable) NSString* animated_images;
@@ -50,8 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _TestSequenceImage (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveAnimated_images;
-- (void)setPrimitiveAnimated_images:(NSString*)value;
+- (nullable NSString*)primitiveAnimated_images;
+- (void)setPrimitiveAnimated_images:(nullable NSString*)value;
 
 - (NSNumber*)primitiveIs_animated;
 - (void)setPrimitiveIs_animated:(NSNumber*)value;
@@ -59,8 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)primitiveIs_animatedValue;
 - (void)setPrimitiveIs_animatedValue:(BOOL)value_;
 
-- (NSNumber*)primitiveLength;
-- (void)setPrimitiveLength:(NSNumber*)value;
+- (nullable NSNumber*)primitiveLength;
+- (void)setPrimitiveLength:(nullable NSNumber*)value;
 
 - (int32_t)primitiveLengthValue;
 - (void)setPrimitiveLengthValue:(int32_t)value_;
@@ -68,8 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
-- (NSNumber*)primitiveStart;
-- (void)setPrimitiveStart:(NSNumber*)value;
+- (nullable NSNumber*)primitiveStart;
+- (void)setPrimitiveStart:(nullable NSNumber*)value;
 
 - (int64_t)primitiveStartValue;
 - (void)setPrimitiveStartValue:(int64_t)value_;
