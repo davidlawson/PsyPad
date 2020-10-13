@@ -11,7 +11,6 @@
 #import <AFNetworking/AFNetworking.h>
 
 #import "UIView+Positioning.h"
-#import "UIAlertView+Blocks.h"
 #import "AppDelegate.h"
 #import "User.h"
 #import "TestConfiguration.h"

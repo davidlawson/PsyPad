@@ -12,8 +12,6 @@
 
 #import "User.h"
 #import "AppDelegate.h"
-#import "RIButtonItem.h"
-#import "UIAlertView+Blocks.h"
 #import "ManageUserTableViewController.h"
 #import "TestLogItem.h"
 #import "TestLog.h"
@@ -226,9 +224,10 @@ enum {
         [self.hud removeFromSuperview];
         
         UIAlertController * alert = [UIAlertController
-                        alertControllerWithTitle:@"Failed to Load Participants"
-                                    message:error
+                                     alertControllerWithTitle:@"Failed to Load Participants"
+                                     message:error
                                      preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
     }];
 
@@ -251,12 +250,12 @@ enum {
     {
         if (![self.users containsObject:newUser])
             [self.users addObject:newUser];
-
+        
         UIAlertController * alert = [UIAlertController
                                      alertControllerWithTitle:@""
                                      message:@"User downloaded successfully."
                                      preferredStyle:UIAlertControllerStyleAlert];
-         
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
 
         [self.tableView reloadData];
@@ -272,7 +271,7 @@ enum {
                                      alertControllerWithTitle:@"Failed to Download Participant"
                                      message:error
                                      preferredStyle:UIAlertControllerStyleAlert];
-        
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
     }];
 }
@@ -299,7 +298,7 @@ enum {
                                      alertControllerWithTitle:@""
                                      message:[NSString stringWithFormat:@"Logs successfully uploaded"]
                                      preferredStyle:UIAlertControllerStyleAlert];
-        
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
     }
      failure:^(NSString *error)
@@ -311,7 +310,7 @@ enum {
                                      alertControllerWithTitle:@"Failed to Upload Logs"
                                      message:error
                                      preferredStyle:UIAlertControllerStyleAlert];
-        
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
     }];
 }
@@ -342,6 +341,7 @@ enum {
                                      alertControllerWithTitle:@""
                                      message:[NSString stringWithFormat:@"%lu participants downloaded", (unsigned long)newUsers.count]
                                      preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
     } failure:^(NSString *error)
     {
@@ -352,6 +352,7 @@ enum {
                                      alertControllerWithTitle:@"Failed to Upload Logs"
                                      message:error
                                      preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
     }];
 }
@@ -360,9 +361,10 @@ enum {
 {
     __weak typeof(self) weakSelf = self;
     
-    RIButtonItem *logOut = [RIButtonItem itemWithLabel:@"Log Out"];
-    logOut.action = ^
-    {
+    UIAlertAction* logOut = [UIAlertAction
+                             actionWithTitle:@"Yes, please"@"Log Out"
+                             style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action) {
         [[ServerManager sharedManager] logout];
         
         UINavigationController *nav = (UINavigationController *)weakSelf.navigationController.presentingViewController;
@@ -372,12 +374,13 @@ enum {
          {
              [nav popViewControllerAnimated:YES];
          }];
-    };
+    }];
     
     UIAlertController * alert = [UIAlertController
                                      alertControllerWithTitle:@""
                                      message:@"Are you sure you want to\nlog out of PsyPad?"
                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:logOut];
     [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -486,7 +489,7 @@ enum {
                                      alertControllerWithTitle:@"Warning"
                                      message:message
                                      preferredStyle:UIAlertControllerStyleAlert];
-         
+         [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
          [self presentViewController:alert animated:YES completion:nil];
     }
     

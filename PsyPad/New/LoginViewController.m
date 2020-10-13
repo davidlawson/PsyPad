@@ -73,10 +73,9 @@
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Invalid Email"
                                                 message:@"The email address you entered is invalid."
                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
-                              //     delegate:nil
-                        //  cancelButtonTitle:@"Close"
-                         // otherButtonTitles:nil] show];
+        
         return;
     }
     
@@ -85,6 +84,7 @@
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Misisng Password"
                                     message:@"Please enter your password to log in."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
 
         return;
@@ -105,6 +105,7 @@
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Log In Failed"
                                                         message:error
                                             preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
         
         [hud hideAnimated:YES];

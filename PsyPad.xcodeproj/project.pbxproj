@@ -83,9 +83,6 @@
 		635D07B6168D7D0D002B845F /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D07B5168D7D0D002B845F /* MainMenuViewController.m */; };
 		636035BA168D897000AE93D0 /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 636035B8168D897000AE93D0 /* UIView+Positioning.m */; };
 		636035BF168D897E00AE93D0 /* Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 636035BE168D897E00AE93D0 /* Random.m */; };
-		63606108168DC82900F200CA /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606102168DC82900F200CA /* RIButtonItem.m */; };
-		63606109168DC82900F200CA /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606104168DC82900F200CA /* UIActionSheet+Blocks.m */; };
-		6360610A168DC82900F200CA /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 63606106168DC82900F200CA /* UIAlertView+Blocks.m */; };
 		6374D3B31ADF8901003A3AAF /* AvailableConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6374D3B21ADF8901003A3AAF /* AvailableConfiguration.m */; };
 		6374D3B61ADF8999003A3AAF /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6374D3B51ADF8999003A3AAF /* DemoViewController.m */; };
 		6385E38A18176BB300508530 /* BorderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6385E38918176BB300508530 /* BorderButton.m */; };
@@ -238,13 +235,6 @@
 		636035BD168D897E00AE93D0 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		636035BE168D897E00AE93D0 /* Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Random.m; sourceTree = "<group>"; };
 		636035C0168D898600AE93D0 /* NSObject+DelayBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DelayBlock.h"; sourceTree = "<group>"; };
-		63606100168DC82900F200CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = "../UIAlertView-Blocks/README.md"; sourceTree = "<group>"; };
-		63606101168DC82900F200CA /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RIButtonItem.h; path = "../UIAlertView-Blocks/RIButtonItem.h"; sourceTree = "<group>"; };
-		63606102168DC82900F200CA /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RIButtonItem.m; path = "../UIAlertView-Blocks/RIButtonItem.m"; sourceTree = "<group>"; };
-		63606103168DC82900F200CA /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActionSheet+Blocks.h"; path = "../UIAlertView-Blocks/UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
-		63606104168DC82900F200CA /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+Blocks.m"; path = "../UIAlertView-Blocks/UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
-		63606105168DC82900F200CA /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+Blocks.h"; path = "../UIAlertView-Blocks/UIAlertView+Blocks.h"; sourceTree = "<group>"; };
-		63606106168DC82900F200CA /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+Blocks.m"; path = "../UIAlertView-Blocks/UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		6374D3B11ADF8900003A3AAF /* AvailableConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailableConfiguration.h; sourceTree = "<group>"; };
 		6374D3B21ADF8901003A3AAF /* AvailableConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailableConfiguration.m; sourceTree = "<group>"; };
 		6374D3B41ADF8999003A3AAF /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
@@ -504,7 +494,6 @@
 		5AF0E9EE0391685FE8B56CF2 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
-				636060FF168DC82900F200CA /* UIAlertView-Blocks */,
 				636035BE168D897E00AE93D0 /* Random.m */,
 				636035B9168D897000AE93D0 /* UIView+Positioning.h */,
 				63F9F1B8168ED165006532D9 /* UIButtonBlock.h */,
@@ -667,20 +656,6 @@
 				5AF0E62017BCB0C4CD33F454 /* New */,
 			);
 			path = PsyPad;
-			sourceTree = "<group>";
-		};
-		636060FF168DC82900F200CA /* UIAlertView-Blocks */ = {
-			isa = PBXGroup;
-			children = (
-				63606100168DC82900F200CA /* README.md */,
-				63606101168DC82900F200CA /* RIButtonItem.h */,
-				63606102168DC82900F200CA /* RIButtonItem.m */,
-				63606103168DC82900F200CA /* UIActionSheet+Blocks.h */,
-				63606104168DC82900F200CA /* UIActionSheet+Blocks.m */,
-				63606105168DC82900F200CA /* UIAlertView+Blocks.h */,
-				63606106168DC82900F200CA /* UIAlertView+Blocks.m */,
-			);
-			path = "UIAlertView-Blocks";
 			sourceTree = "<group>";
 		};
 		63A1ED5D17B89BEF0089C204 /* Custom Controls */ = {
@@ -877,12 +852,9 @@
 				636035BA168D897000AE93D0 /* UIView+Positioning.m in Sources */,
 				636035BF168D897E00AE93D0 /* Random.m in Sources */,
 				190C043A24A9B51F00B0521B /* DLCenteringScrollViewController.m in Sources */,
-				63606108168DC82900F200CA /* RIButtonItem.m in Sources */,
 				6330F4D61A93299500A62986 /* DatabaseManager.m in Sources */,
-				63606109168DC82900F200CA /* UIActionSheet+Blocks.m in Sources */,
 				190C043924A9B51F00B0521B /* UIViewController+DLLoad.m in Sources */,
 				63B0E8D41ADF7E9000316695 /* ConfigurationTableViewCell.m in Sources */,
-				6360610A168DC82900F200CA /* UIAlertView+Blocks.m in Sources */,
 				63BF7A831ABEB2D300825F70 /* _TestSequence.m in Sources */,
 				63F9F1BA168ED165006532D9 /* UIButton+Block.m in Sources */,
 				190C043724A9B51F00B0521B /* DLLandscapeNavigationController.m in Sources */,
@@ -1007,7 +979,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1024,6 +996,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 2.6;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
@@ -1139,7 +1112,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VLDWUKP35J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1156,6 +1129,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 2.6;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
@@ -1177,7 +1151,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VLDWUKP35J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1194,6 +1168,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 2.6;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;

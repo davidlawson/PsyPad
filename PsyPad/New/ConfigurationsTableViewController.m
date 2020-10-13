@@ -12,7 +12,6 @@
 #import "ServerManager.h"
 #import "ConfigurationTableViewCell.h"
 #import "AvailableConfiguration.h"
-#import "UIAlertView+Blocks.h"
 #import "DatabaseManager.h"
 
 enum {

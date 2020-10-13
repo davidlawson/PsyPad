@@ -73,6 +73,7 @@
                                     alertControllerWithTitle:@"Password Mismatch"
                                     message:@"The two passwords you entered do not match."
                                  preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
@@ -83,6 +84,7 @@
                                     alertControllerWithTitle:@"Invalid Email"
                                     message:@"Invalid Email."
                                  preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
@@ -92,6 +94,7 @@
         UIAlertController * alert = [UIAlertController
                                      alertControllerWithTitle:@"Misisng Password"
                                      message:@"Please choose a password to sign up with." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
@@ -102,6 +105,7 @@
                                     alertControllerWithTitle:@"Misisng Affiliation"
                                      message:@"Please enter your academic affiliation (or \"None\")."
                                      preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
 
         return;
@@ -131,6 +135,7 @@
                                     alertControllerWithTitle:@"Sign Up Failed"
                                      message:error
                                      preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
         
         [hud hideAnimated:YES];

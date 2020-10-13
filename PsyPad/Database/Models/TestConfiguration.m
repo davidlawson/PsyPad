@@ -437,7 +437,7 @@
     if (self.sequence)
     {
         [self.sequence MR_deleteEntity];
-        self.sequence = nil;
+        //self.sequence = nil;
     }
 
     self.sequence = newSequence;
