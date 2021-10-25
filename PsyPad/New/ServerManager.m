@@ -362,7 +362,7 @@
         NSMutableString *logContent = [NSMutableString string];
         for (TestLogItem *logItem in log.logitems)
         {
-            [logContent appendFormat:@"%.0f|%@|%@\n", logItem.timestamp.timeIntervalSince1970, logItem.type, logItem.info];
+            [logContent appendFormat:@"%.3f|%@|%@\n", logItem.timestamp.timeIntervalSince1970, logItem.type, logItem.info];
         }
         
         if (log.user)
