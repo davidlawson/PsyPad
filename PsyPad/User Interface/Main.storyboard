@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="jKf-qD-fTA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="jKf-qD-fTA">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment version="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -74,7 +74,7 @@
                                             <outlet property="delegate" destination="2" id="lbR-5f-G8R"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3k6-TK-8BO" customClass="BorderButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3k6-TK-8BO" customClass="BorderButton">
                                         <rect key="frame" x="195" y="30" width="65" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="65" id="LFB-SG-rLR"/>
@@ -97,7 +97,7 @@
                                         <color key="textColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UhL-j0-owB" customClass="BorderButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UhL-j0-owB" customClass="BorderButton">
                                         <rect key="frame" x="30" y="224" width="230" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="d8F-6d-fBs"/>
@@ -109,7 +109,7 @@
                                             <segue destination="w5j-7u-Lg5" kind="modal" identifier="BeginPracticeTest" modalTransitionStyle="crossDissolve" id="uUr-1b-oAg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSS-rV-9VB" customClass="BorderButton">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kSS-rV-9VB" customClass="BorderButton">
                                         <rect key="frame" x="30" y="167" width="230" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="2Yu-sz-oaf"/>
@@ -121,7 +121,7 @@
                                             <action selector="beginTestPress:" destination="2" eventType="touchUpInside" id="DyP-bJ-Btg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBJ-At-38o" customClass="BorderButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBJ-At-38o" customClass="BorderButton">
                                         <rect key="frame" x="30" y="288" width="230" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="82Z-eW-iV6"/>
@@ -512,7 +512,7 @@ Affiliation</string>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BB3-FY-wcH">
                                 <rect key="frame" x="314" y="943" width="210" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0JJ-qZ-0Nx">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0JJ-qZ-0Nx">
                                         <rect key="frame" x="0.0" y="0.0" width="210" height="56"/>
                                         <state key="normal" title="Configure PsyPad">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -542,7 +542,7 @@ Affiliation</string>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IV6-iT-OZi">
                                 <rect key="frame" x="533" y="943" width="210" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDq-cF-XYR">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDq-cF-XYR">
                                         <rect key="frame" x="0.0" y="0.0" width="210" height="56"/>
                                         <state key="normal" title="Visit PsyPad Website">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -647,7 +647,7 @@ Affiliation</string>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgV-JO-ZcN">
                                 <rect key="frame" x="533" y="943" width="210" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ay-Ru-RdQ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ay-Ru-RdQ">
                                         <rect key="frame" x="0.0" y="0.0" width="210" height="56"/>
                                         <state key="normal" title="Visit PsyPad Website">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -799,7 +799,7 @@ Affiliation</string>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwZ-h6-KRc">
                                 <rect key="frame" x="533" y="943" width="210" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kcl-pt-dKd">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kcl-pt-dKd">
                                         <rect key="frame" x="0.0" y="0.0" width="210" height="56"/>
                                         <state key="normal" title="Visit PsyPad Website">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -884,7 +884,7 @@ Affiliation</string>
                                             <outlet property="delegate" destination="2" id="BBw-OL-VEn"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Oc-Mf-rBu" customClass="BorderButton">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Oc-Mf-rBu" customClass="BorderButton">
                                         <rect key="frame" x="183" y="247" width="140" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Login">
@@ -895,7 +895,7 @@ Affiliation</string>
                                             <action selector="login" destination="Fdn-t6-v0m" eventType="touchUpInside" id="Efx-Lf-YcE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qz0-qT-T1x" customClass="BorderButton">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qz0-qT-T1x" customClass="BorderButton">
                                         <rect key="frame" x="27" y="247" width="140" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Sign Up">
@@ -972,14 +972,14 @@ Affiliation</string>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" id="87I-I9-sdg" customClass="UserTableViewCell">
-                                <rect key="frame" x="0.0" y="55.5" width="540" height="64"/>
+                                <rect key="frame" x="0.0" y="49.5" width="540" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="87I-I9-sdg" id="kzr-LG-TzR">
-                                    <rect key="frame" x="0.0" y="0.0" width="509" height="64"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="510.5" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="david" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTG-fg-jlC">
-                                            <rect key="frame" x="20" y="13" width="362" height="22"/>
+                                            <rect key="frame" x="20" y="13" width="367.5" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="SvM-uq-VxG"/>
                                             </constraints>
@@ -988,13 +988,13 @@ Affiliation</string>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="6 tests, 20 log files" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSC-sf-7Yw">
-                                            <rect key="frame" x="20" y="36" width="362" height="19"/>
+                                            <rect key="frame" x="20" y="36" width="367.5" height="19"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFI-lJ-gm4" customClass="BorderButton">
-                                            <rect key="frame" x="390" y="10" width="100" height="45"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFI-lJ-gm4" customClass="BorderButton">
+                                            <rect key="frame" x="395.5" y="10" width="100" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="fmO-2k-LZz"/>
                                             </constraints>
@@ -1027,7 +1027,7 @@ Affiliation</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ServerUserCell" id="OgR-7h-hL6" customClass="UserTableViewCell">
-                                <rect key="frame" x="0.0" y="119.5" width="540" height="64"/>
+                                <rect key="frame" x="0.0" y="113.5" width="540" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OgR-7h-hL6" id="86R-cd-H4o">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="64"/>
@@ -1048,7 +1048,7 @@ Affiliation</string>
                                             <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOw-Lf-V3f" customClass="BorderButton">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOw-Lf-V3f" customClass="BorderButton">
                                             <rect key="frame" x="429" y="10" width="100" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="k9j-NG-BK6"/>
@@ -1081,7 +1081,7 @@ Affiliation</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoParticipantsCell" textLabel="xL3-qN-m7c" rowHeight="44" style="IBUITableViewCellStyleDefault" id="K6S-Ud-71L">
-                                <rect key="frame" x="0.0" y="183.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="177.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K6S-Ud-71L" id="Tn9-8a-4rJ">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1098,7 +1098,7 @@ Affiliation</string>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadUserListCell" textLabel="5JS-qC-i26" rowHeight="44" style="IBUITableViewCellStyleDefault" id="blD-NC-VnL">
-                                <rect key="frame" x="0.0" y="227.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="221.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="blD-NC-VnL" id="Jml-IO-Ls8">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1115,7 +1115,7 @@ Affiliation</string>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UploadLogsCell" textLabel="BID-k0-1zq" rowHeight="44" style="IBUITableViewCellStyleDefault" id="ixb-2N-0hE">
-                                <rect key="frame" x="0.0" y="271.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="265.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ixb-2N-0hE" id="tvx-FS-hkI">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1132,7 +1132,7 @@ Affiliation</string>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DownloadAllCell" textLabel="JJv-Mw-TRR" rowHeight="44" style="IBUITableViewCellStyleDefault" id="ceR-Kc-zdo">
-                                <rect key="frame" x="0.0" y="315.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="309.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ceR-Kc-zdo" id="O1m-Fa-UHz">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1149,7 +1149,7 @@ Affiliation</string>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DemoModeCell" rowHeight="44" id="vyB-iC-CV3" customClass="SwitchTableViewCell">
-                                <rect key="frame" x="0.0" y="359.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="353.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vyB-iC-CV3" id="y4n-i1-zqK">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1183,7 +1183,7 @@ Affiliation</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdminPasswordCell" rowHeight="44" id="WW7-Vs-qR3" customClass="TextFieldTableViewCell">
-                                <rect key="frame" x="0.0" y="403.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="397.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WW7-Vs-qR3" id="V2d-N9-lGd">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1223,7 +1223,7 @@ Affiliation</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogoutCell" textLabel="ebX-zN-wrN" rowHeight="44" style="IBUITableViewCellStyleDefault" id="BbJ-YD-XRQ">
-                                <rect key="frame" x="0.0" y="447.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="441.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BbJ-YD-XRQ" id="TfE-Lw-5nP">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1312,11 +1312,11 @@ Affiliation</string>
                                         <rect key="frame" x="0.0" y="74" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="61O-lt-X22" id="Ty3-vf-ist">
-                                            <rect key="frame" x="0.0" y="0.0" width="509" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="510.5" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="View Logs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9rV-34-Bx3">
-                                                    <rect key="frame" x="20" y="0.0" width="481" height="44"/>
+                                                    <rect key="frame" x="20" y="0.0" width="482.5" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1357,7 +1357,7 @@ Affiliation</string>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogItemCell" id="Ujf-we-lvP" customClass="TestLogTableViewCell">
-                                <rect key="frame" x="0.0" y="55.5" width="540" height="57"/>
+                                <rect key="frame" x="0.0" y="49.5" width="540" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ujf-we-lvP" id="I6w-a7-9EW">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="57"/>
@@ -1408,14 +1408,14 @@ Affiliation</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogCell" id="h0X-Kd-UNh" customClass="TestLogTableViewCell">
-                                <rect key="frame" x="0.0" y="112.5" width="540" height="57"/>
+                                <rect key="frame" x="0.0" y="106.5" width="540" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h0X-Kd-UNh" id="NlR-jb-YKW">
-                                    <rect key="frame" x="0.0" y="0.0" width="509" height="57"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="510.5" height="57"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Question 13/20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hm-71-FpR">
-                                            <rect key="frame" x="20" y="31" width="485" height="18"/>
+                                            <rect key="frame" x="20" y="31" width="490.5" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="TbE-oN-9XP"/>
                                             </constraints>
@@ -1424,13 +1424,13 @@ Affiliation</string>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="next_question" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vc2-3t-6IC">
-                                            <rect key="frame" x="20" y="9" width="311" height="19"/>
+                                            <rect key="frame" x="20" y="9" width="316.5" height="19"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="13/12/2012 3:56pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xb-Pc-fqG">
-                                            <rect key="frame" x="339" y="9" width="166" height="19"/>
+                                            <rect key="frame" x="344.5" y="9" width="166" height="19"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="166" id="fFy-D9-Uc5"/>
                                             </constraints>
@@ -1460,14 +1460,14 @@ Affiliation</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AnalysisCell" textLabel="zxx-CY-vtv" rowHeight="44" style="IBUITableViewCellStyleDefault" id="DAj-D0-5oL">
-                                <rect key="frame" x="0.0" y="169.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="163.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DAj-D0-5oL" id="9yg-Ka-BVE">
-                                    <rect key="frame" x="0.0" y="0.0" width="509" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="510.5" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Analysis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zxx-CY-vtv">
-                                            <rect key="frame" x="20" y="0.0" width="481" height="44"/>
+                                            <rect key="frame" x="20" y="0.0" width="482.5" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1504,7 +1504,7 @@ Affiliation</string>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BarChartCell" id="vpm-dg-xqC" customClass="BarChartCell">
-                                <rect key="frame" x="0.0" y="55.5" width="540" height="31"/>
+                                <rect key="frame" x="0.0" y="49.5" width="540" height="31"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vpm-dg-xqC" id="lVq-63-pd0">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="31"/>
@@ -1594,7 +1594,7 @@ Affiliation</string>
                         <color key="backgroundColor" red="0.8862745098" green="0.8862745098" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RefreshCell" textLabel="5OQ-Ei-a29" rowHeight="44" style="IBUITableViewCellStyleDefault" id="cFl-BU-GNk">
-                                <rect key="frame" x="0.0" y="55.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="49.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cFl-BU-GNk" id="qgv-Ve-xTF">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1611,7 +1611,7 @@ Affiliation</string>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoCell" textLabel="lgW-pQ-946" rowHeight="44" style="IBUITableViewCellStyleDefault" id="Z8J-gU-Aif">
-                                <rect key="frame" x="0.0" y="99.5" width="540" height="44"/>
+                                <rect key="frame" x="0.0" y="93.5" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z8J-gU-Aif" id="p8d-Ly-d0t">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
@@ -1628,7 +1628,7 @@ Affiliation</string>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DownloadedConfigurationCell" rowHeight="80" id="sEo-xW-6xd" customClass="ConfigurationTableViewCell">
-                                <rect key="frame" x="0.0" y="143.5" width="540" height="80"/>
+                                <rect key="frame" x="0.0" y="137.5" width="540" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sEo-xW-6xd" id="kmE-7j-7Nn">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="80"/>
@@ -1647,7 +1647,7 @@ Affiliation</string>
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEw-tm-IhL" customClass="BorderButton">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEw-tm-IhL" customClass="BorderButton">
                                             <rect key="frame" x="478" y="15" width="50" height="51"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="PPn-Yx-nQw"/>
@@ -1661,7 +1661,7 @@ Affiliation</string>
                                                 <action selector="pressedRun:" destination="iFu-UK-g32" eventType="touchUpInside" id="fl9-Lo-hP2"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGI-sG-4g2" customClass="BorderButton">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGI-sG-4g2" customClass="BorderButton">
                                             <rect key="frame" x="420" y="15" width="50" height="51"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="aAl-YK-DpJ"/>
@@ -1696,7 +1696,7 @@ Affiliation</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AvailableConfigurationCell" rowHeight="80" id="YWs-UT-Jew" customClass="ConfigurationTableViewCell">
-                                <rect key="frame" x="0.0" y="223.5" width="540" height="80"/>
+                                <rect key="frame" x="0.0" y="217.5" width="540" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YWs-UT-Jew" id="mcj-yN-9v5">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="80"/>
@@ -1715,7 +1715,7 @@ Affiliation</string>
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zag-xn-2wF" customClass="BorderButton">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zag-xn-2wF" customClass="BorderButton">
                                             <rect key="frame" x="420" y="15" width="108" height="51"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="108" id="EP8-SK-yeP"/>
@@ -1745,7 +1745,7 @@ Affiliation</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpdatableConfigurationCell" rowHeight="80" id="FJl-L6-aIe" customClass="ConfigurationTableViewCell">
-                                <rect key="frame" x="0.0" y="303.5" width="540" height="80"/>
+                                <rect key="frame" x="0.0" y="297.5" width="540" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJl-L6-aIe" id="JhN-kv-C4V">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="80"/>
@@ -1764,7 +1764,7 @@ Affiliation</string>
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lb3-I2-CHP" customClass="BorderButton">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lb3-I2-CHP" customClass="BorderButton">
                                             <rect key="frame" x="420" y="15" width="108" height="51"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="108" id="KfZ-af-3pg"/>

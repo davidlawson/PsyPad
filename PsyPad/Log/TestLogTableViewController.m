@@ -143,7 +143,7 @@
 
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"dd/MM/yyyy h:mm:ss a"];
-
+            
             logCell.rightLabel.text = [dateFormatter stringFromDate:logItem.timestamp];
 
             return logCell;

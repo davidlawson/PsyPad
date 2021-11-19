@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -743,7 +743,7 @@
 		635D078C168D7D0D002B845F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "David Lawson";
 				TargetAttributes = {
 					635D0794168D7D0D002B845F = {
@@ -756,12 +756,12 @@
 				};
 			};
 			buildConfigurationList = 635D078F168D7D0D002B845F /* Build configuration list for PBXProject "PsyPad" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 635D078A168D7D0D002B845F;
 			productRefGroup = 635D0796168D7D0D002B845F /* Products */;
@@ -948,6 +948,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -979,7 +980,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -997,7 +998,7 @@
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1030,6 +1031,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1081,6 +1083,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1112,7 +1115,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VLDWUKP35J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1130,7 +1133,7 @@
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1151,7 +1154,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VLDWUKP35J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1169,7 +1172,7 @@
 				);
 				INFOPLIST_FILE = "PsyPad/Supporting Files/PsyPad-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = PsyPad;
 				PRODUCT_NAME = "$(TARGET_NAME)";

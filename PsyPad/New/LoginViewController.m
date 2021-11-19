@@ -113,7 +113,7 @@
     
     [RootEntity rootEntity].server_url = self.serverURLField.text;
     [DatabaseManager save];
-    
+ 
     [[ServerManager sharedManager] loginWithEmail:self.emailField.text
                                          password:self.passwordField.text
                                           success:success

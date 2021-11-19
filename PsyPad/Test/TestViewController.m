@@ -861,8 +861,9 @@
 
     [self.image removeFromSuperview];
 
-    TestButton *nextButton = [[TestButton alloc] initWithText:@"Next"];
+    TestButton *nextButton = [[TestButton alloc] initWithText:@" Next "];
 
+    [nextButton sizeToFit];
     [nextButton moveToX:VIEW_WIDTH/2 - nextButton.width/2 y:VIEW_HEIGHT/2 - nextButton.height/2];
 
     [nextButton addTarget:self action:@selector(pressNextButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -1216,6 +1217,7 @@
         logItem.type = type;
         logItem.info = info;
         logItem.timestamp = [NSDate date];
+
         logItem.log = self.log;
 
         [DatabaseManager save];

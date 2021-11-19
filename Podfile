@@ -1,7 +1,7 @@
 #use_frameworks!
 
 target "PsyPad" do
-    platform :ios, '9.0'
+    platform :ios, '14.0'
 
     pod 'MagicalRecord'
     pod 'AFNetworking', '~> 4.0'
